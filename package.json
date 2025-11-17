@@ -1,0 +1,14 @@
+{
+  "name": "manual_hifirush_tustin2121",
+  "version": "0.1.0",
+  "description": "Manual archipelago randomizer for Hi-Fi Rush, by Tustin2121",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "archipelago"
+  ],
+  "author": "tustin2121",
+  "license": "ISC"
+}

@@ -1,0 +1,18 @@
+# Track Access
+- { name: Track 1 Access, category: [ Tracks ], progression: true }
+- { name: Track 2 Access, category: [ Tracks ], progression: true }
+- { name: Track 3 Access, category: [ Tracks ], progression: true }
+- { name: Track 4 Access, category: [ Tracks ], progression: true }
+- { name: Track 5 Access, category: [ Tracks ], progression: true }
+- { name: Track 6 Access, category: [ Tracks ], progression: true }
+- { name: Track 7 Access, category: [ Tracks ], progression: true }
+- { name: Track 8 Access, category: [ Tracks ], progression: true }
+- { name: Track 9 Access, category: [ Tracks ], progression: true }
+- { name: Track 10 Access, category: [ Tracks ], progression: true }
+- { name: Track 11 Access, category: [ Tracks ], progression: true }
+- { name: Track 12 Access, category: [ Tracks ], progression: true }
+
+# Summons
+- { name: Peppermint Summon, category: [ Summons ], progression: true }
+- { name: Macaron Summon, category: [ Summons ], progression: true }
+- { name: Korsica Summon, category: [ Summons ], progression: true }
