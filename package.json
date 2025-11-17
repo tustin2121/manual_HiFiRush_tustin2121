@@ -10,5 +10,9 @@
     "archipelago"
   ],
   "author": "tustin2121",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "js-yaml": "^4.1.1"
+  }
 }
