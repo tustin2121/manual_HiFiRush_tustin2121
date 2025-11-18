@@ -1,3 +1,6 @@
+%YAML 1.2
+%OUTPUT direct
+---
 # Track Access
 - { name: Track 1 Access, category: [ Tracks ], progression: true }
 - { name: Track 2 Access, category: [ Tracks ], progression: true }

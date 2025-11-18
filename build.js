@@ -4,9 +4,30 @@ const { Transform } = require('node:stream');
 const fs = require('fs/promises');
 const fsSync = require("fs");
 const PATH = require('path');
-const yaml = require('js-yaml');
+const yaml = require('./js-yaml-mod'); // require('js-yaml');
 const archiver = require('archiver');
 const semver = require('semver');
+
+/**
+ * 
+ * @param {string} str - Input string
+ * @returns {object}
+ */
+function parseYaml(str) {
+	let mode = 'direct';
+	
+	let json = yaml.load(str, {
+		onUnknownDirective: (dir, args)=>{
+			if (dir === "OUTPUT") mode = args[0];
+		}
+	});
+	switch (mode) {
+		case 'direct':
+		default:
+			return json;
+			
+	}
+}
 
 // Thanks to https://github.com/ad-si/yaml2json/blob/master/source/index.js
 class YamlToJsonTransform extends Transform {
@@ -25,7 +46,7 @@ class YamlToJsonTransform extends Transform {
 		done();
 	}
 	_flush(done) {
-		let json = yaml.load(this.#buffer.toString('utf8'));
+		let json = parseYaml(this.#buffer.toString('utf8'));
 		if (this.readableObjectMode) {
 			this.push(json);
 		} else {

@@ -1,3 +1,6 @@
+%YAML 1.2
+%OUTPUT direct
+---
 # Track 1: A Fresh Start
 - { name: Track 1 - Chorus 1, region: Track 1, category: [ Track 1, Chorus ] }
 - { name: Track 1 - Chorus 2, region: Track 1, category: [ Track 1, Chorus ] }
@@ -16,7 +19,7 @@
 - { name: Track 1 - Vlog 1,                     region: Track 1, category: [ Track 1, Collectable, Vlogs ],    requires: "{YamlEnabled(vlog_sanity)}" } # Near some crates next to 2 robots after Chorus 4.
 - { name: Track 1 - Life Gauge Piece 2,         region: Track 1, category: [ Track 1, Collectable, Upgrades ], requires: "{YamlEnabled(upgrade_sanity)}" } # On top of the water tower after Chorus 4.
 - { name: Track 1 - Find SPECTRA Door,          region: Track 1, category: [ Track 1, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 0)}" } # After Chorus 4 and encountering the Smidge that tells you about the world's rhythm, there is a ledge behind him that can be dropped down onto. 
-- { name: Track 1 - Beat SPECTRA Challenge,     region: Track 1, category: [ Track 1, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 1)}" } # Gives Broken Armstrong Circuit
+- { name: Track 1 - Beat SPECTRA Challenge,     region: Track 1, category: [ Track 1, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 1)} and {YamlEnabled(post_game)}" } # Gives Broken Armstrong Circuit
 - { name: Track 1 - Smidge 3,                   region: Track 1, category: [ Track 1, Smidges ],               requires: "{YamlCompare(robo_sanity > 0)}" }  # On the roof
 - { name: Track 1 - Smidge 4,                   region: Track 1, category: [ Track 1, Smidges ],               requires: "{YamlCompare(robo_sanity > 0)}" }  # On the roof
 - { name: Track 1 - Smidge 5,                   region: Track 1, category: [ Track 1, Smidges ],               requires: "{YamlCompare(robo_sanity > 0)}" }  # After the special attack tutorial
@@ -26,12 +29,12 @@
 - { name: Track 1 - Reverb Core Piece 1,        region: Track 1, category: [ Track 1, Collectable, Upgrades ], requires: "{YamlEnabled(upgrade_sanity)}" }  # On the far end of the first conveyor belt in the production building after Chorus 5.
 - { name: Track 1 - End the Robots' Argument,   region: Track 1, category: [ Track 1, NPC ],                   requires: "{YamlCompare(robo_sanity > 1)}" }  # After the generator QTE, hit the robots arguing.
 - { name: Track 1 - Broken Armstrong Circuit 2, region: Track 1, category: [ Track 1, Collectable, Circuit ],  requires: "{YamlEnabled(circuit_sanity)} and |Macaron Summon| and |Korsica Summon|" } # Through the Z-shielding door on a catwalk in the area to the right after reactivating the generator. 
-- { name: Track 1 - Graffiti 1,                 region: Track 1, category: [ Track 1, Collectable, Graffiti ], requires: "{YamlEnabled(graffiti_sanity)}" } # On a high ledge above the treasure chest robot in the same area.
+- { name: Track 1 - Graffiti 1,                 region: Track 1, category: [ Track 1, Collectable, Graffiti ], requires: "{YamlEnabled(graffiti_sanity)} and {YamlEnabled(post_game)}" } # On a high ledge above the treasure chest robot in the same area.
 - { name: Track 1 - Vlog 4,                     region: Track 1, category: [ Track 1, Collectable, Vlogs ],    requires: "{YamlEnabled(vlog_sanity)}" } # In a tucked away area behind directly behind the fight with the BA-B00.
 - { name: Track 1 - Vlog 5,                     region: Track 1, category: [ Track 1, Collectable, Vlogs ],    requires: "{YamlEnabled(vlog_sanity)}" } # On a computer in front of the entrance to the QA center.
 - { name: Track 1 - Life Gauge Piece 3,         region: Track 1, category: [ Track 1, Collectable, Upgrades ], requires: "{YamlEnabled(upgrade_sanity)}" } # In the same room as PDA #5, on the upper level.
 - { name: Track 1 - Broken Armstrong Circuit 3, region: Track 1, category: [ Track 1, Collectable, Circuit ],  requires: "{YamlEnabled(circuit_sanity)} and |Korsica Summon|" } # On the opposite side of the QA lobby, on the upper level
-- { name: Track 1 - Graffiti 2,                 region: Track 1, category: [ Track 1, Collectable, Graffiti ], requires: "{YamlEnabled(graffiti_sanity)}" } # Exiting the chamber, on the upper level, on the opposite wall.
+- { name: Track 1 - Graffiti 2,                 region: Track 1, category: [ Track 1, Collectable, Graffiti ], requires: "{YamlEnabled(graffiti_sanity)} and {YamlEnabled(post_game)}" } # Exiting the chamber, on the upper level, on the opposite wall.
 - { name: Track 1 - Destroy O5-KAR's boxes,     region: Track 1, category: [ Track 1, NPC ],                   requires: "{YamlCompare(robo_sanity > 1)}" }  # Just before the end
 
 # # Track 2: Power Up
@@ -49,7 +52,7 @@
 # # TODO Collectables
 - { name: Track 2 - Smidge 1,                   region: Track 2,      category: [ Track 2, Smidges ],               requires: "{YamlCompare(robo_sanity > 0)}" }  # After Chorus 2, magnet tutorial
 - { name: Track 2 - Find SPECTRA Door,          region: Track 2 Back, category: [ Track 2, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 0)}" } # Located above the battle area of Chorus 7, on a platform accessed by jumping off the shipping containers that help the player move on; perform an Air Dodge to cover more distance
-- { name: Track 2 - Beat SPECTRA Challenge,     region: Track 2 Back, category: [ Track 2, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 1)}" } # Gives ???
+- { name: Track 2 - Beat SPECTRA Challenge,     region: Track 2 Back, category: [ Track 2, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 1)} and {YamlEnabled(post_game)}" } # Gives ???
 - { name: Track 2 - Scatter the Pigeons,        region: Track 2 Back, category: [ Track 2, NPC ],                   requires: "{YamlCompare(robo_sanity > 1)} and |Peppermint Summon|" }  # Gives Life Gauge
 - { name: Track 2 - Shoot the Lounging Robot,   region: Track 2 Back, category: [ Track 2, NPC ],                   requires: "{YamlCompare(robo_sanity > 1)} and |Peppermint Summon|" }  # After Chorus 8
 
@@ -64,8 +67,9 @@
 
 # # TODO Collectables
 - { name: Track 3 - Find SPECTRA Door,          region: Track 3, category: [ Track 3, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 0)}" } # Turn right after exiting Chamber 3; the door will be behind a rock wall. 
-- { name: Track 3 - Beat SPECTRA Challenge,     region: Track 3, category: [ Track 3, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 1)}" } # Gives ???
-# - { name: Track 2 - Go Fishing,                 region: Track 2, category: [ Track 2, NPC ],                   requires: "{YamlCompare(robo_sanity > 1)}" } # Just before the end
+- { name: Track 3 - Beat SPECTRA Challenge,     region: Track 3, category: [ Track 3, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 1)} and {YamlEnabled(post_game)}" } # Gives ???
+# - { name: Track 3 - Go Fishing,                 region: Track 3, category: [ Track 3, NPC ],                   requires: "{YamlCompare(robo_sanity > 1)}" } # Just before the end
+- { name: Track 3 - Golden Kale Statue 1,       region: Track 3, category: [ Track 3, Statues ],               requires: "{YamlCompare(statue_sanity > 1)}" } # Just before the end
 
 # Track 4: Less Budget, More Problems
 - { name: Track 4 - Chorus 1,     region: Track 4, category: [ Track 4, Chorus ] }
@@ -78,7 +82,7 @@
 
 # # TODO Collectables
 - { name: Track 4 - Find SPECTRA Door,          region: Track 4, category: [ Track 4, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 0)} and |Korsica Summon|" } # Located directly above the first AR room after Chorus 1 (Korsica is required to access this).
-- { name: Track 4 - Beat SPECTRA Challenge,     region: Track 4, category: [ Track 4, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 1)}" } # Gives ???
+- { name: Track 4 - Beat SPECTRA Challenge,     region: Track 4, category: [ Track 4, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 1)} and {YamlEnabled(post_game)}" } # Gives ???
 
 # Track 5: Breaking Out
 - { name: Track 5 - Chorus 1, region: Track 5, category: [ Track 5, Chorus ] }
@@ -91,7 +95,7 @@
 
 # # TODO Collectables
 - { name: Track 5 - Find SPECTRA Door,          region: Track 5, category: [ Track 5, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 0)}" } # Located below the main chamber, near the elevator connected to Node 3; ride the floating platforms to reach it.
-- { name: Track 5 - Beat SPECTRA Challenge,     region: Track 5, category: [ Track 5, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 1)}" } # Gives ???
+- { name: Track 5 - Beat SPECTRA Challenge,     region: Track 5, category: [ Track 5, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 1)} and {YamlEnabled(post_game)}" } # Gives ???
 # - { name: Track 5 - Return the TEC-78's Comics, region: Track 5, category: [ Track 5, NPC ],                   requires: "{YamlCompare(robo_sanity > 1)}" } # Just before the end
 
 # Track 6: L.I.F.T Me Up
@@ -118,7 +122,7 @@
 
 # # TODO Collectables
 - { name: Track 7 - Find SPECTRA Door,          region: Track 7, category: [ Track 7, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 0)}" } # In the staircase area leading to Cylinder B, move to the right from the exiting door and take the staircase ahead; the door is right next to the O5-KAR and TEC-78. 
-- { name: Track 7 - Beat SPECTRA Challenge,     region: Track 7, category: [ Track 7, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 1)}" } # Gives ???
+- { name: Track 7 - Beat SPECTRA Challenge,     region: Track 7, category: [ Track 7, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 1)} and {YamlEnabled(post_game)}" } # Gives ???
 - { name: Track 7 - Free the Stuck SCR-UB,      region: Track 7, category: [ Track 7, NPC ],                   requires: "{YamlCompare(robo_sanity > 1)}" }  #
 
 - { name: Track ? - Allow the Robot to Sleep,   region: Track 7, category: [ Track 7, NPC ],                   requires: "{YamlCompare(robo_sanity > 1)}" }  # Clear out the vacuum bots to allow the robot to sleep in the break room
@@ -138,7 +142,7 @@
 # # TODO Collectables
 - { name: Track 8 - Find the Golden Can,        region: Track 8 Outside, category: [ Track 8, NPC ],           requires: "{YamlCompare(robo_sanity > 1)}" } #
 - { name: Track 8 - Find SPECTRA Door,          region: Track 8, category: [ Track 8, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 0)}" } #  Take a series of pipe platforms before the Chorus 9 area; the door will be to the left afterward
-- { name: Track 8 - Beat SPECTRA Challenge,     region: Track 8, category: [ Track 8, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 1)}" } # Gives ???
+- { name: Track 8 - Beat SPECTRA Challenge,     region: Track 8, category: [ Track 8, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 1)} and {YamlEnabled(post_game)}" } # Gives ???
 
 # Track 9: Take the Stage
 - { name: Track 9 - Defeat Mimosa, region: Track 9, category: [ Track 9, Chorus ] }
@@ -164,7 +168,7 @@
 # # TODO Collectables
 - { name: Track 10 - Smidge 1,                   region: Track 10, category: [ Track 10, Smidges ],               requires: "{YamlCompare(robo_sanity > 0)}" } # Just before the atrium
 - { name: Track 10 - Find SPECTRA Door,          region: Track 10, category: [ Track 10, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 0)}" } # Located in a hidden area right after the player enters the atrium; turn right before the button activating the magnets and jump up three rising platforms to reach the door ahead. A treasure chest is also hidden there.
-- { name: Track 10 - Beat SPECTRA Challenge,     region: Track 10, category: [ Track 10, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 1)}" } # Gives ???
+- { name: Track 10 - Beat SPECTRA Challenge,     region: Track 10, category: [ Track 10, Collectable, Doors ],    requires: "{YamlCompare(door_sanity > 1)} and {YamlEnabled(post_game)}" } # Gives ???
 
 # Track 11: The Needle Drop
 - { name: Track 11 - Synchronize a Harmonic Force Field, region: Track 11, category: [ Track 11, Chorus ] }

@@ -1,5 +1,8 @@
+%YAML 1.2
+%OUTPUT direct
+---
 "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.game.schema.json"
-"game": "HiFiRush"
-"creator": "Tustin2121"
-"filler_item_name": "Gears"
-"starting_items": []
+game: HiFiRush
+creator: Tustin2121
+filler_item_name: Gears
+starting_items: []
