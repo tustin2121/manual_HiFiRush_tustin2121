@@ -1,11 +1,12 @@
 #! node
 
-const { Transform, pipeline } = require('node:stream');
+const { Transform } = require('node:stream');
 const fs = require('fs/promises');
 const fsSync = require("fs");
 const PATH = require('path');
 const yaml = require('js-yaml');
 const archiver = require('archiver');
+const semver = require('semver');
 
 // Thanks to https://github.com/ad-si/yaml2json/blob/master/source/index.js
 class YamlToJsonTransform extends Transform {
@@ -34,7 +35,6 @@ class YamlToJsonTransform extends Transform {
 	}
 }
 
-
 async function main() {
 	let prefix = 'manual_undefined_undefined';
 	{
@@ -42,6 +42,7 @@ async function main() {
 		const data = yaml.load(str);
 		prefix = `manual_${data['game']}_${data['creator']}`;
 	}
+	prefix = prefix.toLowerCase();
 	await fs.mkdir('out', { recursive:true });
 	
 	const out = fsSync.createWriteStream(PATH.resolve(__dirname, 'out', `${prefix}.apworld`));
@@ -59,7 +60,7 @@ async function main() {
 		const rs = fsSync.createReadStream(`src/${f}`);
 		const ts = new YamlToJsonTransform();
 		rs.pipe(ts);
-		zip.append(ts, { name: `${PATH.basename(f, 'yml')}.json`, prefix:`${prefix}/data` });
+		zip.append(ts, { name: `${PATH.basename(f, '.yml')}.json`, prefix:`${prefix}/data` });
 	}
 	for (const f of await fs.readdir('dist', { recursive:true, withFileTypes:false })) {
 		if (f.startsWith('data')) continue;
@@ -68,64 +69,32 @@ async function main() {
 		const rs = fsSync.createReadStream(PATH.join('dist', f));
 		zip.append(rs, { name: f, prefix });
 	}
-	// for (const f of await fs.readdir('dist', { recursive:true, withFileTypes:true })) {
-	// 	if (f.parentPath.endsWith('data')) continue;
-	// 	if (f.isDirectory()) continue;
-	// 	console.log('Outputting', f.parentPath, f.name);
-	// 	const rs = fsSync.createReadStream(PATH.join(f.parentPath, f.name));
-	// 	zip.append(rs, { name: f.name, prefix });
-	// }
+	{
+		let package = {};
+		let json = {};
+		try {
+			json = JSON.parse(await fs.readFile("archipelago.json", { encoding:'utf8' }));
+		} catch {}
+		try {
+			package = JSON.parse(await fs.readFile("package.json", { encoding:'utf8' }));
+		} catch (e) {
+			console.error(`Unable to to open package.json`, e);
+		}
+		
+		let output = {
+			game: prefix,
+			world_version: package.version,
+			authors: [ package.author ],
+			version: 7, compatible_version: 7,
+		};
+		if (package.engines?.archipelago) {
+			output.minimum_ap_version = semver.minVersion(package.engines['archipelago']).format();
+			// output.maximum_ap_version = semver.maxSatisfying();
+		}
+		output = Object.assign({}, output, json);
+		console.log(output);
+		zip.append(JSON.stringify(output), { name: "archipelago.json", prefix });
+	}
 	zip.finalize();
 }
 main();
-
-/*
-const fs = require('fs/promises');
-const fsSync = require("fs");
-const PATH = require('path');
-const yaml = require('js-yaml');
-
-async function emitJson(filename) {
-	const inFile = PATH.join(__dirname, 'src', PATH.basename(filename, 'yml'));
-	const outFile = PATH.join(__dirname, 'out', 'data', PATH.basename(filename, 'yml')) + '.json';
-	
-	const str = await fs.readFile(inFile, { encoding:'utf8' });
-	const data = yaml.load(str);
-	const json = JSON.stringify(data);
-	return fs.writeFile(outFile, json);
-}
-
-function makeArchive() {
-	return new Promise((res, rej)=>{
-		const out = fsSync.createWriteStream(PATH.resolve(__dirname, 'out', PATH.basename(outDir)+'.apworld'));
-		const zip = archiver('zip', {
-			zlib: { level: 9 },
-		});
-		zip.on('warning', (err)=> console.error('Warning archiving data:', err));
-		zip.on('close', ()=>{
-			console.log(`EPUB archive (${zip.pointer()} bytes) written to ${out.path}`);
-		});
-		zip.pipe(out);
-		zip.directory(outDir, false);
-		zip.finalize(); // This is a promise, but it fires before the file handle closes, 
-		// thus causing a bad zip file to be created that can't be opened by readers
-		out.on('close', res);
-	})
-}
-
-async function main() {
-	{
-		
-		await fs.mkdir('out/manual_hifirush_tustin2121');
-	}
-	
-	
-	
-	await Promise.all(
-		(await fs.readdir(PATH.join(__dirname, 'src'))).map(emitJson)
-	);
-	
-	
-}
-main();
-*/
