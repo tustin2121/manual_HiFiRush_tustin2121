@@ -4,10 +4,17 @@ core:
   goal:
     # Using 'goal' as the name of an option let you override some of the generated goal parameters
     display_name: The End Objective
-    description: How to End your Randomized playthrough.
+    # description: How to End your Randomized playthrough.
+    description: |
+      How to end your playthrough:
+      defeat kale - Win the game by defeating Kale in Track 12.
+      defeat track 11 - Win the game by completing Track 11, which is easier than fighting Kale.
     aliases: 
-      easiest: 0
-    hidden: false
+    #   easiest: 0
+    # hidden: false
+    # values:
+      defeat_kale: 0
+      defeat_track11: 1
   death_link:
     default: false
   filler_traps:
@@ -18,12 +25,12 @@ core:
 user:
   upgrade_sanity:
     type: Toggle
-    description: Grant checks for picking up Life Gauge (26), Health Tank (10), and Reverb Core (?) pieces (9 locations)
+    description: Grant checks for picking up Life Gauge (26), Health Tank (10), and Reverb Core (?) pieces (? locations)
     default: false
     group: Sanity Options 
   circuit_sanity:
     type: Toggle
-    description: Grant checks for picking up Broken Armstrong Circuits (9 locations)
+    description: Grant checks for picking up Broken Armstrong Circuits (? locations)
     default: false
     group: Sanity Options 
   vlog_sanity:
@@ -34,6 +41,14 @@ user:
   graffiti_sanity:
     type: Toggle
     description: Grant checks for finding Graffiti (24 locations)
+    default: false
+    group: Sanity Options 
+  robo_sanity:
+    type: Choice
+    description: |
+      'smidge' adds checks for talking to Smidge (? locations)
+      'others' additionally adds checks for interacting with various incidental NPCs (? more locations)
+      'none' does not add these checks
     default: false
     group: Sanity Options 
   door_sanity:
@@ -51,48 +66,45 @@ user:
     group: Sanity Options 
   
   
-  
-  
-  
-  Example_Toggle: 
-    description: |
-      This is a Toggle
-      A simple boolean, aka True or False set the initial value with "default"
-    type: Toggle
-    default: false
-    group: Example Options
-  Example_Choice:
-    type: Choice
-    description: |
-      This is a Choice
-      Let the user pick from a list of values
-      allow_custom_value let a player define their own text value
-      Currently the only use for Choice in Manual outside of hooks is the goal
-    values:
-      start: 0
-      test: 1
-    default: 0
-    allow_custom_value: false
-    group: Example Options
-  Example_Range:
-    type: Range
-    description: |
-      This is a Range
-      Allow the player to specify a value between 'start' and 'end'
-      if you include a \"values\" you can define the label for certain values
-      Currently the only use for Range in Manual outside of hooks is 'filler_trap'
-    range_start: 0
-    default: 1
-    range_end: 10
-    values: {"example": 2}
-    group: Example Options
+  # Example_Toggle: 
+  #   description: |
+  #     This is a Toggle
+  #     A simple boolean, aka True or False set the initial value with "default"
+  #   type: Toggle
+  #   default: false
+  #   group: Example Options
+  # Example_Choice:
+  #   type: Choice
+  #   description: |
+  #     This is a Choice
+  #     Let the user pick from a list of values
+  #     allow_custom_value let a player define their own text value
+  #     Currently the only use for Choice in Manual outside of hooks is the goal
+  #   values:
+  #     start: 0
+  #     test: 1
+  #   default: 0
+  #   allow_custom_value: false
+  #   group: Example Options
+  # Example_Range:
+  #   type: Range
+  #   description: |
+  #     This is a Range
+  #     Allow the player to specify a value between 'start' and 'end'
+  #     if you include a \"values\" you can define the label for certain values
+  #     Currently the only use for Range in Manual outside of hooks is 'filler_trap'
+  #   range_start: 0
+  #   default: 1
+  #   range_end: 10
+  #   values: {"example": 2}
+  #   group: Example Options
 
-  DLC_enabled:
-    display_name: DLC Enabled
-    description: Is the Dlc enabled?
-    type: "Toggle"
-    visibility: 
-      - simple_ui
-      - complex_ui
-      - template
-    default: true
+  # DLC_enabled:
+  #   display_name: DLC Enabled
+  #   description: Is the Dlc enabled?
+  #   type: "Toggle"
+  #   visibility: 
+  #     - simple_ui
+  #     - complex_ui
+  #     - template
+  #   default: true

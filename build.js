@@ -43,9 +43,11 @@ async function main() {
 		prefix = `manual_${data['game']}_${data['creator']}`;
 	}
 	prefix = prefix.toLowerCase();
-	await fs.mkdir('out', { recursive:true });
 	
-	const out = fsSync.createWriteStream(PATH.resolve(__dirname, 'out', `${prefix}.apworld`));
+	const outPath = process.argv[2] ?? PATH.resolve('out');
+	await fs.mkdir(outPath, { recursive:true });
+	
+	const out = fsSync.createWriteStream(PATH.resolve(outPath, `${prefix}.apworld`));
 	const zip = archiver('zip', { zlib: { level: 9 } });
 	
 	zip.on('close', ()=>{
@@ -85,7 +87,7 @@ async function main() {
 			game: prefix,
 			world_version: package.version,
 			authors: [ package.author ],
-			version: 7, compatible_version: 7,
+			version: 6, compatible_version: 5,
 		};
 		if (package.engines?.archipelago) {
 			output.minimum_ap_version = semver.minVersion(package.engines['archipelago']).format();
@@ -93,7 +95,7 @@ async function main() {
 		}
 		output = Object.assign({}, output, json);
 		console.log(output);
-		zip.append(JSON.stringify(output), { name: "archipelago.json", prefix });
+		zip.append(JSON.stringify(output), { name: "archipelago.json" });
 	}
 	zip.finalize();
 }
