@@ -1,14 +1,18 @@
 %YAML 1.2
 %OUTPUT locations
 ---
-robo:      { requires: "{YamlCompare(robo_sanity >= %)}", category: [ NPC ] }
+smidge:    { requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ] }
+npc:       { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ] }
+noir:      { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ] }
 upgrade:   { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades, Collectable ] }
 circuit:   { requires: "{YamlEnabled(circuit_sanity)}", category: [ Circuit, Collectable ] }
 vlog:      { requires: "{YamlEnabled(vlog_sanity)}", category: [ Vlogs, Collectable ] }
-door:      { requires: "{YamlCompare(door_sanity >= %)}", category: [ Doors ] }
+door:      { requires: "{YamlCompare(door_sanity >= 1)}", category: [ Doors ] }
+spectra:   { requires: "{YamlCompare(door_sanity >= 2)}", category: [ Doors ] }
 graffiti:  { requires: "{YamlEnabled(graffiti_sanity)}", category: [ Graffiti, Collectable ] }
 statue:    { requires: "{YamlEnabled(statue_sanity)}", category: [ Statues, Collectable ] }
-billboard: { requires: "{YamlEnabled(billboard_sanity)}", category: [ Billboards, Collectable ], requires: "|Korsica Summon|" }
+board:     { requires: "{YamlEnabled(billboard_sanity)}", category: [ Billboards, Collectable ], requires: "|Korsica Summon|" }
+vend:      { requires: "{YamlEnabled(vending_sanity)}", category: [ Vending Machine, Collectable ] }
 post:      { requires: "{YamlEnabled(post_game)}" }
 pepper:    { requires: "|Peppermint Summon|" }
 macaron:   { requires: "|Macaron Summon|" }
@@ -20,234 +24,274 @@ achieve:   { category: [ Achievement ] }
 # Track 1: A Fresh Start
 - track: { name: Track 1, region: Track 1, category: [ Track 1 ] }
   checks:
-    - { name: Admire O5-KAR's boxes,      robo: 2,               hint: "Turn around at the start" }
+    - { name: Admire O5-KAR's boxes,      t: [ npc ],                   hint: "Turn around at the start" }
     
     # Please collect your belongings
-    - { name: Chorus 1,                   chorus: 1,                           hint: "Is he resisting?" }
-    - { name: Chorus 2,                   chorus: 1,                           hint: "That's the defect!!" }
-    - { name: Smidge 1,                   robo: 1,                             hint: "After Chorus 2, tutorial for heavy and light attacks" }
-    - { name: Chorus 3,                   chorus: 1,                           hint: "Hey! You looking for me?" }
-    - { name: Interrupt SBR-001's Tan,    robo: 2,                             hint: "Above the 3rd Chorus." }
-    - { name: Smidge 2,                   robo: 1,                             hint: "After Chorus 2, dodging tutorial." }
-    - { name: SEB-AAA and JSF-001,        robo: 2,    pepper: 1, post_game: 1, hint: "The platform directly above the second Smidge" }
-    - { name: Broken Armstrong Circuit 1, circuit: 1, pepper: 1, post_game: 1, hint: "Listen to the Noir Investigator ramble." }
+    - { name: Chorus 1,                   t: [ chorus ],                hint: "Is he resisting?" }
+    - { name: Chorus 2,                   t: [ chorus ],                hint: "That's the defect!!" }
+    - { name: Smidge 1,                   t: [ smidge ],                hint: "After Chorus 2, tutorial for heavy and light attacks" }
+    - { name: Chorus 3,                   t: [ chorus ],                hint: "Hey! You looking for me?" }
+    - { name: Interrupt SBR-001's Tan,    t: [ npc ],                   hint: "Above the 3rd Chorus." }
+    - { name: Smidge 2,                   t: [ smidge ],                hint: "After Chorus 2, dodging tutorial." }
+    - { name: SEB-AAA and JSF-001,        t: [ noir, pepper, post ],    hint: "The platform directly above the second Smidge" }
+    - { name: Broken Armstrong Circuit 1, t: [ circuit, pepper, post ], hint: "Listen to the Noir Investigator ramble." }
     
     # HOST SYNCHRONIZED!
-    - { name: Life Gauge Piece 1,         upgrade: 1,            hint: "The room to the right of Smidge after the beat hit tutorial." }
-    - { name: Smidge 3,                   robo: 1,               hint: "The Beat Hit tutorial" }
-    - { name: Chorus 4,                   chorus: 1,             hint: "Top of the building" }
-    - { name: Life Gauge Piece 2,         upgrade: 1,            hint: "On top of the water tower after Chorus 4." }
-    - { name: Vlog 1,                     vlog: 1,               hint: "Near some crates next to 2 robots after Chorus 4." }
-    - { name: Smidge 4,                   robo: 1,               hint: "The environment reacts to the beat" }
-    - { name: Find SPECTRA Door,          door: 1,               hint: "After Chorus 4 and encountering the Smidge that tells you about the world's rhythm, there is a ledge behind him that can be dropped down onto." }
-    - { name: Beat SPECTRA Challenge,     door: 2,               } # Gives Broken Armstrong Circuit
-    - { name: Smidge 5,                   robo: 1,               hint: "The rest combo" }
-    
-    # 2D Section
-    - { name: Vlog 2,                     vlog: 1,               hint: "After the 2D section, near an illuminated hole in the ground, on the computer." }
+    - { name: Life Gauge Piece 1,         t: [ upgrade ],            hint: "The room to the right of Smidge after the beat hit tutorial." }
+    - { name: Smidge 3,                   t: [ smidge ],             hint: "The Beat Hit tutorial" }
+    - { name: Chorus 4,                   t: [ chorus ],             hint: "Top of the building" }
+    - { name: Life Gauge Piece 2,         t: [ upgrade ],            hint: "On top of the water tower after Chorus 4." }
+    - { name: Vlog 1,                     t: [ vlog ],               hint: "Near some crates next to 2 robots after Chorus 4." }
+    - { name: Smidge 4,                   t: [ smidge ],             hint: "The environment reacts to the beat" }
+    - { name: Find SPECTRA Door,          t: [ door ],               hint: "After Chorus 4 and encountering the Smidge that tells you about the world's rhythm, there is a ledge behind him that can be dropped down onto." }
+    - { name: Beat SPECTRA Challenge,     t: [ spectra ],            } # Gives Broken Armstrong Circuit
+    - { name: Smidge 5,                   t: [ smidge ],             hint: "The rest combo" }
+    - { name: Vlog 2,                     t: [ vlog ],               hint: "After the 2D section, near an illuminated hole in the ground, on the computer." }
     
     # Battery Production
-    - { name: Smidge 6,                   robo: 1,               hint: "After the special attack tutorial" }
-    - { name: Chorus 5,                   chorus: 1 }
-    - { name: Vlog 3,                     vlog: 1,               hint: "On the floor of the adjacent room directly after the first fight with the GNR-020's." }
-    - { name: Health Tank Piece 1,      upgrade: 1, treasure: 1, hint: "Inside the treasure chest robot in the area above the third PDA." }
+    - { name: Smidge 6,                   t: [ smidge ],             hint: "After the special attack tutorial" }
+    - { name: Chorus 5,                   t: [ chorus ],             hint: "First fight with a tough enemy."}
+    - { name: Vlog 3,                     t: [ vlog ],               hint: "On the floor of the adjacent room directly after the first fight with the GNR-020's." }
+    - { name: Health Tank Piece 1,        t: [ upgrade, treasure ],  hint: "Inside the treasure chest robot in the area above the third PDA." }
     
     # Conveyor Belt
-    - { name: Reverb Core Piece 1,        upgrade: 1,            hint: "On the far end of the first conveyor belt in the production building after Chorus 5." }
-    - { name: End the Robots' Argument,   robo: 2,               hint: "After the generator QTE, hit the robots arguing." }
-    - { name: Broken Armstrong Circuit 2, circuit: 1,  macaron: 1, korsica: 1, post: 1, hint: "Through the Z-shielded door on a catwalk in the area to the right after reactivating the generator." }
-    - { name: Graffiti 1,                 graffiti: 1, macaron: 1, korsica: 1, post: 1, hint: "QA Building | Behind the Z-Shielded door, up the generator-supplied platforms." }
-    - { name: Chorus 6,                   chorus: 1,             hint: "Tough enemies tutorial" }
-    - { name: Vlog 4,                     vlog: 1,               hint: "In a tucked away area behind directly behind the fight with the BA-B00." }
-    - { name: Flying Billboard 1,         billboard: 1, post_game: 1, hint: "Flying around the Chorus 6 arena." }
-    - { name: Break Robot's High Score,   robo: 2,               hint: "After Chorus 6" }
-    - { name: Chorus 7,                   chorus: 1 }
+    - { name: Reverb Core Piece 1,        t: [ upgrade ],            hint: "On the far end of the first conveyor belt in the production building after Chorus 5." }
+    - { name: End the Robots' Argument,   t: [ npc ],                hint: "After the generator QTE, hit the robots arguing." }
+    - { name: Broken Armstrong Circuit 2, t: [ circuit,  macaron, korsica, post ], hint: "Through the Z-shielded door on a catwalk in the area to the right after reactivating the generator." }
+    - { name: Graffiti 1,                 t: [ graffiti, macaron, korsica, post ], hint: "QA Building | Behind the Z-Shielded door, up the generator-supplied platforms." }
+    - { name: Chorus 6,                   t: [ chorus ],             hint: "Tough enemies tutorial" }
+    - { name: Vlog 4,                     t: [ vlog ],               hint: "In a tucked away area behind directly behind the fight with the BA-B00." }
+    - { name: Flying Billboard 1,         t: [ board ],              hint: "Flying around the Chorus 6 arena." }
+    - { name: Break Robot's High Score,   t: [ npc ],                hint: "After Chorus 6" }
+    - { name: Chorus 7,                   t: [ chorus ],             hint: "Jumping is strictly prohibited!" }
     
     # The way out opens
-    - { name: Destroy O5-KAR's boxes,     robo: 2,               hint: "Just before the end" }
-    - { name: Vlog 5,                     vlog: 1,               hint: "On a computer in front of the entrance to the QA center." }
-    - { name: Life Gauge Piece 3,         upgrade: 1,            hint: "In the same room as PDA #5, on the upper level." }
-    - { name: Broken Armstrong Circuit 3, circuit: 1,  korsica: 1, post: 1, hint: "On the opposite side of the QA lobby, on the upper level" }
-    - { name: Graffiti 2,                 graffiti: 1, korsica: 1, post: 1, hint: "Crane Holding Up Containers | Just before the QA-1MIL fight, in the room behind the flaming doorway." }
+    - { name: Destroy O5-KAR's boxes,     t: [ robo ],               hint: "Just before the end" }
+    - { name: Vlog 5,                     t: [ vlog ],               hint: "On a computer in front of the entrance to the QA center." }
+    - { name: Life Gauge Piece 3,         t: [ upgrade ],            hint: "In the same room as PDA #5, on the upper level." }
+    - { name: Broken Armstrong Circuit 3, t: [ circuit,  korsica, post ], hint: "On the opposite side of the QA lobby, on the upper level" }
+    - { name: Graffiti 2,                 t: [ graffiti, korsica, post ], hint: "Crane Holding Up Containers | Just before the QA-1MIL fight, in the room behind the flaming doorway." }
     
-    - { name: Explode QA-1MIL,            chorus: 1, achieve: 1, hint: "You've got a killer track, but every son'gs gotta end!" }
-    
+    - { name: Explode QA-1MIL,            t: [ chorus, achieve ],     hint: "You've got a killer track, but every son'gs gotta end!" }
+
 
 # Track 2: Power Up
 - track: { name: Track 2, region: Track 2, category: [ Track 2 ] }
   checks:
-    - { name: Chorus 1,                   chorus: 1 }
-    - { name: Chorus 2,                   chorus: 1 }
-    - { name: Chorus 3,                   chorus: 1 }
-    - { name: Chorus 4,                   chorus: 1 }
-    - { name: Chorus 5,                   chorus: 1 }
-    - { name: Chorus 6,                   chorus: 1 }
-    
-    - { name: Graffiti 1,                 graffiti: 1, hint: "Production Machine | ???." }
-    - { name: Graffiti 2,                 graffiti: 1, korsica: 1, post: 1, hint: "Robot Portrait | ???." }
-    - { name: Graffiti 3,                 graffiti: 1, hint: "Rekka | In the room before the Rekka fight." }
-    
-    - { name: Smidge 1,                   robo: 1, hint: "After Chorus 2, magnet tutorial" }
-
-- track: { name: Track 2, region: Track 2 Back, category: [ Track 2 ] }
+    - { name: Vending Machine 1,          t: [ vend ],               hint: "Before entering the building to the right." }
+    - { name: Vlog 1,                     t: [ vlog ],               hint: "Before entering the building, inside the area to the left." }
+    # Vandelay statues in the lobby
+    - { name: Chorus 1,                   t: [ chorus ],             hint: "Uh oh..." }
+    - { name: Reverb Core Piece 1,        t: [ upgrade ],            hint: "At the top of the box stack, on the overhead catwalk." }
+    - { name: Vlog 2,                     t: [ vlog ],               hint: "Inside the control room of the huge room." }
+    - { name: Vending Machine 2,          t: [ vend ],               hint: "Inside the control room of the huge room." }
+    # Magnet tutorial
+    - { name: Chorus 2,                   t: [ chorus ],             hint: "We're supposed to watch out for a... music fighting intruder?" }
+    # TODO: Korsica door up high with the magnet
+    - { name: Vlog 3,                     t: [ vlog ],               hint: "Ride the tram cars going under the platform and arena." }
+    - { name: Smidge 1,                   t: [ smidge ],             hint: "After Chorus 2, magnet tutorial" }
+    - { name: Graffiti 1,                 t: [ graffiti ],           hint: "Production Machine | Found in a room to the left of Smidge, up some boxes." }
+    - { name: Golden Kale Statue 1,       t: [ statue ],             hint: "Just after pulling yourself up by 3 magnet points." }
+    - { name: Chorus 3,                   t: [ chorus ],             hint: "After the vent" }
+    - { name: Reverb Core Piece 2,        t: [ upgrade ],            hint: "Hidden in the back after the Chorus." }
+    # Shop terminals introduced
+    - { name: Life Gauge Piece 1,         t: [ upgrade ],            hint: "In the rafters of the large room after the shop terminal." }
+    - { name: Chorus 4,                   t: [ chorus ],             hint: "After the first Rhythm Jump." }
+    - { name: Chorus 5,                   t: [ chorus ],             hint: "Past the press machines." }
+    # TODO: Korsica door right after the Chorus
+    - { name: Graffiti 2,                 t: [ graffiti, korsica, post ], hint: "Robot Portrait | ???." }
+    - { name: Chorus 6,                   t: [ chorus ],             hint: "You're on LOCKDOWN and getting the SMACKDOWN!" }
+    - { name: Vlog 4,                     t: [ vlog ],               hint: "Just outside the Chorus 6 arena." }
+    # Grapple tram line ride!
+    # TODO: Oscar?
+- track: { name: Track 2, region: Track 2 Back, category: [ Track 2 ] } # Peppermint Summon given here
   checks:
-    - { name: Chorus 7,                   chorus: 1 }
-    - { name: Chorus 8,                   chorus: 1 }
-    - { name: Chorus 9,                   chorus: 1 }
-    - { name: Defeat Rekka,               chorus: 1, achieve: 1 }
-    
-    - { name: Find SPECTRA Door,          door: 1, hint: "Located above the battle area of Chorus 7, on a platform accessed by jumping off the shipping containers that help the player move on; perform an Air Dodge to cover more distance" }
-    - { name: Beat SPECTRA Challenge,     door: 2, } # Gives ???
-    - { name: Scatter the Pigeons,        robo: 2, pepper: 1, hint: "" } # Gives Life Gauge
-    - { name: Shoot the Lounging Robot,   robo: 2, pepper: 1, hint: "After Chorus 8" } # 
-    # TODO Collectables
+    - { name: Vlog 5,                     t: [ vlog ],              hint: "After Peppermint allows you across the gap." }
+    - { name: Chorus 7,                   t: [ chorus ],            hint: "Looks like somebody got an upgrade." }
+    - { name: Find SPECTRA Door,          t: [ door ],              hint: "Located above the battle area of Chorus 7, on a platform accessed by jumping off the shipping containers that help the player move on; perform an Air Dodge to cover more distance" }
+    - { name: Beat SPECTRA Challenge,     t: [ spectra ],           } # Gives ???
+    - { name: Smidge 2,                   t: [ smidge ],            hint: "After Chorus 2, Peppermint tutorial" }
+    - { name: Chorus 8,                   t: [ chorus ],            hint: "Flying enemies!" }
+    - { name: Shoot the Lounging Robot,   t: [ npc, pepper ],       hint: "After Chorus 8" } # 
+    # TODO: Korsica door after the jumping section
+    - { name: Vending Machine 3,          t: [ vend ],              hint: "In the room with the shop terminal." }
+    # "Teamwork! Hooray...!"
+    - { name: Life Gauge Piece 1,         t: [ upgrade, treasure ], hint: "Inside the treasure chest robot after the three-part steam ride." }
+    - { name: Scatter the Pigeons,        t: [ npc, pepper ],       hint: "After Mimosa hypes her upcoming show." } # Gives Life Gauge
+    - { name: Flying Billboard 1,         t: [ board ],             hint: "Flying around the Chorus 6 arena." }
+    - { name: Chorus 9,                   t: [ chorus ] }
+    # anteroom before Rekka
+    - { name: Vlog 6,                     t: [ vlog ],              hint: "In the anteroom before Rekka." }
+    - { name: SEB-AAA and JSF-001,        t: [ noir ],              hint: "In the anteroom before Rekka." }
+    - { name: Graffiti 3,                 t: [ graffiti ],          hint: "Rekka | In the anteroom before Rekka." }
+    - { name: Defeat Rekka,               t: [ chorus, achieve ],   }
+
 
 # Track 3: Trial By (Volcanic) Fire
 - track: { name: Track 3, region: Track 3, category: [ Track 3 ] }
   checks:
-    - { name: Chorus 1, chorus: 1 }
-    - { name: Chorus 2, chorus: 1 }
-    - { name: Chorus 3, chorus: 1 }
-    - { name: Chorus 4, chorus: 1 }
-    - { name: Chorus 5, chorus: 1 }
-    - { name: Chorus 6, chorus: 1 }
-    - { name: BLORF,    achieve: 1 }
+    - { name: Chorus 1, t: [ chorus ] }
+    - { name: Chorus 2, t: [ chorus ] }
+    - { name: Chorus 3, t: [ chorus ] }
+    - { name: Chorus 4, t: [ chorus ] }
+    - { name: Chorus 5, t: [ chorus ] }
+    - { name: Chorus 6, t: [ chorus ] }
+    - { name: BLORF,    t: [ achieve ] }
 
     # TODO Collectables
-    - { name: Graffiti 1,                 graffiti: 1, hint: "Flowers | ???." }
-    - { name: Graffiti 2,                 graffiti: 1, korsica: 1, post: 1, hint: "Volcano | ???." }
-    - { name: Graffiti 3,                 graffiti: 1, hint: "Zanzo | In the room before the Rekka fight." }
+    - { name: Graffiti 1,               t: [ graffiti ], hint: "Flowers | ???." }
+    - { name: Graffiti 2,               t: [ graffiti, korsica, post ], hint: "Volcano | ???." }
+    - { name: Graffiti 3,               t: [ graffiti ], hint: "Zanzo | In the room before the Rekka fight." }
     
-    - { name: Find SPECTRA Door,          door: 1, } # Turn right after exiting Chamber 3; the door will be behind a rock wall. 
-    - { name: Beat SPECTRA Challenge,     door: 2,    requires: "{YamlCompare(door_sanity > 1)} and {YamlEnabled(post_game)}" } # Gives ???
-  # - { name: Go Fishing,                 robo: 2, } # Just before the end
-    - { name: Golden Kale Statue 1,       category: [ Track 3, Statues ],               requires: "{YamlCompare(statue_sanity > 1)}" } # Just before the end
+    - { name: Find SPECTRA Door,        t: [ door ], } # Turn right after exiting Chamber 3; the door will be behind a rock wall. 
+    - { name: Beat SPECTRA Challenge,   t: [ spectra ],    requires: "{YamlCompare(door_sanity > 1)} and {YamlEnabled(post_game)}" } # Gives ???
+  # - { name: Go Fishing,               t: [ npc ],    hint: "Just before the end" }
+    - { name: Golden Kale Statue 1,     t: [ statue ], hint: "Just before the end" }
 
 # Track 4: Less Budget, More Problems
 - track: { name: Track 4, region: Track 4, category: [ Track 4 ] }
   checks:
-    - { name: Chorus 1,     chorus: 1 }
-    - { name: Chorus 2,     chorus: 1 }
-    - { name: Chorus 3,     chorus: 1 }
-    - { name: Chorus 4,     chorus: 1 }
-    - { name: Chorus 5,     chorus: 1 }
-    - { name: Defund Zanzo, achieve: 1 }
-    - { name: Chorus 6,     chorus: 1 }
+    - { name: Chorus 1,     t: [ chorus ] }
+    - { name: Chorus 2,     t: [ chorus ] }
+    - { name: Chorus 3,     t: [ chorus ] }
+    - { name: Chorus 4,     t: [ chorus ] }
+    - { name: Chorus 5,     t: [ chorus ] }
+    - { name: Defund Zanzo, t: [ achieve ] }
+    - { name: Chorus 6,     t: [ chorus ] }
 
     # # TODO Collectables
-    - { name: Find SPECTRA Door,          door: 1, korsica: 1, hint: "Located directly above the first AR room after Chorus 1 (Korsica is required to access this)." }
-    - { name: Beat SPECTRA Challenge,     door: 2, } # Gives ???
+    - { name: Graffiti 1,               t: [ graffiti ], hint: "HG-0G | Under the stairs that leads up to the first AR room." }
+    - { name: Graffiti 2,               t: [ graffiti, korsica, post ], hint: "VÄART | After destroying the first AR eye, when you reach the crossroads on the catwalk, go left instead of right." }
+    - { name: Find SPECTRA Door,          t: [ door, korsica ], hint: "Located directly above the first AR room after Chorus 1 (Korsica is required to access this)." }
+    - { name: Beat SPECTRA Challenge,     t: [ spectra ],       } # Gives ???
 
 # Track 5: Breaking Out
 - track: { name: Track 5, region: Track 5, category: [ Track 5 ] }
   checks:
-    - { name: Chorus 1,           chorus: 1 }
-    - { name: Chorus 2,           chorus: 1 }
-    - { name: Chorus 3,           chorus: 1 }
-    - { name: Chorus 4,           chorus: 1 }
-    - { name: Chorus 5,           chorus: 1 }
-    - { name: Chorus 6,           chorus: 1 }
-    - { name: Board the L.I.F.T., achieve: 1 }
+    - { name: Chorus 1,           t: [ chorus ] }
+    - { name: Chorus 2,           t: [ chorus ] }
+    - { name: Chorus 3,           t: [ chorus ] }
+    - { name: Chorus 4,           t: [ chorus ] }
+    - { name: Chorus 5,           t: [ chorus ] }
+    - { name: Chorus 6,           t: [ chorus ] }
+    - { name: Board the L.I.F.T., t: [ achieve ] }
 
     # # TODO Collectables
-    - { name: Find SPECTRA Door,          door: 1,    requires: "{YamlCompare(door_sanity > 0)}" } # Located below the main chamber, near the elevator connected to Node 3; ride the floating platforms to reach it.
-    - { name: Beat SPECTRA Challenge,     door: 2,    requires: "{YamlCompare(door_sanity > 1)} and {YamlEnabled(post_game)}" } # Gives ???
-  # - { name: Return the TEC-78's Comics, robo: 2, } # Just before the end
+    - { name: Graffiti 1,               t: [ graffiti ], hint: "Nodes | After you reach the main security area, go right and drop down onto the platform below that leads to the moving platforms that circle around the center column." }
+    - { name: Find SPECTRA Door,          t: [ door ],    hint: "Located below the main chamber, near the elevator connected to Node 3; ride the floating platforms to reach it." }
+    - { name: Beat SPECTRA Challenge,     t: [ spectra ], } # Gives ???
+  # - { name: Return the TEC-78's Comics, t: [ npc ],     hint: "" }
 
 # Track 6: L.I.F.T Me Up
 - track: { name: Track 6, region: Track 6, category: [ Track 6 ] }
   checks:
-    - { name: Chorus 1,          chorus: 1 }
-    - { name: Chorus 2,          chorus: 1 }
-    - { name: Chorus 3,          chorus: 1 }
-    - { name: Stop the L.I.F.T., achieve: 1 }
+    - { name: Chorus 1,          t: [ chorus ] }
+    - { name: Chorus 2,          t: [ chorus ] }
+    - { name: Chorus 3,          t: [ chorus ] }
+    - { name: Stop the L.I.F.T., t: [ achieve ] }
 
     # # TODO Collectables?
-    - { name: Broken Armstrong Circuit 1, circuit: 1,  hint: "Turn around at the beginning of the level, and jump over the elevator controls. It's by the back wall." }
-    - { name: Graffiti 1,                 graffiti: 1, hint: "To the left of the shop on the floor." }
+    - { name: Graffiti 1,                 t: [ graffiti ], hint: "L.I.F.T | Once you reach the shop, go left." }
+    - { name: Broken Armstrong Circuit 1, t: [ circuit ],  hint: "Turn around at the beginning of the level, and jump over the elevator controls. It's by the back wall." }
 
 # # Track 7: The Climb
 - track: { name: Track 7, region: Track 7, category: [ Track 7 ] }
   checks:
-    - { name: Chorus 1,       chorus: 1 }
-    - { name: Chorus 2,       chorus: 1 }
-    - { name: Chorus 3,       chorus: 1 }
-    - { name: Chorus 4,       chorus: 1 }
-    - { name: Chorus 5,       chorus: 1 }
-    - { name: Chorus 6,       chorus: 1 }
-    - { name: Chorus 7,       chorus: 1 }
-    - { name: Chorus 8,       chorus: 1 }
-    - { name: Chorus 9,       chorus: 1 }
-    - { name: Defeat Korsica, chorus: 1, achieve: 1 }
+    - { name: Chorus 1,       t: [ chorus ] }
+    - { name: Chorus 2,       t: [ chorus ] }
+    - { name: Chorus 3,       t: [ chorus ] }
+    - { name: Chorus 4,       t: [ chorus ] }
+    - { name: Chorus 5,       t: [ chorus ] }
+    - { name: Chorus 6,       t: [ chorus ] }
+    - { name: Chorus 7,       t: [ chorus ] }
+    - { name: Chorus 8,       t: [ chorus ] }
+    - { name: Chorus 9,       t: [ chorus ] }
+    - { name: Defeat Korsica, t: [ chorus, achieve ] }
 
     # # TODO Collectables
-    - { name: Find SPECTRA Door,          door: 1,  hint: "In the staircase area leading to Cylinder B, move to the right from the exiting door and take the staircase ahead; the door is right next to the O5-KAR and TEC-78." }
-    - { name: Beat SPECTRA Challenge,     door: 2,  } # Gives ???
-    - { name: Free the Stuck SCR-UB,      robo: 2 }  #
+    - { name: Graffiti 1,               t: [ graffiti ], hint: "KEM-0N0 | After you grapple over to the platform on the center column, instead of getting onto the moving platform that takes you toward the next part of the track, go left." }
+    - { name: Graffiti 2,               t: [ graffiti, macaron, korsica, post ], hint: "Korsica | Break through the Z-Shielded wall." }
+    - { name: Graffiti 3,               t: [ graffiti ], hint: "Lasers | After you get the lasers moving again, get past them, and go up the next jump pad, go behind the tube." }
+    - { name: Find SPECTRA Door,          t: [ door ],   hint: "In the staircase area leading to Cylinder B, move to the right from the exiting door and take the staircase ahead; the door is right next to the O5-KAR and TEC-78." }
+    - { name: Beat SPECTRA Challenge,     t: [ spectra ],} # Gives ???
+    - { name: Free the Stuck SCR-UB,      t: [ npc ],    hint: "" }
 
-    - { name: Allow the Robot to Sleep,   robo: 2,  hint: "Clear out the vacuum bots to allow the robot to sleep in the break room" }
+    - { name: Allow the Robot to Sleep,   t: [ npc ],    hint: "Clear out the vacuum bots to allow the robot to sleep in the break room" }
 
 # Track 8: A History Lesson
+- track: { name: Track 8, region: Track 8 Start, category: [ Track 8 ] }
+  checks:
+    - { name: Find the Golden Can,        t: [ npc ],   hint: "" }
+
 - track: { name: Track 8, region: Track 8, category: [ Track 8 ] }
   checks:
-    - { name: Track 8 - Chorus 1, region: Track 8, category: [ Track 8, Chorus ] }
-    - { name: Track 8 - Chorus 2, region: Track 8, category: [ Track 8, Chorus ] }
-    - { name: Track 8 - Chorus 3, region: Track 8, category: [ Track 8, Chorus ] }
-    - { name: Track 8 - Chorus 4, region: Track 8, category: [ Track 8, Chorus ] }
-    - { name: Track 8 - Chorus 5, region: Track 8, category: [ Track 8, Chorus ] }
-    - { name: Track 8 - Chorus 6, region: Track 8, category: [ Track 8, Chorus ] }
-    - { name: Track 8 - Chorus 7, region: Track 8, category: [ Track 8, Chorus ] }
-    - { name: Track 8 - Chorus 8, region: Track 8, category: [ Track 8, Chorus ] }
-    - { name: Track 8 - Chorus 9, region: Track 8, category: [ Track 8, Chorus ] }
-    - { name: Track 8 - Tear Down a Cardboard Kale, region: Track 8, category: [ Track 8 ] }
+    - { name: Chorus 1,                   t: [ chorus ],   hint: "" }
+    - { name: Chorus 2,                   t: [ chorus ],   hint: "" }
+    - { name: Chorus 3,                   t: [ chorus ],   hint: "" }
+    - { name: Chorus 4,                   t: [ chorus ],   hint: "" }
+    - { name: Chorus 5,                   t: [ chorus ],   hint: "" }
+    - { name: Chorus 6,                   t: [ chorus ],   hint: "" }
+    - { name: Chorus 7,                   t: [ chorus ],   hint: "" }
+    - { name: Chorus 8,                   t: [ chorus ],   hint: "" }
+    - { name: Chorus 9,                   t: [ chorus ],   hint: "" }
+    - { name: Tear Down a Cardboard Kale, t: [ achieve ],  hint: "" }
 
     # # TODO Collectables
-    - { name: Track 8 - Find the Golden Can,        region: Track 8 Outside, category: [ Track 8, NPC ],           requires: "{YamlCompare(robo_sanity > 1)}" } #
-    - { name: Track 8 - Find SPECTRA Door,          door: 1,    requires: "{YamlCompare(door_sanity > 0)}" } #  Take a series of pipe platforms before the Chorus 9 area; the door will be to the left afterward
-    - { name: Track 8 - Beat SPECTRA Challenge,     door: 2,    requires: "{YamlCompare(door_sanity > 1)} and {YamlEnabled(post_game)}" } # Gives ???
+    - { name: Graffiti 1,               t: [ graffiti ],          hint: "Fireworks | In the upper part of the tracks opening area, before the fire gate, go toward the gate that the O5-KAR is polishing." }
+    - { name: Graffiti 2,               t: [ graffiti ],      hint: "BL-1Z5 | After the fight in front of the museum, go through the gate/over the fence to the right." }
+    - { name: Graffiti 3,               t: [ graffiti, macaron ], hint: "Stage | After the fight against the WA-ES-2 and SEN-C0 and breaking through the Z-Shielded wall, look to the left." }
+    - { name: Graffiti 4,               t: [ graffiti ], hint: "Museum | After the fight on the platform that fell down, drop down to the right of the stairs." }
+    - { name: Find SPECTRA Door,          t: [ door ],       hint: "Take a series of pipe platforms before the Chorus 9 area; the door will be to the left afterward" }
+    - { name: Beat SPECTRA Challenge,     t: [ spectra ],    } # Gives ???
 
 # Track 9: Take the Stage
 - track: { name: Track 9, region: Track 9, category: [ Track 9 ] }
   checks:
-    - { name: Track 9 - Defeat Mimosa, region: Track 9, category: [ Track 9, Chorus ] }
+    - { name: Defeat Mimosa, t: [ chorus, achieve ] }
 
     # # TODO Collectables?
-    - { name: Track 9 - Graffiti 1,                 region: Track 9, category: [ Track 9, Collectable, Graffiti ], requires: "{YamlEnabled(graffiti_sanity)}" } # At the very beginning of the track, turn around. It's on the wall.
-    - { name: Track 9 - Vlog 1,                     region: Track 9, category: [ Track 9, Collectable, Vlogs ],    requires: "{YamlEnabled(vlog_sanity)}" } # After dropping down from the gated area you have to climb over, on top of an instrument case to the right.
-    - { name: Track 9 - Vlog 2,                     region: Track 9, category: [ Track 9, Collectable, Vlogs ],    requires: "{YamlEnabled(vlog_sanity)}" } # At the end of the corridor on a bench near the shop.
+    - { name: Graffiti 1,    t: [ graffiti ], hint: "Mimosa | At the very beginning of the track, turn around. It's on the wall." }
+    - { name: Vlog 1,        t: [ vlogs ],    hint: "After dropping down from the gated area you have to climb over, on top of an instrument case to the right." }
+    - { name: Vlog 2,        t: [ vlogs ],    hint: "At the end of the corridor on a bench near the shop." }
 
 # Track 10: A Masterplan
 - track: { name: Track 10, region: Track 10, category: [ Track 10 ] }
   checks:
-    - { name: Track 10 - Chorus 1,  region: Track 10, category: [ Track 10, Chorus ] }
-    - { name: Track 10 - Chorus 2,  region: Track 10, category: [ Track 10, Chorus ] }
-    - { name: Track 10 - Chorus 3,  region: Track 10, category: [ Track 10, Chorus ] }
-    # Bounce off a blimp
-    - { name: Track 10 - Chorus 4,  region: Track 10, category: [ Track 10, Chorus ] }
-    - { name: Track 10 - Chorus 5,  region: Track 10, category: [ Track 10, Chorus ] }
-    - { name: Track 10 - Chorus 6,  region: Track 10, category: [ Track 10, Chorus ] }
-    - { name: Track 10 - Chorus 7,  region: Track 10, category: [ Track 10, Chorus ] }
-    - { name: Track 10 - Chorus 8,  region: Track 10, category: [ Track 10, Chorus ] }
-    - { name: Track 10 - Chorus 9,  region: Track 10, category: [ Track 10, Chorus ] }
-    - { name: Track 10 - Defeat Roquefort, region: Track 10, category: [ Track 10, Chorus ] }
+    - { name: Chorus 1,         t: [ chorus ] }
+    - { name: Chorus 2,         t: [ chorus ] }
+    - { name: Chorus 3,         t: [ chorus ] }
+    # Bounce off a blimp        
+    - { name: Chorus 4,         t: [ chorus ] }
+    - { name: Chorus 5,         t: [ chorus ] }
+    - { name: Chorus 6,         t: [ chorus ] }
+    - { name: Chorus 7,         t: [ chorus ] }
+    - { name: Chorus 8,         t: [ chorus ] }
+    - { name: Chorus 9,         t: [ chorus ] }
+    - { name: Defeat Roquefort, t: [ chorus, achieve ] }
 
-    # # TODO Collectables
-    - { name: Track 10 - Smidge 1,                   region: Track 10, category: [ Track 10, Smidges ],               requires: "{YamlCompare(robo_sanity > 0)}" } # Just before the atrium
-    - { name: Track 10 - Find SPECTRA Door,          door: 1,    requires: "{YamlCompare(door_sanity > 0)}" } # Located in a hidden area right after the player enters the atrium; turn right before the button activating the magnets and jump up three rising platforms to reach the door ahead. A treasure chest is also hidden there.
-    - { name: Track 10 - Beat SPECTRA Challenge,     door: 2,    requires: "{YamlCompare(door_sanity > 1)} and {YamlEnabled(post_game)}" } # Gives ???
+    # TODO Collectables
+    - { name: Graffiti 1,               t: [ graffiti ],          hint: "WA-ES-2 | After Smidge gets stuck in the door." }
+    - { name: Graffiti 2,               t: [ graffiti ],          hint: "Wrench | In the atrium, before pressing the button that activates the grapple point." }
+    - { name: Graffiti 3,               t: [ graffiti, macaron ], hint: "Roquefort | After the fight against the WA-ES-2 and SEN-C0 and breaking through the Z-Shielded wall, look to the left." }
+    - { name: Graffiti 4,               t: [ graffiti ],          hint: "Kale | Before you go into Roquefort's office, go to the right." }
+    
+    
+    - { name: Smidge 1,                   t: [ smidge ],  hint: "Just before the atrium" }
+    - { name: Find SPECTRA Door,          t: [ door ],    hint: "Located in a hidden area right after the player enters the atrium; turn right before the button activating the magnets and jump up three rising platforms to reach the door ahead. A treasure chest is also hidden there." }
+    - { name: Beat SPECTRA Challenge,     t: [ spectra ], } # Gives ???
 
 # Track 11: The Needle Drop
 - track: { name: Track 11, region: Track 11, category: [ Track 11 ] }
   checks:
-    - { name: Track 11 - Synchronize a Harmonic Force Field, chorus: 1 }
-    - { name: Track 11 - Chorus 1, chorus: 1 }
-    - { name: Track 11 - Chorus 2, chorus: 1 }
-    - { name: Track 11 - Chorus 3, chorus: 1 }
-    - { name: Defeat the ZP-1500, chorus: 1, achieve: 1, victory: true }
+    - { name: Synchronize a Harmonic Force Field, t: [ chorus ] }
+    - { name: Chorus 1,                           t: [ chorus ] }
+    - { name: Chorus 2,                           t: [ chorus ] }
+    - { name: Chorus 3,                           t: [ chorus ] }
+    - { name: Defeat the ZP-1500,                 t: [ chorus, achieve ], victory: true }
 
 # Track 12: Curate the Future
 - track: { name: Track 12, region: Track 12, category: [ Track 12 ] }
   checks:
-    - { name: Defeat Kale, chorus: 1, victory: true }
+    - { name: Defeat Kale, t: [ chorus, achieve ], victory: true }
 
 # Victory conditions (need to be in this order, for default to be first)

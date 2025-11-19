@@ -64,6 +64,11 @@ user:
     description: Grant checks for reading PDAs (71 locations)
     default: false
     group: Sanity Options 
+  graffiti_sanity:
+    type: Toggle
+    description: Grant checks for finding Graffiti (24 locations)
+    default: false
+    group: Sanity Options 
   statue_sanity:
     type: Toggle
     description: Grant checks for destroying golden statues of Kale (? locations)
@@ -74,9 +79,9 @@ user:
     description: Grant checks for shooting flying billboard bots with Peppermint (? locations)
     default: false
     group: Sanity Options 
-  graffiti_sanity:
+  vending_sanity:
     type: Toggle
-    description: Grant checks for finding Graffiti (24 locations)
+    description: Grant checks for breaking bending machines (? locations)
     default: false
     group: Sanity Options 
   robo_sanity:
