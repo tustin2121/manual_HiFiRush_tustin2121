@@ -1,7 +1,7 @@
 %YAML 1.2
 %OUTPUT direct
 ---
-Hideout:
+Hideout_PostGame:
   connects_to:
     - Track 1
     - Track 2
@@ -10,25 +10,30 @@ Hideout:
     - Track 5
     - Track 6
     - Track 7
-    - Track 8 Outside
+    - Track 8 Start
     - Track 9
     - Track 10
     - Track 11
     - Track 12
   starting: true
-  requires: []
+  requires: "{YamlEnabled(post_game)}"
 
-Track 1:         { connects_to: [], requires: "|Track 1 Access|" }
-Track 2:         { connects_to: [Track 2 Back], requires: "|Track 2 Access|" }
-Track 2 Back:    { connects_to: [], requires: "|Peppermint Summon|" }
-Track 3:         { connects_to: [], requires: "|Track 3 Access|" }
-Track 4:         { connects_to: [], requires: "|Track 4 Access| and |Macaron Summon|" }
-Track 5:         { connects_to: [], requires: "|Track 5 Access|" }
-Track 6:         { connects_to: [], requires: "|Track 6 Access|" }
-Track 7:         { connects_to: [], requires: "|Track 7 Access|" }
-Track 8 Outside: { connects_to: [Track 8], requires: "|Track 8 Access|" }
-Track 8:         { connects_to: [], requires: "|Korsica Summon|" }
-Track 9:         { connects_to: [], requires: "|Track 9 Access|" }
-Track 10:        { connects_to: [], requires: "|Track 10 Access|" }
-Track 11:        { connects_to: [], requires: "|Track 11 Access|" }
-Track 12:        { connects_to: [], requires: "|Track 12 Access|" }
+StartGame:
+  connects_to: [ Track 1 ]
+  starting: true
+  requires: "{YamlDisabled(post_game)}"
+
+Track 1:         { requires: "|Track 1 Access|",                      connects_to: [ Track 2 ] }
+Track 2:         { requires: "|Track 2 Access|",                      connects_to: [ Track 2 Back ] }
+Track 2 Back:    { requires: "|Peppermint Summon|",                   connects_to: [ Track 3 ] }
+Track 3:         { requires: "|Track 3 Access|",                      connects_to: [ Track 4 ] }
+Track 4:         { requires: "|Track 4 Access| and |Macaron Summon|", connects_to: [ Track 5 ] }
+Track 5:         { requires: "|Track 5 Access|",                      connects_to: [ Track 6 ] }
+Track 6:         { requires: "|Track 6 Access|",                      connects_to: [ Track 7 ] }
+Track 7:         { requires: "|Track 7 Access|",                      connects_to: [ Track 8 Start ] }
+Track 8 Start:   { requires: "|Track 8 Access|",                      connects_to: [ Track 8 ] }
+Track 8:         { requires: "|Korsica Summon|",                      connects_to: [ Track 9 ] }
+Track 9:         { requires: "|Track 9 Access|",                      connects_to: [ Track 10 ] }
+Track 10:        { requires: "|Track 10 Access|",                     connects_to: [ Track 11 ] }
+Track 11:        { requires: "|Track 11 Access|",                     connects_to: [ Track 12 ] }
+Track 12:        { requires: "|Track 12 Access|",                     connects_to: [ Hideout_PostGame ] }

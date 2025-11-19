@@ -28,23 +28,50 @@ core:
 user:
   post_game:
     type: Toggle
-    description: Assume for logic purposes that you are playing on a file that has completed the main play-through.
+    description: |
+      Assume for logic purposes that you are playing on a file that has completed the 
+      main play-through. This means you can access any stage with any combination of 
+      partners.
+      
+      NOTE: IF YOU TURN THIS OFF, YOUR RANDOMIZER MIGHT BREAK!
+      Archipelago logic assumes that a player can return to previously accessible 
+      locations at any time. But Hi-Fi Rush does not allow access to previous levels 
+      (or even previous checkpoints of levels you are on) until after you defeat Kale,
+      which is the victory condition for the randomizer. So if you miss a check, you 
+      may have to fudge picking up previous checks if they turn out to be important.
     default: true
     hidden: true
     
   upgrade_sanity:
     type: Toggle
-    description: Grant checks for picking up Life Gauge (26), Health Tank (10), and Reverb Core (?) pieces (? locations)
+    description: |
+      Grant checks for picking up Life Gauge (26), Health Tank (10), 
+      and Reverb Core (?) pieces (? locations).
+      Note: These items are permanent collectables. If you've picked them up before 
+      in your save file, they won't be present in the level.
     default: false
     group: Sanity Options 
   circuit_sanity:
     type: Toggle
-    description: Grant checks for picking up Broken Armstrong Circuits (? locations)
+    description: |
+      Grant checks for picking up Broken Armstrong Circuits (? locations)
+      Note: These items are permanent collectables. If you've picked them up before 
+      in your save file, they won't be present in the level.
     default: false
     group: Sanity Options 
   vlog_sanity:
     type: Toggle
     description: Grant checks for reading PDAs (71 locations)
+    default: false
+    group: Sanity Options 
+  statue_sanity:
+    type: Toggle
+    description: Grant checks for destroying golden statues of Kale (? locations)
+    default: false
+    group: Sanity Options 
+  billboard_sanity:
+    type: Toggle
+    description: Grant checks for shooting flying billboard bots with Peppermint (? locations)
     default: false
     group: Sanity Options 
   graffiti_sanity:
@@ -58,7 +85,12 @@ user:
       'smidge' adds checks for talking to Smidge (? locations)
       'others' additionally adds checks for interacting with various incidental NPCs (? more locations)
       'none' does not add these checks
-    default: false
+    values:
+      none: 0
+      smidge: 1
+      others: 2
+    default: 0
+    allow_custom_value: false
     group: Sanity Options 
   door_sanity:
     type: Choice
