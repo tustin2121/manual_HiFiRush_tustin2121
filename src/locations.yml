@@ -18,40 +18,51 @@ achieve:  { category: [ Achievement ] }
 # Track 1: A Fresh Start
 - track: { name: Track 1, region: Track 1, category: [ Track 1 ] }
   checks:
-    - { name: Chorus 1,                   chorus: 1 }
-    - { name: Chorus 2,                   chorus: 1 }
-    - { name: Chorus 3,                   chorus: 1 }
-    - { name: Chorus 4,                   chorus: 1 }
-    - { name: Chorus 5,                   chorus: 1 }
-    - { name: Chorus 6,                   chorus: 1 }
-    - { name: Chorus 7,                   chorus: 1 }
-    - { name: Explode QA-1MIL,            chorus: 1, achieve: 1 }
-    
     - { name: Admire O5-KAR's boxes,      robo: 2,               hint: "Turn around at the start" }
-    - { name: Smidge 1,                   robo: 1,               hint: "After Chorus 2" }
-    - { name: Smidge 2,                   robo: 1,               hint: "After the Beat Hit tutorial" }
+    # Please collect your belongings
+    - { name: Chorus 1,                   chorus: 1,             hint: "Is he resisting?" }
+    - { name: Chorus 2,                   chorus: 1,             hint: "That's the defect!!" }
+    - { name: Smidge 1,                   robo: 1,               hint: "After Chorus 2, tutorial for heavy and light attacks" }
+    - { name: Chorus 3,                   chorus: 1,             hint: "Hey! You looking for me?" }
+    - { name: Interrupt SBR-001's Tan,    robo: 2,               hint: "Above the 3rd Chorus." }
+    - { name: Smidge 2,                   robo: 1,               hint: "After Chorus 2, dodging tutorial." }
+    - { name: SEB-AAA and JSF-001,        robo: 2, pepper: 1,    hint: "The platform directly above the second Smidge" }
+    - { name: Broken Armstrong Circuit 1, circuit: 1, pepper: 1, hint: "Listen to the Noir Investigator ramble." }
+    # HOST SYNCHRONIZED!
     - { name: Life Gauge Piece 1,         upgrade: 1,            hint: "The room to the right of Smidge after the beat hit tutorial." }
-    - { name: Broken Armstrong Circuit 1, circuit: 1, pepper: 1, hint: "The platform directly above the second Smidge and talking to the HR investigator." }
-    - { name: Vlog 1,                     vlog: 1,               hint: "Near some crates next to 2 robots after Chorus 4." }
+    - { name: Smidge 3,                   robo: 1,               hint: "The Beat Hit tutorial" }
+    - { name: Chorus 4,                   chorus: 1,             hint: "Top of the building" }
     - { name: Life Gauge Piece 2,         upgrade: 1,            hint: "On top of the water tower after Chorus 4." }
+    - { name: Vlog 1,                     vlog: 1,               hint: "Near some crates next to 2 robots after Chorus 4." }
+    - { name: Smidge 4,                   robo: 1,               hint: "The environment reacts to the beat" }
     - { name: Find SPECTRA Door,          door: 1,               hint: "After Chorus 4 and encountering the Smidge that tells you about the world's rhythm, there is a ledge behind him that can be dropped down onto." }
     - { name: Beat SPECTRA Challenge,     door: 2,               } # Gives Broken Armstrong Circuit
-    - { name: Smidge 3,                   robo: 1,               hint: "On the roof" }
-    - { name: Smidge 4,                   robo: 1,               hint: "On the roof" }
-    - { name: Smidge 5,                   robo: 1,               hint: "After the special attack tutorial" }
+    - { name: Smidge 5,                   robo: 1,               hint: "The rest combo" }
+    # 2D Section
     - { name: Vlog 2,                     vlog: 1,               hint: "After the 2D section, near an illuminated hole in the ground, on the computer." }
+    # Battery Production
+    - { name: Smidge 6,                   robo: 1,               hint: "After the special attack tutorial" }
+    - { name: Chorus 5,                   chorus: 1 }
     - { name: Vlog 3,                     vlog: 1,               hint: "On the floor of the adjacent room directly after the first fight with the GNR-020's." }
-    - { name: Health Tank Piece 1,        upgrade: 1,            hint: "Inside the treasure chest robot in the area above the third PDA." }
+    - { name: Health Tank Piece 1,      upgrade: 1, treasure: 1, hint: "Inside the treasure chest robot in the area above the third PDA." }
+    # Conveyor Belt
     - { name: Reverb Core Piece 1,        upgrade: 1,            hint: "On the far end of the first conveyor belt in the production building after Chorus 5." }
     - { name: End the Robots' Argument,   robo: 2,               hint: "After the generator QTE, hit the robots arguing." }
-    - { name: Broken Armstrong Circuit 2, circuit: 1,            hint: "Through the Z-shielding door on a catwalk in the area to the right after reactivating the generator." }
-    - { name: Graffiti 1,                 graffiti: 1, post: 1,  hint: "On a high ledge above the treasure chest robot in the same area." }
+    - { name: Broken Armstrong Circuit 2, circuit: 1,  macaron: 1, korsica: 1, post: 1, hint: "Through the Z-shielding door on a catwalk in the area to the right after reactivating the generator." }
+    - { name: Graffiti 1,                 graffiti: 1, macaron: 1, korsica: 1, post: 1, hint: "On a high ledge above the treasure chest robot in the same area." }
+    - { name: Chorus 6,                   chorus: 1,             hint: "Tough enemies tutorial" }
     - { name: Vlog 4,                     vlog: 1,               hint: "In a tucked away area behind directly behind the fight with the BA-B00." }
+    - { name: Break Robot's High Score,   robo: 2,               hint: "After Chorus 6" }
+    - { name: Chorus 7,                   chorus: 1 }
+    # The way out opens
+    - { name: Destroy O5-KAR's boxes,     robo: 2,               hint: "Just before the end" }
     - { name: Vlog 5,                     vlog: 1,               hint: "On a computer in front of the entrance to the QA center." }
     - { name: Life Gauge Piece 3,         upgrade: 1,            hint: "In the same room as PDA #5, on the upper level." }
-    - { name: Broken Armstrong Circuit 3, circuit: 1,            hint: "On the opposite side of the QA lobby, on the upper level" }
-    - { name: Graffiti 2,                 graffiti: 1, post: 1,  hint: "Exiting the chamber, on the upper level, on the opposite wall." }
-    - { name: Destroy O5-KAR's boxes,     robo: 2,               hint: "Just before the end" }
+    - { name: Broken Armstrong Circuit 3, circuit: 1,  korsica: 1, post: 1, hint: "On the opposite side of the QA lobby, on the upper level" }
+    - { name: Graffiti 2,                 graffiti: 1, korsica: 1, post: 1, hint: "Exiting the chamber, on the upper level, on the opposite wall." }
+    
+    - { name: Explode QA-1MIL,            chorus: 1, achieve: 1, hint: "You've got a killer track, but every son'gs gotta end!" }
+    
 
 # Track 2: Power Up
 - track: { name: Track 2, region: Track 2, category: [ Track 2 ] }
