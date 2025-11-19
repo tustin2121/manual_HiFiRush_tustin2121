@@ -3,37 +3,38 @@
 ---
 Hideout_PostGame:
   connects_to:
-    - Track 1
-    - Track 2
-    - Track 3
-    - Track 4
-    - Track 5
-    - Track 6
-    - Track 7
-    - Track 8 Start
-    - Track 9
-    - Track 10
-    - Track 11
-    - Track 12
+    - Track_1
+    - Track_2
+    - Track_3
+    - Track_4
+    - Track_5
+    - Track_6
+    - Track_7
+    - Track_8
+    - Track_9
+    - Track_10
+    - Track_11
+    - Track_12
   starting: true
   requires: "{YamlEnabled(post_game)}"
 
 StartGame:
-  connects_to: [ Track 1 ]
+  connects_to: [ Track_1 ]
   starting: true
   requires: "{YamlDisabled(post_game)}"
 
-Track 1:         { requires: "|Track 1 Access|",                      connects_to: [ Track 2 ] }
-Track 2:         { requires: "|Track 2 Access|",                      connects_to: [ Track 2 Back ] }
-Track 2 Back:    { requires: "|Peppermint Summon|",                   connects_to: [ Track 3 ] }
-Track 3:         { requires: "|Track 3 Access|",                      connects_to: [ Track 4 ] }
-Track 4:         { requires: "|Track 4 Access| and |Macaron Summon|", connects_to: [ Track 5 ] }
-Track 5:         { requires: "|Track 5 Access|",                      connects_to: [ Track 6 ] }
-Track 6:         { requires: "|Track 6 Access|",                      connects_to: [ Track 7 ] }
-Track 7:         { requires: "|Track 7 Access|",                      connects_to: [ Track 8 Start ] }
-Track 8 Start:   { requires: "|Track 8 Access|",                      connects_to: [ Track 8 ] }
-Track 8:         { requires: "|Korsica Summon|",                      connects_to: [ Track 9 ] }
-Track 9:         { requires: "|Track 9 Access|",                      connects_to: [ Track 10 ] }
-Track 10:        { requires: "|Track 10 Access|",                     connects_to: [ Track 11 ] }
-Track 11:        { requires: "|Track 11 Access|",                     connects_to: [ Track 12 ] }
-Track 12:        { requires: "|Track 12 Access|",                     connects_to: [ Hideout_PostGame ] }
+Track_1:   { requires: "|Track 1 Access|",                      connects_to: [ Track_2 ] }
+Track_2:   { requires: "|Track 2 Access|",                      connects_to: [ Track_2_2 ] }
+Track_2_2: { requires: "|Peppermint Summon|",                   connects_to: [ Track_3 ] }
+Track_3:   { requires: "|Track 3 Access|",                      connects_to: [ Track_3_2 ] }
+Track_3_2: { requires: "|Peppermint Summon|",                   connects_to: [ Track_4 ] }
+Track_4:   { requires: "|Track 4 Access| and |Macaron Summon|", connects_to: [ Track_5 ] }
+Track_5:   { requires: "|Track 5 Access|",                      connects_to: [ Track_6 ] }
+Track_6:   { requires: "|Track 6 Access|",                      connects_to: [ Track_7 ] }
+Track_7:   { requires: "|Track 7 Access|",                      connects_to: [ Track_8_2 ] }
+Track_8:   { requires: "|Track 8 Access|",                      connects_to: [ Track_8 ] }
+Track_8_2: { requires: "|Korsica Summon|",                      connects_to: [ Track_9 ] }
+Track_9:   { requires: "|Track 9 Access|",                      connects_to: [ Track_10 ] }
+Track_10:  { requires: "|Track 10 Access|",                     connects_to: [ Track_11 ] }
+Track_11:  { requires: "|Track 11 Access|",                     connects_to: [ Track_12 ] }
+Track_12:  { requires: "|Track 12 Access|",                     connects_to: [ Hideout_PostGame ] }

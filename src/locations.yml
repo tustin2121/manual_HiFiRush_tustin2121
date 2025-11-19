@@ -22,7 +22,7 @@ achieve:   { category: [ Achievement ] }
 
 ---
 # Track 1: A Fresh Start
-- track: { name: Track 1, region: Track 1, category: [ Track 1 ] }
+- track: { name: Track 1, region: Track_1, category: [ Track 1 ] }
   checks:
     - { name: Admire O5-KAR's boxes,      t: [ npc ],                   hint: "Turn around at the start" }
     
@@ -76,7 +76,7 @@ achieve:   { category: [ Achievement ] }
 
 
 # Track 2: Power Up
-- track: { name: Track 2, region: Track 2, category: [ Track 2 ] }
+- track: { name: Track 2, region: Track_2, category: [ Track 2 ] }
   checks:
     - { name: Vending Machine 1,          t: [ vend ],               hint: "Before entering the building to the right." }
     - { name: Vlog 1,                     t: [ vlog ],               hint: "Before entering the building, inside the area to the left." }
@@ -104,7 +104,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Vlog 4,                     t: [ vlog ],               hint: "Just outside the Chorus 6 arena." }
     # Grapple tram line ride!
     # TODO: Oscar?
-- track: { name: Track 2, region: Track 2 Back, category: [ Track 2 ] } # Peppermint Summon given here
+- track: { name: Track 2, region: Track_2_2, category: [ Track 2 ] } # Peppermint Summon given here
   checks:
     - { name: Vlog 5,                     t: [ vlog ],              hint: "After Peppermint allows you across the gap." }
     - { name: Chorus 7,                   t: [ chorus ],            hint: "Looks like somebody got an upgrade." }
@@ -128,28 +128,62 @@ achieve:   { category: [ Achievement ] }
 
 
 # Track 3: Trial By (Volcanic) Fire
-- track: { name: Track 3, region: Track 3, category: [ Track 3 ] }
+- track: { name: Track 3, region: Track_3, category: [ Track 3 ] }
   checks:
-    - { name: Chorus 1, t: [ chorus ] }
-    - { name: Chorus 2, t: [ chorus ] }
-    - { name: Chorus 3, t: [ chorus ] }
-    - { name: Chorus 4, t: [ chorus ] }
-    - { name: Chorus 5, t: [ chorus ] }
-    - { name: Chorus 6, t: [ chorus ] }
-    - { name: BLORF,    t: [ achieve ] }
+    - { name: Flying Billboard 1, t: [ board ],  hint: "As soon as you enter the level." }
+    - { name: Chorus 1,           t: [ chorus ], hint: "You're not part of my crew!" }
+    - { name: Vlog 1,             t: [ vlog ],   hint: "Just after Chorus 1" }
+- track: { name: Track 3, region: Track_3_2, category: [ Track 3 ] }
+  checks:
+    - { name: Go Fishing,                 t: [ npc ],                hint: "After the generator" }
+    - { name: Chorus 2,                   t: [ chorus ],             hint: "You are missing this great view, Peppermint!" }
+    - { name: Health Tank Piece 1,        t: [ upgrade ],            hint: "In the corner of the volcano area." }
+    - { name: Chorus 3,                   t: [ chorus ],             hint: "We got a weird one!" }
+    - { name: Broken Armstrong Circuit 1, t: [ circuit ],            hint: "Between Chorus 3 and 4" }
+    - { name: Vending Machine 1,          t: [ vend ],               hint: "Between Chorus 3 and 4" }
+    - { name: Vlog 2,                     t: [ vlog ],               hint: "Between Chorus 3 and 4, opposite the vending machine" }
+    # TODO: Z-Door in this area
+    - { name: Graffiti 1,                 t: [ graffiti, macaron, post ], hint: "Flowers | Near a small camp where a PGR-0101 and a VA-SER are talking, behind the two bots is a Z-Shielded wall." }
+    - { name: Chorus 4,                   t: [ chorus ] }
+    - { name: Vlog 3,                     t: [ vlog ],               hint: "After Chorus 4" }
+    - { name: Life Gauge Piece 1,         t: [ upgrade, treasure ],  hint: "Inside the treasure chest robot after Chorus 4." }
+    - { name: Vlog 4,                     t: [ vlog ],               hint: "Before the rail" }
+    # Here we ARE & D!
+    - { name: Vlog 5,                     t: [ vlog ],               hint: "Here we ARE & D!" }
+    - { name: Vending Machine 2,          t: [ vend ],               hint: "Here we ARE & D!" }
+    - { name: Broken Armstrong Circuit 2, t: [ circuit ],            hint: "Behind the Cardboard Cutout outside R & D" }
+    - { name: Knock Zanzo into the Lava,  t: [ npc, achieve ],       hint: "Outside R & D." }
+    - { name: Broken Armstrong Circuit 3, t: [ circuit ],            hint: "Outside R & D." }
+    - { name: Vending Machine 3,          t: [ vend ],               hint: "Outside R & D." }
+    - { name: Golden Kale Statue 1,       t: [ statue ],             hint: "Outside R & D." }
+    - { name: Graffiti 2,                 t: [ graffiti ],           hint: "Volcano | Outside R & D." }
+    # Inside R & D
+    - { name: LU-C1LLE's diary,           t: [ vlog ],               hint: "Behind LU-C1LLE inside R&D" }
+    - { name: Punch-to-face Test Results, t: [ vlog ],               hint: "Inside Lab 44." }
+    - { name: Barrier Test Results,       t: [ vlog ],               hint: "Inside Lab 44." }
+    - { name: Reverb Core Piece 1,        t: [ upgrade ],            hint: "Inside Lab 44." }
+    # Something's overriding our cameras to 480p.
+    - { name: SEB-AAA and JSF-001,        t: [ noir ],               hint: "After learning the parry." }
+    - { name: Broken Armstrong Circuit 4, t: [ circuit ],            hint: "After learning the parry." }
+    - { name: Vending Machine 4,          t: [ vend ],               hint: "After learning the parry." }
+    - { name: Smidge 1,                   t: [ smidge ],             hint: "Parry tutorial" }
+    # Chamber 02 - Step into the middle of the room! It's safe here!
+    - { name: Barrier Umbrella Test,      t: [ vlog ],               hint: "After going the side route." }
+    - { name: Graffiti 3,                 t: [ graffiti ],           hint: "Zanzo | After you go through the side route and then through the vent in it, jump on top of the vent cover." }
+    - { name: Life Gauge Piece 2,         t: [ upgrade ],            hint: "On top of the Umbrella Test" }
+    - { name: Chorus 5,                   t: [ chorus ],             hint: "Test Chamber 03" }
+    # Congrat!
+    - { name: Find SPECTRA Door,          t: [ door ],               hint: "Turn right after exiting Chamber 3; the door will be behind a rock wall." }
+    - { name: Beat SPECTRA Challenge,     t: [ spectra ],            } # Gives ???
+    - { name: Vlog 6,                     t: [ vlog ],               hint: "After Test Chamber 03" }
+    - { name: Life Gauge Piece 3,         t: [ upgrade ],            hint: "After the rail after Test Chamber 03" }
+    - { name: Chorus 6,                   t: [ chorus ],             hint: "That's MISTER Chai to you!" }
+    # Supposed to lose fight
+    - { name: BLORF,                      t: [ achieve ] }
 
-    # TODO Collectables
-    - { name: Graffiti 1,               t: [ graffiti ], hint: "Flowers | ???." }
-    - { name: Graffiti 2,               t: [ graffiti, korsica, post ], hint: "Volcano | ???." }
-    - { name: Graffiti 3,               t: [ graffiti ], hint: "Zanzo | In the room before the Rekka fight." }
-    
-    - { name: Find SPECTRA Door,        t: [ door ], } # Turn right after exiting Chamber 3; the door will be behind a rock wall. 
-    - { name: Beat SPECTRA Challenge,   t: [ spectra ],    requires: "{YamlCompare(door_sanity > 1)} and {YamlEnabled(post_game)}" } # Gives ???
-  # - { name: Go Fishing,               t: [ npc ],    hint: "Just before the end" }
-    - { name: Golden Kale Statue 1,     t: [ statue ], hint: "Just before the end" }
 
 # Track 4: Less Budget, More Problems
-- track: { name: Track 4, region: Track 4, category: [ Track 4 ] }
+- track: { name: Track 4, region: Track_4, category: [ Track 4 ] }
   checks:
     - { name: Chorus 1,     t: [ chorus ] }
     - { name: Chorus 2,     t: [ chorus ] }
@@ -166,7 +200,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Beat SPECTRA Challenge,     t: [ spectra ],       } # Gives ???
 
 # Track 5: Breaking Out
-- track: { name: Track 5, region: Track 5, category: [ Track 5 ] }
+- track: { name: Track 5, region: Track_5, category: [ Track 5 ] }
   checks:
     - { name: Chorus 1,           t: [ chorus ] }
     - { name: Chorus 2,           t: [ chorus ] }
@@ -183,7 +217,7 @@ achieve:   { category: [ Achievement ] }
   # - { name: Return the TEC-78's Comics, t: [ npc ],     hint: "" }
 
 # Track 6: L.I.F.T Me Up
-- track: { name: Track 6, region: Track 6, category: [ Track 6 ] }
+- track: { name: Track 6, region: Track_6, category: [ Track 6 ] }
   checks:
     - { name: Chorus 1,          t: [ chorus ] }
     - { name: Chorus 2,          t: [ chorus ] }
@@ -195,7 +229,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Broken Armstrong Circuit 1, t: [ circuit ],  hint: "Turn around at the beginning of the level, and jump over the elevator controls. It's by the back wall." }
 
 # # Track 7: The Climb
-- track: { name: Track 7, region: Track 7, category: [ Track 7 ] }
+- track: { name: Track 7, region: Track_7, category: [ Track 7 ] }
   checks:
     - { name: Chorus 1,       t: [ chorus ] }
     - { name: Chorus 2,       t: [ chorus ] }
@@ -219,11 +253,11 @@ achieve:   { category: [ Achievement ] }
     - { name: Allow the Robot to Sleep,   t: [ npc ],    hint: "Clear out the vacuum bots to allow the robot to sleep in the break room" }
 
 # Track 8: A History Lesson
-- track: { name: Track 8, region: Track 8 Start, category: [ Track 8 ] }
+- track: { name: Track 8, region: Track_8, category: [ Track 8 ] }
   checks:
     - { name: Find the Golden Can,        t: [ npc ],   hint: "" }
 
-- track: { name: Track 8, region: Track 8, category: [ Track 8 ] }
+- track: { name: Track 8, region: Track_8_2, category: [ Track 8 ] }
   checks:
     - { name: Chorus 1,                   t: [ chorus ],   hint: "" }
     - { name: Chorus 2,                   t: [ chorus ],   hint: "" }
@@ -245,7 +279,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Beat SPECTRA Challenge,     t: [ spectra ],    } # Gives ???
 
 # Track 9: Take the Stage
-- track: { name: Track 9, region: Track 9, category: [ Track 9 ] }
+- track: { name: Track 9, region: Track_9, category: [ Track 9 ] }
   checks:
     - { name: Defeat Mimosa, t: [ chorus, achieve ] }
 
@@ -255,7 +289,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Vlog 2,        t: [ vlogs ],    hint: "At the end of the corridor on a bench near the shop." }
 
 # Track 10: A Masterplan
-- track: { name: Track 10, region: Track 10, category: [ Track 10 ] }
+- track: { name: Track 10, region: Track_10, category: [ Track 10 ] }
   checks:
     - { name: Chorus 1,         t: [ chorus ] }
     - { name: Chorus 2,         t: [ chorus ] }
@@ -281,7 +315,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Beat SPECTRA Challenge,     t: [ spectra ], } # Gives ???
 
 # Track 11: The Needle Drop
-- track: { name: Track 11, region: Track 11, category: [ Track 11 ] }
+- track: { name: Track 11, region: Track_11, category: [ Track 11 ] }
   checks:
     - { name: Synchronize a Harmonic Force Field, t: [ chorus ] }
     - { name: Chorus 1,                           t: [ chorus ] }
@@ -290,7 +324,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Defeat the ZP-1500,                 t: [ chorus, achieve ], victory: true }
 
 # Track 12: Curate the Future
-- track: { name: Track 12, region: Track 12, category: [ Track 12 ] }
+- track: { name: Track 12, region: Track_12, category: [ Track 12 ] }
   checks:
     - { name: Defeat Kale, t: [ chorus, achieve ], victory: true }
 
