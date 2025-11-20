@@ -45,7 +45,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Vlog 1,                     t: [ vlog ],               hint: "Near some crates next to 2 robots after Chorus 4." }
     - { name: Smidge 4,                   t: [ smidge ],             hint: "The environment reacts to the beat" }
     - { name: Find SPECTRA Door,          t: [ door ],               hint: "After Chorus 4 and encountering the Smidge that tells you about the world's rhythm, there is a ledge behind him that can be dropped down onto." }
-    - { name: Beat SPECTRA Challenge,     t: [ spectra ],            hint: "Defeat all enemies within ~5 seconds, but the timer only ticks down when you're on the ground." } # Gives Broken Armstrong Circuit
+    - { name: Beat SPECTRA Challenge,     t: [ spectra ],            hint: "Defeat all enemies within 4 seconds, but the timer only ticks down when you're on the ground." } # Gives Broken Armstrong Circuit
     - { name: Smidge 5,                   t: [ smidge ],             hint: "The rest combo" }
     - { name: Vlog 2,                     t: [ vlog ],               hint: "After the 2D section, near an illuminated hole in the ground, on the computer." }
     
@@ -494,7 +494,7 @@ achieve:   { category: [ Achievement ] }
     
     # Z-Door, followed by Generator, followed by Peppermint shoot, all in the same hallway
 - track: { name: Track 10, region: Track_10_2, category: [ Track 10 ] } 
-  checks: []
+  checks: 
     - { name: Chorus 6,                   t: [ chorus ],     hint: "Armadillomon fight" }
     - { name: Broken Armstrong Circuit 2, t: [ circuit ],    hint: "In the corner after Chorus 6." }
     - { name: Vending Machine 2,          t: [ vend ],       hint: "In the hall after Chorus 6." }

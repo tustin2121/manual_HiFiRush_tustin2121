@@ -8,6 +8,82 @@ const yaml = require('./js-yaml-mod'); // require('js-yaml');
 const archiver = require('archiver');
 const semver = require('semver');
 
+/** 
+ * @typedef TrackCheck
+ * @property {string} name
+ * @property {string[]} t
+ * @property {string} hint
+ * @property {string[]} category
+ * @property {string} region
+ * @property {string|string[]} requires
+ */
+/**
+ * @typedef TrackContainer
+ * @property {TrackCheck} track
+ * @property {TrackCheck[]} checks
+ */
+
+/**
+ * 
+ * @param {Record<string, { requires?: string, category?: Array<string>}>} tagDefs 
+ * @param {Array<TrackCheck|TrackContainer>} locationArray 
+ * @returns 
+ */
+function parseLocations(tagDefs, locationArray) {
+	const outList = [];
+	for (const loc of locationArray) {
+		if (typeof loc.track === 'object') {
+			outList.push(..._applyTrack(loc));
+		} else {
+			outList.push(_applyTags(loc));
+		}
+	}
+	return outList;
+	/**
+	 * @param {TrackContainer} loc 
+	 */
+	function _applyTrack(loc) {
+		const out = [];
+		const { track, checks } = loc;
+		for (const ch of checks) {
+			if (typeof track.name === "string" && typeof ch.name === 'string') {
+				ch.name = `${track.name} - ${ch.name}`;
+			}
+			if (Array.isArray(track.category)) {
+				ch.category ??= [];
+				ch.category.unshift(...track.category);
+			}
+			ch.region ??= track.region;
+			out.push(_applyTags(ch));
+		}
+		return out;
+	}
+	/**
+	 * @param {TrackCheck} loc 
+	 */
+	function _applyTags(loc) {
+		if (!Array.isArray(loc.t)) return loc;
+		let out = Object.assign({}, loc);
+		if (!Array.isArray(loc.requires)) {
+			let r = loc.requires;
+			out.requires = [ r ].filter(x=>x);
+		}
+		// Ensure out.category is always an array before pushing to it
+		if (!Array.isArray(out.category)) {
+			out.category = [];
+		}
+		for (const tag of loc.t) {
+			if (tagDefs[tag]?.requires) out.requires.push(tagDefs[tag].requires);
+			if (tagDefs[tag]?.category) out.category.push(...tagDefs[tag].category);
+		}
+		delete out.t;
+		out.requires = out.requires.join(" and ");
+		if (!out.requires) delete out.requires;
+		return out;
+	}
+}
+
+
 /**
  * 
  * @param {string} str - Input string
@@ -16,13 +92,18 @@ const semver = require('semver');
 function parseYaml(str) {
 	let mode = 'direct';
 	
-	let json = yaml.load(str, {
+	let json = yaml.loadAll(str, {
 		onUnknownDirective: (dir, args)=>{
 			if (dir === "OUTPUT") mode = args[0];
 		}
 	});
 	switch (mode) {
+		case 'locations':
+			if (json.length !== 2) throw new TypeError("OUTPUt location documents expect two documents, a tag definition list and a location list.")
+			return parseLocations(...json);
 		case 'direct':
+			if (json.length !== 1) throw new TypeError("OUTPUt direct documents must only have 1 yaml document in them.")
+			return json[0];
 		default:
 			return json;
 			
