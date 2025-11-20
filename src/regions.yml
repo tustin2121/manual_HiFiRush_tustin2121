@@ -31,10 +31,14 @@ Track_3_2: { requires: "|Peppermint Summon|",  connects_to: [ Track_4 ] }
 Track_4:   { requires: "|Track 4 Access|",     connects_to: [ Track_4_2 ] }
 Track_4_2: { requires: "|Macaron Summon|",     connects_to: [ Track_4_3 ] }
 Track_4_3: { requires: "|Peppermint Summon|",  connects_to: [ Track_5 ] }
-Track_5:   { requires: "|Track 5 Access|",     connects_to: [ Track_6 ] }
+Track_5:   { requires: "|Track 5 Access|",     connects_to: [ Track_5_2 ] }
+Track_5_2: { requires: "|Peppermint Summon|",  connects_to: [ Track_5_3 ] }
+Track_5_3: { requires: "|Macaron Summon|",     connects_to: [ Track_6 ] }
 Track_6:   { requires: "|Track 6 Access|",     connects_to: [ Track_7 ] }
-Track_7:   { requires: "|Track 7 Access|",     connects_to: [ Track_8_2 ] }
-Track_8:   { requires: "|Track 8 Access|",     connects_to: [ Track_8 ] }
+Track_7:   { requires: "|Track 7 Access|",     connects_to: [ Track_7_2 ] }
+Track_7_2: { requires: "|Peppermint Summon|",  connects_to: [ Track_7_3 ] }
+Track_7_3: { requires: "|Macaron Summon|",     connects_to: [ Track_8 ] }
+Track_8:   { requires: "|Track 8 Access|",     connects_to: [ Track_8_2 ] }
 Track_8_2: { requires: "|Korsica Summon|",     connects_to: [ Track_9 ] }
 Track_9:   { requires: "|Track 9 Access|",     connects_to: [ Track_10 ] }
 Track_10:  { requires: "|Track 10 Access|",    connects_to: [ Track_11 ] }
