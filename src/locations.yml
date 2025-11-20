@@ -11,7 +11,7 @@ door:      { requires: "{YamlCompare(door_sanity >= 1)}", category: [ Doors ] }
 spectra:   { requires: "{YamlCompare(door_sanity >= 2)}", category: [ Doors ] }
 graffiti:  { requires: "{YamlEnabled(graffiti_sanity)}", category: [ Graffiti, Collectable ] }
 statue:    { requires: "{YamlEnabled(statue_sanity)}", category: [ Statues, Collectable ] }
-board:     { requires: "{YamlEnabled(billboard_sanity)}", category: [ Billboards, Collectable ], requires: "|Korsica Summon|" }
+board:     { requires: "{YamlEnabled(billboard_sanity)} and |Korsica Summon|", category: [ Billboards, Collectable ] }
 vend:      { requires: "{YamlEnabled(vending_sanity)}", category: [ Vending Machine, Collectable ] }
 post:      { requires: "{YamlEnabled(post_game)}" }
 slug:      {}
@@ -478,28 +478,71 @@ achieve:   { category: [ Achievement ] }
 # region - Track 10: A Masterplan
 - track: { name: Track 10, region: Track_10, category: [ Track 10 ] }
   checks:
-    - { name: Chorus 1,         t: [ chorus ] }
-    - { name: Chorus 2,         t: [ chorus ] }
-    - { name: Chorus 3,         t: [ chorus ] }
-    # Bounce off a blimp        
-    - { name: Chorus 4,         t: [ chorus ] }
-    - { name: Chorus 5,         t: [ chorus ] }
-    - { name: Chorus 6,         t: [ chorus ] }
-    - { name: Chorus 7,         t: [ chorus ] }
-    - { name: Chorus 8,         t: [ chorus ] }
-    - { name: Chorus 9,         t: [ chorus ] }
-    - { name: Defeat Roquefort, t: [ chorus, achieve ] }
-
+    # Let's never mention that again!
+    - { name: Chorus 1,                   t: [ chorus ],     hint: "I need a moment!" }
+    - { name: Chorus 2,                   t: [ chorus ],     hint: "Don't let them break the cannon. That would be worse than BREAKING my concentration!" }
+    - { name: Chorus 3,                   t: [ chorus ],     hint: "I think I found the 'interference'!" }
+    # "Just call me Payload."
+    - { name: Chorus 4,                   t: [ chorus ],     hint: "Well, I'm in. I hope no one noticed--" }
+    - { name: Chorus 5,                   t: [ chorus ],     hint: "No one messes with Vandelay Cuisine!" }
+    # TODO check around balcony after fight.
+    - { name: Vlog 1,                     t: [ vlogs ],      hint: "In the hub after Chorus 5." }
+    - { name: Vending Machine 1,          t: [ vend ],       hint: "In the hub after Chorus 5." }
+    - { name: Smidge 1,                   t: [ smidge ],     hint: "Holding up the door after Chorus 5." }
+    - { name: Graffiti 1,                 t: [ graffiti ],   hint: "WA-ES-2 | After Smidge gets stuck in the door." }
+    - { name: Broken Armstrong Circuit 1, t: [ circuit ],    hint: "In the corner after Chorus 5." }
+    
+    # Z-Door, followed by Generator, followed by Peppermint shoot, all in the same hallway
+- track: { name: Track 10, region: Track_10_2, category: [ Track 10 ] } 
+  checks: []
+    - { name: Chorus 6,                   t: [ chorus ],     hint: "Armadillomon fight" }
+    - { name: Broken Armstrong Circuit 2, t: [ circuit ],    hint: "In the corner after Chorus 6." }
+    - { name: Vending Machine 2,          t: [ vend ],       hint: "In the hall after Chorus 6." }
+    
+    # The Atrium
+    - { name: Vlog 2,                     t: [ vlogs ],      hint: "On the atrium entrance balcony." }
+    - { name: Broken Armstrong Circuit 3, t: [ circuit ],    hint: "Above the atrium entrance balcony, taking a path on the right." }
+    - { name: Graffiti 2,                 t: [ graffiti ],   hint: "Wrench | Above the atrium entrance balcony, taking a path on the right." }
+    - { name: Health Tank Piece 1,        t: [ upgrade, treasure ],  hint: "Inside the treasure chest robot, above the atrium entrance balcony, taking a path on the right." }
+    - { name: Find SPECTRA Door,          t: [ door ],       hint: "Above the atrium entrance balcony, well hidden way in the back." }
+    - { name: Beat SPECTRA Challenge,     t: [ spectra ],    hint: ""} # Gives ???
+    - { name: Flying Billboard 1,         t: [ board ],      hint: "Visible from the atrium entrance balcony." }
+    # Get knocked down by a bird robot.
+    - { name: Chorus 7,                   t: [ chorus ],     hint: "Mister Chai has assured us he has, quote, got this, end quote." }
+    # TODO: Look to see if the two flying boards on the sides of Chorus 7 are shootable
+    # - { name: Flying Billboard 2,         t: [ board ],      hint: "Stationary on the side of the Chorus 7 arena." }
+    # - { name: Flying Billboard 3,         t: [ board ],      hint: "Stationary on the side of the Chorus 7 arena." }
+    - { name: Chorus 8,                   t: [ chorus ],     hint: "Somehow not disturbing the workers on the sides." }
+    # "Do what you need to do to get him! ....I'll expense it!"
+    - { name: Broken Armstrong Circuit 4, t: [ circuit ],    hint: "Behind you after the rail." }
+    - { name: Golden Kale Statue 1,       t: [ statue ],     hint: "In the next office cube after the rail." }
+    - { name: Vlog 3,                     t: [ vlogs ],      hint: "In the next office cube after the rail." }
+    - { name: Life Gauge Piece 1,         t: [ upgrade ],    hint: "Outside the next office cube after the rail." }
+    - { name: Flying Billboard 4,         t: [ board ],      hint: "Flying around above the office cube after the rail." }
+    - { name: Vending Machine 3,          t: [ vend ],       hint: "In the second office cube after the rail." }
+    - { name: Vlog 4,                     t: [ vlogs ],      hint: "In the second office cube after the rail." }
+    # TODO: Check above in the back room here
+    - { name: Vlog 5,                     t: [ vlogs ],      hint: "Above the second office cube after the rail." }
+    # TODO: Flying billboard 5 or just 4 again?
+    - { name: Chorus 9,                   t: [ chorus ] }
+    # - { name: Flying Billboard 5,         t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena." } # Note, shared with another chorus?
+    # - { name: Flying Billboard 6,         t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena." } # Note, shared with another chorus?
+    # Midway through Chorus 9, bird kidnaps over to the hand of the statue
+    # - { name: Flying Billboard 7,         t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena, Hand." } # Note, shared with another chorus?
+    # - { name: Flying Billboard 8,         t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena, Hand." } # Note, shared with another chorus?
+    # - { name: Flying Billboard 9,         t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena, Hand." } # Note, shared with another chorus?
+    # - { name: Flying Billboard 10,        t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena, Hand." } # Note, shared with another chorus?
+    # Smash the head off the Kale statue
+    - { name: Reverb Core Piece 1,        t: [ upgrade ],    hint: "After smashing the head off the Kale statue, near the base of the statue's dismembered arm." }
+    - { name: Broken Armstrong Circuit 4, t: [ circuit ],    hint: "On the finance department balcony, to the left." }
+    - { name: Graffiti 4,                 t: [ graffiti ],   hint: "Kale | On the finance department balcony, to the right." }
+    - { name: Vlog 6,                     t: [ vlogs ],      hint: "On the finance department balcony, to the left." }
+    # The phone call
+    - { name: Defeat Roquefort,           t: [ chorus, achieve ] }
+    
     # TODO Collectables
-    - { name: Graffiti 1,               t: [ graffiti ],          hint: "WA-ES-2 | After Smidge gets stuck in the door." }
-    - { name: Graffiti 2,               t: [ graffiti ],          hint: "Wrench | In the atrium, before pressing the button that activates the grapple point." }
     - { name: Graffiti 3,               t: [ graffiti, macaron ], hint: "Roquefort | After the fight against the WA-ES-2 and SEN-C0 and breaking through the Z-Shielded wall, look to the left." }
-    - { name: Graffiti 4,               t: [ graffiti ],          hint: "Kale | Before you go into Roquefort's office, go to the right." }
-    
-    
-    - { name: Smidge 1,                   t: [ smidge ],  hint: "Just before the atrium" }
-    - { name: Find SPECTRA Door,          t: [ door ],    hint: "Located in a hidden area right after the player enters the atrium; turn right before the button activating the magnets and jump up three rising platforms to reach the door ahead. A treasure chest is also hidden there." }
-    - { name: Beat SPECTRA Challenge,     t: [ spectra ], } # Gives ???
+
 
 #endregion
 

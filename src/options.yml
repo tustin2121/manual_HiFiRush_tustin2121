@@ -88,7 +88,7 @@ user:
   vending_sanity:
     type: Toggle
     description: |
-      Grant checks for breaking bending machines (? locations)
+      Grant checks for breaking bending machines (15 locations)
     default: false
     group: Sanity Options 
   
