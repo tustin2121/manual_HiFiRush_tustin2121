@@ -22,6 +22,8 @@ chorus:    { category: [ Chorus ] }
 achieve:   { category: [ Achievement ] }
 
 ---
+- { name: Hideout Couch (Free Item), region: Hideout_PostGame, category: [ Hideout ] }
+
 # region - Track 1: A Fresh Start
 - track: { name: Track 1, region: Track_1, category: [ Track 1 ] }
   checks:
@@ -124,13 +126,13 @@ achieve:   { category: [ Achievement ] }
     - { name: Broken Armstrong Circuit 4, t: [ circuit, treasure, korsica, post ], hint: "Inside the treasure chest robot past the fire door after the platforming section." }
     - { name: Vending Machine 3,          t: [ vend ],              hint: "In the room with the shop terminal." }
     # "Teamwork! Hooray...!"
-    - { name: Life Gauge Piece 1,         t: [ upgrade, treasure ], hint: "Inside the treasure chest robot after the three-part steam ride." }
+    - { name: Life Gauge Piece 2,         t: [ upgrade, treasure ], hint: "Inside the treasure chest robot after the three-part steam ride." }
     - { name: Scatter the Pigeons,        t: [ npc, pepper ],       hint: "After Mimosa hypes her upcoming show." } # Gives Life Gauge
     - { name: Flying Billboard 3,         t: [ board ],             hint: "Flying around the Chorus 6 arena." }
     - { name: Chorus 9,                   t: [ chorus ] }
     
     # The anteroom before Rekka
-    - { name: Vending Machine 3,          t: [ vend ],              hint: "In the anteroom before Rekka." }
+    - { name: Vending Machine 4,          t: [ vend ],              hint: "In the anteroom before Rekka." }
     - { name: Vlog 6,                     t: [ vlog ],              hint: "In the anteroom before Rekka." }
     - { name: SEB-AAA and JSF-001,        t: [ noir ],              hint: "In the anteroom before Rekka." }
     - { name: Graffiti 3,                 t: [ graffiti ],          hint: "Rekka | In the anteroom before Rekka." }
@@ -188,14 +190,17 @@ achieve:   { category: [ Achievement ] }
     - { name: Graffiti 3,                 t: [ graffiti ],           hint: "Zanzo | After you go through the side route and then through the vent in it, jump on top of the vent cover." }
     - { name: Life Gauge Piece 2,         t: [ upgrade ],            hint: "On top of the Umbrella Test" }
     - { name: Chorus 5,                   t: [ chorus ],             hint: "Test Chamber 03" }
+    - { name: Knock the DUM-1E Down,      t: [ npc ],                hint: "Outside Test Chamber 03." }
     
     # Congrat!
     - { name: Find SPECTRA Door,          t: [ door ],               hint: "Turn right after exiting Chamber 3; the door will be behind a rock wall." }
-    - { name: Beat SPECTRA Challenge,     t: [ spectra ],            } # Gives ???
+    - { name: Beat SPECTRA Challenge,     t: [ spectra ],            hint: "Defeat all enemies with only parry counter attacks."} # Gives Life Gauge Piece
     - { name: Vlog 6,                     t: [ vlog ],               hint: "After Test Chamber 03" }
     - { name: Life Gauge Piece 3,         t: [ upgrade ],            hint: "After the rail after Test Chamber 03" }
     - { name: Chorus 6,                   t: [ chorus ],             hint: "That's MISTER Chai to you!" }
+    
     # Supposed to lose fight
+    - { name: "Well, this messes everything up...", t: [ achieve, post ], hint: "Defeat the undefeatable."}
     - { name: BLORF,                      t: [ achieve ] }
 
 #endregion
@@ -204,13 +209,16 @@ achieve:   { category: [ Achievement ] }
 - track: { name: Track 4, region: Track_4, category: [ Track 4 ] }
   checks:
     - { name: Vending Machine 1,                 t: [ vend ],               hint: "Immediately to the right past the robot.." }
+    
+    # "Just through that wall..."
 - track: { name: Track 4, region: Track_4_2, category: [ Track 4 ] }
   checks:
     - { name: Broken Armstrong Circuit 1,        t: [ circuit ],            hint: "After breaking through the Z-Wall." }
+    
+    # Shoot down the rock
 - track: { name: Track 4, region: Track_4_3, category: [ Track 4 ] }
   checks:
     - { name: Vlog 1,                            t: [ vlog ],               hint: "After before the boulder." }
-    
     # In the climb back up
     - { name: Disgruntled Decaf Revenge,         t: [ vlog ],               hint: "Behind the lava waterfall." }
     - { name: Health Tank Piece 1,               t: [ upgrade ],            hint: "Behind the lava waterfall." }
@@ -222,9 +230,8 @@ achieve:   { category: [ Achievement ] }
     - { name: Smidge 1,                          t: [ smidge ],             hint: "Macaron tutorial" }
     - { name: Broken Armstrong Circuit 3,        t: [ circuit ],            hint: "Under the stairs in the lobby of the AR lab." }
     - { name: Graffiti 1,                        t: [ graffiti ],           hint: "HG-0G | Under the stairs that leads up to the first AR room." }
-    # TODO: Korsica engine in the lobby of the AR lab.
     - { name: Find SPECTRA Door,                 t: [ door, korsica, post ],hint: "Located directly above the first AR room after Chorus 1 (Korsica is required to access this)." }
-    - { name: Beat SPECTRA Challenge,            t: [ spectra ],            hint: ""  } # Gives ???
+    - { name: Beat SPECTRA Challenge,            t: [ spectra ],            hint: "Defeat all enemies with only dodge counters."  } # Gives Reverb Core Piece
     - { name: Chorus 2 - AR Room 1,              t: [ chorus ],             hint: "AI was locked, so I went in the AR room." }
   # - { name: The Hologram Mirror,               t: [ slug ],               hint: "After AR Room 1 explodes, find the logo-slug examining its hologram counterpart."}
     - { name: Graffiti 2,                        t: [ graffiti, korsica, post ], hint: "VÄART | After destroying the first AR eye, when you reach the crossroads on the catwalk, go left instead of right." } # TODO double check
@@ -253,7 +260,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Vlog 2,                            t: [ vlog ],               hint: "First area of the security nodes atrium." }
     - { name: Graffiti 1,                        t: [ graffiti ],           hint: "Nodes | After you reach the main security area, go right and drop down onto the platform below that leads to the moving platforms that circle around the center column." }
     - { name: Find SPECTRA Door,                 t: [ door ],               hint: "Located below the main chamber, near the elevator connected to Node 3; ride the floating platforms to reach it." }
-    - { name: Beat SPECTRA Challenge,            t: [ spectra ],            hint: "" } # Gives ???
+    - { name: Beat SPECTRA Challenge,            t: [ spectra ],            hint: "Perform 2 overkill defeats of an enemy. Make sure you have a way to build reverb gauge quickly." } # Gives ???
     - { name: Broken Armstrong Circuit 1,        t: [ circuit ],            hint: "In front of the SPECTRA door." }
     
     - { name: Return the TEC-78's Comics,        t: [ npc ],                hint: "Find ten drones with the tech's 'schematics'." }
@@ -366,7 +373,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Depressed Buttons,           t: [ vlog, macaron ],     hint: "After Chorus 8, near a button." }
     # TODO: check TEC after button, far side of room.
     - { name: Graffiti 3,                  t: [ graffiti ],          hint: "Lasers | Behind the rhythm jump tube after Chorus 8." }
-    - { name: Broken Armstrong Circuit 4,  t: [ circuit ],           hint: "After Chorus 8, to the right of the top of the rhythm jump tube." }
+    - { name: Broken Armstrong Circuit 5,  t: [ circuit ],           hint: "After Chorus 8, to the right of the top of the rhythm jump tube." }
     - { name: Chorus 9,                    t: [ chorus ],            hint: "Korsica's office is in sight..." }
     - { name: Defeat Korsica,              t: [ chorus, achieve ] }
 
@@ -387,7 +394,7 @@ achieve:   { category: [ Achievement ] }
 
 - track: { name: Track 8, region: Track_8_2, category: [ Track 8 ] }
   checks:
-    - { name: Broken Armstrong Circuit 1,  t: [ circuit ],   hint: "After the initial flaming door, you drop down and the circuit is behind you." }
+    - { name: Broken Armstrong Circuit 2,  t: [ circuit ],   hint: "After the initial flaming door, you drop down and the circuit is behind you." }
     - { name: Flying Billboard 1,          t: [ board ],     hint: "After the initial flaming door, floating in plain sight as you travel onward." }
 
 - track: { name: Track 8, region: Track_8_3, category: [ Track 8 ] }
@@ -395,7 +402,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Health Tank Piece 1,         t: [ upgrade ],   hint: "Behind the robots in the sewer pass." }
     - { name: Vlog 3,                      t: [ vlog, ],     hint: "After the sewer pass, in the fenced in section." }
     - { name: Chorus 1,                    t: [ chorus ],    hint: "Outside the museum." }
-    - { name: Broken Armstrong Circuit 2,  t: [ circuit ],   hint: "After Chorus 1, go through the gate/over the fence to the left." } # TODO confirm
+    - { name: Broken Armstrong Circuit 3,  t: [ circuit ],   hint: "After Chorus 1, go through the gate/over the fence to the left." } # TODO confirm
     - { name: Graffiti 2,                  t: [ graffiti ],  hint: "BL-1Z5 | After Chorus 1, go through the gate/over the fence to the right." }
     
     # Entering the museum
@@ -420,11 +427,11 @@ achieve:   { category: [ Achievement ] }
     
     # History Display 2: Vandelay's Growth into Vandelay Technologies
     - { name: Chorus 4,                    t: [ chorus ],    hint: "Enough theatrics! / Oh, there's never enough!" }
-    - { name: Broken Armstrong Circuit 3,  t: [ circuit ],   hint: "In the storage room behind Chorus 4." }
+    - { name: Broken Armstrong Circuit 4,  t: [ circuit ],   hint: "In the storage room behind Chorus 4." }
     - { name: Golden Kale Statue 1,        t: [ statue ],    hint: "On display above Chorus 4." }
     - { name: Graffiti 3,                  t: [ graffiti, macaron ], hint: "Stage | After the fight against the WA-ES-2 and SEN-C0 and breaking through the Z-Shielded wall, look to the left." }
     # TODO: Check if you can destroy the huge robots on display
-    - { name: Broken Armstrong Circuit 4,  t: [ circuit ],   hint: "In the back areas behind Chorus 4." }
+    - { name: Broken Armstrong Circuit 5,  t: [ circuit ],   hint: "In the back areas behind Chorus 4." }
     - { name: Life Gauge Piece 1,          t: [ upgrade ],   hint: "In the back areas behind Chorus 4." }
     - { name: Vlog 4,                      t: [ vlog, ],     hint: "In the back areas behind Chorus 4." }
     - { name: Saturn Devours O5-KAR,       t: [ npc ],       hint: "In the back areas behind Chorus 4, destroy OS-KAR's disturbing artwork." }
@@ -434,10 +441,10 @@ achieve:   { category: [ Achievement ] }
     - { name: Water Generator Complaint,   t: [ vlog, ],     hint: "Next to the second generator in the power supply area." }
     - { name: Chorus 6,                    t: [ chorus ],    hint: "That's SHOCKING!" }
     # TODO: stuff after Chorus 6
-    - { name: Vlog 4,                      t: [ vlog, ],     hint: "In the big display room, right to the right." }
+    - { name: Vlog 5,                      t: [ vlog, ],     hint: "In the big display room, right to the right." }
     - { name: Chorus 7,                    t: [ chorus ],    hint: "A notice to all employees: The rumors about the demise of department heads has been greatly exaggerated." }
     - { name: Flying Billboard 2,          t: [ board ],     hint: "Flying around Chorus 7." }
-    - { name: Broken Armstrong Circuit 5,  t: [ circuit ],   hint: "After Chorus 7, on the scaffolding to the right." }
+    - { name: Broken Armstrong Circuit 6,  t: [ circuit ],   hint: "After Chorus 7, on the scaffolding to the right." }
     # TODO: Check if you can shoot down anything in this room
     # TODO: Check if you can interact with the window washing robot above this room.
     - { name: Chorus 8,                    t: [ chorus ],    hint: "Chai, I don't think that platform's going to hold!" }
@@ -450,7 +457,7 @@ achieve:   { category: [ Achievement ] }
     
     # History Display 3: The New Visionary!
     - { name: TODO Display,                t: [ vlog, ],     hint: "After the 3rd history display." }
-    - { name: TODO Display,                t: [ vlog, ],     hint: "After the 3rd history display." }
+    # - { name: TODO Display,                t: [ vlog, ],     hint: "After the 3rd history display." }
     - { name: Health Tank Piece 2,         t: [ upgrade, treasure ],  hint: "Inside the treasure chest robot to the right after the third history display." }
     - { name: Chorus 9,                    t: [ chorus ],    hint: "Some pests just don't want to go away!" }
     - { name: Golden Kale Statue 2,        t: [ statue ],    hint: "In the hallway behind you after dropping down from Chorus 9." }
@@ -534,7 +541,7 @@ achieve:   { category: [ Achievement ] }
     # - { name: Flying Billboard 10,        t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena, Hand." } # Note, shared with another chorus?
     # Smash the head off the Kale statue
     - { name: Reverb Core Piece 1,        t: [ upgrade ],    hint: "After smashing the head off the Kale statue, near the base of the statue's dismembered arm." }
-    - { name: Broken Armstrong Circuit 4, t: [ circuit ],    hint: "On the finance department balcony, to the left." }
+    - { name: Broken Armstrong Circuit 5, t: [ circuit ],    hint: "On the finance department balcony, to the left." }
     - { name: Graffiti 4,                 t: [ graffiti ],   hint: "Kale | On the finance department balcony, to the right." }
     - { name: Vlog 6,                     t: [ vlogs ],      hint: "On the finance department balcony, to the left." }
     # The phone call

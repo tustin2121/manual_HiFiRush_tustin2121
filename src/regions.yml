@@ -17,6 +17,7 @@ Hideout_PostGame:
     - Track_12
     - Rhythm_Tower
     - Power_Tower
+    - Rush_Tower
   starting: true
   requires: "{YamlEnabled(post_game)}"
 
