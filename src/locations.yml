@@ -61,7 +61,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Graffiti 1,                 t: [ graffiti, macaron, korsica, post ], hint: "QA Building | Behind the Z-Shielded door, up the generator-supplied platforms." }
     - { name: Chorus 6,                   t: [ chorus ],             hint: "Tough enemies tutorial" }
     - { name: Vlog 4,                     t: [ vlog ],               hint: "In a tucked away area behind directly behind the fight with the BA-B00." }
-    - { name: Flying Billboard 1,         t: [ board ],              hint: "Flying around the Chorus 6 arena." }
+    - { name: Flying Billboard 1,         t: [ board, post ],        hint: "Flying around the Chorus 6 arena." }
     - { name: Break Robot's High Score,   t: [ npc ],                hint: "After Chorus 6" }
     - { name: Chorus 7,                   t: [ chorus ],             hint: "Jumping is strictly prohibited!" }
     
@@ -319,7 +319,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Life Gauge Piece 1,         t: [ upgrade ],           hint: "First 2d section on the tower, hit the button to open the way to the item." }
     - { name: Health Tank Piece 1,        t: [ upgrade, macaron ],  hint: "Through the Z-Shield door after the first 2D section." }
     - { name: Chorus 4,                   t: [ chorus ],            hint: "The samurai was waiting for you..." }
-    - { name: Health Tank Piece 2,        t: [ upgrade, treasure ], hint: "Inside the reasure chest to the left after going through the Z-Wall." }
+    - { name: Health Tank Piece 2,        t: [ upgrade, treasure ], hint: "Inside the treasure chest to the left after going through the Z-Wall." }
     - { name: Help the Tech behind Glass, t: [ npc ]} # TODO: Check
     # Second 2D section
     - { name: Broken Armstrong Circuit 2, t: [ circuit ],           hint: "In section 2D section, at top of elevator." }
@@ -424,7 +424,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Chorus 1,                           t: [ chorus ] }
     - { name: Chorus 2,                           t: [ chorus ] }
     - { name: Chorus 3,                           t: [ chorus ] }
-    - { name: Defeat the ZP-1500,                 t: [ chorus, achieve ], victory: true }
+    - { name: Defeat the ZP-1500,                 t: [ chorus, achieve ] }
 
 #endregion
 
@@ -433,6 +433,113 @@ achieve:   { category: [ Achievement ] }
   checks:
     - { name: Defeat Kale, t: [ chorus, achieve ], victory: true }
 
-# Victory conditions (need to be in this order, for default to be first)
+#endregion
+
+# region - Rhythm Tower
+- track: { name: Rhythm Tower, region: Rhythm_Tower, category: [ Rhythm Tower ] }
+  checks:
+    - { name: Floor 1,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 1)}" }
+    - { name: Floor 2,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 2)}" }
+    - { name: Floor 3,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 3)}" }
+    - { name: Floor 4,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 4)}" }
+    - { name: Floor 5,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 5)}" }
+    - { name: Floor 6,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 6)}" }
+    - { name: Floor 7,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 7)}" }
+    - { name: Floor 8,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 8)}" }
+    - { name: Floor 9,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 9)}" }
+    - { name: Floor 10 - QA-1MIL,       t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 10)}" }
+    - { name: Floor 11,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 11)}" }
+    - { name: Floor 12,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 12)}" }
+    - { name: Floor 13,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 13)}" }
+    - { name: Floor 14,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 14)}" }
+    - { name: Floor 15,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 15)}" }
+    - { name: Floor 16,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 16)}" }
+    - { name: Floor 17,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 17)}" }
+    - { name: Floor 18,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 18)}" }
+    - { name: Floor 19,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 19)}" }
+    - { name: Floor 20 - Rekka,         t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 20)}" }
+    - { name: Floor 21,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 21)}" }
+    - { name: Floor 22,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 22)}" }
+    - { name: Floor 23,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 23)}" }
+    - { name: Floor 24,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 24)}" }
+    - { name: Floor 25,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 25)}" }
+    - { name: Floor 26,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 26)}" }
+    - { name: Floor 27,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 27)}" }
+    - { name: Floor 28,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 28)}" }
+    - { name: Floor 29,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 29)}" }
+    - { name: Floor 30 - Museum Rumble, t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 30)}" }
+    - { name: Floor 31,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 31)}" }
+    - { name: Floor 32,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 32)}" }
+    - { name: Floor 33,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 33)}" }
+    - { name: Floor 34,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 34)}" }
+    - { name: Floor 35,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 35)}" }
+    - { name: Floor 36,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 36)}" }
+    - { name: Floor 37,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 37)}" }
+    - { name: Floor 38,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 38)}" }
+    - { name: Floor 39,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 39)}" }
+    - { name: Floor 40 - Mimosa,        t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 40)}" }
+    - { name: Floor 41,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 41)}" }
+    - { name: Floor 42,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 42)}" }
+    - { name: Floor 43,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 43)}" }
+    - { name: Floor 44,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 44)}" }
+    - { name: Floor 45,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 45)}" }
+    - { name: Floor 46,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 46)}" }
+    - { name: Floor 47,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 47)}" }
+    - { name: Floor 48,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 48)}" }
+    - { name: Floor 49,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 49)}" }
+    - { name: Floor 50 - Roquefort,     t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 50)}" }
+    - { name: Floor 51,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 51)}" }
+    - { name: Floor 52,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 52)}" }
+    - { name: Floor 53,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 53)}" }
+    - { name: Floor 54,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 54)}" }
+    - { name: Floor 55,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 55)}" }
+    - { name: Floor 56,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 56)}" }
+    - { name: Floor 57,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 57)}" }
+    - { name: Floor 58,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 58)}" }
+    - { name: Floor 59,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 59)}" }
+    - { name: Floor 60 - Kale,          t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 60)}" }
+
+#endregion
+
+# region - Power Up! Tower Up!
+- track: { name: Power Up! Tower Up!, region: Power_Tower, category: [ Power Tower ] }
+  checks:
+    - { name: Floor 1,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 1)}" }
+    - { name: Floor 2,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 2)}" }
+    - { name: Floor 3,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 3)}" }
+    - { name: Floor 4,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 4)}" }
+    - { name: Floor 5,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 5)}" }
+    - { name: Floor 6,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 6)}" }
+    - { name: Floor 7,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 7)}" }
+    - { name: Floor 8,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 8)}" }
+    - { name: Floor 9,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 9)}" }
+    - { name: Floor 10,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 10)}" }
+    - { name: Floor 11,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 11)}" }
+    - { name: Floor 12,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 12)}" }
+    - { name: Floor 13,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 13)}" }
+    - { name: Floor 14,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 14)}" }
+    - { name: Floor 15,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 15)}" }
+    - { name: Floor 16,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 16)}" }
+    - { name: Floor 17,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 17)}" }
+    - { name: Floor 18,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 18)}" }
+    - { name: Floor 19,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 19)}" }
+    - { name: Floor 20,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 20)}" }
+    - { name: Floor 21,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 21)}" }
+    - { name: Floor 22,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 22)}" }
+    - { name: Floor 23,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 23)}" }
+    - { name: Floor 24,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 24)}" }
+    - { name: Floor 25,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 25)}" }
+
+#endregion
+
+# region - BPM Rush!
+- track: { name: BPM Rush!, region: Rush_Tower, category: [ BPM Rush ] }
+  checks:
+    - { name: Wave 1,                  t: [ chorus ], requires: "{YamlCompare(rush_sanity >= 1)}" }
+    - { name: Wave 2,                  t: [ chorus ], requires: "{YamlCompare(rush_sanity >= 2)}" }
+    - { name: Wave 3,                  t: [ chorus ], requires: "{YamlCompare(rush_sanity >= 3)}" }
+    - { name: Wave 4,                  t: [ chorus ], requires: "{YamlCompare(rush_sanity >= 4)}" }
+    - { name: Wave 5,                  t: [ chorus ], requires: "{YamlCompare(rush_sanity >= 5)}" }
+    - { name: Wave 6,                  t: [ chorus ], requires: "{YamlCompare(rush_sanity >= 6)}" }
 
 #endregion

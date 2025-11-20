@@ -15,6 +15,8 @@ Hideout_PostGame:
     - Track_10
     - Track_11
     - Track_12
+    - Rhythm_Tower
+    - Power_Tower
   starting: true
   requires: "{YamlEnabled(post_game)}"
 
@@ -44,3 +46,7 @@ Track_9:   { requires: "|Track 9 Access|",     connects_to: [ Track_10 ] }
 Track_10:  { requires: "|Track 10 Access|",    connects_to: [ Track_11 ] }
 Track_11:  { requires: "|Track 11 Access|",    connects_to: [ Track_12 ] }
 Track_12:  { requires: "|Track 12 Access|",    connects_to: [ Hideout_PostGame ] }
+
+Rhythm_Tower: { requires: "{YamlEnabled(post_game)}" }
+Power_Tower:  { requires: "{YamlEnabled(post_game)}" }
+Rush_Tower:   { requires: "{YamlEnabled(post_game)}" }

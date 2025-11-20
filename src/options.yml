@@ -31,7 +31,7 @@ user:
     description: |
       Assume for logic purposes that you are playing on a file that has completed the 
       main play-through. This means you can access any stage with any combination of 
-      partners.
+      partners, and access the Rhythm Tower.
       
       NOTE: IF YOU TURN THIS OFF, YOUR RANDOMIZER MIGHT BREAK!
       Archipelago logic assumes that a player can return to previously accessible 
@@ -47,6 +47,7 @@ user:
     description: |
       Grant checks for picking up Life Gauge (26), Health Tank (10), 
       and Reverb Core (?) pieces (? locations).
+      
       Note: These items are permanent collectables. If you've picked them up before 
       in your save file, they won't be present in the level.
     default: false
@@ -59,31 +60,38 @@ user:
       in your save file, they won't be present in the level.
     default: false
     group: Sanity Options 
+  
   vlog_sanity:
     type: Toggle
-    description: Grant checks for reading PDAs (71 locations)
+    description: |
+      Grant checks for reading PDAs (71 locations)
     default: false
     group: Sanity Options 
   graffiti_sanity:
     type: Toggle
-    description: Grant checks for finding Graffiti (24 locations)
+    description: |
+      Grant checks for finding Graffiti (24 locations)
     default: false
     group: Sanity Options 
   statue_sanity:
     type: Toggle
-    description: Grant checks for destroying golden statues of Kale (? locations)
+    description: |
+      Grant checks for destroying golden statues of Kale (? locations)
     default: false
     group: Sanity Options 
   billboard_sanity:
     type: Toggle
-    description: Grant checks for shooting flying billboard bots with Peppermint (? locations)
+    description: |
+      Grant checks for shooting flying billboard bots with Peppermint (? locations)
     default: false
     group: Sanity Options 
   vending_sanity:
     type: Toggle
-    description: Grant checks for breaking bending machines (? locations)
+    description: |
+      Grant checks for breaking bending machines (? locations)
     default: false
     group: Sanity Options 
+  
   robo_sanity:
     type: Choice
     description: |
@@ -111,6 +119,57 @@ user:
     allow_custom_value: false
     group: Sanity Options 
   
+  tower_sanity:
+    type: Range
+    description: |
+      Adds Rhythm Tower to the check pool. Select how many floors you wish to include in the pool.
+      Each floor is another location. This is always available from the post-game hideout, and
+      may provide distraction when BK'd elsewhere, but it can be difficult to get far.
+    range_start: 0
+    range_end: 60
+    default: 0
+    values:
+      none: 0
+      basic: 10
+      half: 30
+      full: 60
+      qa: 10
+      rekka: 20
+      korsica: 30
+      museum: 30
+      mimosa: 40
+      roquefort: 50
+      kale: 60
+    group: Sanity Options 
+  power_sanity:
+    type: Range
+    description: |
+      Adds Power Up! Tower Up! to the check pool. Select how many floors you wish to include in the pool.
+      Each floor is another location. This is always available from the post-game hideout, and
+      may provide distraction when BK'd elsewhere, but it can be difficult to get far.
+    range_start: 0
+    range_end: 25
+    default: 0
+    values:
+      none: 0
+      basic: 5
+      full: 25
+    group: Sanity Options 
+  rush_sanity:
+    type: Range
+    description: |
+      Adds BPM RUSH! to the check pool. Select how many waves you wish to include in the pool.
+      Each wave is another location. This is always available from the post-game hideout, and
+      may provide distraction when BK'd elsewhere, but it can be difficult to get far.
+    range_start: 0
+    range_end: 25 # TODO: Figure out how far this is
+    default: 0
+    values:
+      none: 0
+      basic: 5
+      full: 25
+    group: Sanity Options 
+    
   
   # Example_Toggle: 
   #   description: |
