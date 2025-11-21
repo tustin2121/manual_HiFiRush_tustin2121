@@ -8,6 +8,8 @@ const yaml = require('./js-yaml-mod'); // require('js-yaml');
 const archiver = require('archiver');
 const semver = require('semver');
 
+const locCounts = {};
+
 /** 
  * @typedef TrackCheck
  * @property {string} name
@@ -73,8 +75,16 @@ function parseLocations(tagDefs, locationArray) {
 			out.category = [];
 		}
 		for (const tag of loc.t) {
+			locCounts[tag] ??= 0
+			locCounts[tag]++;
 			if (tagDefs[tag]?.requires) out.requires.push(tagDefs[tag].requires);
 			if (tagDefs[tag]?.category) out.category.push(...tagDefs[tag].category);
+			if (Array.isArray(tagDefs[tag]?.t)) {
+				for (const tt of tagDefs[tag].t) {
+					locCounts[tt] ??= 0
+					locCounts[tt]++;
+				}
+			}
 		}
 		delete out.t;
 		out.requires = out.requires.join(" and ");
@@ -83,6 +93,16 @@ function parseLocations(tagDefs, locationArray) {
 	}
 }
 
+function parseOptions(opts) {
+	for (const opt in opts.user) {
+		opts.user[opt].description = opts.user[opt].description.replaceAll(/\$\{(\w+)\}/ig, (str, val)=>{
+			let v = locCounts[val];
+			if (typeof v === 'undefined') return str;
+			return v;
+		});
+	}
+	return opts;
+}
 
 /**
  * 
@@ -99,10 +119,13 @@ function parseYaml(str) {
 	});
 	switch (mode) {
 		case 'locations':
-			if (json.length !== 2) throw new TypeError("OUTPUt location documents expect two documents, a tag definition list and a location list.")
+			if (json.length !== 2) throw new TypeError("OUTPUT location documents expect two documents, a tag definition list and a location list.")
 			return parseLocations(...json);
+		case 'options':
+			if (json.length !== 1) throw new TypeError("OUTPUT direct documents must only have 1 yaml document in them.")
+			return parseOptions(json[0]);
 		case 'direct':
-			if (json.length !== 1) throw new TypeError("OUTPUt direct documents must only have 1 yaml document in them.")
+			if (json.length !== 1) throw new TypeError("OUTPUT direct documents must only have 1 yaml document in them.")
 			return json[0];
 		default:
 			return json;
@@ -136,6 +159,17 @@ class YamlToJsonTransform extends Transform {
 		done();
 	}
 }
+
+const SRC_FILES = [ 
+	// Order important
+	'locations.yml', 
+	'items.yml',
+	'regions.yml',
+	'categories.yml',
+	'game.yml', 
+	'meta.yml', 
+	'options.yml', // Last
+];
 
 async function main() {
 	let prefix = 'manual_undefined_undefined';

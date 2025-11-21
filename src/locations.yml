@@ -1,10 +1,14 @@
 %YAML 1.2
 %OUTPUT locations
 ---
-smidge:    { requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ] }
-npc:       { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ] }
-noir:      { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ] }
-upgrade:   { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades, Collectable ] }
+robo:      {}
+smidge:    { requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ], t: [ robo ] }
+npc:       { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], t: [ robo ] }
+noir:      { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], t: [ robo ] }
+upgrade:   {}
+life:      { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades, Collectable ], t: [ upgrade ] }
+health:    { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades, Collectable ], t: [ upgrade ] }
+reverb:    { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades, Collectable ], t: [ upgrade ] }
 circuit:   { requires: "{YamlEnabled(circuit_sanity)}", category: [ Circuit, Collectable ] }
 vlog:      { requires: "{YamlEnabled(vlog_sanity)}", category: [ Vlogs, Collectable ] }
 door:      { requires: "{YamlCompare(door_sanity >= 1)}", category: [ Doors ] }
@@ -13,6 +17,7 @@ graffiti:  { requires: "{YamlEnabled(graffiti_sanity)}", category: [ Graffiti, C
 statue:    { requires: "{YamlEnabled(statue_sanity)}", category: [ Statues, Collectable ] }
 board:     { requires: "{YamlEnabled(billboard_sanity)} and |Korsica Summon|", category: [ Billboards, Collectable ] }
 vend:      { requires: "{YamlEnabled(vending_sanity)}", category: [ Vending Machine, Collectable ] }
+drone:     { requires: "{YamlEnabled(drone_sanity)}", category: [ Collectable ] }
 post:      { requires: "{YamlEnabled(post_game)}" }
 slug:      {}
 pepper:    { requires: "|Peppermint Summon|" }
@@ -22,7 +27,8 @@ chorus:    { category: [ Chorus ] }
 achieve:   { category: [ Achievement ] }
 
 ---
-- { name: Hideout Couch (Free Item), region: Hideout_PostGame, category: [ Hideout ] }
+- { name: Project Armstrong Pass,    region: StartGame, category: [ Collectable ], requires: "{YamlDisabled(post_game)}", place_item: [ Track 1 Access ]  }
+- { name: Hideout Couch (Free Item), region: Hideout_PostGame, category: [ Hideout ], requires: "{YamlEnabled(post_game)}" }
 
 # region - Track 1: A Fresh Start
 - track: { name: Track 1, region: Track_1, category: [ Track 1 ] }
@@ -40,10 +46,10 @@ achieve:   { category: [ Achievement ] }
     - { name: Broken Armstrong Circuit 1, t: [ circuit, pepper, post ], hint: "Listen to the Noir Investigator ramble." }
     
     # HOST SYNCHRONIZED!
-    - { name: Life Gauge Piece 1,         t: [ upgrade ],            hint: "The room to the right of Smidge after the beat hit tutorial." }
+    - { name: Life Gauge Piece 1,         t: [ life ],               hint: "The room to the right of Smidge after the beat hit tutorial." }
     - { name: Smidge 3,                   t: [ smidge ],             hint: "The Beat Hit tutorial" }
     - { name: Chorus 4,                   t: [ chorus ],             hint: "Top of the building" }
-    - { name: Life Gauge Piece 2,         t: [ upgrade ],            hint: "On top of the water tower after Chorus 4." }
+    - { name: Life Gauge Piece 2,         t: [ life ],               hint: "On top of the water tower after Chorus 4." }
     - { name: Vlog 1,                     t: [ vlog ],               hint: "Near some crates next to 2 robots after Chorus 4." }
     - { name: Smidge 4,                   t: [ smidge ],             hint: "The environment reacts to the beat" }
     - { name: Find SPECTRA Door,          t: [ door ],               hint: "After Chorus 4 and encountering the Smidge that tells you about the world's rhythm, there is a ledge behind him that can be dropped down onto." }
@@ -55,10 +61,10 @@ achieve:   { category: [ Achievement ] }
     - { name: Smidge 6,                   t: [ smidge ],             hint: "After the special attack tutorial" }
     - { name: Chorus 5,                   t: [ chorus ],             hint: "First fight with a tough enemy."}
     - { name: Vlog 3,                     t: [ vlog ],               hint: "On the floor of the adjacent room directly after the first fight with the GNR-020's." }
-    - { name: Health Tank Piece 1,        t: [ upgrade, treasure ],  hint: "Inside the treasure chest robot in the area above the third PDA." }
+    - { name: Health Tank Piece 1,        t: [ health, treasure ],   hint: "Inside the treasure chest robot in the area above the third PDA." }
     
     # Conveyor Belt
-    - { name: Reverb Core Piece 1,        t: [ upgrade ],            hint: "On the far end of the first conveyor belt in the production building after Chorus 5." }
+    - { name: Reverb Core Piece 1,        t: [ reverb ],             hint: "On the far end of the first conveyor belt in the production building after Chorus 5." }
     - { name: End the Robots' Argument,   t: [ npc ],                hint: "After the generator QTE, hit the robots arguing." }
     - { name: Broken Armstrong Circuit 2, t: [ circuit,  macaron, korsica, post ], hint: "Through the Z-shielded door on a catwalk in the area to the right after reactivating the generator." }
     - { name: Graffiti 1,                 t: [ graffiti, macaron, korsica, post ], hint: "QA Building | Behind the Z-Shielded door, up the generator-supplied platforms." }
@@ -71,7 +77,7 @@ achieve:   { category: [ Achievement ] }
     # The way out opens
     - { name: Destroy O5-KAR's boxes,     t: [ npc ],                hint: "Just before the end" }
     - { name: Vlog 5,                     t: [ vlog ],               hint: "On a computer in front of the entrance to the QA center." }
-    - { name: Life Gauge Piece 3,         t: [ upgrade ],            hint: "In the same room as PDA #5, on the upper level." }
+    - { name: Life Gauge Piece 3,         t: [ life ],               hint: "In the same room as PDA #5, on the upper level." }
     - { name: Broken Armstrong Circuit 3, t: [ circuit,  korsica, post ], hint: "On the opposite side of the QA lobby, on the upper level" }
     - { name: Graffiti 2,                 t: [ graffiti, korsica, post ], hint: "Crane Holding Up Containers | Just before the QA-1MIL fight, in the room behind the flaming doorway." }
     
@@ -86,7 +92,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Vlog 1,                     t: [ vlog ],               hint: "Before entering the building, inside the area to the left." }
     # Vandelay statues in the lobby
     - { name: Chorus 1,                   t: [ chorus ],             hint: "Uh oh..." }
-    - { name: Reverb Core Piece 1,        t: [ upgrade ],            hint: "At the top of the box stack, on the overhead catwalk." }
+    - { name: Reverb Core Piece 1,        t: [ reverb ],             hint: "At the top of the box stack, on the overhead catwalk." }
     - { name: Vlog 2,                     t: [ vlog ],               hint: "Inside the control room of the huge room." }
     - { name: Vending Machine 2,          t: [ vend ],               hint: "Inside the control room of the huge room." }
     
@@ -101,10 +107,10 @@ achieve:   { category: [ Achievement ] }
     - { name: Graffiti 1,                 t: [ graffiti ],           hint: "Production Machine | Found in a room to the left of Smidge, up some boxes." }
     - { name: Golden Kale Statue 1,       t: [ statue ],             hint: "Just after pulling yourself up by 3 magnet points." }
     - { name: Chorus 3,                   t: [ chorus ],             hint: "After the vent" }
-    - { name: Reverb Core Piece 2,        t: [ upgrade ],            hint: "Hidden in the back after the Chorus." }
+    - { name: Reverb Core Piece 2,        t: [ reverb ],             hint: "Hidden in the back after the Chorus." }
     
     # Shop terminals introduced
-    - { name: Life Gauge Piece 1,         t: [ upgrade ],            hint: "In the rafters of the large room after the shop terminal." }
+    - { name: Life Gauge Piece 1,         t: [ life ],               hint: "In the rafters of the large room after the shop terminal." }
     - { name: Chorus 4,                   t: [ chorus ],             hint: "After the first Rhythm Jump." }
     - { name: Flying Billboard 2,         t: [ board ],              hint: "Hovering just out of sight behind the first machine press." }
     - { name: Chorus 5,                   t: [ chorus ],             hint: "Past the press machines." }
@@ -126,7 +132,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Broken Armstrong Circuit 4, t: [ circuit, treasure, korsica, post ], hint: "Inside the treasure chest robot past the fire door after the platforming section." }
     - { name: Vending Machine 3,          t: [ vend ],              hint: "In the room with the shop terminal." }
     # "Teamwork! Hooray...!"
-    - { name: Life Gauge Piece 2,         t: [ upgrade, treasure ], hint: "Inside the treasure chest robot after the three-part steam ride." }
+    - { name: Life Gauge Piece 2,         t: [ life, treasure ],    hint: "Inside the treasure chest robot after the three-part steam ride." }
     - { name: Scatter the Pigeons,        t: [ npc, pepper ],       hint: "After Mimosa hypes her upcoming show." } # Gives Life Gauge
     - { name: Flying Billboard 3,         t: [ board ],             hint: "Flying around the Chorus 6 arena." }
     - { name: Chorus 9,                   t: [ chorus ] }
@@ -151,17 +157,17 @@ achieve:   { category: [ Achievement ] }
     # TODO: What's in the underside of the first rock lava plume, where all the gears are, under the generator?
     - { name: Go Fishing,                 t: [ npc ],                hint: "After the generator" }
     - { name: Chorus 2,                   t: [ chorus ],             hint: "You are missing this great view, Peppermint!" }
-    - { name: Health Tank Piece 1,        t: [ upgrade ],            hint: "In the corner of the volcano area." }
+    - { name: Health Tank Piece 1,        t: [ health ],             hint: "In the corner of the volcano area." }
     - { name: Chorus 3,                   t: [ chorus ],             hint: "We got a weird one!" }
     - { name: Broken Armstrong Circuit 1, t: [ circuit ],            hint: "Between Chorus 3 and 4" }
     - { name: Vending Machine 1,          t: [ vend ],               hint: "Between Chorus 3 and 4" }
     - { name: Vlog 2,                     t: [ vlog ],               hint: "Between Chorus 3 and 4, opposite the vending machine" }
     # TODO: Z-Door in this area
-    - { name: Reverb Core Piece 1,        t: [ upgrade, macaron, post ],  hint: "Behind the Z-Wall between Chorus 3 and 4." }
+    - { name: Reverb Core Piece 1,        t: [ reverb, macaron, post ],  hint: "Behind the Z-Wall between Chorus 3 and 4." }
     - { name: Graffiti 1,                 t: [ graffiti, macaron, post ], hint: "Flowers | Near a small camp where a PGR-0101 and a VA-SER are talking, behind the two bots is a Z-Shielded wall." }
     - { name: Chorus 4,                   t: [ chorus ] }
     - { name: Vlog 3,                     t: [ vlog ],               hint: "After Chorus 4" }
-    - { name: Life Gauge Piece 1,         t: [ upgrade, treasure ],  hint: "Inside the treasure chest robot after Chorus 4." }
+    - { name: Life Gauge Piece 1,         t: [ life, treasure ],     hint: "Inside the treasure chest robot after Chorus 4." }
     - { name: Vlog 4,                     t: [ vlog ],               hint: "Before the rail" }
     
     # Here we ARE & D!
@@ -178,7 +184,7 @@ achieve:   { category: [ Achievement ] }
     - { name: LU-C1LLE's diary,           t: [ vlog ],               hint: "Behind LU-C1LLE inside R&D" }
     - { name: Punch-to-face Test Results, t: [ vlog ],               hint: "Inside Lab 44." }
     - { name: Barrier Test Results,       t: [ vlog ],               hint: "Inside Lab 44." }
-    - { name: Reverb Core Piece 2,        t: [ upgrade ],            hint: "Inside Lab 44." }
+    - { name: Reverb Core Piece 2,        t: [ reverb ],             hint: "Inside Lab 44." }
     # Something's overriding our cameras to 480p.
     - { name: SEB-AAA and JSF-001,        t: [ noir ],               hint: "After learning the parry." }
     - { name: Broken Armstrong Circuit 4, t: [ circuit ],            hint: "After learning the parry." }
@@ -188,7 +194,7 @@ achieve:   { category: [ Achievement ] }
     # Chamber 02 - Step into the middle of the room! It's safe here!
     - { name: Barrier Umbrella Test,      t: [ vlog ],               hint: "After going the side route." }
     - { name: Graffiti 3,                 t: [ graffiti ],           hint: "Zanzo | After you go through the side route and then through the vent in it, jump on top of the vent cover." }
-    - { name: Life Gauge Piece 2,         t: [ upgrade ],            hint: "On top of the Umbrella Test" }
+    - { name: Life Gauge Piece 2,         t: [ life ],               hint: "On top of the Umbrella Test" }
     - { name: Chorus 5,                   t: [ chorus ],             hint: "Test Chamber 03" }
     - { name: Knock the DUM-1E Down,      t: [ npc ],                hint: "Outside Test Chamber 03." }
     
@@ -196,7 +202,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Find SPECTRA Door,          t: [ door ],               hint: "Turn right after exiting Chamber 3; the door will be behind a rock wall." }
     - { name: Beat SPECTRA Challenge,     t: [ spectra ],            hint: "Defeat all enemies with only parry counter attacks."} # Gives Life Gauge Piece
     - { name: Vlog 6,                     t: [ vlog ],               hint: "After Test Chamber 03" }
-    - { name: Life Gauge Piece 3,         t: [ upgrade ],            hint: "After the rail after Test Chamber 03" }
+    - { name: Life Gauge Piece 3,         t: [ life ],               hint: "After the rail after Test Chamber 03" }
     - { name: Chorus 6,                   t: [ chorus ],             hint: "That's MISTER Chai to you!" }
     
     # Supposed to lose fight
@@ -221,10 +227,10 @@ achieve:   { category: [ Achievement ] }
     - { name: Vlog 1,                            t: [ vlog ],               hint: "After before the boulder." }
     # In the climb back up
     - { name: Disgruntled Decaf Revenge,         t: [ vlog ],               hint: "Behind the lava waterfall." }
-    - { name: Health Tank Piece 1,               t: [ upgrade ],            hint: "Behind the lava waterfall." }
+    - { name: Health Tank Piece 1,               t: [ health ],             hint: "Behind the lava waterfall." }
     - { name: SEB-AAA and JSF-001,               t: [ noir ],               hint: "Behind the lava waterfall." }
     - { name: Broken Armstrong Circuit 2,        t: [ circuit ],            hint: "Past two lava rocks at the bottom of the tower climb." }
-    - { name: Life Gauge Piece 1,                t: [ upgrade ],            hint: "At the top of the tower climb, on the crates" }
+    - { name: Life Gauge Piece 1,                t: [ life ],               hint: "At the top of the tower climb, on the crates" }
     - { name: Flying Billboard 1,                t: [ board ],              hint: "Flying in circles around the top of the tower climb." }
     - { name: Chorus 1,                          t: [ chorus ],             hint: "Ready for another round?" }
     - { name: Smidge 1,                          t: [ smidge ],             hint: "Macaron tutorial" }
@@ -243,7 +249,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Macaron meets with OS-KAR,         t: [ npc ],                hint: "In the mall lounge area. Speak with OS-KAR twice to have a scene with him and Macaron." }
     
     # AR Room 3 - Chai, this is amazing! Look at that budget drain!
-    - { name: Life Gauge Piece 2,                t: [ upgrade ],            hint: "Inside the Volcano AR section" }
+    - { name: Life Gauge Piece 2,                t: [ life ],               hint: "Inside the Volcano AR section" }
     - { name: Chorus 4 - AR Room 3,              t: [ chorus ],             hint: "Chai, this is amazing! Look at that budget drain!" }
     - { name: Chorus 5 - AR Room 3,              t: [ chorus ],             hint: "NOO!! GIFT BASKET!!" }
     - { name: Defund Zanzo,                      t: [ achieve ],            hint: "UNRESTRICTED CREATIVE FREEDOM!!!!" }
@@ -256,7 +262,7 @@ achieve:   { category: [ Achievement ] }
 - track: { name: Track 5, region: Track_5, category: [ Track 5 ] }
   checks:
     - { name: Vlog 1,                            t: [ vlog ],               hint: "Return to the cell room right at the start of the Track." }
-    - { name: Life Gauge Piece 1,                t: [ upgrade ],            hint: "To the right and above the second spinning platform cylinder" }
+    - { name: Life Gauge Piece 1,                t: [ life ],               hint: "To the right and above the second spinning platform cylinder" }
     - { name: Vlog 2,                            t: [ vlog ],               hint: "First area of the security nodes atrium." }
     - { name: Graffiti 1,                        t: [ graffiti ],           hint: "Nodes | After you reach the main security area, go right and drop down onto the platform below that leads to the moving platforms that circle around the center column." }
     - { name: Find SPECTRA Door,                 t: [ door ],               hint: "Located below the main chamber, near the elevator connected to Node 3; ride the floating platforms to reach it." }
@@ -339,11 +345,11 @@ achieve:   { category: [ Achievement ] }
     - { name: Chorus 3,                    t: [ chorus ],            hint: "" }
     
     # First 2D Section
-    - { name: Life Gauge Piece 1,          t: [ upgrade ],           hint: "First 2d section on the tower, hit the button to open the way to the item." }
+    - { name: Life Gauge Piece 1,          t: [ life ],              hint: "First 2d section on the tower, hit the button to open the way to the item." }
     - { name: Flying Billboard 1,          t: [ board ],             hint: "Flying around the end of the first 2D section." }
-    - { name: Health Tank Piece 1,         t: [ upgrade, macaron ],  hint: "Through the Z-Shield door after the first 2D section." }
+    - { name: Health Tank Piece 1,         t: [ health, macaron ],   hint: "Through the Z-Shield door after the first 2D section." }
     - { name: Chorus 4,                    t: [ chorus ],            hint: "The samurai was waiting for you..." }
-    - { name: Life Gauge Piece 2,          t: [ upgrade, treasure ], hint: "Inside the treasure chest to the right after going through the Z-Wall after Chorus 4." }
+    - { name: Life Gauge Piece 2,          t: [ life, treasure ],    hint: "Inside the treasure chest to the right after going through the Z-Wall after Chorus 4." }
     - { name: Help the Tech behind Glass,  t: [ npc ]} # TODO: Check
     
     # Second 2D section
@@ -378,7 +384,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Defeat Korsica,              t: [ chorus, achieve ] }
 
     # # TODO Collectables
-    - { name: Graffiti 2,               t: [ graffiti, macaron, korsica, post ], hint: "Korsica | Break through the Z-Shielded wall." }
+    - { name: Graffiti 2, t: [ graffiti, macaron, korsica, post ], hint: "Korsica | Break through the Z-Shielded wall." }
 
 #endregion
 
@@ -399,7 +405,7 @@ achieve:   { category: [ Achievement ] }
 
 - track: { name: Track 8, region: Track_8_3, category: [ Track 8 ] }
   checks:
-    - { name: Health Tank Piece 1,         t: [ upgrade ],   hint: "Behind the robots in the sewer pass." }
+    - { name: Health Tank Piece 1,         t: [ health ],    hint: "Behind the robots in the sewer pass." }
     - { name: Vlog 3,                      t: [ vlog, ],     hint: "After the sewer pass, in the fenced in section." }
     - { name: Chorus 1,                    t: [ chorus ],    hint: "Outside the museum." }
     - { name: Broken Armstrong Circuit 3,  t: [ circuit ],   hint: "After Chorus 1, go through the gate/over the fence to the left." } # TODO confirm
@@ -432,7 +438,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Graffiti 3,                  t: [ graffiti, macaron ], hint: "Stage | After the fight against the WA-ES-2 and SEN-C0 and breaking through the Z-Shielded wall, look to the left." }
     # TODO: Check if you can destroy the huge robots on display
     - { name: Broken Armstrong Circuit 5,  t: [ circuit ],   hint: "In the back areas behind Chorus 4." }
-    - { name: Life Gauge Piece 1,          t: [ upgrade ],   hint: "In the back areas behind Chorus 4." }
+    - { name: Life Gauge Piece 1,          t: [ life ],      hint: "In the back areas behind Chorus 4." }
     - { name: Vlog 4,                      t: [ vlog, ],     hint: "In the back areas behind Chorus 4." }
     - { name: Saturn Devours O5-KAR,       t: [ npc ],       hint: "In the back areas behind Chorus 4, destroy OS-KAR's disturbing artwork." }
     # TODO: Check what's in the opposite direction after Korsica's generator
@@ -456,9 +462,9 @@ achieve:   { category: [ Achievement ] }
     - { name: Beat SPECTRA Challenge,      t: [ spectra ],    } # Gives ???
     
     # History Display 3: The New Visionary!
-    - { name: TODO Display,                t: [ vlog, ],     hint: "After the 3rd history display." }
-    # - { name: TODO Display,                t: [ vlog, ],     hint: "After the 3rd history display." }
-    - { name: Health Tank Piece 2,         t: [ upgrade, treasure ],  hint: "Inside the treasure chest robot to the right after the third history display." }
+  # - { name: TODO Display,                t: [ board ],     hint: "After the 3rd history display." }
+  # - { name: TODO Display,                t: [ board ],     hint: "After the 3rd history display." }
+    - { name: Health Tank Piece 2,         t: [ health, treasure ],  hint: "Inside the treasure chest robot to the right after the third history display." }
     - { name: Chorus 9,                    t: [ chorus ],    hint: "Some pests just don't want to go away!" }
     - { name: Golden Kale Statue 2,        t: [ statue ],    hint: "In the hallway behind you after dropping down from Chorus 9." }
     
@@ -472,9 +478,9 @@ achieve:   { category: [ Achievement ] }
     - { name: Graffiti 1,                 t: [ graffiti ], hint: "Mimosa | At the very beginning of the track, turn around. It's on the wall." }
     - { name: Vending Machine 1,          t: [ vend ],     hint: "In the hall leading to Mimosa's dressing room." }
     - { name: Broken Armstrong Circuit 1, t: [ circuit ],  hint: "In the hall leading to Mimosa's dressing room, under the raised floor." }
-    - { name: Health Tank Piece 1,        t: [ upgrade ],  hint: "In the hall leading to Mimosa's dressing room, under the raised floor." }
-    - { name: Vlog 1,                     t: [ vlogs ],    hint: "In the hall leading to Mimosa's dressing room, after the raised floor." }
-    - { name: Vlog 2,                     t: [ vlogs ],    hint: "At the end of the corridor on a bench near the shop." }
+    - { name: Health Tank Piece 1,        t: [ health ],   hint: "In the hall leading to Mimosa's dressing room, under the raised floor." }
+    - { name: Vlog 1,                     t: [ vlog ],     hint: "In the hall leading to Mimosa's dressing room, after the raised floor." }
+    - { name: Vlog 2,                     t: [ vlog ],     hint: "At the end of the corridor on a bench near the shop." }
     # Initiate still perfectly relevant cultural reference!
     - { name: Broken Armstrong Circuit 2, t: [ circuit ],  hint: "As Left Shark, on the way to the stage." }
     # On stage!
@@ -493,7 +499,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Chorus 4,                   t: [ chorus ],     hint: "Well, I'm in. I hope no one noticed--" }
     - { name: Chorus 5,                   t: [ chorus ],     hint: "No one messes with Vandelay Cuisine!" }
     # TODO check around balcony after fight.
-    - { name: Vlog 1,                     t: [ vlogs ],      hint: "In the hub after Chorus 5." }
+    - { name: Vlog 1,                     t: [ vlog ],       hint: "In the hub after Chorus 5." }
     - { name: Vending Machine 1,          t: [ vend ],       hint: "In the hub after Chorus 5." }
     - { name: Smidge 1,                   t: [ smidge ],     hint: "Holding up the door after Chorus 5." }
     - { name: Graffiti 1,                 t: [ graffiti ],   hint: "WA-ES-2 | After Smidge gets stuck in the door." }
@@ -507,10 +513,10 @@ achieve:   { category: [ Achievement ] }
     - { name: Vending Machine 2,          t: [ vend ],       hint: "In the hall after Chorus 6." }
     
     # The Atrium
-    - { name: Vlog 2,                     t: [ vlogs ],      hint: "On the atrium entrance balcony." }
+    - { name: Vlog 2,                     t: [ vlog ],       hint: "On the atrium entrance balcony." }
     - { name: Broken Armstrong Circuit 3, t: [ circuit ],    hint: "Above the atrium entrance balcony, taking a path on the right." }
     - { name: Graffiti 2,                 t: [ graffiti ],   hint: "Wrench | Above the atrium entrance balcony, taking a path on the right." }
-    - { name: Health Tank Piece 1,        t: [ upgrade, treasure ],  hint: "Inside the treasure chest robot, above the atrium entrance balcony, taking a path on the right." }
+    - { name: Health Tank Piece 1,        t: [ health, treasure ],  hint: "Inside the treasure chest robot, above the atrium entrance balcony, taking a path on the right." }
     - { name: Find SPECTRA Door,          t: [ door ],       hint: "Above the atrium entrance balcony, well hidden way in the back." }
     - { name: Beat SPECTRA Challenge,     t: [ spectra ],    hint: ""} # Gives ???
     - { name: Flying Billboard 1,         t: [ board ],      hint: "Visible from the atrium entrance balcony." }
@@ -523,27 +529,27 @@ achieve:   { category: [ Achievement ] }
     # "Do what you need to do to get him! ....I'll expense it!"
     - { name: Broken Armstrong Circuit 4, t: [ circuit ],    hint: "Behind you after the rail." }
     - { name: Golden Kale Statue 1,       t: [ statue ],     hint: "In the next office cube after the rail." }
-    - { name: Vlog 3,                     t: [ vlogs ],      hint: "In the next office cube after the rail." }
-    - { name: Life Gauge Piece 1,         t: [ upgrade ],    hint: "Outside the next office cube after the rail." }
+    - { name: Vlog 3,                     t: [ vlog ],       hint: "In the next office cube after the rail." }
+    - { name: Life Gauge Piece 1,         t: [ life ],       hint: "Outside the next office cube after the rail." }
     - { name: Flying Billboard 4,         t: [ board ],      hint: "Flying around above the office cube after the rail." }
     - { name: Vending Machine 3,          t: [ vend ],       hint: "In the second office cube after the rail." }
-    - { name: Vlog 4,                     t: [ vlogs ],      hint: "In the second office cube after the rail." }
+    - { name: Vlog 4,                     t: [ vlog ],       hint: "In the second office cube after the rail." }
     # TODO: Check above in the back room here
-    - { name: Vlog 5,                     t: [ vlogs ],      hint: "Above the second office cube after the rail." }
+    - { name: Vlog 5,                     t: [ vlog ],       hint: "Above the second office cube after the rail." }
     # TODO: Flying billboard 5 or just 4 again?
     - { name: Chorus 9,                   t: [ chorus ] }
-    # - { name: Flying Billboard 5,         t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena." } # Note, shared with another chorus?
-    # - { name: Flying Billboard 6,         t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena." } # Note, shared with another chorus?
+  # - { name: Flying Billboard 5,         t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena." } # Note, shared with another chorus?
+  # - { name: Flying Billboard 6,         t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena." } # Note, shared with another chorus?
     # Midway through Chorus 9, bird kidnaps over to the hand of the statue
-    # - { name: Flying Billboard 7,         t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena, Hand." } # Note, shared with another chorus?
-    # - { name: Flying Billboard 8,         t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena, Hand." } # Note, shared with another chorus?
-    # - { name: Flying Billboard 9,         t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena, Hand." } # Note, shared with another chorus?
-    # - { name: Flying Billboard 10,        t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena, Hand." } # Note, shared with another chorus?
+  # - { name: Flying Billboard 7,         t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena, Hand." } # Note, shared with another chorus?
+  # - { name: Flying Billboard 8,         t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena, Hand." } # Note, shared with another chorus?
+  # - { name: Flying Billboard 9,         t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena, Hand." } # Note, shared with another chorus?
+  # - { name: Flying Billboard 10,        t: [ board ],      hint: "Stationary on the side of the Chorus 9 arena, Hand." } # Note, shared with another chorus?
     # Smash the head off the Kale statue
-    - { name: Reverb Core Piece 1,        t: [ upgrade ],    hint: "After smashing the head off the Kale statue, near the base of the statue's dismembered arm." }
+    - { name: Reverb Core Piece 1,        t: [ reverb ],     hint: "After smashing the head off the Kale statue, near the base of the statue's dismembered arm." }
     - { name: Broken Armstrong Circuit 5, t: [ circuit ],    hint: "On the finance department balcony, to the left." }
     - { name: Graffiti 4,                 t: [ graffiti ],   hint: "Kale | On the finance department balcony, to the right." }
-    - { name: Vlog 6,                     t: [ vlogs ],      hint: "On the finance department balcony, to the left." }
+    - { name: Vlog 6,                     t: [ vlog ],       hint: "On the finance department balcony, to the left." }
     # The phone call
     - { name: Defeat Roquefort,           t: [ chorus, achieve ] }
     
@@ -574,108 +580,108 @@ achieve:   { category: [ Achievement ] }
 # region - Rhythm Tower
 - track: { name: Rhythm Tower, region: Rhythm_Tower, category: [ Rhythm Tower ] }
   checks:
-    - { name: Floor 1,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 1)}" }
-    - { name: Floor 2,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 2)}" }
-    - { name: Floor 3,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 3)}" }
-    - { name: Floor 4,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 4)}" }
-    - { name: Floor 5,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 5)}" }
-    - { name: Floor 6,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 6)}" }
-    - { name: Floor 7,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 7)}" }
-    - { name: Floor 8,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 8)}" }
-    - { name: Floor 9,                  t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 9)}" }
-    - { name: Floor 10 - QA-1MIL,       t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 10)}" }
-    - { name: Floor 11,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 11)}" }
-    - { name: Floor 12,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 12)}" }
-    - { name: Floor 13,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 13)}" }
-    - { name: Floor 14,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 14)}" }
-    - { name: Floor 15,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 15)}" }
-    - { name: Floor 16,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 16)}" }
-    - { name: Floor 17,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 17)}" }
-    - { name: Floor 18,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 18)}" }
-    - { name: Floor 19,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 19)}" }
-    - { name: Floor 20 - Rekka,         t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 20)}" }
-    - { name: Floor 21,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 21)}" }
-    - { name: Floor 22,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 22)}" }
-    - { name: Floor 23,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 23)}" }
-    - { name: Floor 24,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 24)}" }
-    - { name: Floor 25,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 25)}" }
-    - { name: Floor 26,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 26)}" }
-    - { name: Floor 27,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 27)}" }
-    - { name: Floor 28,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 28)}" }
-    - { name: Floor 29,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 29)}" }
-    - { name: Floor 30 - Museum Rumble, t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 30)}" }
-    - { name: Floor 31,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 31)}" }
-    - { name: Floor 32,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 32)}" }
-    - { name: Floor 33,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 33)}" }
-    - { name: Floor 34,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 34)}" }
-    - { name: Floor 35,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 35)}" }
-    - { name: Floor 36,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 36)}" }
-    - { name: Floor 37,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 37)}" }
-    - { name: Floor 38,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 38)}" }
-    - { name: Floor 39,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 39)}" }
-    - { name: Floor 40 - Mimosa,        t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 40)}" }
-    - { name: Floor 41,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 41)}" }
-    - { name: Floor 42,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 42)}" }
-    - { name: Floor 43,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 43)}" }
-    - { name: Floor 44,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 44)}" }
-    - { name: Floor 45,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 45)}" }
-    - { name: Floor 46,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 46)}" }
-    - { name: Floor 47,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 47)}" }
-    - { name: Floor 48,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 48)}" }
-    - { name: Floor 49,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 49)}" }
-    - { name: Floor 50 - Roquefort,     t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 50)}" }
-    - { name: Floor 51,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 51)}" }
-    - { name: Floor 52,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 52)}" }
-    - { name: Floor 53,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 53)}" }
-    - { name: Floor 54,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 54)}" }
-    - { name: Floor 55,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 55)}" }
-    - { name: Floor 56,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 56)}" }
-    - { name: Floor 57,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 57)}" }
-    - { name: Floor 58,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 58)}" }
-    - { name: Floor 59,                 t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 59)}" }
-    - { name: Floor 60 - Kale,          t: [ chorus ], requires: "{YamlCompare(tower_sanity >= 60)}" }
+    - { name: Floor 1,                  t: [ post ], requires: "{YamlCompare(tower_sanity >= 1)}" }
+    - { name: Floor 2,                  t: [ post ], requires: "{YamlCompare(tower_sanity >= 2)}" }
+    - { name: Floor 3,                  t: [ post ], requires: "{YamlCompare(tower_sanity >= 3)}" }
+    - { name: Floor 4,                  t: [ post ], requires: "{YamlCompare(tower_sanity >= 4)}" }
+    - { name: Floor 5,                  t: [ post ], requires: "{YamlCompare(tower_sanity >= 5)}" }
+    - { name: Floor 6,                  t: [ post ], requires: "{YamlCompare(tower_sanity >= 6)}" }
+    - { name: Floor 7,                  t: [ post ], requires: "{YamlCompare(tower_sanity >= 7)}" }
+    - { name: Floor 8,                  t: [ post ], requires: "{YamlCompare(tower_sanity >= 8)}" }
+    - { name: Floor 9,                  t: [ post ], requires: "{YamlCompare(tower_sanity >= 9)}" }
+    - { name: Floor 10 - QA-1MIL,       t: [ post ], requires: "{YamlCompare(tower_sanity >= 10)}" }
+    - { name: Floor 11,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 11)}" }
+    - { name: Floor 12,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 12)}" }
+    - { name: Floor 13,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 13)}" }
+    - { name: Floor 14,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 14)}" }
+    - { name: Floor 15,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 15)}" }
+    - { name: Floor 16,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 16)}" }
+    - { name: Floor 17,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 17)}" }
+    - { name: Floor 18,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 18)}" }
+    - { name: Floor 19,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 19)}" }
+    - { name: Floor 20 - Rekka,         t: [ post ], requires: "{YamlCompare(tower_sanity >= 20)}" }
+    - { name: Floor 21,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 21)}" }
+    - { name: Floor 22,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 22)}" }
+    - { name: Floor 23,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 23)}" }
+    - { name: Floor 24,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 24)}" }
+    - { name: Floor 25,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 25)}" }
+    - { name: Floor 26,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 26)}" }
+    - { name: Floor 27,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 27)}" }
+    - { name: Floor 28,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 28)}" }
+    - { name: Floor 29,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 29)}" }
+    - { name: Floor 30 - Museum Rumble, t: [ post ], requires: "{YamlCompare(tower_sanity >= 30)}" }
+    - { name: Floor 31,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 31)}" }
+    - { name: Floor 32,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 32)}" }
+    - { name: Floor 33,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 33)}" }
+    - { name: Floor 34,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 34)}" }
+    - { name: Floor 35,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 35)}" }
+    - { name: Floor 36,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 36)}" }
+    - { name: Floor 37,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 37)}" }
+    - { name: Floor 38,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 38)}" }
+    - { name: Floor 39,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 39)}" }
+    - { name: Floor 40 - Mimosa,        t: [ post ], requires: "{YamlCompare(tower_sanity >= 40)}" }
+    - { name: Floor 41,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 41)}" }
+    - { name: Floor 42,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 42)}" }
+    - { name: Floor 43,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 43)}" }
+    - { name: Floor 44,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 44)}" }
+    - { name: Floor 45,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 45)}" }
+    - { name: Floor 46,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 46)}" }
+    - { name: Floor 47,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 47)}" }
+    - { name: Floor 48,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 48)}" }
+    - { name: Floor 49,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 49)}" }
+    - { name: Floor 50 - Roquefort,     t: [ post ], requires: "{YamlCompare(tower_sanity >= 50)}" }
+    - { name: Floor 51,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 51)}" }
+    - { name: Floor 52,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 52)}" }
+    - { name: Floor 53,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 53)}" }
+    - { name: Floor 54,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 54)}" }
+    - { name: Floor 55,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 55)}" }
+    - { name: Floor 56,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 56)}" }
+    - { name: Floor 57,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 57)}" }
+    - { name: Floor 58,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 58)}" }
+    - { name: Floor 59,                 t: [ post ], requires: "{YamlCompare(tower_sanity >= 59)}" }
+    - { name: Floor 60 - Kale,          t: [ post ], requires: "{YamlCompare(tower_sanity >= 60)}" }
 
 #endregion
 
 # region - Power Up! Tower Up!
 - track: { name: Power Up! Tower Up!, region: Power_Tower, category: [ Power Tower ] }
   checks:
-    - { name: Floor 1,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 1)}" }
-    - { name: Floor 2,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 2)}" }
-    - { name: Floor 3,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 3)}" }
-    - { name: Floor 4,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 4)}" }
-    - { name: Floor 5,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 5)}" }
-    - { name: Floor 6,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 6)}" }
-    - { name: Floor 7,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 7)}" }
-    - { name: Floor 8,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 8)}" }
-    - { name: Floor 9,                  t: [ chorus ], requires: "{YamlCompare(power_sanity >= 9)}" }
-    - { name: Floor 10,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 10)}" }
-    - { name: Floor 11,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 11)}" }
-    - { name: Floor 12,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 12)}" }
-    - { name: Floor 13,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 13)}" }
-    - { name: Floor 14,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 14)}" }
-    - { name: Floor 15,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 15)}" }
-    - { name: Floor 16,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 16)}" }
-    - { name: Floor 17,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 17)}" }
-    - { name: Floor 18,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 18)}" }
-    - { name: Floor 19,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 19)}" }
-    - { name: Floor 20,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 20)}" }
-    - { name: Floor 21,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 21)}" }
-    - { name: Floor 22,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 22)}" }
-    - { name: Floor 23,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 23)}" }
-    - { name: Floor 24,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 24)}" }
-    - { name: Floor 25,                 t: [ chorus ], requires: "{YamlCompare(power_sanity >= 25)}" }
+    - { name: Floor 1,                  t: [ post ], requires: "{YamlCompare(power_sanity >= 1)}" }
+    - { name: Floor 2,                  t: [ post ], requires: "{YamlCompare(power_sanity >= 2)}" }
+    - { name: Floor 3,                  t: [ post ], requires: "{YamlCompare(power_sanity >= 3)}" }
+    - { name: Floor 4,                  t: [ post ], requires: "{YamlCompare(power_sanity >= 4)}" }
+    - { name: Floor 5,                  t: [ post ], requires: "{YamlCompare(power_sanity >= 5)}" }
+    - { name: Floor 6,                  t: [ post ], requires: "{YamlCompare(power_sanity >= 6)}" }
+    - { name: Floor 7,                  t: [ post ], requires: "{YamlCompare(power_sanity >= 7)}" }
+    - { name: Floor 8,                  t: [ post ], requires: "{YamlCompare(power_sanity >= 8)}" }
+    - { name: Floor 9,                  t: [ post ], requires: "{YamlCompare(power_sanity >= 9)}" }
+    - { name: Floor 10,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 10)}" }
+    - { name: Floor 11,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 11)}" }
+    - { name: Floor 12,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 12)}" }
+    - { name: Floor 13,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 13)}" }
+    - { name: Floor 14,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 14)}" }
+    - { name: Floor 15,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 15)}" }
+    - { name: Floor 16,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 16)}" }
+    - { name: Floor 17,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 17)}" }
+    - { name: Floor 18,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 18)}" }
+    - { name: Floor 19,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 19)}" }
+    - { name: Floor 20,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 20)}" }
+    - { name: Floor 21,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 21)}" }
+    - { name: Floor 22,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 22)}" }
+    - { name: Floor 23,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 23)}" }
+    - { name: Floor 24,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 24)}" }
+    - { name: Floor 25,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 25)}" }
 
 #endregion
 
 # region - BPM Rush!
 - track: { name: BPM Rush!, region: Rush_Tower, category: [ BPM Rush ] }
   checks:
-    - { name: Wave 1,                  t: [ chorus ], requires: "{YamlCompare(rush_sanity >= 1)}" }
-    - { name: Wave 2,                  t: [ chorus ], requires: "{YamlCompare(rush_sanity >= 2)}" }
-    - { name: Wave 3,                  t: [ chorus ], requires: "{YamlCompare(rush_sanity >= 3)}" }
-    - { name: Wave 4,                  t: [ chorus ], requires: "{YamlCompare(rush_sanity >= 4)}" }
-    - { name: Wave 5,                  t: [ chorus ], requires: "{YamlCompare(rush_sanity >= 5)}" }
-    - { name: Wave 6,                  t: [ chorus ], requires: "{YamlCompare(rush_sanity >= 6)}" }
+    - { name: Wave 1,                  t: [ post ], requires: "{YamlCompare(rush_sanity >= 1)}" }
+    - { name: Wave 2,                  t: [ post ], requires: "{YamlCompare(rush_sanity >= 2)}" }
+    - { name: Wave 3,                  t: [ post ], requires: "{YamlCompare(rush_sanity >= 3)}" }
+    - { name: Wave 4,                  t: [ post ], requires: "{YamlCompare(rush_sanity >= 4)}" }
+    - { name: Wave 5,                  t: [ post ], requires: "{YamlCompare(rush_sanity >= 5)}" }
+    - { name: Wave 6,                  t: [ post ], requires: "{YamlCompare(rush_sanity >= 6)}" }
 
 #endregion

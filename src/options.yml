@@ -1,5 +1,5 @@
 %YAML 1.2
-%OUTPUT direct
+%OUTPUT options
 ---
 "$schema": "https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.options.schema.json"
 #Add a _ before an option name to comment it out and it wont be added to the apworld
@@ -11,13 +11,11 @@ core:
     description: |
       How to end your play-through:
       defeat kale - Win the game by defeating Kale in Track 12.
-      defeat track 11 - Win the game by completing Track 11, which is easier than fighting Kale.
-    aliases: 
-    #   easiest: 0
     # hidden: false
     # values:
+    aliases: 
       defeat_kale: 0
-      defeat_track11: 1
+      # defeat_track11: 1
   death_link:
     default: false
   filler_traps:
@@ -40,13 +38,13 @@ user:
       which is the victory condition for the randomizer. So if you miss a check, you 
       may have to fudge picking up previous checks if they turn out to be important.
     default: true
-    hidden: true
+    hidden: false
     
   upgrade_sanity:
     type: Toggle
     description: |
-      Grant checks for picking up Life Gauge (26), Health Tank (10), 
-      and Reverb Core (?) pieces (? locations).
+      Grant checks for picking up Life Gauge (${life}), Health Tank (${health}), 
+      and Reverb Core (${reverb}) pieces (${upgrade} locations total).
       
       Note: These items are permanent collectables. If you've picked them up before 
       in your save file, they won't be present in the level.
@@ -55,7 +53,8 @@ user:
   circuit_sanity:
     type: Toggle
     description: |
-      Grant checks for picking up Broken Armstrong Circuits (? locations)
+      Grant checks for picking up Broken Armstrong Circuits (${circuit} locations)
+      
       Note: These items are permanent collectables. If you've picked them up before 
       in your save file, they won't be present in the level.
     default: false
@@ -64,39 +63,45 @@ user:
   vlog_sanity:
     type: Toggle
     description: |
-      Grant checks for reading PDAs (71 locations)
+      Grant checks for reading PDAs (${vlog} locations)
     default: false
     group: Sanity Options 
   graffiti_sanity:
     type: Toggle
     description: |
-      Grant checks for finding Graffiti (24 locations)
+      Grant checks for finding Graffiti (${graffiti} locations)
     default: false
     group: Sanity Options 
   statue_sanity:
     type: Toggle
     description: |
-      Grant checks for destroying golden statues of Kale (? locations)
+      Grant checks for destroying golden statues of Kale (${statue} locations)
     default: false
     group: Sanity Options 
   billboard_sanity:
     type: Toggle
     description: |
-      Grant checks for shooting flying billboard bots with Peppermint (? locations)
+      Grant checks for shooting flying billboard bots with Peppermint (${board} locations)
     default: false
     group: Sanity Options 
   vending_sanity:
     type: Toggle
     description: |
-      Grant checks for breaking bending machines (15 locations)
+      Grant checks for breaking bending machines (${vend} locations)
+    default: false
+    group: Sanity Options 
+  drone_sanity:
+    type: Toggle
+    description: |
+      Grant checks for finding the drone on Track 5 (${drone} locations)
     default: false
     group: Sanity Options 
   
   robo_sanity:
     type: Choice
     description: |
-      'smidge' adds checks for talking to Smidge (? locations)
-      'others' additionally adds checks for interacting with various incidental NPCs (? more locations)
+      'smidge' adds checks for talking to Smidge (${smidge} locations)
+      'others' additionally adds checks for interacting with various incidental NPCs (${robo} locations total)
       'none' does not add these checks
     values:
       none: 0
@@ -108,8 +113,8 @@ user:
   door_sanity:
     type: Choice
     description: |
-      'touch' adds checks for finding SPECTRA doors (9 locations).
-      'beat' additionally adds checks for completing the challenges inside (9 more locations).
+      'touch' adds checks for finding SPECTRA doors (8 locations).
+      'beat' additionally adds checks for completing the challenges inside (8 more locations).
       'none' does not add these checks.
     values:
       none: 0
@@ -162,7 +167,7 @@ user:
       Each wave is another location. This is always available from the post-game hideout, and
       may provide distraction when BK'd elsewhere, but it can be difficult to get far.
     range_start: 0
-    range_end: 25 # TODO: Figure out how far this is
+    range_end: 6 # TODO: Figure out how far this is
     default: 0
     values:
       none: 0
