@@ -6,6 +6,8 @@ This manual includes 400+ locations as of right now. By default, the only locati
 
 The item count is considerably fewer as of right now: access to tracks and the three partner summons. Everything else is gears.
 
+Note: This randomizer was built with the idea that partner summons would only be restricted outside of battle, and that the player can use any partners they have in-game in battle. It just makes the logic easier and more open to gate only level progress and not battles.
+
 By default, this randomizer is meant to be played on a save file that has completed the main game, so that any Track can be accessed in any order. Most of the sanity options are for things that are not permanent upgrade pickups.
 
 There is, however, option to play on a new save, where it will assume Track order and not include any post-game only checks. Just don't skip any checks, because the game doesn't allow backtracking on a new file.
