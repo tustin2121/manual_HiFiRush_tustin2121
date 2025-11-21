@@ -27,11 +27,28 @@ chorus:    { category: [ Chorus ] }
 achieve:   { category: [ Achievement ] }
 
 ---
-- { name: Project Armstrong Pass,    region: StartGame, category: [ Collectable ], requires: "{YamlDisabled(post_game)}", place_item: [ Track 1 Access ]  }
-- { name: Hideout Couch (Free Item), region: Hideout_PostGame, category: [ Hideout ], requires: "{YamlEnabled(post_game)}" }
+- track: {}
+  region:
+    name: Hideout_PostGame
+    requires: "{YamlEnabled(post_game)}"
+    connects_to: [ Track_1, Track_2, Track_3, Track_4, Track_5, Track_6, Track_7, Track_8, Track_9, Track_10, Track_11, Track_12, Rhythm_Tower, Power_Tower, Rush_Tower ]
+    starting: true
+  checks:
+    - { name: Hideout Couch (Free Item), category: [ Hideout ] }
 
+- track: {}
+  region: 
+    name: StartGame
+    requires: "{YamlDisabled(post_game)}"
+    connects_to: [ Track_1 ]
+    starting: true
+  checks:
+    - { name: Project Armstrong Pass, category: [ Collectable ], place_item: [ Track 1 Access ]  }
+
+#---------------------------------------------------------------------------------------------------------------------#
 # region - Track 1: A Fresh Start
-- track: { name: Track 1, region: Track_1, category: [ Track 1 ] }
+- track: { name: Track 1, category: [ Track 1 ] }
+  region: { name: Track_1, requires: "|Track 1 Access|", connects_to: [ Track_2 ] }
   checks:
     - { name: Admire O5-KAR's boxes,      t: [ npc ],                   hint: "Turn around at the start" }
     
@@ -65,7 +82,7 @@ achieve:   { category: [ Achievement ] }
     
     # Conveyor Belt
     - { name: Reverb Core Piece 1,        t: [ reverb ],             hint: "On the far end of the first conveyor belt in the production building after Chorus 5." }
-    - { name: End the Robots' Argument,   t: [ npc ],                hint: "After the generator QTE, hit the robots arguing." }
+    - { name: End the Robots' Argument,   t: [ npc ],                hint: "After the generator QTE, stop the arguing robots with a good slap to the face." }
     - { name: Broken Armstrong Circuit 2, t: [ circuit,  macaron, korsica, post ], hint: "Through the Z-shielded door on a catwalk in the area to the right after reactivating the generator." }
     - { name: Graffiti 1,                 t: [ graffiti, macaron, korsica, post ], hint: "QA Building | Behind the Z-Shielded door, up the generator-supplied platforms." }
     - { name: Chorus 6,                   t: [ chorus ],             hint: "Tough enemies tutorial" }
@@ -75,7 +92,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Chorus 7,                   t: [ chorus ],             hint: "Jumping is strictly prohibited!" }
     
     # The way out opens
-    - { name: Destroy O5-KAR's boxes,     t: [ npc ],                hint: "Just before the end" }
+    - { name: Destroy O5-KAR's stack,     t: [ npc ],                hint: "In the entrance to the QA center." }
     - { name: Vlog 5,                     t: [ vlog ],               hint: "On a computer in front of the entrance to the QA center." }
     - { name: Life Gauge Piece 3,         t: [ life ],               hint: "In the same room as PDA #5, on the upper level." }
     - { name: Broken Armstrong Circuit 3, t: [ circuit,  korsica, post ], hint: "On the opposite side of the QA lobby, on the upper level" }
@@ -84,9 +101,10 @@ achieve:   { category: [ Achievement ] }
     - { name: Explode QA-1MIL,            t: [ chorus, achieve ],     hint: "You've got a killer track, but every son'gs gotta end!" }
 
 #endregion
-
+#---------------------------------------------------------------------------------------------------------------------#
 # region - Track 2: Power Up
-- track: { name: Track 2, region: Track_2, category: [ Track 2 ] }
+- track: { name: Track 2, category: [ Track 2 ] }
+  region: { name: Track_2, requires: "|Track 2 Access|", connects_to: [ Track_2_2 ] }
   checks:
     - { name: Vending Machine 1,          t: [ vend ],               hint: "Before entering the building to the right." }
     - { name: Vlog 1,                     t: [ vlog ],               hint: "Before entering the building, inside the area to the left." }
@@ -120,7 +138,9 @@ achieve:   { category: [ Achievement ] }
     - { name: Vlog 4,                     t: [ vlog ],               hint: "Just outside the Chorus 6 arena." }
     # Grapple tram line ride!
     # TODO: Oscar?
-- track: { name: Track 2, region: Track_2_2, category: [ Track 2 ] } # Peppermint Summon given here
+
+- track: { name: Track 2, category: [ Track 2 ] } # Peppermint Summon given here
+  region: { name: Track_2_2, requires: "|Peppermint Summon|", connects_to: [ Track_3 ] }
   checks:
     - { name: Vlog 5,                     t: [ vlog ],              hint: "After Peppermint allows you across the gap." }
     - { name: Chorus 7,                   t: [ chorus ],            hint: "Looks like somebody got an upgrade." }
@@ -145,14 +165,17 @@ achieve:   { category: [ Achievement ] }
     - { name: Defeat Rekka,               t: [ chorus, achieve ],   }
 
 #endregion
-
+#---------------------------------------------------------------------------------------------------------------------#
 # region - Track 3: Trial By (Volcanic) Fire
-- track: { name: Track 3, region: Track_3, category: [ Track 3 ] }
+- track: { name: Track 3, category: [ Track 3 ] }
+  region: { name: Track_3, requires: "|Track 3 Access|", connects_to: [ Track_3_2 ] }
   checks:
     - { name: Flying Billboard 1, t: [ board ],  hint: "As soon as you enter the level." }
     - { name: Chorus 1,           t: [ chorus ], hint: "You're not part of my crew!" }
     - { name: Vlog 1,             t: [ vlog ],   hint: "Just after Chorus 1" }
-- track: { name: Track 3, region: Track_3_2, category: [ Track 3 ] }
+
+- track: { name: Track 3, category: [ Track 3 ] }
+  region: { name: Track_3_2, requires: "|Peppermint Summon|", connects_to: [ Track_4 ] }
   checks:
     # TODO: What's in the underside of the first rock lava plume, where all the gears are, under the generator?
     - { name: Go Fishing,                 t: [ npc ],                hint: "After the generator" }
@@ -210,19 +233,22 @@ achieve:   { category: [ Achievement ] }
     - { name: BLORF,                      t: [ achieve ] }
 
 #endregion
-
+#---------------------------------------------------------------------------------------------------------------------#
 # region - Track 4: Less Budget, More Problems
-- track: { name: Track 4, region: Track_4, category: [ Track 4 ] }
+- track: { name: Track 4, category: [ Track 4 ] }
+  region: { name: Track_4, requires: "|Track 4 Access|", connects_to: [ Track_4_2 ] }
   checks:
     - { name: Vending Machine 1,                 t: [ vend ],               hint: "Immediately to the right past the robot.." }
     
     # "Just through that wall..."
-- track: { name: Track 4, region: Track_4_2, category: [ Track 4 ] }
+- track: { name: Track 4, category: [ Track 4 ] }
+  region: { name: Track_4_2, requires: "|Macaron Summon|", connects_to: [ Track_4_3 ] }
   checks:
     - { name: Broken Armstrong Circuit 1,        t: [ circuit ],            hint: "After breaking through the Z-Wall." }
     
     # Shoot down the rock
-- track: { name: Track 4, region: Track_4_3, category: [ Track 4 ] }
+- track: { name: Track 4, category: [ Track 4 ] }
+  region: { name: Track_4_3, requires: "|Peppermint Summon|", connects_to: [ Track_5 ] }
   checks:
     - { name: Vlog 1,                            t: [ vlog ],               hint: "After before the boulder." }
     # In the climb back up
@@ -257,9 +283,10 @@ achieve:   { category: [ Achievement ] }
     - { name: Chorus 6,                          t: [ chorus ],             hint: "All security, report!" }
 
 #endregion
-
+#---------------------------------------------------------------------------------------------------------------------#
 # region - Track 5: Breaking Out
-- track: { name: Track 5, region: Track_5, category: [ Track 5 ] }
+- track: { name: Track 5, category: [ Track 5 ] }
+  region: { name: Track_5, requires: "|Track 5 Access|", connects_to: [ Track_5_2 ] }
   checks:
     - { name: Vlog 1,                            t: [ vlog ],               hint: "Return to the cell room right at the start of the Track." }
     - { name: Life Gauge Piece 1,                t: [ life ],               hint: "To the right and above the second spinning platform cylinder" }
@@ -281,7 +308,8 @@ achieve:   { category: [ Achievement ] }
     
     # TODO Check out the Node 03 path, to the left as you leave; looks like a golden statue?
     
-- track: { name: Track 5, region: Track_5_2, category: [ Track 5 ] } # Peppermint required
+- track: { name: Track 5, category: [ Track 5 ] }
+  region: { name: Track_5_2, requires: "|Peppermint Summon|", connects_to: [ Track_5_3 ] }
   checks:
     # Security Node 03
     - { name: Vlog 3,                            t: [ vlog ],               hint: "Start of route to Security Node 03." }
@@ -289,7 +317,8 @@ achieve:   { category: [ Achievement ] }
     - { name: Broken Armstrong Circuit 3,        t: [ circuit ],            hint: "Behind the final data node." }
     - { name: Chorus 3,                          t: [ chorus ],             hint: "On the way back" }
     
-- track: { name: Track 5, region: Track_5_3, category: [ Track 5 ] } # Macron required
+- track: { name: Track 5, category: [ Track 5 ] }
+  region: { name: Track_5_3, requires: "|Macaron Summon|", connects_to: [ Track_6 ] }
   checks:
     # Security Node 01
     # TODO: Korsica door here after Z-Wall to left
@@ -313,31 +342,39 @@ achieve:   { category: [ Achievement ] }
     - { name: Chorus 6,                          t: [ chorus ],             hint: "Required elevator ride fight." }
 
 #endregion
-
+#---------------------------------------------------------------------------------------------------------------------#
 # region - Track 6: L.I.F.T Me Up
-- track: { name: Track 6, region: Track_6, category: [ Track 6 ] }
+- track: { name: Track 6, category: [ Track 6 ] }
+  region: { name: Track_6, requires: "|Track 6 Access|", connects_to: [ Track_6_2 ] }
   checks:
     - { name: Broken Armstrong Circuit 1, t: [ circuit ],  hint: "Turn around at the beginning of the level, and jump over the elevator controls. It's by the back wall." }
     - { name: Graffiti 1,                 t: [ graffiti ], hint: "L.I.F.T | Once you reach the shop, go left." }
     - { name: Vlog 1,                     t: [ vlog ],     hint: "On the route to the L.I.F.T." }
     - { name: Chorus 1,                   t: [ chorus ],   hint: "Maybe you're wrong for once, Peppermint. Might be smooth riding." }
     - { name: Chorus 2,                   t: [ chorus ],   hint: "Long range?!" }
-- track: { name: Track 6, region: Track_6_2, category: [ Track 6 ] }
+
+- track: { name: Track 6, category: [ Track 6 ] }
+  region: { name: Track_6_2, requires: "|Macaron Summon|", connects_to: [ Track_7 ] }
   checks:
     - { name: Chorus 3,                   t: [ chorus ],   hint: "Ugh, come on guys! Get it together! Put the breaks on that thing!" }
     - { name: Stop the L.I.F.T.,          t: [ achieve ],  hint: "...that was a smooth ride..." }
 
 #endregion
-
+#---------------------------------------------------------------------------------------------------------------------#
 # region - Track 7: The Climb
-- track: { name: Track 7, region: Track_7, category: [ Track 7 ] }
+- track: { name: Track 7, category: [ Track 7 ] }
+  region: { name: Track_7, requires: "|Track 7 Access|", connects_to: [ Track_7_2 ] }
   checks:
     - { name: Chorus 1,                    t: [ chorus ] }
     - { name: Vlog 1,                      t: [ vlog ],              hint: "After Chorus 1" }
-- track: { name: Track 7, region: Track_7_2, category: [ Track 7 ] }
+
+- track: { name: Track 7, category: [ Track 7 ] }
+  region: { name: Track_7_2, requires: "|Peppermint Summon|", connects_to: [ Track_7_3 ] }
   checks:
     - { name: Broken Armstrong Circuit 1,  t: [ circuit ],           hint: "On the top of pipe a the top of the scaffolding." }
-- track: { name: Track 7, region: Track_7_3, category: [ Track 7 ] }
+
+- track: { name: Track 7, category: [ Track 7 ] }
+  region: { name: Track_7_3, requires: "|Macaron Summon|", connects_to: [ Track_8 ] }
   checks:
     # The janitor NPCs?
     - { name: \"Help\" the Fallen Janitor, t: [ npc ],               hint: "In the mall lounge area. Speak with OS-KAR twice to have a scene with him and Macaron." }
@@ -387,9 +424,10 @@ achieve:   { category: [ Achievement ] }
     - { name: Graffiti 2, t: [ graffiti, macaron, korsica, post ], hint: "Korsica | Break through the Z-Shielded wall." }
 
 #endregion
-
+#---------------------------------------------------------------------------------------------------------------------#
 # region - Track 8: A History Lesson
-- track: { name: Track 8, region: Track_8, category: [ Track 8 ] }
+- track: { name: Track 8, category: [ Track 8 ] }
+  region: { name: Track_8, requires: "|Track 8 Access|", connects_to: [ Track_8_2 ] }
   checks:
     - { name: Vlog 1,                      t: [ vlog, ],     hint: "In the ticket line." }
     - { name: Love on the Lawn,            t: [ npc ],       hint: "In the opening area, find the couple from Rekka's anteroom on the lawn." }
@@ -398,12 +436,14 @@ achieve:   { category: [ Achievement ] }
     - { name: Vlog 2,                      t: [ vlog, ],     hint: "In the opening area, on a trash can near the back." }
     - { name: Graffiti 1,                  t: [ graffiti ],  hint: "Fireworks | In the upper part of the tracks opening area, before the fire gate, go toward the gate that the O5-KAR is polishing." }
 
-- track: { name: Track 8, region: Track_8_2, category: [ Track 8 ] }
+- track: { name: Track 8, category: [ Track 8 ] }
+  region: { name: Track_8_2, requires: "|Korsica Summon|", connects_to: [ Track_8_3 ] }
   checks:
     - { name: Broken Armstrong Circuit 2,  t: [ circuit ],   hint: "After the initial flaming door, you drop down and the circuit is behind you." }
     - { name: Flying Billboard 1,          t: [ board ],     hint: "After the initial flaming door, floating in plain sight as you travel onward." }
 
-- track: { name: Track 8, region: Track_8_3, category: [ Track 8 ] }
+- track: { name: Track 8, category: [ Track 8 ] }
+  region: { name: Track_8_3, requires: "|Macaron Summon|", connects_to: [ Track_9 ] }
   checks:
     - { name: Health Tank Piece 1,         t: [ health ],    hint: "Behind the robots in the sewer pass." }
     - { name: Vlog 3,                      t: [ vlog, ],     hint: "After the sewer pass, in the fenced in section." }
@@ -471,9 +511,10 @@ achieve:   { category: [ Achievement ] }
     - { name: Tear Down a Cardboard Kale,  t: [ achieve ],   hint: "Peppermint does this for you." }
 
 #endregion
-
+#---------------------------------------------------------------------------------------------------------------------#
 # region - Track 9: Take the Stage
-- track: { name: Track 9, region: Track_9, category: [ Track 9 ] }
+- track: { name: Track 9, category: [ Track 9 ] }
+  region: { name: Track_9, requires: "|Track 9 Access|", connects_to: [ Track_10 ] }
   checks:
     - { name: Graffiti 1,                 t: [ graffiti ], hint: "Mimosa | At the very beginning of the track, turn around. It's on the wall." }
     - { name: Vending Machine 1,          t: [ vend ],     hint: "In the hall leading to Mimosa's dressing room." }
@@ -487,9 +528,10 @@ achieve:   { category: [ Achievement ] }
     - { name: Defeat Mimosa, t: [ chorus, achieve ] }
 
 #endregion
-
+#---------------------------------------------------------------------------------------------------------------------#
 # region - Track 10: A Masterplan
-- track: { name: Track 10, region: Track_10, category: [ Track 10 ] }
+- track: { name: Track 10, category: [ Track 10 ] }
+  region: { name: Track_10, requires: "|Track 10 Access|", connects_to: [ Track_10_2 ] }
   checks:
     # Let's never mention that again!
     - { name: Chorus 1,                   t: [ chorus ],     hint: "I need a moment!" }
@@ -506,7 +548,8 @@ achieve:   { category: [ Achievement ] }
     - { name: Broken Armstrong Circuit 1, t: [ circuit ],    hint: "In the corner after Chorus 5." }
     
     # Z-Door, followed by Generator, followed by Peppermint shoot, all in the same hallway
-- track: { name: Track 10, region: Track_10_2, category: [ Track 10 ] } 
+- track: { name: Track 10, category: [ Track 10 ] } 
+  region: { name: Track_10_2, requires: "|Macaron Summon| and |Korsica Summon| and |Peppermint Summon|", connects_to: [ Track_11 ] }
   checks: 
     - { name: Chorus 6,                   t: [ chorus ],     hint: "Armadillomon fight" }
     - { name: Broken Armstrong Circuit 2, t: [ circuit ],    hint: "In the corner after Chorus 6." }
@@ -556,11 +599,11 @@ achieve:   { category: [ Achievement ] }
     # TODO Collectables
     - { name: Graffiti 3,               t: [ graffiti, macaron ], hint: "Roquefort | After the fight against the WA-ES-2 and SEN-C0 and breaking through the Z-Shielded wall, look to the left." }
 
-
 #endregion
-
+#---------------------------------------------------------------------------------------------------------------------#
 # region - Track 11: The Needle Drop
-- track: { name: Track 11, region: Track_11, category: [ Track 11 ] }
+- track: { name: Track 11, category: [ Track 11 ] }
+  region: { name: Track_11, requires: "|Track 11 Access|", connects_to: [ Track_12 ] }
   checks:
     - { name: Synchronize a Harmonic Force Field, t: [ chorus ] }
     - { name: Chorus 1,                           t: [ chorus ] }
@@ -569,16 +612,18 @@ achieve:   { category: [ Achievement ] }
     - { name: Defeat the ZP-1500,                 t: [ chorus, achieve ] }
 
 #endregion
-
+#---------------------------------------------------------------------------------------------------------------------#
 # region - Track 12: Curate the Future
-- track: { name: Track 12, region: Track_12, category: [ Track 12 ] }
+- track: { name: Track 12, category: [ Track 12 ] }
+  region: { name: Track_12, requires: "|Track 12 Access|", connects_to: [ Hideout_PostGame ] }
   checks:
     - { name: Defeat Kale, t: [ chorus, achieve ], victory: true }
 
 #endregion
-
+#---------------------------------------------------------------------------------------------------------------------#
 # region - Rhythm Tower
-- track: { name: Rhythm Tower, region: Rhythm_Tower, category: [ Rhythm Tower ] }
+- track: { name: Rhythm Tower, category: [ Rhythm Tower ] }
+  region: { name: Rhythm_Tower, requires: "{YamlEnabled(post_game)}" }
   checks:
     - { name: Floor 1,                  t: [ post ], requires: "{YamlCompare(tower_sanity >= 1)}" }
     - { name: Floor 2,                  t: [ post ], requires: "{YamlCompare(tower_sanity >= 2)}" }
@@ -642,9 +687,10 @@ achieve:   { category: [ Achievement ] }
     - { name: Floor 60 - Kale,          t: [ post ], requires: "{YamlCompare(tower_sanity >= 60)}" }
 
 #endregion
-
+#---------------------------------------------------------------------------------------------------------------------#
 # region - Power Up! Tower Up!
-- track: { name: Power Up! Tower Up!, region: Power_Tower, category: [ Power Tower ] }
+- track: { name: Power Up! Tower Up!, category: [ Power Tower ] }
+  region: { name: Power_Tower, requires: "{YamlEnabled(post_game)}" }
   checks:
     - { name: Floor 1,                  t: [ post ], requires: "{YamlCompare(power_sanity >= 1)}" }
     - { name: Floor 2,                  t: [ post ], requires: "{YamlCompare(power_sanity >= 2)}" }
@@ -673,9 +719,10 @@ achieve:   { category: [ Achievement ] }
     - { name: Floor 25,                 t: [ post ], requires: "{YamlCompare(power_sanity >= 25)}" }
 
 #endregion
-
+#---------------------------------------------------------------------------------------------------------------------#
 # region - BPM Rush!
-- track: { name: BPM Rush!, region: Rush_Tower, category: [ BPM Rush ] }
+- track: { name: BPM Rush!, category: [ BPM Rush ] }
+  region: { name: Rush_Tower, requires: "{YamlEnabled(post_game)}" }
   checks:
     - { name: Wave 1,                  t: [ post ], requires: "{YamlCompare(rush_sanity >= 1)}" }
     - { name: Wave 2,                  t: [ post ], requires: "{YamlCompare(rush_sanity >= 2)}" }
@@ -685,3 +732,4 @@ achieve:   { category: [ Achievement ] }
     - { name: Wave 6,                  t: [ post ], requires: "{YamlCompare(rush_sanity >= 6)}" }
 
 #endregion
+#---------------------------------------------------------------------------------------------------------------------#

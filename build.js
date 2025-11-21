@@ -9,6 +9,7 @@ const archiver = require('archiver');
 const semver = require('semver');
 
 const locCounts = {};
+const regions = {};
 
 /** 
  * @typedef TrackCheck
@@ -19,9 +20,16 @@ const locCounts = {};
  * @property {string} region
  * @property {string|string[]} requires
  */
+/** 
+ * @typedef RegionDefinition
+ * @property {string} name
+ * @property {string[]} connects_to
+ * @property {string} requires
+ */
 /**
  * @typedef TrackContainer
  * @property {TrackCheck} track
+ * @property {TrackCheck} region
  * @property {TrackCheck[]} checks
  */
 
@@ -46,7 +54,15 @@ function parseLocations(tagDefs, locationArray) {
 	 */
 	function _applyTrack(loc) {
 		const out = [];
-		const { track, checks } = loc;
+		const { track, region, checks } = loc;
+		if (typeof region === 'object') {
+			const name = region.name;
+			delete region.name;
+			if (typeof track.region === 'undefined') {
+				track.region = name;
+			}
+			regions[name] = region;
+		}
 		for (const ch of checks) {
 			if (typeof track.name === "string" && typeof ch.name === 'string') {
 				ch.name = `${track.name} - ${ch.name}`;
@@ -162,9 +178,9 @@ class YamlToJsonTransform extends Transform {
 
 const SRC_FILES = [ 
 	// Order important
-	'locations.yml', 
+	'locations.yml', // includes regions
 	'items.yml',
-	'regions.yml',
+//	'regions.yml',
 	'categories.yml',
 	'game.yml', 
 	'meta.yml', 
@@ -192,6 +208,7 @@ async function main() {
 	zip.on('warning', (err)=> console.error('Warning archiving data:', err));
 	zip.pipe(out);
 	
+	// Data files
 	for (const f of await fs.readdir('src')) {
 		if (!f.endsWith('yml')) continue;
 		console.log('Converting', f);
@@ -200,6 +217,9 @@ async function main() {
 		rs.pipe(ts);
 		zip.append(ts, { name: `${PATH.basename(f, '.yml')}.json`, prefix:`${prefix}/data` });
 	}
+	zip.append(JSON.stringify(regions), { name: "regions.json", prefix:`${prefix}/data` });
+	
+	// Logic files
 	for (const f of await fs.readdir('dist', { recursive:true, withFileTypes:false })) {
 		if (f.startsWith('data')) continue;
 		if (!PATH.extname(f)) continue;
@@ -207,6 +227,8 @@ async function main() {
 		const rs = fsSync.createReadStream(PATH.join('dist', f));
 		zip.append(rs, { name: f, prefix });
 	}
+	
+	// Manifest file
 	{
 		let package = {};
 		let json = {};
