@@ -1,5 +1,7 @@
 %YAML 1.2
 %OUTPUT locations
+%SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.regions.schema.json
+%SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.locations.schema.json
 ---
 robo:      {}
 smidge:    { requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ], t: [ robo ] }
@@ -17,7 +19,7 @@ graffiti:  { requires: "{YamlEnabled(graffiti_sanity)}", category: [ Graffiti, C
 statue:    { requires: "{YamlEnabled(statue_sanity)}", category: [ Statues, Collectable ] }
 board:     { requires: "{YamlEnabled(billboard_sanity)} and |Korsica Summon|", category: [ Billboards, Collectable ] }
 vend:      { requires: "{YamlEnabled(vending_sanity)}", category: [ Vending Machine, Collectable ] }
-drone:     { requires: "{YamlEnabled(drone_sanity)}", category: [ Collectable ] }
+drone:     { requires: "{YamlEnabled(drone_sanity)}", category: [ Drones - Track 5, Collectable ] }
 post:      { requires: "{YamlEnabled(post_game)}" }
 slug:      {}
 pepper:    { requires: "|Peppermint Summon|" }
@@ -522,33 +524,40 @@ achieve:   { category: [ Achievement ] }
     - { name: Vlog| Disappointed O5-KAR4,        t: [ vlog, ],     hint: "In the back areas behind Chorus 4." }
     - { name: Saturn Devours O5-KAR,             t: [ npc ],       hint: "In the back areas behind Chorus 4, destroy OS-KAR's disturbing artwork." }
     # TODO: Check what's in the opposite direction after Korsica's generator
+    - { name: Health Tank Piece 2,               t: [ health ],    hint: "After the generator climb, in the opposite direction." }
     - { name: Chorus 5,                          t: [ chorus ],    hint: "After the generator climb." }
     # Museum power supply
     - { name: Vlog | Water Generator Complaint,  t: [ vlog ],      hint: "Next to the second generator in the power supply area." }
     - { name: Chorus 6,                          t: [ chorus ],    hint: "That's SHOCKING!" }
-    # TODO: stuff after Chorus 6
+    - { name: Reverb Core Piece 1,               t: [ reverb ],    hint: "After Chorus 6, to the right and over several electric panels." }
+    - { name: Broken Armstrong Circuit 6,        t: [ circuit ],   hint: "After Chorus 6 and the shop in a storage room to the right." }
+    
+    # Huge display room
     - { name: Vlog | Display Complaints,         t: [ vlog ],      hint: "In the big display room, right to the right." }
     - { name: Chorus 7,                          t: [ chorus ],    hint: "A notice to all employees: The rumors about the demise of department heads has been greatly exaggerated." }
     - { name: Flying Billboard 2,                t: [ board ],     hint: "Flying around Chorus 7." }
-    - { name: Broken Armstrong Circuit 6,        t: [ circuit ],   hint: "After Chorus 7, on the scaffolding to the right." }
+    - { name: Broken Armstrong Circuit 7,        t: [ circuit ],   hint: "After Chorus 7, on the scaffolding to the right." }
     # TODO: Check if you can shoot down anything in this room
     # TODO: Check if you can interact with the window washing robot above this room.
+    
     - { name: Chorus 8,                          t: [ chorus ],    hint: "Chai, I don't think that platform's going to hold!" }
     - { name: Graffiti 4,                        t: [ graffiti ],  hint: "Museum | After Chorus 8, to the right of the stairs." }
     - { name: SEB-AAA and JSF-001,               t: [ noir ],      hint: "After Chorus 8, to the left." }
     - { name: Vending Machine 2,                 t: [ vend ],      hint: "After Chorus 8, in the hallway to the right." }
     
-    - { name: Find SPECTRA Door,                 t: [ door ],      hint: "Take a series of pipe platforms before the Chorus 9 area; the door will be to the left afterward" }
-    - { name: Beat SPECTRA Challenge,            t: [ spectra ],   } # Gives ???
     
     # History Display 3: The New Visionary!
     - { name: Vlog | KEM-0N0 Display,            t: [ vlog ],      hint: "After the 3rd history display." }
     - { name: Vlog | SBR Development Display,    t: [ vlog ],      hint: "After the 3rd history display." }
-    - { name: Health Tank Piece 2,               t: [ health, treasure ],  hint: "Inside the treasure chest robot to the right after the third history display." }
+    - { name: Life Gauge Piece 2,                t: [ life, treasure ],  hint: "Inside the treasure chest robot to the right after the third history display." }
+    
+    - { name: Broken Armstrong Circuit 7,        t: [ circuit ],   hint: "After Chorus 7, on the scaffolding to the right." }
+    - { name: Find SPECTRA Door,                 t: [ door ],      hint: "Take a series of pipe platforms before the Chorus 9 area; the door will be to the left afterward" }
+    - { name: Beat SPECTRA Challenge,            t: [ spectra ],   } # Gives ???
+    - { name: Vlog | Door Musings From SCR-UB,   t: [ vlog ],      hint: "After another generator platforming challenge, before you break the Z-shielded wall, turn around and platform up the pipes, then jump over to the other platform. The vlog will be on the machine down the walkway" } # TODO: Find
+    
     - { name: Chorus 9,                          t: [ chorus ],    hint: "Some pests just don't want to go away!" }
     - { name: Golden Kale Statue 2,              t: [ statue ],    hint: "In the hallway behind you after dropping down from Chorus 9." }
-    
-    - { name: Vlog | Door Musings From SCR-UB,   t: [ vlog ],      hint: "After another generator platforming challenge, before you break the Z-shielded wall, turn around and platform up the pipes, then jump over to the other platform. The vlog will be on the machine down the walkway" } # TODO: Find
     
     - { name: Tear Down a Cardboard Kale,        t: [ achieve ],   hint: "Peppermint does this for you." }
 

@@ -1,21 +1,58 @@
 %YAML 1.2
-%OUTPUT direct
+%OUTPUT flatten
+%SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.items.schema.json
 ---
 # Track Access
-- { name: Track 1 Access, category: [ Tracks ], progression: true }
-- { name: Track 2 Access, category: [ Tracks ], progression: true }
-- { name: Track 3 Access, category: [ Tracks ], progression: true }
-- { name: Track 4 Access, category: [ Tracks ], progression: true }
-- { name: Track 5 Access, category: [ Tracks ], progression: true }
-- { name: Track 6 Access, category: [ Tracks ], progression: true }
-- { name: Track 7 Access, category: [ Tracks ], progression: true }
-- { name: Track 8 Access, category: [ Tracks ], progression: true }
-- { name: Track 9 Access, category: [ Tracks ], progression: true }
-- { name: Track 10 Access, category: [ Tracks ], progression: true }
-- { name: Track 11 Access, category: [ Tracks ], progression: true }
-- { name: Track 12 Access, category: [ Tracks ], progression: true }
+- common: { category: [ Tracks ], progression: true }
+  data:
+    - name: Track 1 Access
+    - name: Track 2 Access
+    - name: Track 3 Access
+    - name: Track 4 Access
+    - name: Track 5 Access
+    - name: Track 6 Access
+    - name: Track 7 Access
+    - name: Track 8 Access
+    - name: Track 9 Access
+    - name: Track 10 Access
+    - name: Track 11 Access
+    - name: Track 12 Access
 
-# Summons
-- { name: Peppermint Summon, category: [ Summons ], progression: true }
-- { name: Macaron Summon, category: [ Summons ], progression: true }
-- { name: Korsica Summon, category: [ Summons ], progression: true }
+- common: { category: [ Summons ], progression: true }
+  data:
+    - name: Peppermint Summon
+    - name: Macaron Summon
+    - name: Korsica Summon
+
+- common: { category: [ Chips ] }
+  data:
+    - common: { useful: true, count: 3 }
+      data:
+        - name: Health Kick
+        - name: Battery Magnet
+        - name: Rhythm Meter Rush
+        - name: Parry Health
+        - name: Parry Charge
+        - name: Invincible D-Parry
+        - name: Damage Rebound D-Parry
+        - name: Combo Holder
+        - name: "High Risk, High Return"
+        - name: Rhythm Dodge Pull Plus
+        
+        - name: Peppermint Compatibility
+        - name: Peppermint Shock Advantage
+        - name: Peppermint Shock Jump
+        
+        - name: Macaron Compatibility
+        - name: Macaron's Lucky Punch
+        - name: Macaron's Aftershock
+        
+        - name: Korsica Compatibility
+        - name: Super High Alert
+        - name: Korsica Stun Extend
+        
+    - { name: Rhythm Dodge Pull Cancel, trap: true }
+    - { name: Instant Partner Recharge, useful: true }
+    - { name: Chip Sense,               useful: true, yaml_option: [ post_game ] }
+    - { name: Enemy Analyze,            useful: true, yaml_option: [ post_game ] }
+    - { name: Gear Increase,            useful: true, count: 3, yaml_option: [ post_game ] }

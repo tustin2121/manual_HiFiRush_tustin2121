@@ -7,6 +7,7 @@ const PATH = require('path');
 const yaml = require('./js-yaml-mod'); // require('js-yaml');
 const archiver = require('archiver');
 const semver = require('semver');
+const { merge } = require('lodash');
 
 const locCounts = {};
 const REGIONS = {};
@@ -110,6 +111,18 @@ function parseLocations(tagDefs, locationArray) {
 	}
 }
 
+function flattenArray(array, common={}) {
+	const outList = [];
+	for (const item of array) {
+		if (typeof item.common === 'object' && Array.isArray(item.data)) {
+			outList.push(...flattenArray(item.data, item.common));
+		} else {
+			outList.push(merge({}, item, common));
+		}
+	}
+	return outList;
+}
+
 function parseOptions(opts) {
 	for (const opt in opts.user) {
 		opts.user[opt].description = opts.user[opt].description.replaceAll(/\$\{(\w+)\}/ig, (str, val)=>{
@@ -128,22 +141,36 @@ function parseOptions(opts) {
  */
 function parseYaml(str) {
 	let mode = 'direct';
+	let $schema;
 	
 	let json = yaml.loadAll(str, {
 		onUnknownDirective: (dir, args)=>{
+			if (dir === "SCHEMA") $schema = args[0];
 			if (dir === "OUTPUT") mode = args[0];
 		}
 	});
 	switch (mode) {
+		case 'flatten':
+			if (json.length !== 1) throw new TypeError("OUTPUT direct documents must only have 1 yaml document in them.");
+			return flattenArray(json[0]);
 		case 'locations':
-			if (json.length !== 2) throw new TypeError("OUTPUT location documents expect two documents, a tag definition list and a location list.")
+			if (json.length !== 2) throw new TypeError("OUTPUT location documents expect two documents, a tag definition list and a location list.");
 			return parseLocations(...json);
 		case 'options':
-			if (json.length !== 1) throw new TypeError("OUTPUT direct documents must only have 1 yaml document in them.")
-			return parseOptions(json[0]);
+			if (json.length !== 1) throw new TypeError("OUTPUT direct documents must only have 1 yaml document in them.");
+			const out = parseOptions(json[0]);
+			out['$schema'] = $schema;
+			return out;
 		case 'direct':
-			if (json.length !== 1) throw new TypeError("OUTPUT direct documents must only have 1 yaml document in them.")
-			return json[0];
+			if (json.length !== 1) throw new TypeError("OUTPUT direct documents must only have 1 yaml document in them.");
+			json = json[0];
+			if ($schema) {
+				if (Array.isArray(json)) {
+					json = { data: json };
+				}
+				json['$schema'] = $schema;
+			}
+			return json;
 		default:
 			return json;
 			

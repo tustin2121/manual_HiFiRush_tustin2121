@@ -1,8 +1,13 @@
 %YAML 1.2
 %OUTPUT direct
+%SCHEMA https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.game.schema.json
 ---
-"$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.game.schema.json"
 game: HiFiRush
 creator: Tustin2121
 filler_item_name: Gears
-starting_items: []
+starting_items: 
+  - yaml_option: [ "!summon_rando" ]
+    items: 
+      - Peppermint Summon
+      - Macaron Summon
+      - Korsica Summon

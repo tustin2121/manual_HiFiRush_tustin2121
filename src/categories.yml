@@ -1,4 +1,25 @@
 %YAML 1.2
 %OUTPUT direct
+%SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.categories.schema.json
 ---
-{}
+Upgrades:
+  yaml_option: [ upgrade_sanity ]
+Circuit:
+  yaml_option: [ circuit_sanity ]
+Doors:
+  yaml_option: [ door_sanity ]
+Graffiti:
+  yaml_option: [ graffiti_sanity ]
+Statues:
+  yaml_option: [ statue_sanity ]
+Billboards:
+  yaml_option: [ billboard_sanity ]
+Vending Machine:
+  yaml_option: [ vending_sanity ]
+Drones - Track 5:
+  yaml_option: [ drone_sanity ]
+NPC:
+  yaml_option: [ robo_sanity ]
+
+Collectable:
+  hidden: true

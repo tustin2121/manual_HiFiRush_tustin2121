@@ -1,18 +1,15 @@
 %YAML 1.2
 %OUTPUT options
+%SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.options.schema.json
 ---
-"$schema": "https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.options.schema.json"
-#Add a _ before an option name to comment it out and it wont be added to the apworld
 core:
   goal:
     # Using 'goal' as the name of an option let you override some of the generated goal parameters
     display_name: The End Objective
-    # description: How to End your Randomized playthrough.
     description: |
-      How to end your play-through:
+      How to end your randomized play-through:
       defeat kale - Win the game by defeating Kale in Track 12.
     # hidden: false
-    # values:
     aliases: 
       defeat_kale: 0
       # defeat_track11: 1
@@ -39,6 +36,42 @@ user:
       may have to fudge picking up previous checks if they turn out to be important.
     default: true
     hidden: false
+    
+  summon_rando:
+    type: Toggle
+    description: |
+      Adds the ability to summon partners to the item pool. NOTE: The logic of this 
+      randomizer only takes into account a partner's out of battle abilities. It does
+      not care if you use partner abilities in-battle. This also results in the game
+      being more non-linear, as several tracks can be at least entered without some
+      partner summons.
+    default: true
+    group: Item Pool Options 
+  combo_rando:
+    type: Toggle
+    description: |
+      Adds Chai's purchasable combos to the item pool. You can implement this restriction
+      in your game by selling all of the moves at the store and purchasing them back when
+      the randomizer grants them to you. 
+    default: false
+    group: Item Pool Options 
+  special_rando:
+    type: Toggle
+    description: |
+      Adds Chai's purchasable special attacks to the item pool. You can implement this 
+      restriction in your game by either selling or just not equipping the purchasable
+      special attacks. Power Chord is always available.
+      NOTE: The logic does not account for needing to pick up the special attacks 
+      (eg, the comic book items in the world) on the first play-through.
+    default: false
+    group: Item Pool Options 
+  chip_rando:
+    type: Toggle
+    description: |
+      Adds Chai's purchasable chips to the item pool. You can implement this restriction
+      in your game by simply limiting what chips you can equip. Chip levels are progressive.
+    default: false
+    group: Item Pool Options 
     
   upgrade_sanity:
     type: Toggle

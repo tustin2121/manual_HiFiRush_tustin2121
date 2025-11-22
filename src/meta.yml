@@ -1,9 +1,7 @@
 %YAML 1.2
 %OUTPUT direct
+%SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.meta.schema.json
 ---
-"$schema": "https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.meta.schema.json"
-# remove the _ before a non-comment/info propertie to enable it
-# For more info use json schemas to get a description and allowed value for every properties
 # https://github.com/ManualForArchipelago/Manual/blob/main/docs/resources/json-schemas-for-world-devs.md
 docs:
   # For more info on the possible documentation properties check schema and/or the github
