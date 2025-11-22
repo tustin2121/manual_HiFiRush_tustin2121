@@ -255,11 +255,11 @@ async function main() {
 	// zip.append(JSON.stringify(REGIONS), { name: "regions.json", prefix:`${prefix}/data` });
 	
 	// Logic files
-	for (const f of await fs.readdir('dist', { recursive:true, withFileTypes:false })) {
+	for (const f of await fs.readdir('lib', { recursive:true, withFileTypes:false })) {
 		if (f.startsWith('data')) continue;
 		if (!PATH.extname(f)) continue;
 		console.log('Outputting', f);
-		const rs = fsSync.createReadStream(PATH.join('dist', f));
+		const rs = fsSync.createReadStream(PATH.join('lib', f));
 		zip.append(rs, { name: f, prefix });
 	}
 	
