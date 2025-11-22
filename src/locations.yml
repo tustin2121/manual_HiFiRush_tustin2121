@@ -185,8 +185,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Broken Armstrong Circuit 1, t: [ circuit ],            hint: "Between Chorus 3 and 4" }
     - { name: Vending Machine 1,          t: [ vend ],               hint: "Between Chorus 3 and 4" }
     - { name: Vlog | R&D Service Log 2,   t: [ vlog ],               hint: "Between Chorus 3 and 4, opposite the vending machine" }
-    # TODO: Z-Door in this area
-    - { name: Reverb Core Piece 1,        t: [ reverb, macaron, post ],  hint: "Behind the Z-Wall between Chorus 3 and 4." }
+    - { name: Reverb Core Piece 1,        t: [ reverb, macaron, post ],   hint: "Behind the Z-Wall between Chorus 3 and 4." }
     - { name: Graffiti | Flowers,         t: [ graffiti, macaron, post ], hint: "Near a small camp where a PGR-0101 and a VA-SER are talking, behind the two bots is a Z-Shielded wall." }
     - { name: Chorus 4,                   t: [ chorus ] }
     - { name: Vlog | R&D Service Log 3,   t: [ vlog ],               hint: "After Chorus 4" }
@@ -197,35 +196,38 @@ achieve:   { category: [ Achievement ] }
     - { name: Vlog | Zanzo's Order Request, t: [ vlog ],         hint: "Here we ARE & D!" }
     - { name: Vending Machine 2,            t: [ vend ],         hint: "Here we ARE & D!" }
     - { name: Broken Armstrong Circuit 2,   t: [ circuit ],      hint: "Behind the Cardboard Cutout outside R & D" }
-    - { name: Knock Zanzo into the Lava,    t: [ npc, achieve ], hint: "Outside R & D." }
-    - { name: Broken Armstrong Circuit 3,   t: [ circuit ],      hint: "Outside R & D." }
-    - { name: Vending Machine 3,            t: [ vend ],         hint: "Outside R & D." }
-    - { name: Golden Kale Statue 1,         t: [ statue ],       hint: "Outside R & D." }
-    - { name: Graffiti | Volcano,           t: [ graffiti ],     hint: "Outside R & D." }
+    - { name: He's So Hot Right Now,        t: [ npc, achieve ], hint: "Knock a cardboard cutout of Zanzo into the lava. The best cutout to use is outside R & D down to the left." }
+    - { name: Broken Armstrong Circuit 3,   t: [ circuit ],      hint: "Outside R & D and down to the left." }
+    - { name: Vending Machine 3,            t: [ vend ],         hint: "Outside R & D and down to the left." }
+    - { name: Golden Kale Statue 1,         t: [ statue ],       hint: "Outside R & D and to the right." }
+    - { name: Graffiti | Volcano,           t: [ graffiti ],     hint: "Outside R & D and to the right." }
     
     # Inside R & D
     - { name: Vlog | LU-C1LLE Self-Therapy Journal,   t: [ vlog ],    hint: "Behind LU-C1LLE inside R&D" }
     - { name: Vlog | Punch-to-face Test Results,      t: [ vlog ],    hint: "Inside Lab 44." }
     - { name: Vlog | Barrier Technology Test Results, t: [ vlog ],    hint: "Inside Lab 44." }
     - { name: Reverb Core Piece 2,                    t: [ reverb ],  hint: "Inside Lab 44." }
+    
     # Something's overriding our cameras to 480p.
+    - { name: Survive Test Chamber 01,                t: [ chorus ]}
     - { name: SEB-AAA and JSF-001,                    t: [ noir ],    hint: "After learning the parry." }
-    - { name: Broken Armstrong Circuit 4,             t: [ circuit ], hint: "After learning the parry." }
-    - { name: Vending Machine 4,                      t: [ vend ],    hint: "After learning the parry." }
-    - { name: Smidge 1,                               t: [ smidge ],  hint: "Parry tutorial" }
-    - { name: Vlog | Offensive Capabilities Test,     t: [ smidge ],  hint: "In the waiting room for the second test chamber." }
+    - { name: Broken Armstrong Circuit 4,             t: [ circuit ], hint: "After learning the parry and through the next door." }
+    - { name: Vending Machine 4,                      t: [ vend ],    hint: "After learning the parry and through the next door." }
+    - { name: Test Out the Test Robot,                t: [ npc ],     hint: "Outside Test Chamber 02. Hit the yellow DUM-1E robot." }
+    - { name: Vlog | Offensive Capabilities Test,     t: [ vlog ],    hint: "In the waiting room for the second test chamber, above the receptionist." }
+    - { name: Smidge 1,                               t: [ smidge ],  hint: "Outside Test Chamber 02, Parry tutorial" }
     
     # Chamber 02 - Step into the middle of the room! It's safe here!
+    - { name: Survive Test Chamber 02,      t: [ chorus ]}
     - { name: Vlog | Barrier Umbrella Test, t: [ vlog ],     hint: "After going the side route." }
-    - { name: Graffiti | Zanzo,             t: [ graffiti ], hint: "After you go through the side route and then through the vent in it, jump on top of the vent cover." }
+    - { name: Graffiti | Zanzo,             t: [ graffiti ], hint: "After the side door, jump on top of the vent cover that opens to the outside, before the rail." }
     - { name: Life Gauge Piece 2,           t: [ life ],     hint: "On top of the Umbrella Test" }
-    - { name: Chorus 5,                     t: [ chorus ],   hint: "Test Chamber 03" }
-    - { name: Knock the DUM-1E Down,        t: [ npc ],      hint: "Outside Test Chamber 03." }
+    - { name: Chorus 5 | Test Chamber 03,   t: [ chorus ],   hint: "Test Chamber 03" }
     
-    # Congrat!
+    # Congrat! Yay! Your survived!
+    - { name: Vlog | Test Lab Assistance Mail,  t: [ vlog ],    hint: "After Test Chamber 03" }
     - { name: Find SPECTRA Door,                t: [ door ],    hint: "Turn right after exiting Chamber 3; the door will be behind a rock wall." }
     - { name: Beat SPECTRA Challenge,           t: [ spectra ], hint: "Defeat all enemies with only parry counter attacks."} # Gives Life Gauge Piece
-    - { name: Vlog | Test Lab Assistance Email, t: [ vlog ],    hint: "After Test Chamber 03" }
     - { name: Life Gauge Piece 3,               t: [ life ],    hint: "After the rail after Test Chamber 03" }
     - { name: Chorus 6,                         t: [ chorus ],  hint: "That's MISTER Chai to you!" }
     
@@ -253,23 +255,27 @@ achieve:   { category: [ Achievement ] }
   region: { name: Track_4_3, requires: "|Peppermint Summon|", connects_to: [ Track_5 ] }
   checks:
     - { name: Vlog | Auto-Saved Private Message,        t: [ vlog ],               hint: "After shooting down the rock, before the green rock, on the ledge to the right." }
-    # In the climb back up
+    
+    # Lava-fall
     - { name: Vlog | Disgruntled Decaf Revenge,         t: [ vlog ],               hint: "Behind the lava waterfall." }
     - { name: Health Tank Piece 1,                      t: [ health ],             hint: "Behind the lava waterfall." }
     - { name: SEB-AAA and JSF-001,                      t: [ noir ],               hint: "Behind the lava waterfall." }
     - { name: Broken Armstrong Circuit 2,               t: [ circuit ],            hint: "Past two lava rocks at the bottom of the tower climb." }
     - { name: Life Gauge Piece 1,                       t: [ life ],               hint: "At the top of the tower climb, on the crates" }
     - { name: Flying Billboard 1,                       t: [ board ],              hint: "Flying in circles around the top of the tower climb." }
-    - { name: Chorus 1,                                 t: [ chorus ],             hint: "Ready for another round?" }
+    
+    - { name: Chorus 1,                                 t: [ chorus ],             hint: "Up for another round?" }
     - { name: Smidge 1,                                 t: [ smidge ],             hint: "Macaron tutorial" }
     - { name: Broken Armstrong Circuit 3,               t: [ circuit ],            hint: "Under the stairs in the lobby of the AR lab." }
-    - { name: Graffiti 1,                               t: [ graffiti ],           hint: "HG-0G | Under the stairs that leads up to the first AR room." }
+    - { name: Graffiti | HG-0G,                         t: [ graffiti ],           hint: "Under the stairs that leads up to the first AR room." }
     - { name: Find SPECTRA Door,                        t: [ door, korsica, post ],hint: "Located directly above the first AR room after Chorus 1 (Korsica is required to access this)." }
     - { name: Beat SPECTRA Challenge,                   t: [ spectra ],            hint: "Defeat all enemies with only dodge counters."  } # Gives Reverb Core Piece
+    
     - { name: Chorus 2 - AR Room 1,                     t: [ chorus ],             hint: "AI was locked, so I went in the AR room." }
   # - { name: The Hologram Mirror,                      t: [ slug ],               hint: "After AR Room 1 explodes, find the logo-slug examining its hologram counterpart."}
     - { name: Graffiti 2,                               t: [ graffiti, korsica, post ], hint: "VÄART | After destroying the first AR eye, when you reach the crossroads on the catwalk, go left instead of right." } # TODO double check
     - { name: Increase Programmer Efficiency,           t: [ npc ],                hint: "Give the Programmer lying on the floor percussive therapy." }
+    
     - { name: Chorus 3 - AR Room 2,                     t: [ chorus ],             hint: "Ready for round two?" }
     - { name: Golden Kale Statue 1,                     t: [ statue ],             hint: "After AR Room 2" }
     - { name: Broken Armstrong Circuit 4,               t: [ circuit ],            hint: "High over the path after AR Room 2" }
@@ -283,71 +289,84 @@ achieve:   { category: [ Achievement ] }
     - { name: Defund Zanzo,                      t: [ achieve ],            hint: "UNRESTRICTED CREATIVE FREEDOM!!!!" }
     # Cornered by Kale, Escape Sequence GO!!
     - { name: Chorus 6,                          t: [ chorus ],             hint: "All security, report!" }
+    - { name: Concussion by Korsica,             t: [ chorus ] }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 5: Breaking Out
 - track: { name: Track 5, category: [ Track 5 ] }
-  region: { name: Track_5, requires: "|Track 5 Access|", connects_to: [ Track_5_2 ] }
+  region: { name: Track_5, requires: "|Track 5 Access|", connects_to: [ Track_5_2A, Track_5_2B ] }
   checks:
     - { name: Vlog | Defect Captured Email,      t: [ vlog ],               hint: "Return to the cell room right at the start of the Track." }
     - { name: Life Gauge Piece 1,                t: [ life ],               hint: "To the right and above the second spinning platform cylinder" }
+    # Main room
+    - { name: Return the TEC-78's Comics,        t: [ npc ],                hint: "Find ten drones with the tech's 'schematics'." } # Grants Life Gauge Piece
     - { name: Vlog | Annoyed By Korsica FWD,     t: [ vlog ],               hint: "First area of the security nodes atrium." }
-    - { name: Graffiti 1,                        t: [ graffiti ],           hint: "Nodes | After you reach the main security area, go right and drop down onto the platform below that leads to the moving platforms that circle around the center column." }
+    - { name: Graffiti | Nodes,                  t: [ graffiti ],           hint: "After you reach the main security area, go right and drop down onto the platform below that leads to the moving platforms that circle around the center column." }
     - { name: Find SPECTRA Door,                 t: [ door ],               hint: "Located below the main chamber, near the elevator connected to Node 3; ride the floating platforms to reach it." }
     - { name: Beat SPECTRA Challenge,            t: [ spectra ],            hint: "Perform 2 overkill defeats of an enemy. Make sure you have a way to build reverb gauge quickly." } # Gives ???
     - { name: Broken Armstrong Circuit 1,        t: [ circuit ],            hint: "In front of the SPECTRA door." }
+    - { name: Drone 1,                           t: [ drone ],              hint: "Just above the SPECTRA door." }
     
-    - { name: Return the TEC-78's Comics,        t: [ npc ],                hint: "Find ten drones with the tech's 'schematics'." }
-    - { name: Vlog | Musings About Data Node,    t: [ vlog ],               hint: "In the area around the elevator, on one of the catwalks." } # TODO: Check
-    - { name: Vlog | Poem by SCR-UB,             t: [ vlog ],               hint: "In the room before the Security Node 2 room, go up onto the balcony to the right." } # TODO: Check
+    # Central area
+    - { name: Vlog | Musings About Data Node,    t: [ vlog ],               hint: "In the area around the elevator, on one of the catwalks above." }
+    - { name: Drone 2,                           t: [ drone ],              hint: "In the area around the elevator, on one of the catwalks above." }
+    - { name: Broken Armstrong Circuit 2,        t: [ circuit ],            hint: "In the area around the elevator, on one of the catwalks above." }
     
     # Security Node 02
     - { name: Golden Kale Statue 1,              t: [ statue ],             hint: "Entering Security Node 02, open door on balcony to right." }
+    - { name: Vlog | Poem by SCR-UB,             t: [ vlog ],               hint: "Entering Security Node 02, open door on balcony to right." }
+    - { name: Reverb Core Piece 1,               t: [ reverb ],             hint: "Entering Security Node 02, up the stack of boxes to the left." }
+    - { name: Drone 3,                           t: [ drone ],              hint: "Entering Security Node 02, open door on balcony to right. Hidden in the top corner to the left of the door." }
     - { name: Chorus 1,                          t: [ chorus ],             hint: "Figures there'd be security in... security." }
-    - { name: Broken Armstrong Circuit 2,        t: [ circuit ],            hint: "On top of the glass surrounding Security node 01's elevator. Reach from the exit or from floating platforms." }
-    - { name: Drone 1,                           t: [ drone ],              hint: "On top of the glass surrounding Security node 01's elevator. Reach from the exit or from floating platforms." }
-  # - { name: Broken Armstrong Circuit 3,        t: [ circuit ],            hint: "Behind the final data node." } # TODO: Check
-    # Need Peppermint to fix the nodes
+    # Need Peppermint to fix the nodes here, but below can be reached otherwise
     
-    # TODO Check out the Node 03 path, to the left as you leave; looks like a golden statue?
-    - { name: Vlog | Regarding Wing 1 Layout Complaints, t: [ vlog ],       hint: "Start of route to Security Node 03." } # TODO Find
-    
+    - { name: Broken Armstrong Circuit 3,        t: [ circuit ],            hint: "On top of the glass surrounding Security node 02's elevator. Reach from the exit or from floating platforms." }
+    - { name: Drone 4,                           t: [ drone ],              hint: "On top of the glass surrounding Security node 02's elevator. Reach from the exit or from floating platforms." }
+
 - track: { name: Track 5, category: [ Track 5 ] }
-  region: { name: Track_5_2, requires: "|Peppermint Summon|", connects_to: [ Track_5_3 ] }
-  checks:
-    # Security Node 03
+  region: { name: Track_5_2A, requires: "|Peppermint Summon|", connects_to: [ Track_5_3 ] }
+  checks: # Security Node 03
     - { name: Vlog | FWD Data Node Advice,       t: [ vlog ],               hint: "Start of route to Security Node 03." }
     - { name: Chorus 2,                          t: [ chorus ],             hint: "I'm sure this is one of those 'it'll work itself out' problems..." }
     - { name: Broken Armstrong Circuit 3,        t: [ circuit ],            hint: "Behind the final data node." }
+    - { name: Drone 5,                           t: [ drone ],              hint: "In Node 03's room, floating behind the last node in the shadows." }
     - { name: Chorus 3,                          t: [ chorus ],             hint: "On the way back" }
     
+    # To the left after Chorus 3
+    - { name: Drone 6,                           t: [ drone ],              hint: "After Chorus 3, avoid the center of the platform and head left to the balcony. The drone is on the right side." }
+    - { name: Golden Kale Statue 2,              t: [ statue ],             hint: "After Chorus 3, avoid the center of the platform and head left to the balcony." }
+    - { name: Vlog | Korsica Complaints,         t: [ vlog ],               hint: "After Chorus 3, avoid the center of the platform and head left to the balcony." }
+
 - track: { name: Track 5, category: [ Track 5 ] }
-  region: { name: Track_5_3, requires: "|Macaron Summon|", connects_to: [ Track_6 ] }
+  region: { name: Track_5_2B, requires: "|Macaron Summon|", connects_to: [ Track_5_3 ] }
+  checks: # Security Node 01
+    - { name: Vlog | Vandelay Game Studios?,     t: [ vlog, korsica, post ],    hint: "On the route to Node 01, Korsica door here after Z-Wall to left, up the ramp." }
+    - { name: Life Gauge Piece 2,                t: [ life, korsica, post ],    hint: "On the route to Node 01, Korsica door here after Z-Wall to left, up the spiral slide." }
+    - { name: Golden Kale Statue 2,              t: [ statue ],                 hint: "On the route to Node 01, after going up the ramp after the Z-Wall, double back." }
+    - { name: Drone 7,                           t: [ drone ],                  hint: "On the route to Node 01, after going up the ramp after the Z-Wall, double back" }
+    - { name: Chorus 4,                          t: [ chorus ],                 hint: "High up on Security Node 01's route." }
+    - { name: Drone 8,                           t: [ drone, macaron ],         hint: "After Chorus 4, behind the z-wall, the drone is flying above the room." }
+    - { name: Reverb Core Piece 2,               t: [ reverb, macaron ],        hint: "After Chorus 4, behind the z-wall, on top of the server racks." }
+    
+    # Rhythm Jump...
+    - { name: Chorus 5,                          t: [ chorus ],                 hint: "Higher up still on Security Node 01's route." }
+    - { name: Drone 9,                           t: [ drone ],                  hint: "After Chorus 5, go right up the ramps. The drone is hiding in the shadows to the left of the generator." }
+    - { name: Broken Armstrong Circuit 4,        t: [ circuit ],                hint: "After Chorus 5, go right up the ramps, on balcony to left." }
+    - { name: Broken Armstrong Circuit 5,        t: [ circuit, korsica, post ], hint: "After Chorus 5, go right up the ramps, up the Korsica generator path." }
+    
+    - { name: Vlog | Regarding Wing 1 Layout Complaints, t: [ vlog ],           hint: "In Node 01's room, on the computer consoles to the right." }
+    - { name: Broken Armstrong Circuit 6,        t: [ circuit ],                hint: "On the balcony behind the final data Node 01." }
+    - { name: Broken Armstrong Circuit 7,        t: [ circuit ],                hint: "Behind the final data node." }
+    
+    # On the way back from Node 01
+    - { name: Broken Armstrong Circuit 8, t: [ circuit ], hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
+    - { name: Drone 10,                   t: [ drone ],   hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
+    - { name: SEB-AAA and JSF-001,        t: [ noir ],    hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
+
+- track: { name: Track 5, category: [ Track 5 ] }
+  region: { name: Track_5_3, requires: "|Macaron Summon| and |Peppermint Summon|", connects_to: [ Track_6 ] }
   checks:
-    # Security Node 01
-    # TODO: Korsica door here after Z-Wall to left
-    - { name: Vlog | Vandelay Game Studios?,     t: [ vlog, korsica, post ],hint: "Korsica door here after Z-Wall to left." }
-    
-    
-    - { name: Drone 2,                           t: [ drone ],              hint: "At top of ramps going up, hiding in the shadows." } # TODO Check
-    - { name: Broken Armstrong Circuit 4,        t: [ circuit ],            hint: "At top of ramps going up, on balcony to left." }
-    - { name: Chorus 4,                          t: [ chorus ],             hint: "High up on Security Node 01's route." }
-    - { name: Chorus 5,                          t: [ chorus ],             hint: "Higher up still on Security Node 01's route." }
-    # TODO: Korsica generator in balcony, door to right of Chorus 5
-    - { name: Vlog | Korsica Complaints,         t: [ vlog ],               hint: "Before you ride the lift back down to the main area after the fight that follows reconnecting the third node, go to the left and jump onto one of the moving platforms." }
-    - { name: Drone 3,                           t: [ drone ],              hint: "Hanging out near the generator to the right of Chorus 5." }
-    - { name: Broken Armstrong Circuit 5,        t: [ circuit ],            hint: "Behind the final data node." }
-    
-    # TODO: Find all the drones
-    - { name: Drone 4,                           t: [ drone ],              hint: "" }
-    - { name: Drone 5,                           t: [ drone ],              hint: "" }
-    - { name: Drone 6,                           t: [ drone ],              hint: "" }
-    - { name: Drone 7,                           t: [ drone ],              hint: "" }
-    - { name: Drone 8,                           t: [ drone ],              hint: "" }
-    - { name: Drone 9,                           t: [ drone ],              hint: "" }
-    - { name: Drone 10,                          t: [ drone ],              hint: "" }
-    
     - { name: Chorus 6,                          t: [ chorus ],             hint: "Required elevator ride fight." }
 
 #endregion
@@ -386,56 +405,62 @@ achieve:   { category: [ Achievement ] }
   region: { name: Track_7_3, requires: "|Macaron Summon|", connects_to: [ Track_8 ] }
   checks:
     # The janitor NPCs?
-    - { name: '"Help" the Fallen Janitor', t: [ npc ],               hint: "In the mall lounge area. Speak with OS-KAR twice to have a scene with him and Macaron." }
-    - { name: Chorus 2,                    t: [ chorus ],            hint: "Hallway fight" }
-    - { name: Chorus 3,                    t: [ chorus ],            hint: "" }
+  # - { name: '"Help" the Fallen Janitor', t: [ npc ],               hint: "In the mall lounge area. Speak with OS-KAR twice to have a scene with him and Macaron." }
+    - { name: Chorus 2,                    t: [ chorus ],            hint: "Hallway fight." }
+    - { name: Chorus 3,                    t: [ chorus ],            hint: "Main room, after the bridge." }
     
     # First 2D Section
     - { name: Life Gauge Piece 1,          t: [ life ],              hint: "First 2d section on the tower, hit the button to open the way to the item." }
     - { name: Flying Billboard 1,          t: [ board ],             hint: "Flying around the end of the first 2D section." }
     - { name: Health Tank Piece 1,         t: [ health, macaron ],   hint: "Through the Z-Shield door after the first 2D section." }
     - { name: Chorus 4,                    t: [ chorus ],            hint: "The samurai was waiting for you..." }
+    
+    - { name: Golden Kale Statue 1,        t: [ statue ],            hint: "In the room to the right after going through the Z-Wall after Chorus 4." }
     - { name: Life Gauge Piece 2,          t: [ life, treasure ],    hint: "Inside the treasure chest to the right after going through the Z-Wall after Chorus 4." }
-    - { name: Help the Tech behind Glass,  t: [ npc ]} # TODO: Check
+    - { name: SEB-AAA and JSF-001,         t: [ noir ],              hint: "After going through the Z-Wall and up the rhythm jump, keep going up via platforms" }
+    - { name: Vending Machine 1,           t: [ vend ],              hint: "After going through the Z-Wall and up the rhythm jump, keep going up via platforms" }
+  # - { name: Help the Tech behind Glass,  t: [ npc ]} # TODO: Check
     
     # Second 2D section
     - { name: Broken Armstrong Circuit 2,  t: [ circuit ],           hint: "In section 2D section, at top of elevator." }
-    # TODO: Check to left of hookshot climb
     - { name: Vlog | Too Many Rooms,       t: [ vlog ],              hint: "After the second 2D section, around the column." }
     - { name: Chorus 5,                    t: [ chorus ],            hint: "Top of the first climb." }
-    - { name: Golden Kale Statue 1,        t: [ statue ],            hint: "Behind the servers in the room after Chorus 5." }
-    # TODO: Korsica generator here
-    - { name: Chorus 6,                    t: [ chorus ],            hint: "You broke my concentration, so how about I break you?" }
-    - { name: Vlog | Suspicious Doors?,    t: [ vlog ],              hint: "Next to the suspicious door in question." }
-    - { name: Find SPECTRA Door,           t: [ door ],              hint: "In the staircase area leading to Cylinder B, move to the right from the exiting door and take the staircase ahead; the door is right next to the O5-KAR and TEC-78." }
-    - { name: Beat SPECTRA Challenge,      t: [ spectra ],           hint: "" } # Gives ???
+    
+    - { name: Golden Kale Statue 1,        t: [ statue ],              hint: "In the server cylinder after Chorus 5." }
+    - { name: Life Gauge Piece 2,          t: [ life, korsica, post ], hint: "After Chorus 5, hit the generator with Korsica and climb the platforms in the server cylinder." }
+    - { name: Vlog | Suspicious Doors?,    t: [ vlog ],                hint: "Next to the suspicious door in question." }
+    - { name: Find SPECTRA Door,           t: [ door ],                hint: "After Chorus 5, go up the steps in the back, then up another set of steps to the right." }
+    - { name: Beat SPECTRA Challenge,      t: [ spectra ],             hint: "Defeat all enemies without moving left stick." } # Gives ???
+  # - { name: Broken Armstrong Circuit 3,  t: [ circuit ],            hint: "In section 2D section, at top of elevator." } # TODO Double check
+  
+    - { name: Chorus 6,                    t: [ chorus ],             hint: "You broke my concentration, so how about I break you?" }
     
     # Second tower climb
-    # TODO: explore a bit more
-    - { name: Chorus 7,                               t: [ chorus ],            hint: "" }
-    - { name: Broken Armstrong Circuit 3,             t: [ circuit ],           hint: "After Chorus 7, balcony to the right." }
-    # TODO: Korsica door here on balcony to right
-    - { name: Vlog | Pmidge Press Announcement,       t: [ vlog, korsica, post ],hint: "After Chorus 7, beyond the Z-Door, in the back." }
-    - { name: Help the TEC Get Some Sleep,            t: [ npc, macaron ],      hint: "After Chorus 7, beyond the Z-Door, clear out the vacuum bots in the break room to the right, so the TEC-78 can take a nap." }
-    - { name: Vlog | Data Node Dissatisfaction Email, t: [ vlog, macaron ],     hint: "After Chorus 7, beyond the Z-Door, in the back." }
-    - { name: Golden Kale Statue 2,                   t: [ statue ],            hint: "After Chorus 7, on the balcony to the left." }
-    - { name: Flying Billboard 2,                     t: [ board ],             hint: "Flying around top of the rhythm jump after Chorus 7." }
-    - { name: Graffiti 1,                             t: [ graffiti ],          hint: "KEM-0N0 | After Chorus 7, to the left after you grapple to the center column." }
-    - { name: Broken Armstrong Circuit 4,             t: [ circuit ],           hint: "After Chorus 7, to the far right after you grapple to the center column." }
-    # TODO: double check the board, if it's a different one around Chorus 8
-    - { name: Chorus 8,                               t: [ chorus ],            hint: "" }
-    - { name: Free the Stuck SCR-UB,                  t: [ npc ],               hint: "Free the SCR-UB from the downed data router after Chorus 8." }
-    - { name: Vlog | Depressed Buttons,               t: [ vlog, macaron ],     hint: "After Chorus 8, near a button." }
-    # TODO: check TEC after button, far side of room.
-    - { name: Graffiti 3,                             t: [ graffiti ],          hint: "Lasers | Behind the rhythm jump tube after Chorus 8." }
-    - { name: Broken Armstrong Circuit 5,             t: [ circuit ],           hint: "After Chorus 8, to the right of the top of the rhythm jump tube." }
-    - { name: Chorus 9,                               t: [ chorus ],            hint: "Korsica's office is in sight..." }
-    - { name: Vlog | Food Delivery Warning,           t: [ vlog ],              hint: "In front of the door into Korsica's office." }
+    - { name: Chorus 7,                               t: [ chorus ],              hint: "" }
+    - { name: Broken Armstrong Circuit 3,             t: [ circuit ],             hint: "After Chorus 7, on the balcony to the right." }
+    - { name: Golden Kale Statue 2,                   t: [ statue ],              hint: "After Chorus 7, on the balcony to the left." }
+    - { name: Vlog | Data Node Dissatisfaction Mail,  t: [ vlog, macaron ],       hint: "After Chorus 7, beyond the Z-Door, in the back." }
+    - { name: Help the TEC Get Some Sleep,            t: [ npc, macaron ],        hint: "After Chorus 7, beyond the Z-Door, clear out the vacuum bots in the break room to the right, so the TEC-78 can take a nap." }
+    
+    - { name: Vlog | Pmidge Press Announcement,       t: [ vlog,     macaron, korsica, post ], hint: "After Chorus 7, beyond the Z-Door and the fire door." }
+    - { name: Graffiti | Korsica,                     t: [ graffiti, macaron, korsica, post ], hint: "After Chorus 7, beyond the Z-Door and the fire door." }
+    
+    - { name: Flying Billboard 2,                     t: [ board ],               hint: "Flying around top of the rhythm jump after Chorus 7." }
+    - { name: Graffiti | KEM-0N0,                     t: [ graffiti ],            hint: "After Chorus 7, to the left after you grapple to the center column." }
+    - { name: Broken Armstrong Circuit 4,             t: [ circuit ],             hint: "After Chorus 7, to the far right after you grapple to the center column." }
+    - { name: Chorus 8,                               t: [ chorus ],              hint: "" }
+    
+    - { name: Free the Stuck SCR-UB,                  t: [ npc ],                 hint: "Free the SCR-UB from the downed data router after Chorus 8." }
+    - { name: Vlog | Depressed Buttons,               t: [ vlog, macaron ],       hint: "After Chorus 8, near a button." }
+    - { name: Graffiti | Lasers,                      t: [ graffiti ],            hint: "Behind the rhythm jump tube after Chorus 8." }
+    - { name: Broken Armstrong Circuit 5,             t: [ circuit ],             hint: "After Chorus 8, to the right of the top of the rhythm jump tube." }
+    - { name: Chorus 9,                               t: [ chorus ],              hint: "Korsica's office is in sight..." }
+    
+    - { name: Vlog | Food Delivery Warning,           t: [ vlog ],                hint: "In front of the door into Korsica's office." }
     
     - { name: Defeat Korsica,                         t: [ chorus, achieve ] }
 
     # # TODO Collectables
-    - { name: Graffiti | Korsica, t: [ graffiti, macaron, korsica, post ], hint: "Break through the Z-Shielded wall." }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#

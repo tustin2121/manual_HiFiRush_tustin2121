@@ -1,6 +1,6 @@
 #! node
 
-const { Transform } = require('node:stream');
+const { Transform, Duplex } = require('node:stream');
 const fs = require('fs/promises');
 const fsSync = require("fs");
 const PATH = require('path');
@@ -9,7 +9,7 @@ const archiver = require('archiver');
 const semver = require('semver');
 
 const locCounts = {};
-const regions = {};
+const REGIONS = {};
 
 /** 
  * @typedef TrackCheck
@@ -61,7 +61,8 @@ function parseLocations(tagDefs, locationArray) {
 			if (typeof track.region === 'undefined') {
 				track.region = name;
 			}
-			regions[name] = region;
+			REGIONS[name] = region;
+			console.log("REGION: ", region);
 		}
 		for (const ch of checks) {
 			if (typeof track.name === "string" && typeof ch.name === 'string') {
@@ -216,8 +217,15 @@ async function main() {
 		const ts = new YamlToJsonTransform();
 		rs.pipe(ts);
 		zip.append(ts, { name: `${PATH.basename(f, '.yml')}.json`, prefix:`${prefix}/data` });
+		
+		if (f === 'locations.yml') {
+			let regionIn; 
+			let regionOut = Duplex.from(new Promise((res, rej)=>{ regionIn = res; }));
+			ts.on('close', ()=>{ regionIn(JSON.stringify(REGIONS)); });
+			zip.append(regionOut, { name: "regions.json", prefix:`${prefix}/data` });
+		}
 	}
-	zip.append(JSON.stringify(regions), { name: "regions.json", prefix:`${prefix}/data` });
+	// zip.append(JSON.stringify(REGIONS), { name: "regions.json", prefix:`${prefix}/data` });
 	
 	// Logic files
 	for (const f of await fs.readdir('dist', { recursive:true, withFileTypes:false })) {
