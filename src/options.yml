@@ -204,8 +204,8 @@ user:
     default: 0
     values:
       none: 0
-      basic: 5
-      full: 25
+      basic: 3
+      full: 6
     group: Sanity Options 
     
   

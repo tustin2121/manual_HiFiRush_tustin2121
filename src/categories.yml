@@ -20,10 +20,18 @@ Drones - Track 5:
   yaml_option: [ drone_sanity ]
 NPC:
   yaml_option: [ robo_sanity ]
+Vlogs:
+  yaml_option: [ vlog_sanity ]
 
 Chips:
   yaml_option: [ chip_rando ]
-  
+Summons:
+  yaml_option: [ summon_rando ]
+Combos:
+  yaml_option: [ combo_rando ]
+Special Attacks:
+  yaml_option: [ special_rando ]
 
-Collectable:
+Post-Game Only:
+  yaml_option: [ post_game ]
   hidden: true

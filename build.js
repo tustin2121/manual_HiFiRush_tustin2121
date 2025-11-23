@@ -7,7 +7,7 @@ const PATH = require('path');
 const yaml = require('./js-yaml-mod'); // require('js-yaml');
 const archiver = require('archiver');
 const semver = require('semver');
-const { merge } = require('lodash');
+const { merge, mergeWith } = require('lodash');
 
 const locCounts = {};
 const REGIONS = {};
@@ -115,12 +115,20 @@ function flattenArray(array, common={}) {
 	const outList = [];
 	for (const item of array) {
 		if (typeof item.common === 'object' && Array.isArray(item.data)) {
-			outList.push(...flattenArray(item.data, item.common));
+			for (const i2 of flattenArray(item.data, item.common)) {
+				outList.push(mergeWith(i2, common, mergeCustom));
+			}
 		} else {
-			outList.push(merge({}, item, common));
+			outList.push(mergeWith({}, item, common, mergeCustom));
 		}
 	}
 	return outList;
+	
+	function mergeCustom(ov, sv, key) {
+		if (key === "name" && typeof ov === 'string' && typeof sv === 'string') {
+			return sv + ov;
+		}
+	}
 }
 
 function parseOptions(opts) {
@@ -206,7 +214,7 @@ class YamlToJsonTransform extends Transform {
 
 const SRC_FILES = [ 
 	// Order important
-	'locations.yml', // includes regions
+//	'locations.yml', // includes regions
 	'items.yml',
 //	'regions.yml',
 	'categories.yml',
@@ -237,22 +245,20 @@ async function main() {
 	zip.pipe(out);
 	
 	// Data files
-	for (const f of await fs.readdir('src')) {
-		if (!f.endsWith('yml')) continue;
+	{
+		console.log('Converting locations.yml');
+		let data = await fs.readFile(`src/locations.yml`);
+		data = parseYaml(data);
+		zip.append(JSON.stringify(data, undefined, 4), { name: `locations.json`, prefix:`${prefix}/data` })
+		zip.append(JSON.stringify(REGIONS, undefined, 4), { name: `regions.json`, prefix:`${prefix}/data` })
+	}
+	for (const f of SRC_FILES) {
 		console.log('Converting', f);
 		const rs = fsSync.createReadStream(`src/${f}`);
 		const ts = new YamlToJsonTransform();
 		rs.pipe(ts);
 		zip.append(ts, { name: `${PATH.basename(f, '.yml')}.json`, prefix:`${prefix}/data` });
-		
-		if (f === 'locations.yml') {
-			let regionIn; 
-			let regionOut = Duplex.from(new Promise((res, rej)=>{ regionIn = res; }));
-			ts.on('close', ()=>{ regionIn(JSON.stringify(REGIONS, undefined, 4)); });
-			zip.append(regionOut, { name: "regions.json", prefix:`${prefix}/data` });
-		}
 	}
-	// zip.append(JSON.stringify(REGIONS), { name: "regions.json", prefix:`${prefix}/data` });
 	
 	// Logic files
 	for (const f of await fs.readdir('lib', { recursive:true, withFileTypes:false })) {
