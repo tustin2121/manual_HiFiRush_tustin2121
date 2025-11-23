@@ -30,9 +30,21 @@
               "icon": "excalidraw-icon",
               "title": "track2.excalidraw"
             }
+          },
+          {
+            "id": "d88add6e8fcfc045",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "track3.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "track3.excalidraw"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -105,7 +117,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "track2.excalidraw.md",
+                "file": "track3.excalidraw.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +127,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for track2.excalidraw"
+              "title": "Backlinks for track3.excalidraw"
             }
           },
           {
@@ -124,12 +136,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "track2.excalidraw.md",
+                "file": "track3.excalidraw.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from track2.excalidraw"
+              "title": "Outgoing links from track3.excalidraw"
             }
           },
           {
@@ -153,13 +165,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "track2.excalidraw.md",
+                "file": "track3.excalidraw.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of track2.excalidraw"
+              "title": "Outline of track3.excalidraw"
             }
           }
         ]
@@ -181,10 +193,19 @@
       "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "f23a5ebdc35329ba",
+  "active": "d88add6e8fcfc045",
   "lastOpenFiles": [
-    "track1.excalidraw.md",
     "track2.excalidraw.md",
+    "track1.excalidraw.md",
+    "res/Smidge.webp",
+    "track3.excalidraw.md",
+    "res/Graffiti.webp",
+    "res/Electric_Reverb_Core.webp",
+    "res/LifeGauge.webp",
+    "res/Health_Tank.webp",
+    "res/ArmstrongCircuit.webp",
+    "res",
+    "New folder",
     "Excalidraw"
   ]
 }

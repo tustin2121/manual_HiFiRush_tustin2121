@@ -175,16 +175,18 @@ achieve:   { category: [ Achievement ] }
     - { name: Flying Billboard 1,       t: [ board ],  hint: "As soon as you enter the level." }
     - { name: Chorus 1,                 t: [ chorus ], hint: "You're not part of my crew!" }
     - { name: Vlog | R&D Service Log 1, t: [ vlog ],   hint: "Just after Chorus 1" }
+    # Shoot down a rock to continue
 
 - track: { name: Track 3, category: [ Track 3 ] }
   region: { name: Track_3_2, requires: "|Peppermint Summon|", connects_to: [ Track_4 ] }
   checks:
-    # TODO: What's in the underside of the first rock lava plume, where all the gears are, under the generator?
+    - { name: Broken Armstrong Circuit 1, t: [ circuit ],            hint: "After shooting down the rock, the underside of the next platform." }
+    # Start a generator
     - { name: Go Fishing,                 t: [ npc ],                hint: "After the generator" }
     - { name: Chorus 2,                   t: [ chorus ],             hint: "You are missing this great view, Peppermint!" }
     - { name: Health Tank Piece 1,        t: [ health ],             hint: "In the corner of the volcano area." }
     - { name: Chorus 3,                   t: [ chorus ],             hint: "We got a weird one!" }
-    - { name: Broken Armstrong Circuit 1, t: [ circuit ],            hint: "Between Chorus 3 and 4" }
+    - { name: Broken Armstrong Circuit 2, t: [ circuit ],            hint: "Between Chorus 3 and 4" }
     - { name: Vending Machine 1,          t: [ vend ],               hint: "Between Chorus 3 and 4" }
     - { name: Vlog | R&D Service Log 2,   t: [ vlog ],               hint: "Between Chorus 3 and 4, opposite the vending machine" }
     - { name: Reverb Core Piece 1,        t: [ reverb, macaron, post ],   hint: "Behind the Z-Wall between Chorus 3 and 4." }
@@ -197,9 +199,9 @@ achieve:   { category: [ Achievement ] }
     # Here we ARE & D!
     - { name: Vlog | Zanzo's Order Request, t: [ vlog ],         hint: "Here we ARE & D!" }
     - { name: Vending Machine 2,            t: [ vend ],         hint: "Here we ARE & D!" }
-    - { name: Broken Armstrong Circuit 2,   t: [ circuit ],      hint: "Behind the Cardboard Cutout outside R & D" }
+    - { name: Broken Armstrong Circuit 3,   t: [ circuit ],      hint: "Behind the Cardboard Cutout outside R & D" }
     - { name: He's So Hot Right Now,        t: [ npc, achieve ], hint: "Knock a cardboard cutout of Zanzo into the lava. The best cutout to use is outside R & D down to the left." }
-    - { name: Broken Armstrong Circuit 3,   t: [ circuit ],      hint: "Outside R & D and down to the left." }
+    - { name: Broken Armstrong Circuit 4,   t: [ circuit ],      hint: "Outside R & D and down to the left." }
     - { name: Vending Machine 3,            t: [ vend ],         hint: "Outside R & D and down to the left." }
     - { name: Golden Kale Statue 1,         t: [ statue ],       hint: "Outside R & D and to the right." }
     - { name: Graffiti | Volcano,           t: [ graffiti ],     hint: "Outside R & D and to the right." }
@@ -213,7 +215,7 @@ achieve:   { category: [ Achievement ] }
     # Something's overriding our cameras to 480p.
     - { name: Survive Test Chamber 01,                t: [ chorus ]}
     - { name: SEB-AAA and JSF-001,                    t: [ noir ],    hint: "After learning the parry." }
-    - { name: Broken Armstrong Circuit 4,             t: [ circuit ], hint: "After learning the parry and through the next door." }
+    - { name: Broken Armstrong Circuit 5,             t: [ circuit ], hint: "After learning the parry and through the next door." }
     - { name: Vending Machine 4,                      t: [ vend ],    hint: "After learning the parry and through the next door." }
     - { name: Test Out the Test Robot,                t: [ npc ],     hint: "Outside Test Chamber 02. Hit the yellow DUM-1E robot." }
     - { name: Vlog | Offensive Capabilities Test,     t: [ vlog ],    hint: "In the waiting room for the second test chamber, above the receptionist." }
