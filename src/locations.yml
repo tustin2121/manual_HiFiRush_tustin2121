@@ -44,8 +44,8 @@ achieve:   { category: [ Achievement ] }
     requires: "{YamlDisabled(post_game)}"
     connects_to: [ Track_1 ]
     starting: true
-  checks:
-    - { name: Project Armstrong Pass, category: [ Collectable ], place_item: [ Track 1 Access ]  }
+  checks: []
+    # - { name: Project Armstrong Pass, category: [ Collectable ], place_item: [ Track 1 Access ]  }
 
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 1: A Fresh Start
@@ -333,7 +333,7 @@ achieve:   { category: [ Achievement ] }
   checks: # Security Node 03
     - { name: Vlog | FWD Data Node Advice,       t: [ vlog ],               hint: "Start of route to Security Node 03." }
     - { name: Chorus 2,                          t: [ chorus ],             hint: "I'm sure this is one of those 'it'll work itself out' problems..." }
-    - { name: Broken Armstrong Circuit 3,        t: [ circuit ],            hint: "Behind the final data node." }
+    - { name: Broken Armstrong Circuit 4,        t: [ circuit ],            hint: "Behind the final data node." }
     - { name: Drone 5,                           t: [ drone ],              hint: "In Node 03's room, floating behind the last node in the shadows." }
     - { name: Chorus 3,                          t: [ chorus ],             hint: "On the way back" }
     
@@ -347,7 +347,7 @@ achieve:   { category: [ Achievement ] }
   checks: # Security Node 01
     - { name: Vlog | Vandelay Game Studios?,     t: [ vlog, korsica, post ],    hint: "On the route to Node 01, Korsica door here after Z-Wall to left, up the ramp." }
     - { name: Life Gauge Piece 2,                t: [ life, korsica, post ],    hint: "On the route to Node 01, Korsica door here after Z-Wall to left, up the spiral slide." }
-    - { name: Golden Kale Statue 2,              t: [ statue ],                 hint: "On the route to Node 01, after going up the ramp after the Z-Wall, double back." }
+    - { name: Golden Kale Statue 3,              t: [ statue ],                 hint: "On the route to Node 01, after going up the ramp after the Z-Wall, double back." }
     - { name: Drone 7,                           t: [ drone ],                  hint: "On the route to Node 01, after going up the ramp after the Z-Wall, double back" }
     - { name: Chorus 4,                          t: [ chorus ],                 hint: "High up on Security Node 01's route." }
     - { name: Drone 8,                           t: [ drone, macaron ],         hint: "After Chorus 4, behind the z-wall, the drone is flying above the room." }
@@ -356,15 +356,15 @@ achieve:   { category: [ Achievement ] }
     # Rhythm Jump...
     - { name: Chorus 5,                          t: [ chorus ],                 hint: "Higher up still on Security Node 01's route." }
     - { name: Drone 9,                           t: [ drone ],                  hint: "After Chorus 5, go right up the ramps. The drone is hiding in the shadows to the left of the generator." }
-    - { name: Broken Armstrong Circuit 4,        t: [ circuit ],                hint: "After Chorus 5, go right up the ramps, on balcony to left." }
-    - { name: Broken Armstrong Circuit 5,        t: [ circuit, korsica, post ], hint: "After Chorus 5, go right up the ramps, up the Korsica generator path." }
+    - { name: Broken Armstrong Circuit 5,        t: [ circuit ],                hint: "After Chorus 5, go right up the ramps, on balcony to left." }
+    - { name: Broken Armstrong Circuit 6,        t: [ circuit, korsica, post ], hint: "After Chorus 5, go right up the ramps, up the Korsica generator path." }
     
     - { name: Vlog | Regarding Wing 1 Layout Complaints, t: [ vlog ],           hint: "In Node 01's room, on the computer consoles to the right." }
-    - { name: Broken Armstrong Circuit 6,        t: [ circuit ],                hint: "On the balcony behind the final data Node 01." }
-    - { name: Broken Armstrong Circuit 7,        t: [ circuit ],                hint: "Behind the final data node." }
+    - { name: Broken Armstrong Circuit 7,        t: [ circuit ],                hint: "On the balcony behind the final data Node 01." }
+    - { name: Broken Armstrong Circuit 8,        t: [ circuit ],                hint: "Behind the final data node." }
     
     # On the way back from Node 01
-    - { name: Broken Armstrong Circuit 8, t: [ circuit ], hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
+    - { name: Broken Armstrong Circuit 9, t: [ circuit ], hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
     - { name: Drone 10,                   t: [ drone ],   hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
     - { name: SEB-AAA and JSF-001,        t: [ noir ],    hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
 
@@ -430,8 +430,8 @@ achieve:   { category: [ Achievement ] }
     - { name: Vlog | Too Many Rooms,       t: [ vlog ],              hint: "After the second 2D section, around the column." }
     - { name: Chorus 5,                    t: [ chorus ],            hint: "Top of the first climb." }
     
-    - { name: Golden Kale Statue 1,        t: [ statue ],              hint: "In the server cylinder after Chorus 5." }
-    - { name: Life Gauge Piece 2,          t: [ life, korsica, post ], hint: "After Chorus 5, hit the generator with Korsica and climb the platforms in the server cylinder." }
+    - { name: Golden Kale Statue 2,        t: [ statue ],              hint: "In the server cylinder after Chorus 5." }
+    - { name: Life Gauge Piece 3,          t: [ life, korsica, post ], hint: "After Chorus 5, hit the generator with Korsica and climb the platforms in the server cylinder." }
     - { name: Vlog | Suspicious Doors?,    t: [ vlog ],                hint: "Next to the suspicious door in question." }
     - { name: Find SPECTRA Door,           t: [ door ],                hint: "After Chorus 5, go up the steps in the back, then up another set of steps to the right." }
     - { name: Beat SPECTRA Challenge,      t: [ spectra ],             hint: "Defeat all enemies without moving left stick." } # Gives ???
@@ -442,7 +442,7 @@ achieve:   { category: [ Achievement ] }
     # Second tower climb
     - { name: Chorus 7,                               t: [ chorus ],              hint: "" }
     - { name: Broken Armstrong Circuit 3,             t: [ circuit ],             hint: "After Chorus 7, on the balcony to the right." }
-    - { name: Golden Kale Statue 2,                   t: [ statue ],              hint: "After Chorus 7, on the balcony to the left." }
+    - { name: Golden Kale Statue 3,                   t: [ statue ],              hint: "After Chorus 7, on the balcony to the left." }
     - { name: Vlog | Data Node Dissatisfaction Mail,  t: [ vlog, macaron ],       hint: "After Chorus 7, beyond the Z-Door, in the back." }
     - { name: Help the TEC Get Some Sleep,            t: [ npc, macaron ],        hint: "After Chorus 7, beyond the Z-Door, clear out the vacuum bots in the break room to the right, so the TEC-78 can take a nap." }
     
@@ -553,7 +553,7 @@ achieve:   { category: [ Achievement ] }
     - { name: Vlog | SBR Development Display,    t: [ vlog ],      hint: "After the 3rd history display." }
     - { name: Life Gauge Piece 2,                t: [ life, treasure ],  hint: "Inside the treasure chest robot to the right after the third history display." }
     
-    - { name: Broken Armstrong Circuit 7,        t: [ circuit ],   hint: "After Chorus 7, on the scaffolding to the right." }
+    - { name: Broken Armstrong Circuit 8,        t: [ circuit ],   hint: "After Chorus 7, on the scaffolding to the right." }
     - { name: Find SPECTRA Door,                 t: [ door ],      hint: "Take a series of pipe platforms before the Chorus 9 area; the door will be to the left afterward" }
     - { name: Beat SPECTRA Challenge,            t: [ spectra ],   } # Gives ???
     - { name: Vlog | Door Musings From SCR-UB,   t: [ vlog ],      hint: "After another generator platforming challenge, before you break the Z-shielded wall, turn around and platform up the pipes, then jump over to the other platform. The vlog will be on the machine down the walkway" } # TODO: Find

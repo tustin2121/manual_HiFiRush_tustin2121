@@ -248,7 +248,7 @@ async function main() {
 		if (f === 'locations.yml') {
 			let regionIn; 
 			let regionOut = Duplex.from(new Promise((res, rej)=>{ regionIn = res; }));
-			ts.on('close', ()=>{ regionIn(JSON.stringify(REGIONS)); });
+			ts.on('close', ()=>{ regionIn(JSON.stringify(REGIONS, undefined, 4)); });
 			zip.append(regionOut, { name: "regions.json", prefix:`${prefix}/data` });
 		}
 	}

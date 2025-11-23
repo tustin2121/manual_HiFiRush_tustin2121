@@ -21,5 +21,9 @@ Drones - Track 5:
 NPC:
   yaml_option: [ robo_sanity ]
 
+Chips:
+  yaml_option: [ chip_rando ]
+  
+
 Collectable:
   hidden: true

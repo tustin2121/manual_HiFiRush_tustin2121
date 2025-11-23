@@ -11,3 +11,6 @@ starting_items:
       - Peppermint Summon
       - Macaron Summon
       - Korsica Summon
+  - yaml_option: [ "!post_game" ]
+    items: 
+      - Track 1 Access

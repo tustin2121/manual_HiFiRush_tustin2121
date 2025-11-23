@@ -28,31 +28,31 @@
   data:
     - common: { useful: true, count: 3 }
       data:
-        - name: Health Kick
-        - name: Battery Magnet
-        - name: Rhythm Meter Rush
-        - name: Parry Health
-        - name: Parry Charge
-        - name: Invincible D-Parry
-        - name: Damage Rebound D-Parry
-        - name: Combo Holder
-        - name: "High Risk, High Return"
-        - name: Rhythm Dodge Pull Plus
+        - name: Chip | Health Kick
+        - name: Chip | Battery Magnet
+        - name: Chip | Rhythm Meter Rush
+        - name: Chip | Parry Health
+        - name: Chip | Parry Charge
+        - name: Chip | Invincible D-Parry
+        - name: Chip | Damage Rebound D-Parry
+        - name: Chip | Combo Holder
+        - name: Chip | "High Risk, High Return"
+        - name: Chip | Rhythm Dodge Pull Plus
         
-        - name: Peppermint Compatibility
-        - name: Peppermint Shock Advantage
-        - name: Peppermint Shock Jump
+        - name: Chip | Peppermint Compatibility
+        - name: Chip | Peppermint Shock Advantage
+        - name: Chip | Peppermint Shock Jump
         
-        - name: Macaron Compatibility
-        - name: Macaron's Lucky Punch
-        - name: Macaron's Aftershock
+        - name: Chip | Macaron Compatibility
+        - name: Chip | Macaron's Lucky Punch
+        - name: Chip | Macaron's Aftershock
         
-        - name: Korsica Compatibility
-        - name: Super High Alert
-        - name: Korsica Stun Extend
+        - name: Chip | Korsica Compatibility
+        - name: Chip | Super High Alert
+        - name: Chip | Korsica Stun Extend
         
-    - { name: Rhythm Dodge Pull Cancel, trap: true }
-    - { name: Instant Partner Recharge, useful: true }
-    - { name: Chip Sense,               useful: true, yaml_option: [ post_game ] }
-    - { name: Enemy Analyze,            useful: true, yaml_option: [ post_game ] }
-    - { name: Gear Increase,            useful: true, count: 3, yaml_option: [ post_game ] }
+    - { name: Chip | Rhythm Dodge Pull Cancel, trap: true }
+    - { name: Chip | Instant Partner Recharge, useful: true }
+    # - { name: Chip | Chip Sense,               useful: true, yaml_option: [ post_game ] }
+    # - { name: Chip | Enemy Analyze,            useful: true, yaml_option: [ post_game ] }
+    # - { name: Chip | Gear Increase,            useful: true, count: 3, yaml_option: [ post_game ] }
