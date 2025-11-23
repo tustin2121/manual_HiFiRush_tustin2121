@@ -41,75 +41,131 @@ const REGIONS = {};
  * @returns 
  */
 function parseLocations(tagDefs, locationArray) {
-	const outList = [];
-	for (const loc of locationArray) {
-		if (typeof loc.track === 'object') {
-			outList.push(..._applyTrack(loc));
-		} else {
-			outList.push(_applyTags(loc));
+	return _flatten(locationArray);
+	
+	function _flatten(array, common={}) {
+		const outList = [];
+		for (const item of array) {
+			if (typeof item.common === 'object' && Array.isArray(item.data)) {
+				_extractRegion(item.common);
+				const tags = _getTags(common);
+				for (const i2 of _flatten(item.data, item.common)) {
+					outList.push(mergeWith(i2, common, ...tags, _mergeCustom));
+				}
+			} else {
+				_extractRegion(item);
+				const tags = _getTags(common);
+				outList.push(mergeWith({}, item, common, ...tags, _mergeCustom));
+			}
 		}
+		for (const o of outList) {
+			delete o.t;
+		}
+		return outList;
 	}
-	return outList;
-	/**
-	 * @param {TrackContainer} loc 
-	 */
-	function _applyTrack(loc) {
-		const out = [];
-		const { track, region, checks } = loc;
-		if (typeof region === 'object') {
+	
+	function _getTags(item) {
+		if (!Array.isArray(item.t)) return [];
+		const arr = [];
+		for (const t of item.t) {
+			locCounts[t] ??= 0
+			locCounts[t]++;
+			arr.push(tagDefs[t]);
+			if (tagDefs[t].t) arr.push(..._getTags(tagDefs[t]));
+		}
+		return arr;
+	}
+	
+	function _extractRegion(item) {
+		if (typeof item.region === 'object') {
+			const region = item.region;
 			const name = region.name;
 			delete region.name;
-			if (typeof track.region === 'undefined') {
-				track.region = name;
-			}
+			item.region = name;
 			REGIONS[name] = region;
-			console.log("REGION: ", region);
 		}
-		for (const ch of checks) {
-			if (typeof track.name === "string" && typeof ch.name === 'string') {
-				ch.name = `${track.name} - ${ch.name}`;
-			}
-			if (Array.isArray(track.category)) {
-				ch.category ??= [];
-				ch.category.unshift(...track.category);
-			}
-			ch.region ??= track.region;
-			out.push(_applyTags(ch));
-		}
-		return out;
 	}
-	/**
-	 * @param {TrackCheck} loc 
-	 */
-	function _applyTags(loc) {
-		if (!Array.isArray(loc.t)) return loc;
-		let out = Object.assign({}, loc);
-		if (!Array.isArray(loc.requires)) {
-			let r = loc.requires;
-			out.requires = [ r ].filter(x=>x);
+	
+	function _mergeCustom(ov, sv, key) {
+		if (key === "name" && typeof ov === 'string' && typeof sv === 'string') {
+			return `${sv} - ${ov}`;
 		}
-		// Ensure out.category is always an array before pushing to it
-		if (!Array.isArray(out.category)) {
-			out.category = [];
+		if (key === "requires" && typeof ov === 'string' && typeof sv === 'string') {
+			return `${sv} and ${ov}`;
 		}
-		for (const tag of loc.t) {
-			locCounts[tag] ??= 0
-			locCounts[tag]++;
-			if (tagDefs[tag]?.requires) out.requires.push(tagDefs[tag].requires);
-			if (tagDefs[tag]?.category) out.category.push(...tagDefs[tag].category);
-			if (Array.isArray(tagDefs[tag]?.t)) {
-				for (const tt of tagDefs[tag].t) {
-					locCounts[tt] ??= 0
-					locCounts[tt]++;
-				}
-			}
-		}
-		delete out.t;
-		out.requires = out.requires.join(" and ");
-		if (!out.requires) delete out.requires;
-		return out;
 	}
 }
+
+// function parseLocations(tagDefs, locationArray) {
+// 	const outList = [];
+// 	for (const loc of locationArray) {
+// 		if (typeof loc.track === 'object') {
+// 			outList.push(..._applyTrack(loc));
+// 		} else {
+// 			outList.push(_applyTags(loc));
+// 		}
+// 	}
+// 	return outList;
+// 	/**
+// 	 * @param {TrackContainer} loc 
+// 	 */
+// 	function _applyTrack(loc) {
+// 		const out = [];
+// 		const { track, region, checks } = loc;
+// 		if (typeof region === 'object') {
+// 			const name = region.name;
+// 			delete region.name;
+// 			if (typeof track.region === 'undefined') {
+// 				track.region = name;
+// 			}
+// 			REGIONS[name] = region;
+// 			console.log("REGION: ", region);
+// 		}
+// 		for (const ch of checks) {
+// 			if (typeof track.name === "string" && typeof ch.name === 'string') {
+// 				ch.name = `${track.name} - ${ch.name}`;
+// 			}
+// 			if (Array.isArray(track.category)) {
+// 				ch.category ??= [];
+// 				ch.category.unshift(...track.category);
+// 			}
+// 			ch.region ??= track.region;
+// 			out.push(_applyTags(ch));
+// 		}
+// 		return out;
+// 	}
+// 	/**
+// 	 * @param {TrackCheck} loc 
+// 	 */
+// 	function _applyTags(loc) {
+// 		if (!Array.isArray(loc.t)) return loc;
+// 		let out = Object.assign({}, loc);
+// 		if (!Array.isArray(loc.requires)) {
+// 			let r = loc.requires;
+// 			out.requires = [ r ].filter(x=>x);
+// 		}
+// 		// Ensure out.category is always an array before pushing to it
+// 		if (!Array.isArray(out.category)) {
+// 			out.category = [];
+// 		}
+// 		for (const tag of loc.t) {
+// 			locCounts[tag] ??= 0
+// 			locCounts[tag]++;
+// 			if (tagDefs[tag]?.requires) out.requires.push(tagDefs[tag].requires);
+// 			if (tagDefs[tag]?.category) out.category.push(...tagDefs[tag].category);
+// 			if (Array.isArray(tagDefs[tag]?.t)) {
+// 				for (const tt of tagDefs[tag].t) {
+// 					locCounts[tt] ??= 0
+// 					locCounts[tt]++;
+// 				}
+// 			}
+// 		}
+// 		delete out.t;
+// 		out.requires = out.requires.join(" and ");
+// 		if (!out.requires) delete out.requires;
+// 		return out;
+// 	}
+// }
 
 function flattenArray(array, common={}) {
 	const outList = [];
