@@ -36,7 +36,7 @@ user:
       may have to fudge picking up previous checks if they turn out to be important.
     default: true
     hidden: false
-    
+  
   summon_rando:
     type: Toggle
     description: |
@@ -72,7 +72,20 @@ user:
       in your game by simply limiting what chips you can equip. Chip levels are progressive.
     default: false
     group: Item Pool Options 
-    
+  
+  scoring_sanity:
+    type: Choice
+    description: |
+      'smidge' adds checks for talking to Smidge (${smidge} locations)
+      'others' additionally adds checks for interacting with various incidental NPCs (${robo} locations total)
+      'none' does not add these checks
+    values:
+      both: 0
+      chorus: 1
+      achievements: 2
+    default: 0
+    allow_custom_value: false
+    group: Sanity Options 
   upgrade_sanity:
     type: Toggle
     description: |
