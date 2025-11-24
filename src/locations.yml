@@ -4,10 +4,13 @@
 %SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.locations.schema.json
 ---
 robo:      {}
-smidge:    { requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ], t: [ robo ] } # Recurring character
-noir:      { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], t: [ robo ] } # Recurring characters
+smidge:    { requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ], t: [ robo ] } # Recurring character Smidge
+noir:      { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], t: [ robo ] } # Recurring characters SEB-AAA and JSF-001
+tan:       { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], t: [ robo ] } # Recurring character Tanning SBR-001
 npc:       { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], t: [ robo ] } # Interesting NPC interactions (usually hitting)
 npcB:      { requires: "{YamlCompare(robo_sanity >= 3)}", category: [ NPC ], t: [ robo ] } # Boring NPCs, simply talkable
+npc_8:     { requires: "({YamlCompare(robo_sanity >= 2)} or YamlEnabled(party_sanity))", category: [ NPC, Party - Track 8 ], t: [ robo ] } # NPCs at the start of Track 8, for added checks
+npcB8:     { requires: "({YamlCompare(robo_sanity >= 3)} or YamlEnabled(party_sanity))", category: [ NPC, Party - Track 8 ], t: [ robo ] } # NPCs at the start of Track 8, for added checks
 upgrade:   {}
 life:      { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], t: [ upgrade ] }
 health:    { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], t: [ upgrade ] }
@@ -38,7 +41,18 @@ achieve:   { category: [ Achievement ] }
       starting: true
     category: [ 00. Hideout ]
   data:
-    - { name: Hideout Couch (Free Item) }
+    - name: Hideout Couch (Free Item)
+      place_item: # Make sure the player starts with access to a decent track
+        - Track 1 Access
+        - Track 2 Access
+      # - Track 3 Access  # Requires Peppermint too soon
+      # - Track 4 Access  # Requires both Macron and Peppermint too soon
+        - Track 5 Access
+        - Track 6 Access
+      # - Track 7 Access  # Requires both Macron and Peppermint too soon
+        - Track 8 Access
+        - Track 9 Access
+        - Track 10 Access
 
 - common: 
     region: 
@@ -64,7 +78,7 @@ achieve:   { category: [ Achievement ] }
         - { name: Chorus 2,                   t: [ chorus ],                hint: "That's the defect!!" }
         - { name: Smidge 1,                   t: [ smidge ],                hint: "After Chorus 2, tutorial for heavy and light attacks" }
         - { name: Chorus 3,                   t: [ chorus ],                hint: "Hey! You looking for me?" }
-        - { name: Interrupt SBR-001's Tan,    t: [ npc ],                   hint: "Above the 3rd Chorus." }
+        - { name: Interrupt SBR-001's Tan,    t: [ tan ],                   hint: "Above the 3rd Chorus." }
         - { name: Smidge 2,                   t: [ smidge ],                hint: "After Chorus 2, dodging tutorial." }
         - { name: SEB-AAA and JSF-001,        t: [ noir, pepper, post ],    hint: "The platform directly above the second Smidge" }
         - { name: Broken Armstrong Circuit 1, t: [ circuit, pepper, post ], hint: "Listen to the Noir Investigator ramble." }
@@ -500,15 +514,16 @@ achieve:   { category: [ Achievement ] }
         region: { name: Track_8, requires: "|Track 8 Access|", connects_to: [ Track_8_2 ] }
       data:
         - { name: Vlog | Armstrong Festival Marketing?,    t: [ vlog ],      hint: "In the ticket line." }
-        - { name: NPC | Trash Pickup,                      t: [ npcB ],      hint: "In front of the globe."}
-        - { name: NPC | Doing the Robot,                   t: [ npcB ],      hint: "On the right side of the opening"}
-        - { name: NPC | Watching the Robot,                t: [ npcB ],      hint: "On the right side of the opening"}
-        - { name: NPC | Bummed It Can't Watch the Show,    t: [ npcB ],      hint: "On the right side of the opening"}
-        - { name: NPC | Love on the Lawn,                  t: [ npc  ],      hint: "In the opening area, interrupt the private moment of the couple from Rekka's anteroom." }
-        - { name: NPC | Find the Golden Can,               t: [ npc  ],      hint: "Help the SCR-UB find a golden can in the trash. The can down near the globe is where it usually is." } # Gives Life Gauge Piece
-        - { name: NPC | Composting 2000 Burgers,           t: [ npcB ],      hint: "In the upper area of the opening"}
-        - { name: NPC | Bathroom Emergency,                t: [ npcB ],      hint: "In the upper area of the opening"}
-        - { name: NPC | Help Polish the Door,              t: [ npc  ],      hint: "Help OS-KAR polish the door."}
+        - { name: NPC | Trash Pickup,                      t: [ npcB8 ],     hint: "In front of the globe."}
+        - { name: NPC | Doing the Robot,                   t: [ npcB8 ],     hint: "On the right side of the opening"}
+        - { name: NPC | Watching the Robot,                t: [ npcB8 ],     hint: "On the right side of the opening"}
+        - { name: NPC | Bummed It Can't Watch the Show,    t: [ npcB8 ],     hint: "On the right side of the opening"}
+        - { name: NPC | Love on the Lawn,                  t: [ npc_8 ],     hint: "In the opening area, interrupt the private moment of the couple from Rekka's anteroom." }
+        - { name: NPC | Find the Golden Can,               t: [ npc_8 ],     hint: "Help the SCR-UB find a golden can in the trash. The can down near the globe is where it usually is." } # Gives Life Gauge Piece
+        - { name: NPC | Composting 2000 Burgers,           t: [ npcB8 ],     hint: "In the upper area of the opening"}
+        - { name: NPC | Bathroom Emergency,                t: [ npcB8 ],     hint: "In the upper area of the opening"}
+        - { name: NPC | Help Polish the Door,              t: [ npc_8 ],     hint: "Help OS-KAR polish the door."}
+      # - { name: Click Here If You Got A Hint Popup,      hint: "If you've been running around this area too long, the game gets concerned."} # TODO: find some way to force this check to be a junk remote item
         
         - { name: Broken Armstrong Circuit 1,              t: [ circuit ],   hint: "In the opening area, on top of the bathroom." }
         - { name: Vlog | Project Armstrong Raffle Results, t: [ vlog ],      hint: "In the opening area, on a trash can near the back." }

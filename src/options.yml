@@ -123,11 +123,20 @@ user:
       Grant checks for breaking bending machines (${vend} locations)
     default: false
     group: Sanity Options 
+    
   drone_sanity:
     type: Toggle
     description: |
       Grant checks for finding the drone on Track 5 (${drone} locations)
     default: false
+    group: Sanity Options 
+  party_sanity:
+    type: Toggle
+    description: |
+      Grant extra free checks at the start of Track 8 (${npc8} locations)
+      This is mainly because that opening area is big and interesting and it's a
+      cool place to add checks prior to needing Korsica to continue.
+    default: true
     group: Sanity Options 
   
   robo_sanity:
