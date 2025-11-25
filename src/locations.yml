@@ -3,19 +3,17 @@
 %SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.regions.schema.json
 %SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.locations.schema.json
 ---
-robo:      {}
-smidge:    { requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ], t: [ robo ] } # Recurring character Smidge
-noir:      { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], t: [ robo ] } # Recurring characters SEB-AAA and JSF-001
-tan:       { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], t: [ robo ] } # Recurring character Tanning SBR-001
-npc:       { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], t: [ robo ] } # Interesting NPC interactions (usually hitting)
-npcB:      { requires: "{YamlCompare(robo_sanity >= 3)}", category: [ NPC ], t: [ robo ] } # Boring NPCs, simply talkable
-npc_8:     { requires: "({YamlCompare(robo_sanity >= 2)} or YamlEnabled(party_sanity))", category: [ NPC, Party - Track 8 ], t: [ robo ] } # NPCs at the start of Track 8, for added checks
-npcB8:     { requires: "({YamlCompare(robo_sanity >= 3)} or YamlEnabled(party_sanity))", category: [ NPC, Party - Track 8 ], t: [ robo ] } # NPCs at the start of Track 8, for added checks
-scrub:     {} # t: [ robo ] }
-upgrade:   {}
-life:      { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], t: [ upgrade ] }
-health:    { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], t: [ upgrade ] }
-reverb:    { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], t: [ upgrade ] }
+smidge:    { requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ], c: [ robo1, robo2 ] } # Recurring character Smidge
+noir:      { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ robo1, robo2 ] } # Recurring characters SEB-AAA and JSF-001
+tan:       { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ robo1, robo2 ] } # Recurring character Tanning SBR-001
+npc:       { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ robo1, robo2 ] } # Interesting NPC interactions (usually hitting)
+npcB:      { requires: "{YamlCompare(robo_sanity >= 3)}", category: [ NPC ], c: [ robo2 ] } # Boring NPCs, simply talkable
+npc_8:     { requires: "({YamlCompare(robo_sanity >= 2)} or YamlEnabled(party_sanity))", category: [ NPC, Party - Track 8 ], c: [ robo1, robo2 ] } # NPCs at the start of Track 8, for added checks
+npcB8:     { requires: "({YamlCompare(robo_sanity >= 3)} or YamlEnabled(party_sanity))", category: [ NPC, Party - Track 8 ], c: [ robo2 ] } # NPCs at the start of Track 8, for added checks
+scrub:     { requires: "{YamlEnabled(scrub_sanity)}", category: [ SCR-UB ] }
+life:      { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade ] }
+health:    { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade ] }
+reverb:    { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade ] }
 circuit:   { requires: "{YamlEnabled(circuit_sanity)}", category: [ Circuit ] }
 vlog:      { requires: "{YamlEnabled(vlog_sanity)}", category: [ Vlogs ] }
 door:      { requires: "{YamlCompare(door_sanity >= 1)}", category: [ Doors ] }
@@ -31,9 +29,9 @@ pepper:    { requires: "|Peppermint Summon|" }
 macaron:   { requires: "|Macaron Summon|" }
 korsica:   { requires: "|Korsica Summon|" }
 moment:    { requires: "{YamlEnabled(moment_sanity)}", category: [ Moment ] } # Like cut scenes and milestones in the level that don't fall under the below
-chorus:    { requires: "{YamlCompare(scoring_sanity != 2)}", category: [ Chorus ] }
-achieve:   { requires: "{YamlCompare(scoring_sanity != 1)}", category: [ Achievement ] }
-boss:      { category: [ Chorus, Achievement ] }
+chorus:    { requires: "{YamlCompare(scoring_sanity != 2)}", category: [ Chorus ], c: [ chorus#, chkpt# ] }
+achieve:   { requires: "{YamlCompare(scoring_sanity != 1)}", category: [ Achievement ], c: [ achieve#, chkpt# ] }
+boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ] }
 
 ---
 - common: 
@@ -71,7 +69,7 @@ boss:      { category: [ Chorus, Achievement ] }
 # region - Track 1: A Fresh Start
 - common: { name: Track 1, category: [ 01. A Fresh Start ] }
   data:
-    # Should be 1 Reverb, 1 Tank, 3 Life, 4 Chips, 5 Vlogs
+    # Should be 1 Reverb, 1 Tank, 3 Life, 4 Circuit, 5 Vlogs
     - common:
         region: { name: Track_1, requires: "|Track 1 Access|", connects_to: [ Track_2 ] }
       data:
@@ -134,13 +132,16 @@ boss:      { category: [ Chorus, Achievement ] }
         - { name: Graffiti | Crane Holding Up Containers, t: [ graffiti, korsica, post ], hint: "Just before the QA-1MIL fight, in the room behind the flaming doorway." }
         # -------------------
         - { name: Explode QA-1MIL,    t: [ boss ],    hint: "You've got a killer track, but every song's gotta end!" }
+        
+        # TODO Collectables
+        - { name: Armstrong Circuit | ???,           t: [ circuit, post ], hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 2: Power Up
 - common: { name: Track 2, category: [ 02. Power Up ] }
   data:
-    # Should be 2 Reverb, 1 Tank, 3 Life, 5 Chips, 6 Vlogs
+    # Should be 2 Reverb, 1 Tank, 3 Life, 5 Circuit, 6 Vlogs
     - common:
         region: { name: Track_2, requires: "|Track 2 Access|", connects_to: [ Track_2_2 ] }
       data:
@@ -194,11 +195,11 @@ boss:      { category: [ Chorus, Achievement ] }
         - { name: Smidge | Peppermint,                  t: [ smidge ],            hint: "After Chorus 2, Peppermint tutorial" }
         - { name: Chorus 8 | Flying Enemies,            t: [ chorus ],            hint: "Flying enemies!" }
         - { name: NPC | Shoot the Lounging Robot,       t: [ npc, pepper ],       hint: "After Chorus 8" } # 
-        - { name: Armstrong Circuit | Cheat 2,          t: [ circuit, treasure, korsica, post ], hint: "Inside the treasure chest robot past the fire door after the platforming section." }
+        - { name: Armstrong Circuit | Chest 2,          t: [ circuit, treasure, korsica, post ], hint: "Inside the treasure chest robot past the fire door after the platforming section." }
         - { name: Vending Machine | Shop Terminal,      t: [ vend ],              hint: "In the room with the shop terminal." }
         # "Teamwork! Hooray...!"
         - { name: Chest | Life Gauge Piece 2,           t: [ life, treasure ],    hint: "Inside the treasure chest robot after the three-part steam ride." }
-        - { name: NPC | SCR-UB's Discontent,            t: [ npc, pepper, submission ], hint: "After Mimosa hypes her upcoming show." } # Gives Life Gauge
+        - { name: NPC | SCR-UB's Discontent,            t: [ npc, pepper, quest ], hint: "After Mimosa hypes her upcoming show." } # Gives Life Gauge
         - { name: Flying Billboard | Pigeons,           t: [ board ],             hint: "Flying around the Chorus 6 arena." }
         - { name: Chorus 9 | Area 13,                   t: [ chorus ] }
         # The anteroom before Rekka
@@ -209,14 +210,19 @@ boss:      { category: [ Chorus, Achievement ] }
         - { name: NPC | SEB-AAA and JSF-001,            t: [ noir ],      hint: "In the anteroom before Rekka." }
         - { name: Graffiti | Rekka,                     t: [ graffiti ],  hint: "In the anteroom before Rekka." }
         # -------------------
-        - { name: Defeat Rekka,                         t: [ chorus, achieve ] }
+        - { name: Defeat Rekka,                         t: [ boss ] }
+        
+        # TODO Collectables
+        - { name: Upgrade | Health Tank Piece 1,      t: [ health ],   hint: "???" }
+        - { name: Upgrade | Life Gauge Piece 3,       t: [ life ],     hint: "???" }
+        - { name: Armstrong Circuit | ???,        t: [ circuit, post ], hint: "???." }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 3: Trial By (Volcanic) Fire
 - common: { name: Track 3, category: [ 03. Trial By (Volcanic) Fire ] }
   data:
-    # Should be 2 Reverb, 1 Tank, 4 Life, 6 Chips, 11 Vlogs
+    # Should be 2 Reverb, 1 Tank, 4 Life, 6 Circuit, 11 Vlogs
     - common:
         region: { name: Track_3, requires: "|Track 3 Access|", connects_to: [ Track_3_2 ] }
       data:
@@ -291,15 +297,19 @@ boss:      { category: [ Chorus, Achievement ] }
         - { name: Upgrade | Life Gauge Piece 3,           t: [ life ],     hint: "After the rail after Test Chamber 03" }
         - { name: Chorus 6 | Mister Chai,                 t: [ chorus ],   hint: "That's MISTER Chai to you!" }
         # Supposed to lose fight
-        - { name: "Well, this messes everything up...",   t: [ achieve, post ], hint: "Defeat the undefeatable."}
+        - { name: "Well, this messes everything up...",   t: [ moment, post ], hint: "Defeat the undefeatable."}
         - { name: BLORF,                                  t: [ achieve ] }
+        
+        # TODO Collectables
+        - { name: Armstrong Circuit | ???,      t: [ circuit ], hint: "???" }
+        - { name: Upgrade | Life Gauge Piece 3, t: [ life ],    hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 4: Less Budget, More Problems
 - common: { name: Track 4, category: [ "04. Less Budget, More Problems" ] }
   data:
-    # Should be 1 Reverb, 2 Tank, 3 Life, 6 Chips, 4 Vlogs
+    # Should be 1 Reverb, 2 Tank, 3 Life, 6 Circuit, 4 Vlogs
     - common:
         region: { name: Track_4, requires: "|Track 4 Access|", connects_to: [ Track_4_2 ] }
       data:
@@ -348,21 +358,27 @@ boss:      { category: [ Chorus, Achievement ] }
         - { name: Vlog | Development Mindfulness Checklist, t: [ vlog ],               hint: "On the table in the mall lounge." }
         - { name: NPC | Macaron meets with OS-KAR,          t: [ npc ],                hint: "In the mall lounge area. Speak with OS-KAR twice to have a scene with him and Macaron." }
         # AR Room 3 - Chai, this is amazing! Look at that budget drain!
-        - { name: Upgrade | Life Gauge Piece 2,             t: [ life ],        hint: "Inside the Volcano AR section" }
+        - { name: Upgrade | Life Gauge Piece 2,             t: [ life ],               hint: "Inside the Volcano AR section" }
         - { name: Chorus 4 | Where are my enemies?!,        t: [ chorus ],             hint: "Chai, this is amazing! Look at that budget drain!" }
         - { name: Chorus 5 | No!! The Gift Basket!,         t: [ chorus ],             hint: "NOO!! GIFT BASKET!!" }
         - { name: Defund Zanzo,                             t: [ achieve ],            hint: "UNRESTRICTED CREATIVE FREEDOM!!!!" }
         # Cornered by Kale, Escape Sequence GO!!
         - { name: Get Back in At Least Two Pieces!,   t: [ moment ] }
         - { name: "Chorus 6 | All Security, Report!", t: [ chorus ],    hint: "All security, report!" }
-        - { name: Concussion by Korsica,              t: [ moment ] }
+        - { name: Concussion by Korsica,              t: [ achieve ] }
+        
+        # TODO Collectables
+        - { name: Armstrong Circuit | ???,           t: [ circuit ],  hint: "???" }
+        - { name: Upgrade | Reverb Core Piece 2,     t: [ reverb ],   hint: "???" }
+        - { name: Upgrade | Health Tank Piece 2,     t: [ health ],   hint: "???" }
+        - { name: Upgrade | Life Gauge Piece 2,      t: [ life ],     hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 5: Breaking Out
 - common: { name: Track 5, category: [ 05. Breaking Out ] }
   data:
-    # Should be 2 Reverb, 1 Tank, 3 Life, 8 Chips, 8 Vlogs
+    # Should be 2 Reverb, 1 Tank, 3 Life, 8 Circuit, 8 Vlogs
     - common:
         region: { name: Track_5, requires: "|Track 5 Access|", connects_to: [ Track_5_2A, Track_5_2B ] }
       data:
@@ -392,7 +408,7 @@ boss:      { category: [ Chorus, Achievement ] }
         - { name: Chorus 1 | Security Node 02,           t: [ chorus ],             hint: "Figures there'd be security in... security." }
         # Need Peppermint to fix the nodes here, but below can be reached otherwise
         # ----- Security Node 02: Exit -----
-        - { name: Armstrong Circuit 3,                   t: [ circuit ],            hint: "On top of the glass surrounding Security node 02's elevator. Reach from the exit or from floating platforms." }
+        - { name: Armstrong Circuit | Node 02,           t: [ circuit ],            hint: "On top of the glass surrounding Security node 02's elevator. Reach from the exit or from floating platforms." }
         - { name: Drone 4,                               t: [ drone ],              hint: "On top of the glass surrounding Security node 02's elevator. Reach from the exit or from floating platforms." }
     
     - common:
@@ -448,7 +464,7 @@ boss:      { category: [ Chorus, Achievement ] }
         - { name: SCR-UB | Node 01 Main Room Crushed,        t: [ scrub ],          hint: "Crushed under the second node that Macaron puts back in"}
         - { name: NPC | Node 01 Main Room Tech,              t: [ npcB ],           hint: "Drawing on the lower floor" }
         - { name: Vlog | Regarding Wing 1 Layout Complaints, t: [ vlog ],           hint: "In Node 01's room, on the computer consoles to the right." }
-        - { name: Armstrong Circuit | Behind Node 01 A,      t: [ circuit ],        hint: "Behind the final data node." } # TODO: Double Check
+        # - { name: Armstrong Circuit | Behind Node 01 A,      t: [ circuit ],        hint: "Behind the final data node." } # TODO: Double Check
         - { name: Armstrong Circuit | Behind Node 01 B,      t: [ circuit ],        hint: "On the balcony behind the final data Node 01." }
         # ----- Security Node 01: Escape Route -----
         - { name: Armstrong Circuit | Vent Secret, t: [ circuit ], hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
@@ -457,14 +473,18 @@ boss:      { category: [ Chorus, Achievement ] }
     - common:
         region: { name: Track_5_3, requires: "|Macaron Summon| and |Peppermint Summon|", connects_to: [ Track_6 ] }
       data:
-        - { name: Chorus 6 | Elevator Ride,  t: [ chorus ],   hint: "Requisite elevator ride fight." }
+        - { name: Chorus 6 | Elevator Ride,  t: [ boss ],   hint: "Requisite elevator ride fight." }
+        
+        # TODO Collectables
+        - { name: Upgrade | Health Tank Piece 1,  t: [ health ],   hint: "???" }
+        - { name: Upgrade | Life Gauge Piece 1,   t: [ life ],     hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 6: L.I.F.T Me Up
 - common: { name: Track 6, category: [ 06. L.I.F.T Me Up ] }
   data:
-    # Should be 0 Reverb, 0 Tank, 0 Life, 1 Chips, 1 Vlogs
+    # Should be 0 Reverb, 0 Tank, 0 Life, 1 Circuit, 1 Vlogs
     - common: 
         region: { name: Track_6, requires: "|Track 6 Access|", connects_to: [ Track_6_2 ] }
       data:
@@ -485,7 +505,7 @@ boss:      { category: [ Chorus, Achievement ] }
 # region - Track 7: The Climb
 - common: { name: Track 7, category: [ 07. The Climb ] }
   data:
-    # Should be 1 Reverb, 1 Tank, 4 Life, 8 Chips, 7 Vlogs
+    # Should be 1 Reverb, 1 Tank, 4 Life, 8 Circuit, 7 Vlogs
     - common: 
         region: { name: Track_7, requires: "|Track 7 Access|", connects_to: [ Track_7_2 ] }
       data:
@@ -565,13 +585,20 @@ boss:      { category: [ Chorus, Achievement ] }
         - { name: Vlog | Food Delivery Warning,           t: [ vlog ],                hint: "In front of the door into Korsica's office." }
         # ----- Korsica's Office -----
         - { name: Defeat Korsica,                         t: [ boss ] }
+        
+        # TODO Collectables
+        - { name: Upgrade | Reverb Core Piece 2,     t: [ reverb ],    hint: "???" }
+        - { name: Upgrade | Life Gauge Piece 1,      t: [ life ],      hint: "???" }
+        - { name: Armstrong Circuit | Floor ?,      t: [ circuit ],   hint: "???" }
+        - { name: Armstrong Circuit | Floor ??,      t: [ circuit ],   hint: "???" }
+        - { name: Armstrong Circuit | Floor ???,      t: [ circuit ],   hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 8: A History Lesson
 - common: { name: Track 8, category: [ 08. A History Lesson ] }
   data:
-    # Should be 2 Reverb, 2 Tank, 4 Life, 9 Chips, 20 Vlogs
+    # Should be 2 Reverb, 2 Tank, 4 Life, 9 Circuit, 20 Vlogs
     - common: 
         region: { name: Track_8, requires: "|Track 8 Access|", connects_to: [ Track_8_2 ] }
       data:
@@ -651,7 +678,7 @@ boss:      { category: [ Chorus, Achievement ] }
         - { name: Chorus 7 | In the Rafters,         t: [ chorus ],    hint: "A notice to all employees: The rumors about the demise of department heads has been greatly exaggerated." }
         - { name: Flying Billboard | Chorus 7,       t: [ board ],     hint: "Flying around Chorus 7." }
         - { name: Armstrong Circuit | Chorus 7,      t: [ circuit ],   hint: "After Chorus 7, on the scaffolding to the right." }
-        - { name: Upgrade | Life Gauge Piece 3,      t: [ life ],      hint: "After Chorus 7, behind a large banner." }
+        - { name: Upgrade | Life Gauge Piece 2,      t: [ life ],      hint: "After Chorus 7, behind a large banner." }
         # -------------------
         - { name: Chorus 8 | Falling Platform,       t: [ chorus ],    hint: "Chai, I don't think that platform's going to hold!" }
         - { name: Graffiti | Museum,                 t: [ graffiti ],  hint: "After Chorus 8, to the right of the stairs." }
@@ -661,7 +688,7 @@ boss:      { category: [ Chorus, Achievement ] }
         - { name: History Display 3 - The New Visionary!, t: [ moment ] }
         - { name: Vlog | KEM-0N0 Display,            t: [ vlog ],      hint: "After the 3rd history display." }
         - { name: Vlog | SBR Development Display,    t: [ vlog ],      hint: "After the 3rd history display." }
-        - { name: Chest | Life Gauge Piece 2,        t: [ life, treasure ],  hint: "Inside the treasure chest robot to the right after the third history display." }
+        - { name: Chest | Life Gauge Piece 3,        t: [ life, treasure ],  hint: "Inside the treasure chest robot to the right after the third history display." }
         # -------------------
         - { name: Armstrong Circuit | Pipes,         t: [ circuit ],   hint: "After a series of hookshots, before the Z-Wall, double back up onto the pipes." }
         - { name: Find the SPECTRA Door,             t: [ door ],      hint: "After a series of hookshots, before the Z-Wall, double back up onto the pipes." }
@@ -672,20 +699,25 @@ boss:      { category: [ Chorus, Achievement ] }
         - { name: Golden Kale Statue | Final Hallway,t: [ statue ],    hint: "In the hallway behind you after dropping down from Chorus 9." }
         # -------------------
         - { name: Tear Down a Cardboard Kale,        t: [ achieve ],   hint: "Peppermint does this for you." }
+        
+        # TODO Collectables
+        - { name: Upgrade | Reverb Core Piece 2,     t: [ reverb ],    hint: "???" }
+        - { name: Upgrade | Life Gauge Piece 4,      t: [ life ],      hint: "???" }
+        - { name: Armstrong Circuit | ???,      t: [ circuit ],   hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 9: Take the Stage
 - common: { name: Track 9, category: [ 09. Take the Stage ] }
   data:
-    # Should be 0 Reverb, 0 Tank, 1 Life, 2 Chips, 3 Vlogs
+    # Should be 0 Reverb, 0 Tank, 1 Life, 2 Circuit, 3 Vlogs
     - common: 
         region: { name: Track_9, requires: "|Track 9 Access|", connects_to: [ Track_10 ] }
       data:
         - { name: Graffiti | Mimosa,                        t: [ graffiti ], hint: "At the very beginning of the track, turn around. It's on the wall." }
         - { name: Vending Machine | Backstage,              t: [ vend ],     hint: "In the hall leading to Mimosa's dressing room." }
         - { name: Armstrong Circuit | Backstage,            t: [ circuit ],  hint: "In the hall leading to Mimosa's dressing room, under the raised floor." }
-        - { name: Upgrade | Health Tank Piece 1,            t: [ health ],   hint: "In the hall leading to Mimosa's dressing room, under the raised floor." }
+        - { name: Upgrade | Life Gauge Piece 1,             t: [ life ],     hint: "In the hall leading to Mimosa's dressing room, under the raised floor." }
         - { name: Vlog | Armstrong Festival Briefing Notes, t: [ vlog ],     hint: "In the hall leading to Mimosa's dressing room, after the raised floor." }
         - { name: Vlog | Mimosa's Rider,                    t: [ vlog ],     hint: "At the end of the corridor on a bench near the shop." }
         # Initiate still perfectly relevant cultural reference!
@@ -698,7 +730,7 @@ boss:      { category: [ Chorus, Achievement ] }
 # region - Track 10: A Masterplan
 - common: { name: Track 10, category: [ 10. A Masterplan ] }
   data:
-    # Should be 1 Reverb, 1 Tank, 3 Life, 7 Chips, 7 Vlogs
+    # Should be 1 Reverb, 1 Tank, 3 Life, 7 Circuit, 7 Vlogs
     - common: 
         region: { name: Track_10, requires: "|Track 10 Access|", connects_to: [ Track_10_2 ] }
       data:
@@ -719,7 +751,6 @@ boss:      { category: [ Chorus, Achievement ] }
         - { name: Smidge | SMIDGED???,           t: [ smidge ],     hint: "Holding up the door after Chorus 5." }
         - { name: Graffiti | WA-ES-2,            t: [ graffiti ],   hint: "After Smidge gets stuck in the door." }
         - { name: Armstrong Circuit | Hallway,   t: [ circuit ],    hint: "In the corner after Chorus 5." }
-        
         # Z-Door, followed by Generator, followed by Peppermint shoot, all in the same hallway
     - common:
         region: { name: Track_10_2, requires: "|Macaron Summon| and |Korsica Summon| and |Peppermint Summon|", connects_to: [ Track_11 ] }
@@ -743,15 +774,16 @@ boss:      { category: [ Chorus, Achievement ] }
         - { name: Armstrong Circuit | Expense It,     t: [ circuit ],    hint: "Behind you after the rail." }
         - { name: Golden Kale Statue | Office Block,  t: [ statue ],     hint: "In the next office cube after the rail." }
         - { name: Vlog | Budget Challenge Email,      t: [ vlog ],       hint: "In the next office cube after the rail." }
-        - { name: Upgrade | Life Gauge Piece 1,       t: [ life ],       hint: "Outside the next office cube after the rail." }
+        - { name: Upgrade | Life Gauge Piece 2,       t: [ life ],       hint: "Outside the next office cube after the rail." }
         - { name: Flying Billboard | Office Block,    t: [ board ],      hint: "Flying around above the office cube after the rail." }
         - { name: SCR-UB | Office Block,              t: [ scrub ],      hint: "Hit by the Z-Wall explosion"}
         - { name: Armstrong Circuit | Office Block,   t: [ circuit ],    hint: "In the second office cube after the rail, in the corner." }
         - { name: Vending Machine | Water Cooler,     t: [ vend ],       hint: "In the second office cube after the rail." }
         - { name: Vlog | Hoodie Preorder Email,       t: [ vlog ],       hint: "In the second office cube after the rail." }
         - { name: Vlog | Vandelay Handbook Note,      t: [ vlog ],       hint: "Above the second office cube after the rail." }
-        - { name: Chorus 9 | OH COME ON!!,            t: [ chorus ] }
+        - { name: Graffiti | Roquefort,               t: [ graffiti ],   hint: "Behind the Handbook Note, jump off the cube onto the isolated balcony." }
         # -------------------
+        - { name: Chorus 9 | OH COME ON!!,       t: [ chorus ] }
         - { name: "Take This, Statue Kale!",     t: [ moment ] }
         - { name: Upgrade | Reverb Core Piece 1, t: [ reverb ],     hint: "After smashing the head off the Kale statue, near the base of the statue's dismembered arm." }
         - { name: Armstrong Circuit | Finance,   t: [ circuit ],    hint: "On the finance department balcony, to the left." }
@@ -761,7 +793,9 @@ boss:      { category: [ Chorus, Achievement ] }
         - { name: Defeat Roquefort,              t: [ boss ] }
         
         # TODO Collectables
-        - { name: Graffiti | Roquefort,          t: [ graffiti, macaron ], hint: "After the fight against the WA-ES-2 and SEN-C0 and breaking through the Z-Shielded wall, look to the left." }
+        - { name: Upgrade | Health Tank Piece 1, t: [ health ],   hint: "???" }
+        - { name: Upgrade | Life Gauge Piece 2,  t: [ life ],     hint: "???" }
+        - { name: Armstrong Circuit | ???,       t: [ circuit ],  hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -776,7 +810,7 @@ boss:      { category: [ Chorus, Achievement ] }
         - { name: Chorus 1,                           t: [ chorus ] }
         - { name: Chorus 2,                           t: [ chorus ] }
         - { name: Chorus 3,                           t: [ chorus ] }
-        - { name: Defeat the ZP-1500,                 t: [ chorus, achieve ] }
+        - { name: Defeat the ZP-1500,                 t: [ boss ] }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -787,7 +821,7 @@ boss:      { category: [ Chorus, Achievement ] }
     - common: 
         region: { name: Track_12, requires: "|Track 12 Access|", connects_to: [ Hideout_PostGame ] }
       data:
-        - { name: Defeat Kale, t: [ chorus, achieve ], victory: true }
+        - { name: Defeat Kale, t: [ boss ], victory: true }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#

@@ -76,9 +76,9 @@ user:
   scoring_sanity:
     type: Choice
     description: |
-      'smidge' adds checks for talking to Smidge (${smidge} locations)
-      'others' additionally adds checks for interacting with various incidental NPCs (${robo} locations total)
-      'none' does not add these checks
+      'chorus' adds checks beating Choruses (${chorus#} locations)
+      'achievements' adds checks for completing levels (${archive#} locations)
+      'both' adds both (${chkpt#} locations; there's some overlap)
     values:
       both: 0
       chorus: 1
@@ -133,7 +133,7 @@ user:
   vending_sanity:
     type: Toggle
     description: |
-      Grant checks for breaking bending machines (${vend} locations)
+      Grant checks for breaking vending machines (${vend} locations)
     default: false
     group: Sanity Options 
     
@@ -156,14 +156,23 @@ user:
     type: Choice
     description: |
       'smidge' adds checks for talking to Smidge (${smidge} locations)
-      'others' additionally adds checks for interacting with various incidental NPCs (${robo} locations total)
+      'others' additionally adds checks for interacting with various incidental NPCs (${robo1} locations total)
+      'all' adds checks for interacting with all NPCs, not just interesting ones (${robo2} locations total)
       'none' does not add these checks
     values:
       none: 0
       smidge: 1
       others: 2
+      all: 3
     default: 0
     allow_custom_value: false
+    group: Sanity Options 
+  scrub_sanity:
+    type: Toggle
+    description: |
+      Why would you want to hurt those poor SCR-UB bots? They're only doing their jobs!
+      But if you feel like murdering workers, this option adds ${scrub} locations.
+    default: false
     group: Sanity Options 
   door_sanity:
     type: Choice
