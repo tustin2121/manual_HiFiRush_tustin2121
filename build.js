@@ -54,7 +54,7 @@ function parseLocations(tagDefs, locationArray) {
 				}
 			} else {
 				_extractRegion(item);
-				const tags = _getTags(common);
+				const tags = _getTags(item);
 				outList.push(mergeWith({}, item, common, ...tags, _mergeCustom));
 			}
 		}
@@ -65,13 +65,23 @@ function parseLocations(tagDefs, locationArray) {
 	}
 	
 	function _getTags(item) {
+		// console.log("_getTags()", item);
 		if (!Array.isArray(item.t)) return [];
 		const arr = [];
 		for (const t of item.t) {
-			locCounts[t] ??= 0
-			locCounts[t]++;
-			arr.push(tagDefs[t]);
-			if (tagDefs[t].t) arr.push(..._getTags(tagDefs[t]));
+			const def = tagDefs[t] ?? {};
+			// console.log("Tag =>", t);
+			if (def.c) {
+				for (const c of def.c) {
+					locCounts[c] ??= 0
+					locCounts[c]++;
+				}
+			} else {
+				locCounts[t] ??= 0
+				locCounts[t]++;
+			}
+			arr.push(def);
+			if (def.t) arr.push(..._getTags(def));
 		}
 		return arr;
 	}
@@ -315,6 +325,8 @@ async function main() {
 		rs.pipe(ts);
 		zip.append(ts, { name: `${PATH.basename(f, '.yml')}.json`, prefix:`${prefix}/data` });
 	}
+	
+	console.log("locCounts =", locCounts);
 	
 	// Logic files
 	for (const f of await fs.readdir('lib', { recursive:true, withFileTypes:false })) {
