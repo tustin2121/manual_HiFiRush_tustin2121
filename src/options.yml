@@ -53,6 +53,9 @@ user:
       Adds Chai's purchasable combos to the item pool. You can implement this restriction
       in your game by selling all of the moves at the store and purchasing them back when
       the randomizer grants them to you. 
+      
+      NOTE: The logic does not account for needing to pick up the attacks 
+      (eg, the comic book items in the world) on the first play-through.
     default: false
     group: Item Pool Options 
   special_rando:
@@ -61,6 +64,7 @@ user:
       Adds Chai's purchasable special attacks to the item pool. You can implement this 
       restriction in your game by either selling or just not equipping the purchasable
       special attacks. Power Chord is always available.
+      
       NOTE: The logic does not account for needing to pick up the special attacks 
       (eg, the comic book items in the world) on the first play-through.
     default: false

@@ -86,6 +86,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Smidge | Light and Heavy Attacks,     t: [ smidge ],                hint: "After Chorus 2, tutorial for heavy and light attacks" }
         - { name: Chorus 3 | You looking for me?,       t: [ chorus ],                hint: "Hey! You looking for me?" }
         - { name: Yelling like this is awkward!,        t: [ moment ] } # Unskippable bit
+        - { name: Flying Billboard | Chorus 3,          t: [ board, post ],           hint: "Flying between the Chorus 3 arena and the ledge Smidge is on." } # TODO double check
         - { name: NPC | Interrupt SBR-001's Tan,        t: [ tan ],                   hint: "Above the 3rd Chorus arena." }
         - { name: Smidge | Dodging,                     t: [ smidge ],                hint: "After Chorus 3, dodging tutorial." }
         - { name: NPC | SEB-AAA and JSF-001,            t: [ noir, pepper, post ],    hint: "The platform directly above the second Smidge" }
@@ -99,6 +100,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Vlog | TO ALL EMPLOYEES,           t: [ vlog ],               hint: "Near some crates next to 2 robots after Chorus 4." }
         - { name: NPC | Kale in the flesh!,          t: [ npcB ],               hint: "Near the TO ALL EMPLOYEES vlog." }
         - { name: Smidge | The Environment,          t: [ smidge ],             hint: "The environment reacts to the beat" }
+        - { name: Flying Billboard | Chorus 3,       t: [ board, post ],        hint: "Flying around the rooftop Smidge is on." } # TODO double check
         - { name: Find the SPECTRA Door,             t: [ door ],               hint: "After Chorus 4 and encountering the Smidge that tells you about the world's rhythm, there is a ledge behind him that can be dropped down onto." }
         - { name: Beat the SPECTRA Challenge,        t: [ spectra ],            hint: "Defeat all enemies within 4 seconds, but the timer only ticks down when you're on the ground." } # Gives Armstrong Circuit
         - { name: Smidge | Rest Combos,              t: [ smidge ],             hint: "The rest combo" }
@@ -120,8 +122,8 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Graffiti | QA Building,                 t: [ graffiti, macaron, korsica, post ], hint: "Behind the Z-Shielded door, up the generator-supplied platforms." }
         - { name: SCR-UB | Catwalk 2,                     t: [ scrub ]}
         - { name: Chorus 6 | Tough Enemies,               t: [ chorus ],             hint: "Tough enemies tutorial" }
-        - { name: Vlog | RE RE RE Get on this!,           t: [ vlog ],               hint: "In a tucked away area behind directly behind the fight with the BA-B00." }
         - { name: Flying Billboard | Chorus 6,            t: [ board, post ],        hint: "Flying around the Chorus 6 arena." }
+        - { name: Vlog | RE RE RE Get on this!,           t: [ vlog ],               hint: "In a tucked away area behind directly behind the fight with the BA-B00." }
         - { name: NPC | Ruin the Robot's High Score,      t: [ npc ],                hint: "After Chorus 6" }
         - { name: Chorus 7 | Jumping Totally Prohibited,  t: [ chorus ],             hint: "Jumping is strictly prohibited!" }
         # -------------------
@@ -161,6 +163,8 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Armstrong Circuit | Chorus 2,          t: [ circuit, macaron, post ], hint: "Around behind and under the platform approaching Chorus 2" }
         - { name: Chorus 2 | A Music Fighting Intruder?, t: [ chorus ],          hint: "We're supposed to watch out for a... music fighting intruder?" }
         - { name: Graffiti | Robot Portrait,             t: [ graffiti, korsica, post ], hint: "Though the flaming door above the catwalks over Chorus 2." }
+        - { name: SCR-UB | Fire Door 1,                  t: [ scrub ]}
+        - { name: SCR-UB | Fire Door 2,                  t: [ scrub ]}
         - { name: "Vlog | HR Claim #324839028555180850195", t: [ vlog ],         hint: "Ride the tram cars going under the platform and arena." }
       # - { name: Fighting the Music,                    t: [ slug ],            hint: "Near the vlog, find the logo-slug fighting off music notes like flies." }
         - { name: Smidge | Magnet Pull,                  t: [ smidge ],          hint: "After Chorus 2, magnet tutorial" }
@@ -176,7 +180,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Chorus 4 | Crush Control,              t: [ chorus ],          hint: "After the first Rhythm Jump." }
         - { name: Flying Billboard | Machine Press,      t: [ board ],           hint: "Hovering just out of sight behind the first machine press." }
         - { name: Chorus 5 | Machine Press,              t: [ chorus ],          hint: "Past the press machines." }
-        - { name: Armstrong Circuit | Chest 1,             t: [ circuit, treasure, korsica, post ], hint: "Inside the treasure chest robot past the fire door after Chorus 5." }
+        - { name: Chest | Armstrong Circuit 1,           t: [ circuit, treasure, korsica, post ], hint: "Inside the treasure chest robot past the fire door after Chorus 5." }
         - { name: NPC | A Corporate Slap in the Face,    t: [ npcB ],            hint: "Control room between machine press and Chorus 6" }
         - { name: Armstrong Circuit | Z-Walled,          t: [ circuit, macaron, post ], hint: "Past the Z-Wall after Chorus 5." }
         - { name: Chorus 6 | LOCKDOWN SMACKDOWN,         t: [ chorus ],          hint: "You're on LOCKDOWN and getting the SMACKDOWN!" }
@@ -195,7 +199,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Smidge | Peppermint,                  t: [ smidge ],            hint: "After Chorus 2, Peppermint tutorial" }
         - { name: Chorus 8 | Flying Enemies,            t: [ chorus ],            hint: "Flying enemies!" }
         - { name: NPC | Shoot the Lounging Robot,       t: [ npc, pepper ],       hint: "After Chorus 8" } # 
-        - { name: Armstrong Circuit | Chest 2,          t: [ circuit, treasure, korsica, post ], hint: "Inside the treasure chest robot past the fire door after the platforming section." }
+        - { name: Chest | Armstrong Circuit 2,          t: [ circuit, treasure, korsica, post ], hint: "Inside the treasure chest robot past the fire door after the platforming section." }
         - { name: Vending Machine | Shop Terminal,      t: [ vend ],              hint: "In the room with the shop terminal." }
         # "Teamwork! Hooray...!"
         - { name: Chest | Life Gauge Piece 2,           t: [ life, treasure ],    hint: "Inside the treasure chest robot after the three-part steam ride." }
@@ -235,20 +239,21 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
       data:
         - { name: Armstrong Circuit | Under Platform, t: [ circuit ],            hint: "After shooting down the rock, the underside of the next platform." }
         - { name: NPC | VA-SER Can't Feel Heat,       t: [ npcB ],               hint: "Before the generator"}
-        # Start a generator
-        - { name: NPC | VA-SER Goes Fishing,          t: [ npc ],                hint: "After the generator" }
+        # Start a generator -------
+        - { name: NPC | VA-SER Goes Fishing,          t: [ npcB ],               hint: "After the generator" }
         - { name: Chorus 2 | Missing A Great View,    t: [ chorus ],             hint: "You are missing this great view, Peppermint!" }
+        - { name: Flying Billboard | Perfectly Safe,  t: [ board ],              hint: "In the area where LU-C1LLE tells you that the volcano is safe, a board is flying around above." }
         - { name: Upgrade | Health Tank Piece 1,      t: [ health ],             hint: "In the corner of the volcano area." }
-        - { name: Chorus 3 | Got a Weird One!,        t: [ chorus ],             hint: "We got a weird one!" }
         # -------------------
-        - { name: NPC | There's Arrows Everywhere!,   t: [ npcB ],               hint: "After the generator" }
-        - { name: Armstrong Circuit | 2,              t: [ circuit ],            hint: "Between Chorus 3 and 4" } # TODO: Find
+        - { name: Chorus 3 | Got a Weird One!,        t: [ chorus ],             hint: "We got a weird one!" }
+        - { name: Armstrong Circuit | Chorus 3,       t: [ circuit ],            hint: "To the left behind a box as you leave Chorus 3's arena." }
+        - { name: NPC | There's Arrows Everywhere!,   t: [ npcB ],               hint: "Between Chorus 3 and 4" }
         - { name: Vending Machine | Work Site,        t: [ vend ],               hint: "Between Chorus 3 and 4" }
         - { name: Vlog | R&D Service Log 2,           t: [ vlog ],               hint: "Between Chorus 3 and 4, opposite the vending machine" }
         - { name: Upgrade | Reverb Core Piece 1,      t: [ reverb, macaron, post ],   hint: "Behind the Z-Wall between Chorus 3 and 4." }
         - { name: Graffiti | Flowers,                 t: [ graffiti, macaron, post ], hint: "Near a small camp where a PGR-0101 and a VA-SER are talking, behind the two bots is a Z-Shielded wall." }
-        - { name: Chorus 4 | Lava Stairs,             t: [ chorus ] }
         # -------------------
+        - { name: Chorus 4 | Lava Stairs,             t: [ chorus ] }
         - { name: Vlog | R&D Service Log 3,           t: [ vlog ],               hint: "After Chorus 4" }
         - { name: Chest | Life Gauge Piece 1,         t: [ life, treasure ],     hint: "Inside the treasure chest robot after Chorus 4." }
         - { name: Vlog | R&D Service Log 4,           t: [ vlog ],               hint: "Before the rail" }
@@ -328,11 +333,12 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Vlog | Auto-Saved Private Message,        t: [ vlog ],               hint: "After shooting down the rock, before the green rock, on the ledge to the right." }
         # Lava-fall
         - { name: Vlog | Disgruntled Decaf Revenge,         t: [ vlog ],               hint: "Behind the lava waterfall." }
-        - { name: Upgrade | Health Tank Piece 1,            t: [ health ],             hint: "Behind the lava waterfall." }
+        - { name: Chest | Health Tank Piece 1,              t: [ health, treasure ],   hint: "Behind the lava waterfall." }
         - { name: NPC | SEB-AAA and JSF-001,                t: [ noir ],               hint: "Behind the lava waterfall." }
         - { name: Armstrong Circuit | Lava Fall,            t: [ circuit ],            hint: "Past two lava rocks at the bottom of the tower climb." }
         - { name: Upgrade | Life Gauge Piece 1,             t: [ life ],               hint: "At the top of the tower climb, on the crates" }
         - { name: Flying Billboard | Top of the Tower,      t: [ board ],              hint: "Flying in circles around the top of the tower climb." }
+        - { name: Armstrong Circuit | Top of the Tower,     t: [ circuit ],            hint: "At the top of the tower, around the side of the containers." }
         # -------------------
         - { name: Chorus 1 | Up for another round?,         t: [ chorus ],             hint: "Up for another round?" }
         - { name: Smidge | Macaron,                         t: [ smidge ],             hint: "Macaron tutorial" }
@@ -357,7 +363,9 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Armstrong Circuit | Lava Route 2,         t: [ circuit ],            hint: "High over the path after AR Room 2" }
         - { name: Vlog | Development Mindfulness Checklist, t: [ vlog ],               hint: "On the table in the mall lounge." }
         - { name: NPC | Macaron meets with OS-KAR,          t: [ npc ],                hint: "In the mall lounge area. Speak with OS-KAR twice to have a scene with him and Macaron." }
+        # -------------------
         # AR Room 3 - Chai, this is amazing! Look at that budget drain!
+        - { name: Look at that budget drain!,               t: [ moment ]}
         - { name: Upgrade | Life Gauge Piece 2,             t: [ life ],               hint: "Inside the Volcano AR section" }
         - { name: Chorus 4 | Where are my enemies?!,        t: [ chorus ],             hint: "Chai, this is amazing! Look at that budget drain!" }
         - { name: Chorus 5 | No!! The Gift Basket!,         t: [ chorus ],             hint: "NOO!! GIFT BASKET!!" }
@@ -385,7 +393,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Vlog | Defect Captured Email,          t: [ vlog ],               hint: "Return to the cell room right at the start of the Track." }
         - { name: Upgrade | Life Gauge Piece 1,          t: [ life ],               hint: "To the right and above the second spinning platform cylinder" }
         # ----- Main room -----
-        - { name: Mission | Return the TEC-78's Comics,  t: [ npc ],                hint: "Find ten drones with the tech's 'schematics'." } # Grants Life Gauge Piece
+        - { name: Mission | Return the TEC-78's Comics,  t: [ npc, quest ],         hint: "Find ten drones with the tech's 'schematics'." } # Grants Life Gauge Piece
         - { name: Vlog | Annoyed By Korsica FWD,         t: [ vlog ],               hint: "First area of the security nodes atrium." }
         - { name: Graffiti | Nodes,                      t: [ graffiti ],           hint: "After you reach the main security area, go right and drop down onto the platform below that leads to the moving platforms that circle around the center column." }
         - { name: Find the SPECTRA Door,                 t: [ door ],               hint: "Located below the main chamber, near the elevator connected to Node 3; ride the floating platforms to reach it." }
@@ -537,6 +545,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         # Rhythm Jump
         - { name: NPC | The Tech behind Glass,    t: [ npcB ],              hint: "Floor 15, up the rhythm jump"}
         - { name: NPC | SEB-AAA and JSF-001,      t: [ noir ],              hint: "After going through the Z-Wall and up the rhythm jump, keep going up via platforms" }
+        - { name: Upgrade | Reverb Core Piece,    t: [ reverb ],            hint: "After going through the Z-Wall and up the rhythm jump, keep going up via platforms" }
         - { name: Vending Machine | Floor 16,     t: [ vend ],              hint: "After going through the Z-Wall and up the rhythm jump, keep going up via platforms" }
         # ----- Cylinder 1: Second 2D Section -----
         - { name: Armstrong Circuit | Floor 19,   t: [ circuit ],           hint: "In section 2D section, at top of elevator." }
@@ -587,7 +596,6 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Defeat Korsica,                         t: [ boss ] }
         
         # TODO Collectables
-        - { name: Upgrade | Reverb Core Piece 2,     t: [ reverb ],    hint: "???" }
         - { name: Upgrade | Life Gauge Piece 1,      t: [ life ],      hint: "???" }
         - { name: Armstrong Circuit | Floor ?,      t: [ circuit ],   hint: "???" }
         - { name: Armstrong Circuit | Floor ??,      t: [ circuit ],   hint: "???" }
