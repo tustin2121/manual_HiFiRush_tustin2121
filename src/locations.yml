@@ -3,17 +3,17 @@
 %SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.regions.schema.json
 %SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.locations.schema.json
 ---
-smidge:    { requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ], c: [ robo1, robo2 ] } # Recurring character Smidge
-noir:      { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ robo1, robo2 ] } # Recurring characters SEB-AAA and JSF-001
-tan:       { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ robo1, robo2 ] } # Recurring character Tanning SBR-001
-npc:       { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ robo1, robo2 ] } # Interesting NPC interactions (usually hitting)
-npcB:      { requires: "{YamlCompare(robo_sanity >= 3)}", category: [ NPC ], c: [ robo2 ] } # Boring NPCs, simply talkable
-npc_8:     { requires: "({YamlCompare(robo_sanity >= 2)} or YamlEnabled(party_sanity))", category: [ NPC, Party - Track 8 ], c: [ robo1, robo2 ] } # NPCs at the start of Track 8, for added checks
-npcB8:     { requires: "({YamlCompare(robo_sanity >= 3)} or YamlEnabled(party_sanity))", category: [ NPC, Party - Track 8 ], c: [ robo2 ] } # NPCs at the start of Track 8, for added checks
+smidge:    { requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ], c: [ smidge, robo1, robo2 ] } # Recurring character Smidge
+noir:      { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ noir,   robo1, robo2 ] } # Recurring characters SEB-AAA and JSF-001
+tan:       { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ tan,    robo1, robo2 ] } # Recurring character Tanning SBR-001
+npc:       { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ npc,    robo1, robo2 ] } # Interesting NPC interactions (usually hitting)
+npcB:      { requires: "{YamlCompare(robo_sanity >= 3)}", category: [ NPC ], c: [ npcB,   robo2 ] } # Boring NPCs, simply talkable
+npc_8:     { requires: "({YamlCompare(robo_sanity >= 2)} or {YamlEnabled(party_sanity)})", category: [ NPC, Party - Track 8 ], c: [ npc_8, npc,  robo1, robo2 ] } # NPCs at the start of Track 8, for added checks
+npcB8:     { requires: "({YamlCompare(robo_sanity >= 3)} or {YamlEnabled(party_sanity)})", category: [ NPC, Party - Track 8 ], c: [ npcB8, npcB, robo2 ] } # NPCs at the start of Track 8, for added checks
 scrub:     { requires: "{YamlEnabled(scrub_sanity)}", category: [ SCR-UB ] }
-life:      { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade ] }
-health:    { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade ] }
-reverb:    { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade ] }
+life:      { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, life ] }
+health:    { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, health ] }
+reverb:    { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, reverb ] }
 circuit:   { requires: "{YamlEnabled(circuit_sanity)}", category: [ Circuit ] }
 vlog:      { requires: "{YamlEnabled(vlog_sanity)}", category: [ Vlogs ] }
 door:      { requires: "{YamlCompare(door_sanity >= 1)}", category: [ Doors ] }
@@ -100,7 +100,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Vlog | TO ALL EMPLOYEES,           t: [ vlog ],               hint: "Near some crates next to 2 robots after Chorus 4." }
         - { name: NPC | Kale in the flesh!,          t: [ npcB ],               hint: "Near the TO ALL EMPLOYEES vlog." }
         - { name: Smidge | The Environment,          t: [ smidge ],             hint: "The environment reacts to the beat" }
-        - { name: Flying Billboard | Chorus 3,       t: [ board, post ],        hint: "Flying around the rooftop Smidge is on." } # TODO double check
+        - { name: Flying Billboard | Rooftop,        t: [ board, post ],        hint: "Flying around the rooftop Smidge is on." } # TODO double check
         - { name: Find the SPECTRA Door,             t: [ door ],               hint: "After Chorus 4 and encountering the Smidge that tells you about the world's rhythm, there is a ledge behind him that can be dropped down onto." }
         - { name: Beat the SPECTRA Challenge,        t: [ spectra ],            hint: "Defeat all enemies within 4 seconds, but the timer only ticks down when you're on the ground." } # Gives Armstrong Circuit
         - { name: Smidge | Rest Combos,              t: [ smidge ],             hint: "The rest combo" }
@@ -290,7 +290,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Survive Test Chamber 02,                t: [ moment ],   hint: "Step into the middle of the room! It's safe here!"}
         - { name: Vlog | Barrier Umbrella Test,           t: [ vlog ],     hint: "After going the side route." }
         - { name: Graffiti | Zanzo,                       t: [ graffiti ], hint: "After the side door, jump on top of the vent cover that opens to the outside, before the rail." }
-        - { name: NPC | Test Chamber 02 Receptionist,     t: [ npcB ],     hint: "Outside Test Chamber 03." }
+        - { name: NPC | Test Chamber 03 Receptionist,     t: [ npcB ],     hint: "Outside Test Chamber 03." }
         - { name: NPC | Umbrella Test PGR-0101,           t: [ npcB ],     hint: "Outside Test Chamber 03." }
         - { name: Upgrade | Life Gauge Piece 2,           t: [ life ],     hint: "On top of the Umbrella Test" }
         # -------------------
@@ -307,7 +307,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         
         # TODO Collectables
         - { name: Armstrong Circuit | ???,      t: [ circuit ], hint: "???" }
-        - { name: Upgrade | Life Gauge Piece 3, t: [ life ],    hint: "???" }
+        - { name: Upgrade | Life Gauge Piece 4, t: [ life ],    hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -377,9 +377,9 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         
         # TODO Collectables
         - { name: Armstrong Circuit | ???,           t: [ circuit ],  hint: "???" }
-        - { name: Upgrade | Reverb Core Piece 2,     t: [ reverb ],   hint: "???" }
+        - { name: Upgrade | Reverb Core Piece 1,     t: [ reverb ],   hint: "???" }
         - { name: Upgrade | Health Tank Piece 2,     t: [ health ],   hint: "???" }
-        - { name: Upgrade | Life Gauge Piece 2,      t: [ life ],     hint: "???" }
+        - { name: Upgrade | Life Gauge Piece 3,      t: [ life ],     hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -485,7 +485,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         
         # TODO Collectables
         - { name: Upgrade | Health Tank Piece 1,  t: [ health ],   hint: "???" }
-        - { name: Upgrade | Life Gauge Piece 1,   t: [ life ],     hint: "???" }
+        - { name: Upgrade | Life Gauge Piece 3,   t: [ life ],     hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -541,7 +541,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Chorus 4 | Floor 11,            t: [ chorus ],            hint: "The samurai was waiting for you..." }
         - { name: SCR-UB | Floor 11,              t: [ scrub ] }
         - { name: Golden Kale Statue | Floor 11,  t: [ statue ],            hint: "In the room to the right after going through the Z-Wall after Chorus 4." }
-        - { name: Chest | Life Gauge Piece 1,     t: [ life, treasure ],    hint: "Inside the treasure chest to the right after going through the Z-Wall after Chorus 4." }
+        - { name: Chest | Life Gauge Piece 2,     t: [ life, treasure ],    hint: "Inside the treasure chest to the right after going through the Z-Wall after Chorus 4." }
         # Rhythm Jump
         - { name: NPC | The Tech behind Glass,    t: [ npcB ],              hint: "Floor 15, up the rhythm jump"}
         - { name: NPC | SEB-AAA and JSF-001,      t: [ noir ],              hint: "After going through the Z-Wall and up the rhythm jump, keep going up via platforms" }
@@ -596,10 +596,10 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Defeat Korsica,                         t: [ boss ] }
         
         # TODO Collectables
-        - { name: Upgrade | Life Gauge Piece 1,      t: [ life ],      hint: "???" }
-        - { name: Armstrong Circuit | Floor ?,      t: [ circuit ],   hint: "???" }
+        - { name: Upgrade | Life Gauge Piece 4,      t: [ life ],      hint: "???" }
+        - { name: Armstrong Circuit | Floor ?,       t: [ circuit ],   hint: "???" }
         - { name: Armstrong Circuit | Floor ??,      t: [ circuit ],   hint: "???" }
-        - { name: Armstrong Circuit | Floor ???,      t: [ circuit ],   hint: "???" }
+        - { name: Armstrong Circuit | Floor ???,     t: [ circuit ],   hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -641,7 +641,8 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Vlog | Taking a Break in the Park,       t: [ vlog, ],     hint: "After the sewer pass, in the fenced in section." }
         # -------------------
         - { name: Chorus 1 | Outside the Museum,           t: [ chorus ],    hint: "Outside the museum." }
-        - { name: Armstrong Circuit | Behind Hedges,       t: [ circuit ],   hint: "After Chorus 1, go through the gate/over the fence to the left." } # TODO confirm
+        - { name: Armstrong Circuit | Behind Hedges,       t: [ circuit ],   hint: "After Chorus 1, go through the gate/over the fence to the right." } # TODO confirm
+        - { name: Upgrade | Reverb Core Piece 1,           t: [ reverb ],    hint: "After Chorus 1, go through the gate/over the fence to the left." }
         - { name: Graffiti | BL-1Z5,                       t: [ graffiti ],  hint: "After Chorus 1, go through the gate/over the fence to the right." }
         # ----- Museum Lobby ------
         - { name: Vlog | GNR-202 Display,                  t: [ vlog ],      hint: "In the lobby of the museum." }
@@ -679,7 +680,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Vlog | Water Generator Complaint,  t: [ vlog ],      hint: "Next to the second generator in the power supply area." }
         - { name: NPC | Doing His Job,               t: [ npcB ],      hint: "Next to the power core he should be putting in."}
         - { name: Chorus 6 | That's SHOCKING!,       t: [ chorus ],    hint: "That's SHOCKING!" }
-        - { name: Upgrade | Reverb Core Piece 1,     t: [ reverb ],    hint: "After Chorus 6, to the right and over several electric panels." }
+        - { name: Upgrade | Reverb Core Piece 2,     t: [ reverb ],    hint: "After Chorus 6, to the right and over several electric panels." }
         - { name: Armstrong Circuit | Chorus 6,      t: [ circuit ],   hint: "After Chorus 6 and the shop in a storage room to the right." }
         # ----- Huge Display Room -----
         - { name: Vlog | Display Complaints,         t: [ vlog ],      hint: "In the big display room, to the right." }
@@ -709,7 +710,6 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Tear Down a Cardboard Kale,        t: [ achieve ],   hint: "Peppermint does this for you." }
         
         # TODO Collectables
-        - { name: Upgrade | Reverb Core Piece 2,     t: [ reverb ],    hint: "???" }
         - { name: Upgrade | Life Gauge Piece 4,      t: [ life ],      hint: "???" }
         - { name: Armstrong Circuit | ???,      t: [ circuit ],   hint: "???" }
 
@@ -785,6 +785,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Upgrade | Life Gauge Piece 2,       t: [ life ],       hint: "Outside the next office cube after the rail." }
         - { name: Flying Billboard | Office Block,    t: [ board ],      hint: "Flying around above the office cube after the rail." }
         - { name: SCR-UB | Office Block,              t: [ scrub ],      hint: "Hit by the Z-Wall explosion"}
+        - { name: Upgrade | Health Tank Piece 1,      t: [ health ],     hint: "In the second office cube after the rail, in the back room high up on the shelf." }
         - { name: Armstrong Circuit | Office Block,   t: [ circuit ],    hint: "In the second office cube after the rail, in the corner." }
         - { name: Vending Machine | Water Cooler,     t: [ vend ],       hint: "In the second office cube after the rail." }
         - { name: Vlog | Hoodie Preorder Email,       t: [ vlog ],       hint: "In the second office cube after the rail." }
@@ -801,8 +802,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Defeat Roquefort,              t: [ boss ] }
         
         # TODO Collectables
-        - { name: Upgrade | Health Tank Piece 1, t: [ health ],   hint: "???" }
-        - { name: Upgrade | Life Gauge Piece 2,  t: [ life ],     hint: "???" }
+        - { name: Upgrade | Life Gauge Piece 3,  t: [ life ],     hint: "???" }
         - { name: Armstrong Circuit | ???,       t: [ circuit ],  hint: "???" }
 
 #endregion

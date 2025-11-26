@@ -132,6 +132,8 @@ user:
     type: Toggle
     description: |
       Grant checks for shooting flying billboard bots with Peppermint (${board} locations)
+      If you hear a disembodied announcement at any point during a level, chances are
+      there's a billboard nearby broadcasting it. Shooting the bot will end the announcement.
     default: false
     group: Sanity Options 
   vending_sanity:
