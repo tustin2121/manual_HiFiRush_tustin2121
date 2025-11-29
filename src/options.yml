@@ -157,6 +157,12 @@ user:
       cool place to add checks prior to needing Korsica to continue.
     default: true
     group: Sanity Options 
+  easter_sanity:
+    type: Toggle
+    description: |
+      Include checks for activating easter eggs in the game (${easter} location).
+    default: false
+    group: Sanity Options 
   
   robo_sanity:
     type: Choice

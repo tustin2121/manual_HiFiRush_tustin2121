@@ -23,8 +23,10 @@ statue:    { requires: "{YamlEnabled(statue_sanity)}", category: [ Statues ] }
 board:     { requires: "{YamlEnabled(announcement_sanity)} and |Korsica Summon|", category: [ Announcement Drones ] }
 vend:      { requires: "{YamlEnabled(vending_sanity)}", category: [ Vending Machine ] }
 drone:     { requires: "{YamlEnabled(drone_sanity)}", category: [ Drones - Track 5 ] }
+easter:    { requires: "{YamlEnabled(easter_sanity)}", category: [ Easter Eggs ]}
 post:      { requires: "{YamlEnabled(post_game)}" }
 snail:     {}
+first:     { requires: "{YamlDisabled(post_game)}" }
 pepper:    { requires: "|Peppermint Summon|" }
 macaron:   { requires: "|Macaron Summon|" }
 korsica:   { requires: "|Korsica Summon|" }
@@ -304,7 +306,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Upgrade | Life Gauge Piece 3,           t: [ life ],     hint: "After the rail after Test Chamber 03" }
         - { name: Chorus 6 | Mister Chai,                 t: [ chorus ],   hint: "That's MISTER Chai to you!" }
         # Supposed to lose fight
-        - { name: "Well, this messes everything up...",   t: [ moment, post ], hint: "Defeat the undefeatable."}
+        - { name: "Easter Egg | Well, this messes everything up...",   t: [ easter, post ], hint: "Defeat the undefeatable."}
         - { name: BLORF,                                  t: [ achieve ] }
         
         # TODO Collectables
@@ -363,8 +365,9 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Chorus 3 | AR Room 2,                     t: [ chorus ],             hint: "Ready for round two?" }
         - { name: Golden Kale Statue | Lava Route 1,        t: [ statue ],             hint: "After AR Room 2" }
         - { name: Armstrong Circuit | Lava Route 2,         t: [ circuit ],            hint: "High over the path after AR Room 2" }
-        - { name: Vlog | Development Mindfulness Checklist, t: [ vlog ],               hint: "On the table in the mall lounge." }
-        - { name: NPC | Macaron meets with OS-KAR,          t: [ npc ],                hint: "In the mall lounge area. Speak with OS-KAR twice to have a scene with him and Macaron." }
+        - { name: Vlog | Development Mindfulness Checklist, t: [ vlog ],               hint: "On the table in the lounge area before AR Room 3." }
+        - { name: NPC | Macaron meets with OS-KAR,          t: [ npc ],                hint: "In the lounge area before AR Room 3. Speak with OS-KAR twice to have a scene with him and Macaron." }
+        - { name: Upgrade | Health Tank Piece 2,            t: [ health ],             hint: "lounge area before AR Room 3, sitting on top of one of the seating areas." }
         # -------------------
         # AR Room 3 - Chai, this is amazing! Look at that budget drain!
         - { name: Look at that budget drain!,               t: [ moment ]}
@@ -380,7 +383,6 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         # TODO Collectables
         - { name: Armstrong Circuit | ???,           t: [ circuit ],  hint: "???" }
         - { name: Upgrade | Reverb Core Piece 1,     t: [ reverb ],   hint: "???" }
-        - { name: Upgrade | Health Tank Piece 2,     t: [ health ],   hint: "???" }
         - { name: Upgrade | Life Gauge Piece 3,      t: [ life ],     hint: "???" }
 
 #endregion
@@ -689,7 +691,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Chorus 7 | In the Rafters,         t: [ chorus ],    hint: "A notice to all employees: The rumors about the demise of department heads has been greatly exaggerated." }
         - { name: PA | Chorus 7,     t: [ board ],     hint: "Flying around Chorus 7." }
         - { name: Armstrong Circuit | Chorus 7,      t: [ circuit ],   hint: "After Chorus 7, on the scaffolding to the right." }
-        - { name: Upgrade | Life Gauge Piece 2,      t: [ life ],      hint: "After Chorus 7, behind a large banner." }
+        - { name: Upgrade | Life Gauge Piece 2,      t: [ life ],      hint: "After punching out the Z-Shield, jump down onto the shield." }
         # -------------------
         - { name: Chorus 8 | Falling Platform,       t: [ chorus ],    hint: "Chai, I don't think that platform's going to hold!" }
         - { name: Graffiti | Museum,                 t: [ graffiti ],  hint: "After Chorus 8, to the right of the stairs." }
@@ -816,10 +818,16 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
     - common: 
         region: { name: Track_11, requires: "|Track 11 Access|", connects_to: [ Track_12 ] }
       data:
+        # Easter Egg: During first play-through, close the game right after starting Track 11 (elevator ride up)
+        - { name:  Easter Egg | Picked a bad time to take a break,    t: [ easter, first ], hint: "Make the game angry at you for quitting, then talk to Macaron after reloading." }
+        - { name:  Easter Egg | Peppermint should be pissed,          t: [ easter, first ], hint: "Make the game angry at you for quitting, then talk to Peppermint after reloading." }
+        - { name: "Easter Egg | Oh, there you are!",                  t: [ easter, first ], hint: "Make the game angry at you for quitting, then talk to CNMN after reloading." }
+        - { name:  Easter Egg | Chai addresses the Player,            t: [ easter, first ], hint: "Make the game angry at you for quitting, then talk to Korsica after reloading." }
+        
         - { name: Synchronize a Harmonic Force Field, t: [ chorus ] }
-        - { name: Chorus 1,                           t: [ chorus ] }
-        - { name: Chorus 2,                           t: [ chorus ] }
-        - { name: Chorus 3,                           t: [ chorus ] }
+        - { name: Chorus 1 | Broken Elevator,         t: [ chorus ] }
+        - { name: Chorus 2 | Below Deck,              t: [ chorus ] }
+        - { name: Chorus 3 | I think it lost me,      t: [ chorus ] }
         - { name: Defeat the ZP-1500,                 t: [ boss ] }
 
 #endregion
@@ -831,6 +839,8 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
     - common: 
         region: { name: Track_12, requires: "|Track 12 Access|", connects_to: [ Hideout_PostGame ] }
       data:
+        - { name: Easter Egg | I'm a dog person, t: [ easter ], hint: "Attempt the special attack Steal The Show against Kale." }
+        
         - { name: Defeat Kale, t: [ boss ], victory: true }
 
 #endregion

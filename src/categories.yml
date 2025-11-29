@@ -35,3 +35,6 @@ Special Attacks:
 Post-Game Only:
   yaml_option: [ post_game ]
   hidden: true
+Easter Eggs:
+  yaml_option: [ easter_sanity ]
+  hidden: true
