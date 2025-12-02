@@ -139,6 +139,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Explode QA-1MIL,    t: [ boss ],    hint: "You've got a killer track, but every song's gotta end!" }
         
         # TODO Collectables
+        - { name: Snail | ???,                       t: [ snail ], hint: "???" }
         - { name: Armstrong Circuit | ???,           t: [ circuit, post ], hint: "???" }
 
 #endregion
@@ -170,7 +171,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Armstrong Circuit | High Tram Line,    t: [ circuit, post ],   hint: "Though the flaming door above the catwalks over Chorus 2, going to the left on the pipes, jumping across tram lines." }
         - { name: Graffiti | Robot Portrait,             t: [ graffiti, korsica, post ], hint: "Though the flaming door above the catwalks over Chorus 2, going to the right along the pipes to the area in the back." }
         - { name: "Vlog | HR Claim #324839028555180850195", t: [ vlog ],         hint: "Ride the tram cars going under the platform and arena." }
-        - { name: Snail | Fighting the Music,            t: [ snail ],           hint: "Near the vlog, find the logo-snail fighting off music notes like flies." }
+        - { name: Snail | Fighting the Music,            t: [ snail ],           hint: "Near the HR Claim vlog, find the logo-snail fighting off music notes like flies." }
         - { name: Smidge | Magnet Pull,                  t: [ smidge ],          hint: "After Chorus 2, magnet tutorial" }
         - { name: Graffiti | Production Machine,         t: [ graffiti ],        hint: "Found in a room to the left of Smidge, up some boxes." }
         - { name: Golden Kale Statue | Near Vent,        t: [ statue ],          hint: "Just after pulling yourself up by 3 magnet points." }
@@ -490,6 +491,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         # TODO Collectables
         - { name: Upgrade | Health Tank Piece 1,  t: [ health ],   hint: "???" }
         - { name: Upgrade | Life Gauge Piece 3,   t: [ life ],     hint: "???" }
+        - { name: Snail | ???,                    t: [ snail ],    hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -511,6 +513,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
       data:
         - { name: Chorus 3 | Put the Breaks On!,     t: [ chorus ],   hint: "Ugh, come on guys! Get it together! Put the breaks on that thing!" }
         - { name: Stop the L.I.F.T., t: [ achieve ],  hint: "...that was a smooth ride..." }
+      # - { name: Snail | ???,                       t: [ snail ], hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -657,7 +660,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Vlog | BL-1Z5 Display,                   t: [ vlog ],      hint: "In the lobby of the museum." }
         - { name: Vlog | BA-B00 Display,                   t: [ vlog ],      hint: "In the lobby of the museum." }
         - { name: Vlog | Reminder to Reception,            t: [ vlog ],      hint: "In the lobby of the museum." }
-        - { name: snail | Into the Mirror Within,           t: [ npc, snail ], hint: "In the dark hallway where you can find Korsica's painting, witness the logo-snail vanish into the mirror. (An animation plays when you look at it.)" }
+        - { name: Snail | Into the Mirror Within,          t: [ snail ],     hint: "In the dark hallway where you can find Korsica's painting, witness the logo-snail vanish into the mirror. (An animation plays when you look at it.)" }
         # ----- Up the Stairs ------
         - { name: Smidge | Korsica,                        t: [ smidge ],    hint: "Korsica tutorial" }
         - { name: Vlog | BRUT-1L Display,                  t: [ vlog ],      hint: "Up the steps from the lobby of the museum." }
@@ -738,6 +741,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Armstrong Circuit | Left Shark,           t: [ circuit ],  hint: "As Left Shark, on the way to the stage." }
         # On stage!
         - { name: Defeat Mimosa, t: [ boss ] }
+      # - { name: Snail | ???,                       t: [ snail ], hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -813,6 +817,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         
         # TODO Collectables
         - { name: Armstrong Circuit | ???,       t: [ circuit ],  hint: "???" }
+      # - { name: Snail | ???,                       t: [ snail ], hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
