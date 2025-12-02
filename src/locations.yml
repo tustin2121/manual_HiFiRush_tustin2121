@@ -85,6 +85,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Chorus 1 | Is he resisting?,          t: [ chorus ],                hint: "Is he resisting?" }
         - { name: His attacks sync up with the music!,  t: [ moment ] } # Unskippable bit of the tutorial
         - { name: Chorus 2 | That's the Defect!,        t: [ chorus ],                hint: "That's the defect!!" }
+        - { name: Snail | Musical Pigeons,              t: [ snail ],                 hint: "With the pigeons to the left of the entrance area, next to the fountain." }
         - { name: Smidge | Light and Heavy Attacks,     t: [ smidge ],                hint: "After Chorus 2, tutorial for heavy and light attacks" }
         # -------------------
         - { name: Chorus 3 | You looking for me?,       t: [ chorus ],                hint: "Hey! You looking for me?" }
@@ -139,7 +140,6 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Explode QA-1MIL,    t: [ boss ],    hint: "You've got a killer track, but every song's gotta end!" }
         
         # TODO Collectables
-        - { name: Snail | ???,                       t: [ snail ], hint: "???" }
         - { name: Armstrong Circuit | ???,           t: [ circuit, post ], hint: "???" }
 
 #endregion
@@ -396,6 +396,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         region: { name: Track_5, requires: "|Track 5 Access|", connects_to: [ Track_5_2A, Track_5_2B ] }
       data:
         - { name: Vlog | Defect Captured Email,          t: [ vlog ],               hint: "Return to the cell room right at the start of the Track." }
+        - { name: Snail | Playing Ball Against the Wall, t: [ snail ],              hint: "Return to the cell room right at the start of the Track. In Chai's cell." }
         - { name: Upgrade | Life Gauge Piece 1,          t: [ life ],               hint: "To the right and above the second spinning platform cylinder" }
         # ----- Main room -----
         - { name: Mission | Return the TEC-78's Comics,  t: [ npc, quest ],         hint: "Find ten drones with the tech's 'schematics'." } # Grants Life Gauge Piece
@@ -491,7 +492,6 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         # TODO Collectables
         - { name: Upgrade | Health Tank Piece 1,  t: [ health ],   hint: "???" }
         - { name: Upgrade | Life Gauge Piece 3,   t: [ life ],     hint: "???" }
-        - { name: Snail | ???,                    t: [ snail ],    hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
