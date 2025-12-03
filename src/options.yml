@@ -15,6 +15,8 @@ core:
       # defeat_track11: 1
   death_link:
     default: false
+  filler_traps: # We don't have any traps
+    hidden: true
   filler_traps:
     #Using values here let you set a 'recommended' filler_trap percentage or even a default percentage
     values:
@@ -24,18 +26,50 @@ user:
   post_game:
     type: Toggle
     description: |
-      Assume for logic purposes that you are playing on a file that has completed the 
-      main play-through. This means you can access any stage with any combination of 
-      partners, and access the Rhythm Tower.
+      When this option is on (the default), the logic will assume that you are playing
+      on a save that has completed the first play-through of the game. This means you 
+      can access any stage with any combination of partners, as well as access the
+      post-game tower modes.
       
-      NOTE: IF YOU TURN THIS OFF, YOUR RANDOMIZER MIGHT BREAK!
-      Archipelago logic assumes that a player can return to previously accessible 
+      Turning this off will adjust logic to match a first-time play-through, with linear
+      access to levels and partners. Some checks that can only be accessed post-game will
+      also be removed from the pool entirely. The game will still end at Kale, so no
+      tower floors will be added as locations either.
+      
+      NOTE: Archipelago logic assumes that a player can return to previously accessible 
       locations at any time. But Hi-Fi Rush does not allow access to previous levels 
       (or even previous checkpoints of levels you are on) until after you defeat Kale,
-      which is the victory condition for the randomizer. So if you miss a check, you 
-      may have to fudge picking up previous checks if they turn out to be important.
+      which is the victory condition for the randomizer. So if you turn this option off, 
+      be prepared to cheat picking up missed checks if they turn out to be important.
     default: true
+    aliases:
+      post: true
+      first: false
     hidden: false
+    group: Main Location Options 
+  scoring_method:
+    type: Choice
+    description: |
+      The baseline checks of the game.
+      'chorus' adds checks beating Choruses (${chorus#} locations)
+      'levels' adds checks for completing levels (${level#} locations)
+      'both' adds both (${chkpt#} locations; there's some overlap)
+    values:
+      both: 0
+      chorus: 1
+      levels: 2
+    default: 0
+    allow_custom_value: false
+    group: Main Location Options 
+  moment_sanity:
+    type: Toggle
+    description: |
+      Adds checks for various (usually unskippable) cutscenes and milestones (${moment} locations).
+    default: true
+    group: Main Location Options 
+    
+  
+  #----------------------------------------------
   
   summon_rando:
     type: Toggle
@@ -76,20 +110,9 @@ user:
       in your game by simply limiting what chips you can equip. Chip levels are progressive.
     default: false
     group: Item Pool Options 
+    
+  #----------------------------------------------
   
-  scoring_sanity:
-    type: Choice
-    description: |
-      'chorus' adds checks beating Choruses (${chorus#} locations)
-      'achievements' adds checks for completing levels (${archive#} locations)
-      'both' adds both (${chkpt#} locations; there's some overlap)
-    values:
-      both: 0
-      chorus: 1
-      achievements: 2
-    default: 0
-    allow_custom_value: false
-    group: Sanity Options 
   upgrade_sanity:
     type: Toggle
     description: |
@@ -99,7 +122,7 @@ user:
       Note: These items are permanent collectables. If you've picked them up before 
       in your save file, they won't be present in the level.
     default: false
-    group: Sanity Options 
+    group: Permanent Collectables 
   circuit_sanity:
     type: Toggle
     description: |
@@ -108,26 +131,56 @@ user:
       Note: These items are permanent collectables. If you've picked them up before 
       in your save file, they won't be present in the level.
     default: false
-    group: Sanity Options 
+    group: Permanent Collectables 
+  comic_sanity:
+    type: Toggle
+    description: |
+      Grant checks for picking up moves / Comic Books in the world (${comic} locations)
+      
+      Note: These items are permanent collectables. If you've picked them up before 
+      in your save file, they won't be present in the level.
+    default: false
+    group: Permanent Collectables 
+  achievement_sanity:
+    type: Range
+    description: |
+      Grant checks for completing achievements on the Wall-of-Fame. The following options are available:
+      0 - No achievements are required.
+      1 - (${achieve-1} checks) Level 1 or otherwise easy achievements
+      2 - (${achieve-2} checks) Level 2 achievements, those able to be completed by the end of a single play-through
+      3 - (${achieve-3} checks) Level 3 achievements, completable with several play-throughs
+      4 - (${achieve-4} checks) All achievements
+      
+      Do not set this higher than 2 unless you're doing an async. 
+      (Also, with the "Defeat Kale" goal, anything higher than 2 is moot anyway.)
+      
+      Note: As these are permanent collectables, they can only be picked up when doing
+      a first play-through and not a post-game run.
+    range_start: 0
+    range_end: 4
+    default: 0
+    group: Permanent Collectables 
+  
+  #----------------------------------------------
   
   vlog_sanity:
     type: Toggle
     description: |
       Grant checks for reading PDAs (${vlog} locations)
     default: false
-    group: Sanity Options 
+    group: Static Collectables 
   graffiti_sanity:
     type: Toggle
     description: |
       Grant checks for finding Graffiti (${graffiti} locations)
     default: false
-    group: Sanity Options 
+    group: Static Collectables 
   statue_sanity:
     type: Toggle
     description: |
       Grant checks for destroying golden statues of Kale (${statue} locations)
     default: false
-    group: Sanity Options 
+    group: Static Collectables 
   announcement_sanity:
     type: Toggle
     description: |
@@ -135,40 +188,21 @@ user:
       If you hear a disembodied announcement at any point during a level, there's probably a flying 
       billboard nearby broadcasting it. Shooting the bot will end the announcement.
     default: false
-    group: Sanity Options 
+    group: Static Collectables 
   vending_sanity:
     type: Toggle
     description: |
       Grant checks for breaking vending machines (${vend} locations)
     default: false
-    group: Sanity Options 
-    
-  drone_sanity:
-    type: Toggle
-    description: |
-      Grant checks for finding the drone on Track 5 (${drone} locations)
-    default: false
-    group: Sanity Options 
-  party_sanity:
-    type: Toggle
-    description: |
-      Grant extra free checks at the start of Track 8 (${npc8} locations)
-      This is mainly because that opening area is big and interesting and it's a
-      cool place to add checks prior to needing Korsica to continue.
-    default: true
-    group: Sanity Options 
-  easter_sanity:
-    type: Toggle
-    description: |
-      Include checks for activating easter eggs in the game (${easter} location).
-    default: false
-    group: Sanity Options 
+    group: Static Collectables 
+  
+  #----------------------------------------------
   
   robo_sanity:
     type: Choice
     description: |
       'smidge' adds checks for talking to Smidge (${smidge} locations)
-      'others' additionally adds checks for interacting with various incidental NPCs (${robo1} locations total)
+      'others' additionally adds checks for interacting with various incidental / recurring NPCs (${robo1} locations total)
       'all' adds checks for interacting with all NPCs, not just interesting ones (${robo2} locations total)
       'none' does not add these checks
     values:
@@ -176,16 +210,16 @@ user:
       smidge: 1
       others: 2
       all: 3
-    default: 0
+    default: 1
     allow_custom_value: false
-    group: Sanity Options 
+    group: Static Collectables 
   scrub_sanity:
     type: Toggle
     description: |
       Why would you want to hurt those poor SCR-UB bots? They're only doing their jobs!
       But if you feel like murdering workers, this option adds ${scrub} locations.
     default: false
-    group: Sanity Options 
+    group: Static Collectables 
   door_sanity:
     type: Choice
     description: |
@@ -198,7 +232,44 @@ user:
       beat: 2
     default: 0
     allow_custom_value: false
-    group: Sanity Options 
+    group: Static Collectables 
+  
+  #----------------------------------------------
+    
+  drone_sanity:
+    type: Toggle
+    description: |
+      Grant checks for finding the comic drones on Track 5 (${drone} locations)
+    default: false
+    group: Level-Specific Sanity 
+  party_sanity:
+    type: Toggle
+    description: |
+      Grant extra free checks at the start of Track 8 (${npc8} locations)
+      This is mainly because that opening area is big and interesting and it's a cool place to 
+      add checks prior to needing Korsica to continue. Overlaps with robo_sanity checks a lot.
+    default: true
+    group: Level-Specific Sanity 
+  
+  #----------------------------------------------
+    
+  easter_sanity:
+    type: Toggle
+    description: |
+      Include checks for activating easter eggs in the game.
+      Adds ${easter-post} locations when post_game is true.
+      Adds ${easter-first} locations when post_game is false.
+    default: false
+    group: Esoterica Sanity
+  snail_sanity:
+    type: Toggle
+    description: |
+      Include checks for finding Tango-Chan (the snail that looks like the logo for
+      Tango Gameworks) hidden once in almost every level (${snail} locations).
+    default: false
+    group: Esoterica Sanity
+  
+  #----------------------------------------------
   
   tower_sanity:
     type: Range

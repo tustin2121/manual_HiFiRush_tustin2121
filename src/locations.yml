@@ -3,39 +3,55 @@
 %SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.regions.schema.json
 %SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.locations.schema.json
 ---
-smidge:    { requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ], c: [ smidge, robo1, robo2 ] } # Recurring character Smidge
-noir:      { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ noir,   robo1, robo2 ] } # Recurring characters SEB-AAA and JSF-001
-tan:       { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ tan,    robo1, robo2 ] } # Recurring character Tanning SBR-001
-npc:       { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ npc,    robo1, robo2 ] } # Interesting NPC interactions (usually hitting)
-npcB:      { requires: "{YamlCompare(robo_sanity >= 3)}", category: [ NPC ], c: [ npcB,   robo2 ] } # Boring NPCs, simply talkable
-npc_8:     { requires: "({YamlCompare(robo_sanity >= 2)} or {YamlEnabled(party_sanity)})", category: [ NPC, Party - Track 8 ], c: [ npc_8, npc,  robo1, robo2 ] } # NPCs at the start of Track 8, for added checks
-npcB8:     { requires: "({YamlCompare(robo_sanity >= 3)} or {YamlEnabled(party_sanity)})", category: [ NPC, Party - Track 8 ], c: [ npcB8, npcB, robo2 ] } # NPCs at the start of Track 8, for added checks
-scrub:     { requires: "{YamlEnabled(scrub_sanity)}", category: [ SCR-UB ] }
-life:      { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, life ] }
-health:    { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, health ] }
-reverb:    { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, reverb ] }
-circuit:   { requires: "{YamlEnabled(circuit_sanity)}", category: [ Circuit ] }
-vlog:      { requires: "{YamlEnabled(vlog_sanity)}", category: [ Vlogs ] }
-door:      { requires: "{YamlCompare(door_sanity >= 1)}", category: [ Doors ] }
-spectra:   { requires: "{YamlCompare(door_sanity >= 2)}", category: [ Doors ], t: [ post ] }
-graffiti:  { requires: "{YamlEnabled(graffiti_sanity)}", category: [ Graffiti ] }
-statue:    { requires: "{YamlEnabled(statue_sanity)}", category: [ Statues ] }
-board:     { requires: "{YamlEnabled(announcement_sanity)} and |Korsica Summon|", category: [ Announcement Drones ] }
-vend:      { requires: "{YamlEnabled(vending_sanity)}", category: [ Vending Machine ] }
-drone:     { requires: "{YamlEnabled(drone_sanity)}", category: [ Drones - Track 5 ] }
-easter:    { requires: "{YamlEnabled(easter_sanity)}", category: [ Easter Eggs ]}
-post:      { requires: "{YamlEnabled(post_game)}" }
-snail:     {}
-first:     { requires: "{YamlDisabled(post_game)}" }
-pepper:    { requires: "|Peppermint Summon|" }
-macaron:   { requires: "|Macaron Summon|" }
-korsica:   { requires: "|Korsica Summon|" }
-moment:    { requires: "{YamlEnabled(moment_sanity)}", category: [ Moment ] } # Like cut scenes and milestones in the level that don't fall under the below
-chorus:    { requires: "{YamlCompare(scoring_sanity != 2)}", category: [ Chorus ], c: [ chorus#, chkpt# ] }
-achieve:   { requires: "{YamlCompare(scoring_sanity != 1)}", category: [ Achievement ], c: [ achieve#, chkpt# ] }
-boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ] }
+# NPCs
+smidge:       { requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ], c: [ smidge, robo1, robo2 ] } # Recurring character Smidge
+noir:         { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ noir,   robo1, robo2 ] } # Recurring characters SEB-AAA and JSF-001
+tan:          { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ tan,    robo1, robo2 ] } # Recurring character Tanning SBR-001
+npc:          { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ npc,    robo1, robo2 ] } # Interesting NPC interactions (usually hitting)
+npcB:         { requires: "{YamlCompare(robo_sanity >= 3)}", category: [ NPC ], c: [ npcB,          robo2 ] } # Boring NPCs, simply talkable
+npc_8:        { requires: "({YamlCompare(robo_sanity >= 2)} or {YamlEnabled(party_sanity)})", category: [ NPC, Party - Track 8 ], c: [ npc_8, npc,  robo1, robo2 ] } # NPCs at the start of Track 8, for added checks
+npcB8:        { requires: "({YamlCompare(robo_sanity >= 3)} or {YamlEnabled(party_sanity)})", category: [ NPC, Party - Track 8 ], c: [ npcB8, npcB, robo2 ] } # NPCs at the start of Track 8, for added checks
+scrub:        { requires: "{YamlEnabled(scrub_sanity)}", category: [ SCR-UB ] }
+# Permanent Collectables
+life:         { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, life ] }
+health:       { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, health ] }
+reverb:       { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, reverb ] }
+circuit:      { requires: "{YamlEnabled(circuit_sanity)}", category: [ Circuit ] }
+comic:        { requires: "{YamlEnabled(comic_sanity)}", category: [ Comics ] }
+achieve:      { requires: "{YamlCompare(achievement_sanity)} and YamlDisabled(post_game)}", category: [ Achievement ] }
+# Static Collectables
+vlog:         { requires: "{YamlEnabled(vlog_sanity)}", category: [ Vlogs ] }
+door:         { requires: "{YamlCompare(door_sanity >= 1)}", category: [ Doors ] }
+spectra:      { requires: "{YamlCompare(door_sanity >= 2)}", category: [ Doors ], t: [ post ] }
+graffiti:     { requires: "{YamlEnabled(graffiti_sanity)}", category: [ Graffiti ] }
+statue:       { requires: "{YamlEnabled(statue_sanity)}", category: [ Statues ] }
+board:        { requires: "{YamlEnabled(announcement_sanity)} and |Peppermint Summon|", category: [ Announcement Drones ] }
+vend:         { requires: "{YamlEnabled(vending_sanity)}", category: [ Vending Machine ] }
+drone:        { requires: "{YamlEnabled(drone_sanity)}", category: [ Drones - Track 5 ] }
+moment:       { requires: "{YamlEnabled(moment_sanity)}", category: [ Moment ] } # Like cut scenes and milestones in the level that don't fall under the below
+# Esoterica 
+easter:       { requires: "{YamlEnabled(easter_sanity)}", category: [ Easter Eggs ], c: [ easter-first, easter-post ] }
+easter-first: { requires: "{YamlEnabled(easter_sanity)} and YamlDisabled(post_game)}", category: [ Easter Eggs ], c: [ first ] }
+easter-post:  { requires: "{YamlEnabled(easter_sanity)} and YamlEnabled(post_game)}",  category: [ Easter Eggs ], c: [ post ] }
+snail:        { requires: "{YamlEnabled(snail_sanity)}", category: [ Snail ] }
+# Level Logic
+post:         { requires: "{YamlEnabled(post_game)}" }
+first:        { requires: "{YamlDisabled(post_game)}" }
+pepper:       { requires: "|Peppermint Summon|" }
+macaron:      { requires: "|Macaron Summon|" }
+korsica:      { requires: "|Korsica Summon|" }
+chorus:       { requires: "{YamlCompare(scoring_method != 2)}", category: [ Chorus ], c: [ chorus#, chkpt# ] }
+level:        { requires: "{YamlCompare(scoring_method != 1)}", category: [ Level ], c: [ level#, chkpt# ] }
+boss:         { category: [ Chorus, Level ], c: [ chorus#, level#, chkpt# ] }
+
+achieve-1:    { requires: "{YamlCompare(achievement_sanity >= 1)} and YamlDisabled(post_game)}", category: [ Achievement ], c: [ achieve-1, achieve-2, achieve-3, achieve-4 ] }
+achieve-2:    { requires: "{YamlCompare(achievement_sanity >= 2)} and YamlDisabled(post_game)}", category: [ Achievement ], c: [ achieve-2, achieve-3, achieve-4 ] }
+achieve-3:    { requires: "{YamlCompare(achievement_sanity >= 3)} and YamlDisabled(post_game)}", category: [ Achievement ], c: [ achieve-3, achieve-4 ] }
+achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabled(post_game)}", category: [ Achievement ], c: [ achieve-4 ] }
 
 ---
+#=====================================================================================================================#
+# region - Track List
 - common: 
     region:
       name: Hideout_PostGame
@@ -308,8 +324,8 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Upgrade | Life Gauge Piece 3,           t: [ life ],     hint: "After the rail after Test Chamber 03" }
         - { name: Chorus 6 | Mister Chai,                 t: [ chorus ],   hint: "That's MISTER Chai to you!" }
         # Supposed to lose fight
-        - { name: "Easter Egg | Well, this messes everything up...",   t: [ easter, post ], hint: "Defeat the undefeatable."}
-        - { name: BLORF,                                  t: [ achieve ] }
+        - { name: "Easter Egg | Well, this messes everything up...",   t: [ easter-post ], hint: "Defeat the undefeatable."}
+        - { name: BLORF,                                  t: [ level ] }
         
         # TODO Collectables
         - { name: Upgrade | Life Gauge Piece 4, t: [ life ],    hint: "???" }
@@ -376,11 +392,11 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Upgrade | Life Gauge Piece 3,             t: [ life ],               hint: "Inside the Volcano AR section" }
         - { name: Chorus 4 | Where are my enemies?!,        t: [ chorus ],             hint: "Chai, this is amazing! Look at that budget drain!" }
         - { name: Chorus 5 | No!! The Gift Basket!,         t: [ chorus ],             hint: "NOO!! GIFT BASKET!!" }
-        - { name: Defund Zanzo,                             t: [ achieve ],            hint: "UNRESTRICTED CREATIVE FREEDOM!!!!" }
+        - { name: Defund Zanzo,                             t: [ moment ],             hint: "UNRESTRICTED CREATIVE FREEDOM!!!!" }
         # Cornered by Kale, Escape Sequence GO!!
         - { name: Get Back in At Least Two Pieces!,   t: [ moment ] }
         - { name: "Chorus 6 | All Security, Report!", t: [ chorus ],    hint: "All security, report!" }
-        - { name: Concussion by Korsica,              t: [ achieve ] }
+        - { name: Concussion by Korsica,              t: [ level ] }
         
         # TODO Collectables
         - { name: Armstrong Circuit | ???,           t: [ circuit ],  hint: "???" }
@@ -502,6 +518,8 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
     - common: 
         region: { name: Track_6, requires: "|Track 6 Access|", connects_to: [ Track_6_2 ] }
       data:
+        - { name: Easter Egg | It'll break my immersion!, t: [ easter-first ], hint: "Take a break from the action, then ask Peppermint why you're at the hideout..." }
+        
         - { name: Armstrong Circuit | Elevator,      t: [ circuit ],  hint: "Turn around at the beginning of the level, and jump over the elevator controls. It's by the back wall." }
         - { name: Graffiti | L.I.F.T,                t: [ graffiti ], hint: "Once you reach the shop, go left." }
         - { name: Vlog | LIFT Construction Heads-Up, t: [ vlog ],     hint: "On the route to the L.I.F.T." }
@@ -512,7 +530,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         region: { name: Track_6_2, requires: "|Macaron Summon|", connects_to: [ Track_7 ] }
       data:
         - { name: Chorus 3 | Put the Breaks On!,     t: [ chorus ],   hint: "Ugh, come on guys! Get it together! Put the breaks on that thing!" }
-        - { name: Stop the L.I.F.T., t: [ achieve ],  hint: "...that was a smooth ride..." }
+        - { name: Stop the L.I.F.T., t: [ level ],  hint: "...that was a smooth ride..." }
       # - { name: Snail | ???,                       t: [ snail ], hint: "???" }
 
 #endregion
@@ -524,6 +542,8 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
     - common: 
         region: { name: Track_7, requires: "|Track 7 Access|", connects_to: [ Track_7_2 ] }
       data:
+        - { name: Easter Egg | Midway through a prison escape!, t: [ easter-first ], hint: "Take a break from the action, then have Chai muse on things on the couch." }
+        
         - { name: Chorus 1 | Going In Loud!,              t: [ chorus ] }
         - { name: Vlog | Platform Construction Note,      t: [ vlog ],        hint: "After Chorus 1" }
         - { name: Armstrong Circuit | L.I.F.T. Platform,  t: [ circuit ],     hint: "Behind the Vlog on the station platform." }
@@ -580,7 +600,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Golden Kale Statue | Floor 40,          t: [ statue ],              hint: "After Chorus 7, on the balcony to the left." }
         - { name: Vlog | Data Node Dissatisfaction Mail,  t: [ vlog, macaron ],       hint: "After Chorus 7, beyond the Z-Door, in the back." }
         - { name: NPC | Help the TEC Get Some Sleep,      t: [ npc, macaron ],        hint: "After Chorus 7, beyond the Z-Door, clear out the vacuum bots in the break room to the right, so the TEC-78 can take a nap." }
-        - { name: SCR-UB | Break Room 1,                  t: [ scrub ] }
+        - { name: SCR-UB | Break Room 1,                  t: [ scrub ] } # TODO: Check if the NPC check satisfies by just driving all the SCRUBs out of the room
         - { name: SCR-UB | Break Room 2,                  t: [ scrub ] }
         - { name: SCR-UB | Break Room 3,                  t: [ scrub ] }
         - { name: SCR-UB | Break Room 4,                  t: [ scrub ] }
@@ -693,7 +713,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         # ----- Huge Display Room -----
         - { name: Vlog | Display Complaints,         t: [ vlog ],      hint: "In the big display room, to the right." }
         - { name: Chorus 7 | In the Rafters,         t: [ chorus ],    hint: "A notice to all employees: The rumors about the demise of department heads has been greatly exaggerated." }
-        - { name: PA | Chorus 7,     t: [ board ],     hint: "Flying around Chorus 7." }
+        - { name: PA | Greatly Exaggerated,          t: [ board ],     hint: "Flying around Chorus 7." }
         - { name: Armstrong Circuit | Chorus 7,      t: [ circuit ],   hint: "After Chorus 7, on the scaffolding to the right." }
         - { name: Upgrade | Life Gauge Piece 2,      t: [ life ],      hint: "After punching out the Z-Shield, jump down onto the shield." }
         - { name: NPC | Afraid of Heights,           t: [ npcB ],      hint: "After punching out the Z-Shield, to the right of the path forward." }
@@ -716,7 +736,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Chorus 9 | Show's Over!,           t: [ chorus ],    hint: "Some pests just don't want to go away!" }
         - { name: Golden Kale Statue | Final Hallway,t: [ statue ],    hint: "In the hallway behind you after dropping down from Chorus 9." }
         # -------------------
-        - { name: Tear Down a Cardboard Kale,        t: [ achieve ],   hint: "Peppermint does this for you." }
+        - { name: Tear Down a Cardboard Kale,        t: [ level ],     hint: "Peppermint does this for you." }
         
         # TODO Collectables
         - { name: Upgrade | Life Gauge Piece 4,      t: [ life ],      hint: "???" }
@@ -731,6 +751,8 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
     - common: 
         region: { name: Track_9, requires: "|Track 9 Access|", connects_to: [ Track_10 ] }
       data:
+        - { name: Easter Egg | What if we retcon this?, t: [ easter-first ], hint: "Take a break from the action, then ask Peppermint why you're at the hideout..." }
+        
         - { name: Graffiti | Mimosa,                        t: [ graffiti ], hint: "At the very beginning of the track, turn around. It's on the wall." }
         - { name: Vending Machine | Backstage,              t: [ vend ],     hint: "In the hall leading to Mimosa's dressing room." }
         - { name: Armstrong Circuit | Backstage,            t: [ circuit ],  hint: "In the hall leading to Mimosa's dressing room, under the raised floor." }
@@ -774,6 +796,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         region: { name: Track_10_2, requires: "|Macaron Summon|", connects_to: [ Track_10_3 ] }
       data: 
         - { name: Upgrade | Life Gauge Piece 1,  t: [ life ],     hint: "After the Z-door and the floor opens up, instead of going ahead, double back into the maze of pipes." }
+        - { name: Snail | Back from the Mirror,  t: [ snail ],    hint: "After the Z-door and the floor opens up, instead of going ahead, double back into the maze of pipes." }
     - common:
         region: { name: Track_10_3, requires: "|Korsica Summon| and |Peppermint Summon|", connects_to: [ Track_11 ] }
       data: 
@@ -783,7 +806,7 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         # ----- The Atrium -----
         - { name: I think I found the Atrium,   t: [ moment ]}
         - { name: Vlog | Atrium State Mail,     t: [ vlog ],       hint: "On the atrium entrance balcony." }
-        - { name: PA | Balcony, t: [ board ],      hint: "Visible from the atrium entrance balcony." }
+        - { name: PA | Please Use the Doors,    t: [ board ],      hint: "Visible from the atrium entrance balcony." }
         - { name: Armstrong Circuit | Balcony,  t: [ circuit ],    hint: "Above the atrium entrance balcony, taking a path on the right." }
         - { name: Graffiti | Wrench,            t: [ graffiti ],   hint: "Above the atrium entrance balcony, taking a path on the right." }
         - { name: Chest | Life Gauge Piece 2,   t: [ health, treasure ],  hint: "Inside the treasure chest robot, above the atrium entrance balcony, taking a path on the right." }
@@ -793,18 +816,19 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: "Chorus 7 | Quote, Got This",   t: [ chorus ],     hint: "Mister Chai has assured us he has, quote, got this, end quote." }
         - { name: Chorus 8 | Quiet Please,        t: [ chorus ],     hint: "Somehow not disturbing the workers on the sides." }
         # "Do what you need to do to get him! ....I'll expense it!"
-        - { name: Armstrong Circuit | Expense It,     t: [ circuit ],    hint: "Behind you after the rail." }
-        - { name: Golden Kale Statue | Office Block,  t: [ statue ],     hint: "In the next office cube after the rail." }
-        - { name: Vlog | Budget Challenge Email,      t: [ vlog ],       hint: "In the next office cube after the rail." }
-        - { name: Upgrade | Life Gauge Piece 3,       t: [ life ],       hint: "Outside the next office cube after the rail." }
-        - { name: PA | Office Block,  t: [ board ],      hint: "Flying around above the office cube after the rail." }
-        - { name: SCR-UB | Office Block,              t: [ scrub ],      hint: "Hit by the Z-Wall explosion"}
-        - { name: Upgrade | Health Tank Piece 1,      t: [ health ],     hint: "In the second office cube after the rail, in the back room high up on the shelf." }
-        - { name: Armstrong Circuit | Office Block,   t: [ circuit ],    hint: "In the second office cube after the rail, in the corner." }
-        - { name: Vending Machine | Water Cooler,     t: [ vend ],       hint: "In the second office cube after the rail." }
-        - { name: Vlog | Hoodie Preorder Email,       t: [ vlog ],       hint: "In the second office cube after the rail." }
-        - { name: Vlog | Vandelay Handbook Note,      t: [ vlog ],       hint: "Above the second office cube after the rail." }
-        - { name: Graffiti | Roquefort,               t: [ graffiti ],   hint: "Behind the Handbook Note, jump off the cube onto the isolated balcony." }
+        - { name: Armstrong Circuit | Expense It,         t: [ circuit ],    hint: "Behind you after the rail." }
+        - { name: NPC | SEB-AAA and JSF-001,              t: [ noir ],       hint: "After the rail, jump off the side of the cube you land on and onto a balcony." }
+        - { name: Golden Kale Statue | Office Block,      t: [ statue ],     hint: "In the next office cube after the rail." }
+        - { name: Vlog | Budget Challenge Email,          t: [ vlog ],       hint: "In the next office cube after the rail." }
+        - { name: Upgrade | Life Gauge Piece 3,           t: [ life ],       hint: "Outside the next office cube after the rail." }
+        - { name: PA | We apologize for the explosions,   t: [ board ],      hint: "Flying around above the office cube after the rail." }
+        - { name: SCR-UB | Office Block,                  t: [ scrub ],      hint: "Hit by the Z-Wall explosion"}
+        - { name: Upgrade | Health Tank Piece 1,          t: [ health ],     hint: "In the second office cube after the rail, in the back room high up on the shelf." }
+        - { name: Armstrong Circuit | Office Block,       t: [ circuit ],    hint: "In the second office cube after the rail, in the corner." }
+        - { name: Vending Machine | Water Cooler,         t: [ vend ],       hint: "In the second office cube after the rail." }
+        - { name: Vlog | Hoodie Preorder Email,           t: [ vlog ],       hint: "In the second office cube after the rail." }
+        - { name: Vlog | Vandelay Handbook Note,          t: [ vlog ],       hint: "Above the second office cube after the rail." }
+        - { name: Graffiti | Roquefort,                   t: [ graffiti ],   hint: "Behind the Handbook Note, jump off the cube onto the isolated balcony." }
         # -------------------
         - { name: Chorus 9 | OH COME ON!!,       t: [ chorus ] }
         - { name: "Take This, Statue Kale!",     t: [ moment ] }
@@ -817,7 +841,6 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         
         # TODO Collectables
         - { name: Armstrong Circuit | ???,       t: [ circuit ],  hint: "???" }
-      # - { name: Snail | ???,                       t: [ snail ], hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -829,10 +852,10 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         region: { name: Track_11, requires: "|Track 11 Access|", connects_to: [ Track_12 ] }
       data:
         # Easter Egg: During first play-through, close the game right after starting Track 11 (elevator ride up)
-        - { name:  Easter Egg | Picked a bad time to take a break,    t: [ easter, first ], hint: "Make the game angry at you for quitting, then talk to Macaron after reloading." }
-        - { name:  Easter Egg | Peppermint should be pissed,          t: [ easter, first ], hint: "Make the game angry at you for quitting, then talk to Peppermint after reloading." }
-        - { name: "Easter Egg | Oh, there you are!",                  t: [ easter, first ], hint: "Make the game angry at you for quitting, then talk to CNMN after reloading." }
-        - { name:  Easter Egg | Chai addresses the Player,            t: [ easter, first ], hint: "Make the game angry at you for quitting, then talk to Korsica after reloading." }
+        - { name:  Easter Egg | Picked a bad time to take a break,    t: [ easter-first ], hint: "Make the game angry at you for quitting, then talk to Macaron after reloading." }
+        - { name:  Easter Egg | Peppermint should be pissed,          t: [ easter-first ], hint: "Make the game angry at you for quitting, then talk to Peppermint after reloading." }
+        - { name: "Easter Egg | Oh, there you are!",                  t: [ easter-first ], hint: "Make the game angry at you for quitting, then talk to CNMN after reloading." }
+        - { name:  Easter Egg | Chai addresses the Player,            t: [ easter-first ], hint: "Make the game angry at you for quitting, then talk to Korsica after reloading." }
         
         - { name: Synchronize a Harmonic Force Field, t: [ chorus ] }
         - { name: Chorus 1 | Broken Elevator,         t: [ chorus ] }
@@ -854,6 +877,11 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
         - { name: Defeat Kale, t: [ boss ], victory: true }
 
 #endregion
+#---------------------------------------------------------------------------------------------------------------------#
+
+#endregion
+#=====================================================================================================================#
+# region - Post Game Towers
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Rhythm Tower
 - common: 
@@ -973,3 +1001,159 @@ boss:      { category: [ Chorus, Achievement ], c: [ chorus#, achieve#, chkpt# ]
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
+#endregion
+#=====================================================================================================================#
+#region - Wall of Fame
+
+- common: { name: Achievement, category: [ 30. Wall of Fame ] }
+  data:
+    # Battle
+    - { name: Take 'em All Out! Lvl.1,                 t: [ achieve-1 ],    hint: "Defeat (150) enemies."}
+    - { name: Take 'em All Out! Lvl.2,                 t: [ achieve-2 ],    hint: "Defeat (500) enemies."}
+    - { name: Take 'em All Out! Lvl.3,                 t: [ achieve-3 ],    hint: "Defeat (1,000) enemies."}
+    - { name: Barrier Breaker! Lvl.1,                  t: [ achieve-1 ],    hint: "Destroy (30) enemy barriers."}
+    - { name: Barrier Breaker! Lvl.2,                  t: [ achieve-2 ],    hint: "Destroy (100) enemy barriers."}
+    - { name: De-Shielding! Lvl. 1,                    t: [ achieve-1 ],    hint: "Destroy (25) enemies' Z-Shielding with Macaron."}
+    - { name: De-Shielding! Lvl. 2,                    t: [ achieve-2 ],    hint: "Destroy (60) enemies' Z-Shielding with Macaron."}
+    - { name: Deflector Lvl.1,                         t: [ achieve-1 ],    hint: "Successfully parry an attack (75 times)."}
+    - { name: Deflector Lvl.2,                         t: [ achieve-2 ],    hint: "Successfully parry an attack (750 times)."}
+    - { name: Deflector Lvl.3,                         t: [ achieve-3 ],    hint: "Successfully parry an attack (1,500 times)."}
+    - { name: In the Right Direction Lvl.1,            t: [ achieve-1 ],    hint: "Pull off a Directional Parry."}
+    - { name: In the Right Direction Lvl.2,            t: [ achieve-2 ],    hint: "Pull off a Directional Parry (50 times)."}
+    - { name: In the Right Direction Lvl.3,            t: [ achieve-3 ],    hint: "Pull off a Directional Parry (120 times)."}
+    - { name: Release that energy! Lvl.1,              t: [ achieve-1 ],    hint: "Land a Special Attack during battle. (15 times)"}
+    - { name: Release that energy! Lvl.2,              t: [ achieve-2 ],    hint: "Land a Special Attack during battle. (50 times)"}
+    - { name: Release that energy! Lvl.3,              t: [ achieve-3 ],    hint: "Land a Special Attack during battle. (150 times)"}
+    - { name: A Little Help From My Friends Lvl.1,     t: [ achieve-1 ],    hint: "Call in any Partner for an attack in battle. (100 times)"}
+    - { name: A Little Help From My Friends Lvl.2,     t: [ achieve-2 ],    hint: "Call in any Partner for an attack in battle. (600 times)"}
+    - { name: A Little Help From My Friends Lvl.3,     t: [ achieve-3 ],    hint: "Call in any Partner for an attack in battle. (900 times)"}
+    - { name: A Little Help From My Friends Lvl.4,     t: [ achieve-4 ],    hint: "Call in any Partner for an attack in battle. (1,600 times)"}
+    
+    - { name: Home Run King,                           t: [ achieve-1 ],    hint: ""}
+    - { name: My First Aerial Combo,                   t: [ achieve-1 ],    hint: ""}
+    - { name: Air Rest Combo,                          t: [ achieve-1 ],    hint: ""}
+    - { name: Magnet Combo,                            t: [ achieve-1 ],    hint: ""}
+    - { name: Jam Combo Link,                          t: [ achieve-2 ],    hint: ""}
+    - { name: Double Team Jam Combo Link,              t: [ achieve-2 ],    hint: ""}
+    - { name: And the Winner is...,                    t: [ achieve-3 ],    hint: "Clear (200) battles."}
+    
+    - { name: Nailed it! Lvl.1,                        t: [ achieve-1 ],    hint: "Land a Beat Hit."}
+    - { name: Nailed it! Lvl.2,                        t: [ achieve-2 ],    hint: "Land a Beat Hit (500 times)."}
+    - { name: Nailed it! Lvl.3,                        t: [ achieve-3 ],    hint: "Land a Beat Hit (1,500 times)."}
+    - { name: Always in Rhythm Lvl.1,                  t: [ achieve-1 ],    hint: "Achieve a final battle rank of S (15 times)."}
+    - { name: Always in Rhythm Lvl.2,                  t: [ achieve-2 ],    hint: "Achieve a final battle rank of S (40 times)."}
+    - { name: Always in Rhythm Lvl.3,                  t: [ achieve-3 ],    hint: "Achieve a final battle rank of S (80 times)."}
+    - { name: Stunning! Lvl.1,                         t: [ achieve-1 ],    hint: "Break (50) enemies' Stun Gauges"}
+    - { name: Stunning! Lvl.2,                         t: [ achieve-2 ],    hint: "Break (500) enemies' Stun Gauges"}
+    - { name: Stunning! Lvl.3,                         t: [ achieve-3 ],    hint: "Break (1,000) enemies' Stun Gauges"}
+    - { name: A Mighty Wind Lvl.1,                     t: [ achieve-1 ],    hint: "Put out (15) fires with Korsica"}
+    - { name: A Mighty Wind Lvl.2,                     t: [ achieve-2 ],    hint: "Put out (30) fires with Korsica"}
+    - { name: A Mighty Wind Lvl.3,                     t: [ achieve-3 ],    hint: "Put out (75) fires with Korsica"}
+    - { name: Where Am I? Lvl.1,                       t: [ achieve-1 ],    hint: "Disorient (15) enemies with Korsica's Partner Attack"}
+    - { name: Where Am I? Lvl.2,                       t: [ achieve-2 ],    hint: "Disorient (30) enemies with Korsica's Partner Attack"}
+    - { name: Where Am I? Lvl.3,                       t: [ achieve-3 ],    hint: "Disorient (80) enemies with Korsica's Partner Attack"}
+    - { name: Aerial Raving! Lvl.1,                    t: [ achieve-1 ],    hint: "Achieve an Aerial Rave bonus in Combat (25 times)."}
+    - { name: Aerial Raving! Lvl.2,                    t: [ achieve-2 ],    hint: "Achieve an Aerial Rave bonus in Combat (200 times)."}
+    - { name: Aerial Raving! Lvl.3,                    t: [ achieve-3 ],    hint: "Achieve an Aerial Rave bonus in Combat (700 times)."}
+    - { name: We're Jammin' Lvl.1,                     t: [ achieve-1 ],    hint: "Score a Jam Combo bonus in battle. (15 times)"}
+    - { name: We're Jammin' Lvl.2,                     t: [ achieve-2 ],    hint: "Score a Jam Combo bonus in battle. (50 times)"}
+    - { name: We're Jammin' Lvl.3,                     t: [ achieve-3 ],    hint: "Score a Jam Combo bonus in battle. (200 times)"}
+    - { name: More than necessary Lvl.1,               t: [ achieve-1 ],    hint: "Score an Overkill Bonus in battle. (15 times)"}
+    - { name: More than necessary Lvl.2,               t: [ achieve-2 ],    hint: "Score an Overkill Bonus in battle. (75 times)"}
+    - { name: More than necessary Lvl.3,               t: [ achieve-3 ],    hint: "Score an Overkill Bonus in battle. (150 times)"}
+    - { name: Law of Attraction Lvl.1,                 t: [ achieve-1 ],    hint: "Score a Magnet Link bonus in battle. (50 times)"}
+    - { name: Law of Attraction Lvl.2,                 t: [ achieve-2 ],    hint: "Score a Magnet Link bonus in battle. (150 times)"}
+    - { name: Law of Attraction Lvl.3,                 t: [ achieve-3 ],    hint: "Score a Magnet Link bonus in battle. (300 times)"}
+    - { name: Combo Pro Lvl.1,                         t: [ achieve-1 ],    hint: "Achieve a 50 Hit combo bonus in battle. (5 times)"}
+    - { name: Combo Pro Lvl.2,                         t: [ achieve-2 ],    hint: "Achieve a 50 Hit combo bonus in battle. (50 times)"}
+    - { name: Combo Pro Lvl.3,                         t: [ achieve-3 ],    hint: "Achieve a 50 Hit combo bonus in battle. (200 times)"}
+    - { name: Combo Master Lvl. 1,                     t: [ achieve-1 ],    hint: "Achieve a 100 Hit combo bonus in battle. (3 times)"}
+    - { name: Combo Master Lvl. 2,                     t: [ achieve-2 ],    hint: "Achieve a 100 Hit combo bonus in battle. (15 times)"}
+    - { name: Combo Master Lvl. 3,                     t: [ achieve-3 ],    hint: "Achieve a 100 Hit combo bonus in battle. (25 times)"}
+    - { name: Stock up! Lvl.1,                         t: [ achieve-1 ],    hint: "Collect (50,000) gears."}
+    - { name: Stock up! Lvl.2,                         t: [ achieve-2 ],    hint: "Collect (500,000) gears."}
+    - { name: Stock up! Lvl.3,                         t: [ achieve-3 ],    hint: "Collect (1,000,000) gears."}
+    - { name: Stock up! Lvl.4,                         t: [ achieve-4 ],    hint: "Collect (2,000,000) gears."}
+    - { name: All My Circuits,                         t: [ achieve-2 ],    hint: "Collect all (56) Armstrong Circuits found in the stages!"}
+    - { name: All the Right Moves,                     t: [ achieve-2 ],    hint: "Buy all of the normal Attacks from the store!"}
+    - { name: Specialist,                              t: [ achieve-2 ],    hint: "Buy all of the Special Attacks from the store!"}
+    - { name: The Very Best,                           t: [ achieve-2 ],    hint: "Buy every powerup!"}
+    - { name: A Lot of Heart,                          t: [ achieve-3 ],    hint: "Max out your Life Gauge!"}
+    - { name: Let it Sing!,                            t: [ achieve-3 ],    hint: "Max out your Reverb Gauge!"}
+    - { name: Ready to Customize!,                     t: [ achieve-3 ],    hint: "Buy every chip!"}
+    - { name: Dream Machine,                           t: [ achieve-4 ],    hint: "Upgrade all chips to max level!"}
+    - { name: Full Wardrobe!,                          t: [ achieve-4 ],    hint: "Buy every costume from CNMN!"}
+    - { name: Consumer,                                t: [ achieve-4 ],    hint: "Buy everything available in the shop."}
+    - { name: Vandelay Intern,                         t: [ achieve-1 ],    hint: "Beat stages on Easy difficulty!"}
+    - { name: Vandelay Employee,                       t: [ achieve-2 ],    hint: "Beat stages on Normal difficulty!"}
+    - { name: Vandelay Manager,                        t: [ achieve-3 ],    hint: "Beat stages on Hard difficulty!"}
+    - { name: Vandelay Boss,                           t: [ achieve-4 ],    hint: "Beat stages on Very Hard difficulty!"}
+    - { name: Vandelay CEO,                            t: [ achieve-4 ],    hint: "Beat stages on Rhythm Master difficulty!"}
+    - { name: The Next Level Lvl.1,                    t: [ achieve-4 ],    hint: "Clear 10th floor in the Rhythm Tower."}
+    - { name: The Next Level Lvl.2,                    t: [ achieve-4 ],    hint: "Clear 20th floor in the Rhythm Tower."}
+    - { name: The Next Level Lvl.3,                    t: [ achieve-4 ],    hint: "Clear 30th floor in the Rhythm Tower."}
+    - { name: The Next Level Lvl.4,                    t: [ achieve-4 ],    hint: "Clear 40th floor in the Rhythm Tower."}
+    - { name: The Next Level Lvl.5,                    t: [ achieve-4 ],    hint: "Clear 50th floor in the Rhythm Tower."}
+    - { name: The Next Level Lvl.6,                    t: [ achieve-4 ],    hint: "Clear 60th floor in the Rhythm Tower."}
+    - { name: Once isn't enough!,                      t: [ achieve-4 ],    hint: "Climb to the top of the Rhythm Tower 2 times!"}
+    - { name: I spell tower with an S!,                t: [ achieve-4 ],    hint: "Clear the Rhythm Tower with an S ranking."}
+    - { name: Conservationist,                         t: [ achieve-4 ],    hint: "Beat the Rhythm Tower without using any items."}
+    - { name: How High's This Thing Go?,               t: [ achieve-4 ],    hint: "Take on the Rhythm Tower!"}
+    - { name: Stylin'!,                                t: [ achieve-3 ],    hint: "Change your look with a costume!"}
+    - { name: New Beginnings,                          t: [ achieve-3 ],    hint: "Watch the ending!"}
+    - { name: No Door Left Unturned Lvl. 1,            t: [ achieve-4 ],    hint: "Clear (1) SPECTRA challenge rooms."}
+    - { name: No Door Left Unturned Lvl. 2,            t: [ achieve-4 ],    hint: "Clear (8) SPECTRA challenge rooms."}
+    - { name: No Door Left Unturned Lvl. 3,            t: [ achieve-4 ],    hint: "Clear (16) SPECTRA challenge rooms."}
+    - { name: Challenge S-Ranker! Lvl. 1,              t: [ achieve-4 ],    hint: "Clear (1) SPECTRA challenge rooms with an S rank."}
+    - { name: Challenge S-Ranker! Lvl. 2,              t: [ achieve-4 ],    hint: "Clear (5) SPECTRA challenge rooms with an S rank."}
+    - { name: Challenge S-Ranker! Lvl. 3,              t: [ achieve-4 ],    hint: "Clear (10) SPECTRA challenge rooms with an S rank."}
+    - { name: Perfect Harmony,                         t: [ achieve-2 ],    hint: "Complete (30) Partner Action minigames for Macaron and Korsica on the first try with Perfect timing."}
+    - { name: Awkward Encounters,                      t: [ achieve-2 ],    hint: "Have every conversation with Smidge!"}
+    - { name: I'm Not Paying for This!,                t: [ achieve-2 ],    hint: "Bust up (15) vending machines!"}
+    - { name: Pick Up After Yourself.,                 t: [ achieve-1 ],    hint: "Kick (5) empty cans into the trash!"}
+    - { name: I'll be taking that!,                    t: [ achieve-3 ],    hint: "Pilfer the contents of every treasure chest! (10 total)"}
+    - { name: Flawless Run!,                           t: [ achieve-2 ],    hint: "In any difficulty, beat any stage without taking damage!"}
+    - { name: Soft Rock Master,                        t: [ achieve-4 ],    hint: "Get an S Rank or above in all stages on Easy difficulty!"}
+    - { name: Rock Master,                             t: [ achieve-4 ],    hint: "Get an S Rank or above in all stages on Normal difficulty!"}
+    - { name: Hard Rock Master,                        t: [ achieve-4 ],    hint: "Get an S Rank or above in all stages on Hard difficulty!"}
+    - { name: Very Hard Rock Master,                   t: [ achieve-4 ],    hint: "Get an S Rank or above in all stages on Very Hard difficulty!"}
+    - { name: Rhythm Master... Master,                 t: [ achieve-4 ],    hint: "Get an S Rank or above in all stages on Rhythm Master difficulty!"}
+    - { name: Golden Boy,                              t: [ achieve-1 ],    hint: "Smash up (5) Kale statues!"}
+    - { name: Words Are Hard Lvl.1,                    t: [ achieve-1 ],    hint: "Read half of all the Vlogs!"}
+    - { name: Words Are Hard Lvl.2,                    t: [ achieve-3 ],    hint: "Find every Vlog left around the campus!!"}
+    - { name: Street Art Collector,                    t: [ achieve-3 ],    hint: "Find all of the graffiti!"}
+    - { name: Track 1 Personnel Management,            t: [ achieve-2 ],    hint: "Beat the Track 1 boss fight without taking any damage!"}
+    - { name: Track 2 Personnel Management,            t: [ achieve-2 ],    hint: "Beat the Track 2 boss fight without taking any damage!"}
+    - { name: Track 9 Personnel Management,            t: [ achieve-2 ],    hint: "Beat the Track 9 boss fight without taking any damage!"}
+    - { name: Stand Down in Awe,                       t: [ achieve-3 ],    hint: "Defeat Kale in the final showdown without taking any damage."}
+    - { name: Face Off,                                t: [ achieve-1 ],    hint: "Totally destroy QA-1MIL's face in Track 1!"}
+    - { name: Wrecker,                                 t: [ achieve-2 ],    hint: "In Track 2, land a 50-hit combo on Rekka!"}
+    - { name: The Sky Is Lava,                         t: [ achieve-2 ],    hint: "Avoid all of the falling lava balls in Track 3!"}
+    - { name: He's So Hot Right Now,                   t: [ achieve-1 ],    hint: "Hit Zanzo's promotional cutout into the lava in Track 3!"}
+    - { name: "Get Outta My Way, Magma!",              t: [ achieve-2 ],    hint: "Parry (5) falling lava balls in Track 4!"}
+    - { name: The Great Escape,                        t: [ achieve-2 ],    hint: "Clear the Track 4 escape scene without taking any damage!"}
+    - { name: Data Harmony,                            t: [ achieve-2 ],    hint: "Fix all of the data spheres in Track 5 without making any mistakes!"}
+    - { name: Ad Blocker,                              t: [ achieve-2 ],    hint: "In Track 6, parry (3) incoming signs on the L.I.F.T.!"}
+    - { name: Nice Catch!,                             t: [ achieve-1 ],    hint: "Successfully catch Korsica in Track 7!"}
+    - { name: Deflected!,                              t: [ achieve-2 ],    hint: "Defeat Korsica in her faceoff in Track 7 with a Just Timing of over 80%!"}
+    - { name: Nothing Shocks Me,                       t: [ achieve-2 ],    hint: "In Track 8, don't take any electric damage in battle!"}
+    - { name: Party Crasher,                           t: [ achieve-2 ],    hint: "Parry Mimosa's vocal attacks in Track 9!"}
+    - { name: Be Gentle! I Need That Thing!,           t: [ achieve-1 ],    hint: "Beat Track 10 without letting the cannon's HP fall below 50%!"}
+    - { name: Who's Afraid of the Big Bad Accountant?, t: [ achieve-2 ],    hint: "Beat Roquefort's rhythm sequence in Track 10 with no mistakes!"}
+    - { name: Heart and Soul,                          t: [ achieve-2 ],    hint: "Clear the first rhythm sequence in Track 11 with no mistakes!"}
+    - { name: Encore,                                  t: [ achieve-2 ],    hint: "Clear the last rhythm sequence in Track 11 with no mistakes!"}
+    - { name: Corporate Restructuring,                 t: [ achieve-3 ],    hint: "Beat Kale in Track 12!"}
+    - { name: Helping Hand,                            t: [ achieve-2 ],    hint: "Finish all side missions!"}
+    - { name: Can't Touch This,                        t: [ achieve-2 ],    hint: "Chain together (600) dashes with the beat!"}
+    - { name: Rhythm Jumper,                           t: [ achieve-2 ],    hint: "Jump along with the beat! (3,000 times)"}
+    - { name: Human Metronome,                         t: [ achieve-2 ],    hint: "Land (10,000) attacks with Just Timing!"}
+    - { name: Ultimate Rockstar,                       t: [ achieve-4 ],    hint: "Complete all challenges to become the world's greatest rockstar!"}
+
+
+
+
+
+
+
+#endregion
+#=====================================================================================================================#
