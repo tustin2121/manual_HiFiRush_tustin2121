@@ -177,11 +177,13 @@ function parseLocations(tagDefs, locationArray) {
 // 	}
 // }
 
+const COMMON_KEY = `$common`;
+const CHILDREN_KEY = `$for`;
 function flattenArray(array, common={}) {
 	const outList = [];
 	for (const item of array) {
-		if (typeof item.common === 'object' && Array.isArray(item.data)) {
-			for (const i2 of flattenArray(item.data, item.common)) {
+		if (typeof item[COMMON_KEY] === 'object' && Array.isArray(item[CHILDREN_KEY])) {
+			for (const i2 of flattenArray(item[CHILDREN_KEY], item[COMMON_KEY])) {
 				outList.push(mergeWith(i2, common, mergeCustom));
 			}
 		} else {

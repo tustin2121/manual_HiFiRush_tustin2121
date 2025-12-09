@@ -36,7 +36,7 @@
         - name: Invincible D-Parry
         - name: Damage Rebound D-Parry
         - name: Combo Holder
-        - name: "High Risk, High Return"
+        - { name: "High Risk, High Return", category: [ Post-Game Only ] }
         - name: Rhythm Dodge Pull Plus
         
         - name: Peppermint Compatibility

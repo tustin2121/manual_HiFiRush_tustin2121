@@ -52,14 +52,14 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 ---
 #=====================================================================================================================#
 # region - Track List
-- common: 
+- $common: 
     region:
       name: Hideout_PostGame
       requires: "{YamlEnabled(post_game)}"
       connects_to: [ Track_1, Track_2, Track_3, Track_4, Track_5, Track_6, Track_7, Track_8, Track_9, Track_10, Track_11, Track_12, Rhythm_Tower, Power_Tower, Rush_Tower ]
       starting: true
     category: [ 00. Hideout ]
-  data:
+  $for:
     - name: Hideout Couch (Free Item)
       place_item: # Make sure the player starts with access to a decent track
         - Track 1 Access
@@ -74,24 +74,24 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
         - Track 10 Access
     - { name: Play Patty Cake with 808, t: [ moment ], hint: "There's more than one animation of Chai playing with 808, btw." }
 
-- common: 
+- $common: 
     region: 
       name: StartGame
       requires: "{YamlDisabled(post_game)}"
       connects_to: [ Track_1 ]
       starting: true
-  data: []
+  $for: []
     # - { name: Project Armstrong Pass, category: [ Collectable ], place_item: [ Track 1 Access ]  }
 
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 1: A Fresh Start
-- common: { name: Track 1, category: [ 01. A Fresh Start ] }
-  data:
+- $common: { name: Track 1, category: [ 01. A Fresh Start ] }
+  $for:
     # Should be 1 Reverb, 1 Tank, 3 Life, 4 Circuit, 5 Vlogs
-    - common:
+    - $common:
         region: { name: Track_1, requires: "|Track 1 Access|", connects_to: [ Track_2 ] }
-      data:
-        - { name: NPC | Admire O5-KAR's boxes,       t: [ npc ],                   hint: "Turn around at the start" }
+      $for:
+        - { name: NPC | Admire O5-KAR's stack,       t: [ npc ],                   hint: "Turn around at the start" }
         - { name: NPC | SCR-UB admires jumping,      t: [ npcB ],                  hint: "While in hospital gown still" }
       # - { name: SCR-UB | Shiny Floors,             t: [ scrub ],                 hint: "While in hospital gown still. Can't kill this one." }
         - { name: NPC | It's been a privilege,       t: [ npcB ],                  hint: "While in hospital gown still" }
@@ -120,6 +120,7 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
         - { name: Vlog | TO ALL EMPLOYEES,           t: [ vlog ],               hint: "Near some crates next to 2 robots after Chorus 4." }
         - { name: NPC | Kale in the flesh!,          t: [ npcB ],               hint: "Near the TO ALL EMPLOYEES vlog." }
         - { name: Smidge | The Environment,          t: [ smidge ],             hint: "The environment reacts to the beat" }
+        - { name: Smidge | Dodging to the Beat,      t: [ smidge ],             hint: "Same smidge, different location" }
         - { name: PA | New Day of the Week Added,    t: [ board, post ],        hint: "Flying around the rooftop Smidge is on." } # TODO double check
         - { name: Find the SPECTRA Door,             t: [ door ],               hint: "After Chorus 4 and encountering the Smidge that tells you about the world's rhythm, there is a ledge behind him that can be dropped down onto." }
         - { name: Beat the SPECTRA Challenge,        t: [ spectra ],            hint: "Defeat all enemies within 4 seconds, but the timer only ticks down when you're on the ground." } # Gives Armstrong Circuit
@@ -161,12 +162,12 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 2: Power Up
-- common: { name: Track 2, category: [ 02. Power Up ] }
-  data:
+- $common: { name: Track 2, category: [ 02. Power Up ] }
+  $for:
     # Should be 2 Reverb, 1 Tank, 3 Life, 5 Circuit, 6 Vlogs
-    - common:
+    - $common:
         region: { name: Track_2, requires: "|Track 2 Access|", connects_to: [ Track_2_2 ] }
-      data:
+      $for:
         - { name: NPC | Hit the Vending Machine,         t: [ npc ],     hint: "Before entering the building to the right." }
         - { name: Vending Machine | Outside,             t: [ vend ],    hint: "Before entering the building to the right." }
         - { name: Vlog | Unsent Complaint,               t: [ vlog ],    hint: "Before entering the building, inside the area to the left." }
@@ -210,9 +211,9 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
         - { name: You don't even know where this rail goes!, t: [ moment ]}
         - { name: NPC | OS-KAR's Impressed,              t: [ npcB ],            hint: "After the hook rail line" }
         # Peppermint Summon given here
-    - common:
+    - $common:
         region: { name: Track_2_2, requires: "|Peppermint Summon|", connects_to: [ Track_3 ] }
-      data:
+      $for:
         - { name: 'Vlog | Introducing "The Arrow!"',    t: [ vlog ],              hint: "After Peppermint allows you across the gap." }
         - { name: Chorus 7 | Shield Upgrade,            t: [ chorus ],            hint: "Looks like somebody got an upgrade." }
         - { name: Find the SPECTRA Door,                t: [ door ],              hint: "Located above the battle area of Chorus 7, on a platform accessed by jumping off the shipping containers that help the player move on; perform an Air Dodge to cover more distance" }
@@ -244,19 +245,19 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 3: Trial By (Volcanic) Fire
-- common: { name: Track 3, category: [ 03. Trial By (Volcanic) Fire ] }
-  data:
+- $common: { name: Track 3, category: [ 03. Trial By (Volcanic) Fire ] }
+  $for:
     # Should be 2 Reverb, 1 Tank, 4 Life, 6 Circuit, 11 Vlogs
-    - common:
+    - $common:
         region: { name: Track_3, requires: "|Track 3 Access|", connects_to: [ Track_3_2 ] }
-      data:
+      $for:
         - { name: PA | Starting Off,      t: [ board ],  hint: "As soon as you enter the level." }
         - { name: Chorus 1 | You're not part of my crew!, t: [ chorus ], hint: "You're not part of my crew!" }
         - { name: Vlog | R&D Service Log 1,               t: [ vlog ],   hint: "Just after Chorus 1" }
         # Shoot down a rock to continue
-    - common:
+    - $common:
         region: { name: Track_3_2, requires: "|Peppermint Summon|", connects_to: [ Track_4 ] }
-      data:
+      $for:
         - { name: Armstrong Circuit | Under Platform,   t: [ circuit ],            hint: "After shooting down the rock, the underside of the next platform." }
         - { name: NPC | VA-SER Can't Feel Heat,         t: [ npcB ],               hint: "Before the generator"}
         - { name: Snail | Practically Melting,          t: [ snail ],              hint: "Below the generator platform, the logo-snail is having a rough time."}
@@ -333,24 +334,24 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 4: Less Budget, More Problems
-- common: { name: Track 4, category: [ "04. Less Budget, More Problems" ] }
-  data:
+- $common: { name: Track 4, category: [ "04. Less Budget, More Problems" ] }
+  $for:
     # Should be 1 Reverb, 2 Tank, 3 Life, 6 Circuit, 4 Vlogs
-    - common:
+    - $common:
         region: { name: Track_4, requires: "|Track 4 Access|", connects_to: [ Track_4_2 ] }
-      data:
+      $for:
         - { name: Vending Machine 1,                    t: [ vend ],    hint: "Immediately to the right past the robot.." }
         - { name: NPC | CAR-11E is worried,             t: [ npcB ],    }
         # "Just through that wall..."
-    - common:
+    - $common:
         region: { name: Track_4_2, requires: "|Macaron Summon|", connects_to: [ Track_4_3 ] }
-      data:
+      $for:
         - { name: Armstrong Circuit | Messy Lab,        t: [ circuit ], hint: "After breaking through the Z-Wall." }
         - { name: Vlog | Staffing Allocation Complaint, t: [ vlog ],    hint: "After before the boulder." }
         # Shoot down the rock
-    - common:
+    - $common:
         region: { name: Track_4_3, requires: "|Peppermint Summon|", connects_to: [ Track_5 ] }
-      data:
+      $for:
         - { name: Vlog | Auto-Saved Private Message,        t: [ vlog ],               hint: "After shooting down the rock, before the green rock, on the ledge to the right." }
         # Lava-fall
         - { name: Vlog | Disgruntled Decaf Revenge,         t: [ vlog ],               hint: "Behind the lava waterfall." }
@@ -405,12 +406,12 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 5: Breaking Out
-- common: { name: Track 5, category: [ 05. Breaking Out ] }
-  data:
+- $common: { name: Track 5, category: [ 05. Breaking Out ] }
+  $for:
     # Should be 2 Reverb, 1 Tank, 3 Life, 8 Circuit, 8 Vlogs
-    - common:
+    - $common:
         region: { name: Track_5, requires: "|Track 5 Access|", connects_to: [ Track_5_2A, Track_5_2B ] }
-      data:
+      $for:
         - { name: Vlog | Defect Captured Email,          t: [ vlog ],               hint: "Return to the cell room right at the start of the Track." }
         - { name: Snail | Playing Ball Against the Wall, t: [ snail ],              hint: "Return to the cell room right at the start of the Track. In Chai's cell." }
         - { name: Upgrade | Life Gauge Piece 1,          t: [ life ],               hint: "To the right and above the second spinning platform cylinder" }
@@ -441,9 +442,9 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
         - { name: Armstrong Circuit | Node 02,           t: [ circuit ],            hint: "On top of the glass surrounding Security node 02's elevator. Reach from the exit or from floating platforms." }
         - { name: Drone 4,                               t: [ drone ],              hint: "On top of the glass surrounding Security node 02's elevator. Reach from the exit or from floating platforms." }
     
-    - common:
+    - $common:
         region: { name: Track_5_2A, requires: "|Peppermint Summon|", connects_to: [ Track_5_3 ] }
-      data: # Security Node 03
+      $for: # Security Node 03
         # ----- Security Node 02: Main Room -----
         
         # ----- Central Elevator -----
@@ -469,9 +470,9 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
         - { name: Golden Kale Statue | Node 03 Balcony,  t: [ statue ],  hint: "After Chorus 3, avoid the center of the platform and head left to the balcony." }
         - { name: Vlog | Korsica Complaints,             t: [ vlog ],    hint: "After Chorus 3, avoid the center of the platform and head left to the balcony." }
     
-    - common:
+    - $common:
         region: { name: Track_5_2B, requires: "|Macaron Summon|", connects_to: [ Track_5_3 ] }
-      data: # Security Node 01
+      $for: # Security Node 01
         # ----- Security Node 01 Route -----
         - { name: Vlog | Vandelay Game Studios?,      t: [ vlog, korsica, post ],    hint: "On the route to Node 01, Korsica door here after Z-Wall to left, up the ramp." }
         - { name: Upgrade | Life Gauge Piece 2,       t: [ life, korsica, post ],    hint: "On the route to Node 01, Korsica door here after Z-Wall to left, up the spiral slide." }
@@ -500,9 +501,9 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
         - { name: Armstrong Circuit | Vent Secret, t: [ circuit ], hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
         - { name: Drone | Vent Secret,             t: [ drone ],   hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
         - { name: NPC | SEB-AAA and JSF-001,       t: [ noir ],    hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
-    - common:
+    - $common:
         region: { name: Track_5_3, requires: "|Macaron Summon| and |Peppermint Summon|", connects_to: [ Track_6 ] }
-      data:
+      $for:
         - { name: Chorus 6 | Elevator Ride,  t: [ boss ],   hint: "Requisite elevator ride fight." }
         
         # TODO Collectables
@@ -512,12 +513,12 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 6: L.I.F.T Me Up
-- common: { name: Track 6, category: [ 06. L.I.F.T Me Up ] }
-  data:
+- $common: { name: Track 6, category: [ 06. L.I.F.T Me Up ] }
+  $for:
     # Should be 0 Reverb, 0 Tank, 0 Life, 1 Circuit, 1 Vlogs
-    - common: 
+    - $common: 
         region: { name: Track_6, requires: "|Track 6 Access|", connects_to: [ Track_6_2 ] }
-      data:
+      $for:
         - { name: Easter Egg | It'll break my immersion!, t: [ easter-first ], hint: "Take a break from the action, then ask Peppermint why you're at the hideout..." }
         
         - { name: Armstrong Circuit | Elevator,      t: [ circuit ],  hint: "Turn around at the beginning of the level, and jump over the elevator controls. It's by the back wall." }
@@ -526,9 +527,9 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
         - { name: Chorus 1 | Wuh-Oh!,                t: [ chorus ],   hint: "Maybe you're wrong for once, Peppermint. Might be smooth riding." }
         - { name: Chorus 2 | Reinforcements,         t: [ chorus ],   hint: "Long range?!" }
     
-    - common: 
+    - $common: 
         region: { name: Track_6_2, requires: "|Macaron Summon|", connects_to: [ Track_7 ] }
-      data:
+      $for:
         - { name: Chorus 3 | Put the Breaks On!,     t: [ chorus ],   hint: "Ugh, come on guys! Get it together! Put the breaks on that thing!" }
         - { name: Stop the L.I.F.T., t: [ level ],  hint: "...that was a smooth ride..." }
       # - { name: Snail | ???,                       t: [ snail ], hint: "???" }
@@ -536,26 +537,26 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 7: The Climb
-- common: { name: Track 7, category: [ 07. The Climb ] }
-  data:
+- $common: { name: Track 7, category: [ 07. The Climb ] }
+  $for:
     # Should be 1 Reverb, 1 Tank, 4 Life, 8 Circuit, 7 Vlogs
-    - common: 
+    - $common: 
         region: { name: Track_7, requires: "|Track 7 Access|", connects_to: [ Track_7_2 ] }
-      data:
+      $for:
         - { name: Easter Egg | Midway through a prison escape!, t: [ easter-first ], hint: "Take a break from the action, then have Chai muse on things on the couch." }
         
         - { name: Chorus 1 | Going In Loud!,              t: [ chorus ] }
         - { name: Vlog | Platform Construction Note,      t: [ vlog ],        hint: "After Chorus 1" }
         - { name: Armstrong Circuit | L.I.F.T. Platform,  t: [ circuit ],     hint: "Behind the Vlog on the station platform." }
     
-    - common:
+    - $common:
         region: { name: Track_7_2, requires: "|Peppermint Summon|", connects_to: [ Track_7_3 ] }
-      data:
+      $for:
         - { name: Armstrong Circuit | Pipe,  t: [ circuit ],           hint: "On the top of pipe a the top of the scaffolding." }
     
-    - common:
+    - $common:
         region: { name: Track_7_3, requires: "|Macaron Summon|", connects_to: [ Track_8 ] }
-      data:
+      $for:
         - { name: SCR-UB | Hallway 1,               t: [ scrub ] }
         - { name: NPC | The Fallen Janitor,         t: [ npcB ] }
         - { name: Chorus 2 | Hallway Fight,         t: [ chorus ],            hint: "Hallway fight." }
@@ -632,12 +633,12 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 8: A History Lesson
-- common: { name: Track 8, category: [ 08. A History Lesson ] }
-  data:
+- $common: { name: Track 8, category: [ 08. A History Lesson ] }
+  $for:
     # Should be 2 Reverb, 2 Tank, 4 Life, 9 Circuit, 20 Vlogs
-    - common: 
+    - $common: 
         region: { name: Track_8, requires: "|Track 8 Access|", connects_to: [ Track_8_2 ] }
-      data:
+      $for:
         # ----- Entrance ------
         - { name: Vlog | Armstrong Festival Marketing?,    t: [ vlog ],      hint: "In the ticket line." }
         - { name: NPC | Trash Pickup,                      t: [ npcB8 ],     hint: "In front of the globe."}
@@ -654,16 +655,16 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
         - { name: Vlog | Project Armstrong Raffle Results, t: [ vlog ],      hint: "In the opening area, on a trash can near the back." }
         - { name: Graffiti | Fireworks,                    t: [ graffiti ],  hint: "In the upper part of the tracks opening area, before the fire gate, go toward the gate that the O5-KAR is polishing." }
         # Korsica Summon given
-    - common:
+    - $common:
         region: { name: Track_8_2, requires: "|Korsica Summon|", connects_to: [ Track_8_3 ] }
-      data:
+      $for:
         - { name: Vlog | Charging,                  t: [ vlog, ],     hint: "After the initial flaming door, next to the dead robot." }
         - { name: Armstrong Circuit | Sewers Pass,  t: [ circuit ],   hint: "After the initial flaming door, you drop down and the circuit is behind you." }
         - { name: PA | Sewers Pass, t: [ board ],     hint: "After the initial flaming door, floating in plain sight as you travel onward." }
         # Z-Wall
-    - common:
+    - $common:
         region: { name: Track_8_3, requires: "|Macaron Summon|", connects_to: [ Track_9 ] }
-      data:
+      $for:
         - { name: Upgrade | Health Tank Piece 1,           t: [ health ],    hint: "Behind the robots in the sewer pass." }
         - { name: NPC | CAR-11E Watching the Show,         t: [ npcB ],      hint: "In the sewer pass." }
         - { name: Vlog | Taking a Break in the Park,       t: [ vlog, ],     hint: "After the sewer pass, in the fenced in section." }
@@ -745,12 +746,12 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 9: Take the Stage
-- common: { name: Track 9, category: [ 09. Take the Stage ] }
-  data:
+- $common: { name: Track 9, category: [ 09. Take the Stage ] }
+  $for:
     # Should be 0 Reverb, 0 Tank, 1 Life, 2 Circuit, 3 Vlogs
-    - common: 
+    - $common: 
         region: { name: Track_9, requires: "|Track 9 Access|", connects_to: [ Track_10 ] }
-      data:
+      $for:
         - { name: Easter Egg | What if we retcon this?, t: [ easter-first ], hint: "Take a break from the action, then ask Peppermint why you're at the hideout..." }
         
         - { name: Graffiti | Mimosa,                        t: [ graffiti ], hint: "At the very beginning of the track, turn around. It's on the wall." }
@@ -768,12 +769,12 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 10: A Masterplan
-- common: { name: Track 10, category: [ 10. A Masterplan ] }
-  data:
+- $common: { name: Track 10, category: [ 10. A Masterplan ] }
+  $for:
     # Should be 1 Reverb, 1 Tank, 3 Life, 7 Circuit, 7 Vlogs
-    - common: 
+    - $common: 
         region: { name: Track_10, requires: "|Track 10 Access|", connects_to: [ Track_10_2 ] }
-      data:
+      $for:
         # Let's never mention that again!
         - { name: Chorus 1 | Hacking In Progress, t: [ chorus ],     hint: "I need a moment!" }
         - { name: Chorus 2 | Adjusting Aim,       t: [ chorus ],     hint: "Don't let them break the cannon. That would be worse than BREAKING my concentration!" }
@@ -792,14 +793,14 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
         - { name: Graffiti | WA-ES-2,            t: [ graffiti ],   hint: "After Smidge gets stuck in the door." }
         - { name: Armstrong Circuit | Hallway,   t: [ circuit ],    hint: "In the corner after Chorus 5." }
         # Z-Door, followed by Generator, followed by Peppermint shoot, all in the same hallway
-    - common:
+    - $common:
         region: { name: Track_10_2, requires: "|Macaron Summon|", connects_to: [ Track_10_3 ] }
-      data: 
+      $for: 
         - { name: Upgrade | Life Gauge Piece 1,  t: [ life ],     hint: "After the Z-door and the floor opens up, instead of going ahead, double back into the maze of pipes." }
         - { name: Snail | Back from the Mirror,  t: [ snail ],    hint: "After the Z-door and the floor opens up, instead of going ahead, double back into the maze of pipes." }
-    - common:
+    - $common:
         region: { name: Track_10_3, requires: "|Korsica Summon| and |Peppermint Summon|", connects_to: [ Track_11 ] }
-      data: 
+      $for: 
         - { name: Chorus 6 | Armadillomon,      t: [ chorus ],     hint: "Armadillomon fight" }
         - { name: Armstrong Circuit | Corridor, t: [ circuit ],    hint: "In the corner after Chorus 6." }
         - { name: Vending Machine | Corridor,   t: [ vend ],       hint: "In the hall after Chorus 6." }
@@ -845,12 +846,12 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 11: The Needle Drop
-- common: { name: Track 11, category: [ 11. The Needle Drop ] }
-  data:
+- $common: { name: Track 11, category: [ 11. The Needle Drop ] }
+  $for:
     # Should be 0 Reverb, 0 Tank, 0 Life, 0 Chips, 0 Vlogs
-    - common: 
+    - $common: 
         region: { name: Track_11, requires: "|Track 11 Access|", connects_to: [ Track_12 ] }
-      data:
+      $for:
         # Easter Egg: During first play-through, close the game right after starting Track 11 (elevator ride up)
         - { name:  Easter Egg | Picked a bad time to take a break,    t: [ easter-first ], hint: "Make the game angry at you for quitting, then talk to Macaron after reloading." }
         - { name:  Easter Egg | Peppermint should be pissed,          t: [ easter-first ], hint: "Make the game angry at you for quitting, then talk to Peppermint after reloading." }
@@ -866,12 +867,12 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Track 12: Curate the Future
-- common: { name: Track 12, category: [ 12. Curate the Future ] }
-  data:
+- $common: { name: Track 12, category: [ 12. Curate the Future ] }
+  $for:
     # Should be 0 Reverb, 0 Tank, 0 Life, 0 Chips, 0 Vlogs
-    - common: 
+    - $common: 
         region: { name: Track_12, requires: "|Track 12 Access|", connects_to: [ Hideout_PostGame ] }
-      data:
+      $for:
         - { name: Easter Egg | I'm a dog person, t: [ easter ], hint: "Attempt the special attack Steal The Show against Kale." }
         
         - { name: Defeat Kale, t: [ boss ], victory: true }
@@ -884,11 +885,11 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 # region - Post Game Towers
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Rhythm Tower
-- common: 
+- $common: 
     name: Rhythm Tower
     category: [ 20. Rhythm Tower ]
     region: { name: Rhythm_Tower, requires: "{YamlEnabled(post_game)}" }
-  data:
+  $for:
     - { name: Floor 1,                  t: [ post ], requires: "{YamlCompare(tower_sanity >= 1)}" }
     - { name: Floor 2,                  t: [ post ], requires: "{YamlCompare(tower_sanity >= 2)}" }
     - { name: Floor 3,                  t: [ post ], requires: "{YamlCompare(tower_sanity >= 3)}" }
@@ -953,11 +954,11 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - Power Up! Tower Up!
-- common: 
+- $common: 
     name: Power Up! Tower Up!
     category: [ 21. Power Tower ]
     region: { name: Power_Tower, requires: "{YamlEnabled(post_game)}" }
-  data:
+  $for:
     - { name: Floor 1,                  t: [ post ], requires: "{YamlCompare(power_sanity >= 1)}" }
     - { name: Floor 2,                  t: [ post ], requires: "{YamlCompare(power_sanity >= 2)}" }
     - { name: Floor 3,                  t: [ post ], requires: "{YamlCompare(power_sanity >= 3)}" }
@@ -987,11 +988,11 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
 # region - BPM Rush!
-- common: 
+- $common: 
     name: BPM Rush!
     category: [ 22. BPM Rush ]
     region: { name: Rush_Tower, requires: "{YamlEnabled(post_game)}" }
-  data:
+  $for:
     - { name: Wave 1,                  t: [ post ], requires: "{YamlCompare(rush_sanity >= 1)}" }
     - { name: Wave 2,                  t: [ post ], requires: "{YamlCompare(rush_sanity >= 2)}" }
     - { name: Wave 3,                  t: [ post ], requires: "{YamlCompare(rush_sanity >= 3)}" }
@@ -1005,8 +1006,8 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 #=====================================================================================================================#
 #region - Wall of Fame
 
-- common: { name: Achievement, category: [ 30. Wall of Fame ] }
-  data:
+- $common: { name: Achievement, category: [ 30. Wall of Fame ] }
+  $for:
     # Battle
     - { name: Take 'em All Out! Lvl.1,                 t: [ achieve-1 ],    hint: "Defeat (150) enemies."}
     - { name: Take 'em All Out! Lvl.2,                 t: [ achieve-2 ],    hint: "Defeat (500) enemies."}

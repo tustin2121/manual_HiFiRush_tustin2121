@@ -17,7 +17,6 @@ core:
     default: false
   filler_traps: # We don't have any traps
     hidden: true
-  filler_traps:
     #Using values here let you set a 'recommended' filler_trap percentage or even a default percentage
     values:
       recommended: 20
