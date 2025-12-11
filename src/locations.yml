@@ -4,50 +4,52 @@
 %SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.locations.schema.json
 ---
 # NPCs
-smidge:       { requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ], c: [ smidge, robo1, robo2 ] } # Recurring character Smidge
-noir:         { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ noir,   robo1, robo2 ] } # Recurring characters SEB-AAA and JSF-001
-tan:          { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ tan,    robo1, robo2 ] } # Recurring character Tanning SBR-001
-npc:          { requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ npc,    robo1, robo2 ] } # Interesting NPC interactions (usually hitting)
-npcB:         { requires: "{YamlCompare(robo_sanity >= 3)}", category: [ NPC ], c: [ npcB,          robo2 ] } # Boring NPCs, simply talkable
-npc_8:        { requires: "({YamlCompare(robo_sanity >= 2)} or {YamlEnabled(party_sanity)})", category: [ NPC, Party - Track 8 ], c: [ npc_8, npc,  robo1, robo2 ] } # NPCs at the start of Track 8, for added checks
-npcB8:        { requires: "({YamlCompare(robo_sanity >= 3)} or {YamlEnabled(party_sanity)})", category: [ NPC, Party - Track 8 ], c: [ npcB8, npcB, robo2 ] } # NPCs at the start of Track 8, for added checks
-scrub:        { requires: "{YamlEnabled(scrub_sanity)}", category: [ SCR-UB ] }
+smidge:       { prefix: Smidge, requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ], c: [ smidge, robo1, robo2 ] } # Recurring character Smidge
+noir:         { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ noir,   robo1, robo2 ] } # Recurring characters SEB-AAA and JSF-001
+tan:          { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ tan,    robo1, robo2 ] } # Recurring character Tanning SBR-001
+npcA:         { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ npcA,   robo1, robo2 ] } # Interesting NPC interactions (usually hitting)
+npcB:         { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 3)}", category: [ NPC ], c: [ npcB,          robo2 ] } # Boring NPCs, simply talkable
+npcA8:        { prefix: NPC,    requires: "({YamlCompare(robo_sanity >= 2)} or {YamlEnabled(party_sanity)})", category: [ NPC, Party - Track 8 ], c: [ npcA8, npc,  robo1, robo2 ] } # NPCs at the start of Track 8, for added checks
+npcB8:        { prefix: NPC,    requires: "({YamlCompare(robo_sanity >= 3)} or {YamlEnabled(party_sanity)})", category: [ NPC, Party - Track 8 ], c: [ npcB8, npcB, robo2 ] } # NPCs at the start of Track 8, for added checks
+scrub:        { prefix: SCR-UB, requires: "{YamlEnabled(scrub_sanity)}", category: [ SCR-UB ] }
 # Permanent Collectables
-life:         { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, life ] }
-health:       { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, health ] }
-reverb:       { requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, reverb ] }
-circuit:      { requires: "{YamlEnabled(circuit_sanity)}", category: [ Circuit ] }
-comic:        { requires: "{YamlEnabled(comic_sanity)}", category: [ Comics ] }
-achieve:      { requires: "{YamlCompare(achievement_sanity)} and YamlDisabled(post_game)}", category: [ Achievement ] }
+life:         { prefix: Life Gauge,        requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, life ] }
+health:       { prefix: Health Tank,       requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, health ] }
+reverb:       { prefix: Reverb Core,       requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, reverb ] }
+circuit:      { prefix: Armstrong Circuit, requires: "{YamlEnabled(circuit_sanity)}", category: [ Circuit ] }
+comic:        { prefix: Comic,             requires: "{YamlEnabled(comic_sanity)}",   category: [ Comics ] }
 # Static Collectables
-vlog:         { requires: "{YamlEnabled(vlog_sanity)}", category: [ Vlogs ] }
-door:         { requires: "{YamlCompare(door_sanity >= 1)}", category: [ Doors ] }
-spectra:      { requires: "{YamlCompare(door_sanity >= 2)}", category: [ Doors ], t: [ post ] }
-graffiti:     { requires: "{YamlEnabled(graffiti_sanity)}", category: [ Graffiti ] }
-statue:       { requires: "{YamlEnabled(statue_sanity)}", category: [ Statues ] }
-board:        { requires: "{YamlEnabled(announcement_sanity)} and |Peppermint Summon|", category: [ Announcement Drones ] }
-vend:         { requires: "{YamlEnabled(vending_sanity)}", category: [ Vending Machine ] }
-drone:        { requires: "{YamlEnabled(drone_sanity)}", category: [ Drones - Track 5 ] }
-moment:       { requires: "{YamlEnabled(moment_sanity)}", category: [ Moment ] } # Like cut scenes and milestones in the level that don't fall under the below
+vlog:         { prefix: Vlog,               requires: "{YamlEnabled(vlog_sanity)}", category: [ Vlogs ] }
+graffiti:     { prefix: Graffiti,           requires: "{YamlEnabled(graffiti_sanity)}", category: [ Graffiti ] }
+statue:       { prefix: Golden Kale Statue, requires: "{YamlEnabled(statue_sanity)}", category: [ Statues ] }
+board:        { prefix: PA,                 requires: "{YamlEnabled(announcement_sanity)} and |Peppermint Summon|", category: [ Announcement Drones ] }
+vend:         { prefix: Vending Machine,    requires: "{YamlEnabled(vending_sanity)}", category: [ Vending Machine ] }
+shop:         { prefix: Shop,               requires: "{YamlEnabled(terminal_sanity)}", category: [ Shop Terminals ] }
+drone:        { prefix: Drone,              requires: "{YamlEnabled(drone_sanity)}", category: [ Drones - Track 5 ] }
+moment:       {                                   requires: "{YamlEnabled(moment_sanity)}", category: [ Moment ] } # Like cut scenes and milestones in the level that don't fall under the below
+door:         { name: Find the SPECTRA Door,      requires: "{YamlCompare(door_sanity >= 1)}", category: [ Doors ] }
+spectra:      { name: Beat the SPECTRA Challenge, requires: "{YamlCompare(door_sanity >= 2)}", category: [ Doors ], t: [ post ] }
+key:          { }
 # Esoterica 
-easter:       { requires: "{YamlEnabled(easter_sanity)}", category: [ Easter Eggs ], c: [ easter-first, easter-post ] }
-easter-first: { requires: "{YamlEnabled(easter_sanity)} and YamlDisabled(post_game)}", category: [ Easter Eggs ], c: [ first ] }
-easter-post:  { requires: "{YamlEnabled(easter_sanity)} and YamlEnabled(post_game)}",  category: [ Easter Eggs ], c: [ post ] }
-snail:        { requires: "{YamlEnabled(snail_sanity)}", category: [ Snail ] }
+easter:       { prefix: Easter Egg, requires: "{YamlEnabled(easter_sanity)}", category: [ Easter Eggs ], c: [ easter-first, easter-post ] }
+easter-first: { prefix: Easter Egg, requires: "{YamlEnabled(easter_sanity)} and YamlDisabled(post_game)}", category: [ Easter Eggs ], c: [ first ] }
+easter-post:  { prefix: Easter Egg, requires: "{YamlEnabled(easter_sanity)} and YamlEnabled(post_game)}",  category: [ Easter Eggs ], c: [ post ] }
+snail:        { prefix: Snail,      requires: "{YamlEnabled(snail_sanity)}", category: [ Snail ] }
 # Level Logic
 post:         { requires: "{YamlEnabled(post_game)}" }
 first:        { requires: "{YamlDisabled(post_game)}" }
 pepper:       { requires: "|Peppermint Summon|" }
 macaron:      { requires: "|Macaron Summon|" }
 korsica:      { requires: "|Korsica Summon|" }
-chorus:       { requires: "{YamlCompare(scoring_method != 2)}", category: [ Chorus ], c: [ chorus#, chkpt# ] }
+chorus:       { prefix: Chorus, prefix_separator: " ", requires: "{YamlCompare(scoring_method != 2)}", category: [ Chorus ], c: [ chorus#, chkpt# ] }
 level:        { requires: "{YamlCompare(scoring_method != 1)}", category: [ Level ], c: [ level#, chkpt# ] }
 boss:         { category: [ Chorus, Level ], c: [ chorus#, level#, chkpt# ] }
-
+# Achievements
 achieve-1:    { requires: "{YamlCompare(achievement_sanity >= 1)} and YamlDisabled(post_game)}", category: [ Achievement ], c: [ achieve-1, achieve-2, achieve-3, achieve-4 ] }
 achieve-2:    { requires: "{YamlCompare(achievement_sanity >= 2)} and YamlDisabled(post_game)}", category: [ Achievement ], c: [ achieve-2, achieve-3, achieve-4 ] }
 achieve-3:    { requires: "{YamlCompare(achievement_sanity >= 3)} and YamlDisabled(post_game)}", category: [ Achievement ], c: [ achieve-3, achieve-4 ] }
 achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabled(post_game)}", category: [ Achievement ], c: [ achieve-4 ] }
+bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and YamlEnabled(post_game)}", category: [ Achievement ], c: [ bucket-1 ] }
 
 ---
 #=====================================================================================================================#
@@ -91,73 +93,71 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
     - $common:
         region: { name: Track_1, requires: "|Track 1 Access|", connects_to: [ Track_2 ] }
       $for:
-        - { name: NPC | Admire O5-KAR's stack,       t: [ npc ],                   hint: "Turn around at the start" }
-        - { name: NPC | SCR-UB admires jumping,      t: [ npcB ],                  hint: "While in hospital gown still" }
-      # - { name: SCR-UB | Shiny Floors,             t: [ scrub ],                 hint: "While in hospital gown still. Can't kill this one." }
-        - { name: NPC | It's been a privilege,       t: [ npcB ],                  hint: "While in hospital gown still" }
-        - { name: NPC | CAR-11E's Spill,             t: [ npcB ],                  hint: "While in hospital gown still" }
+        - { name: Admire O5-KAR's stack,             t: [ npcA ],                  hint: "Turn around at the start" }
+        - { name: SCR-UB admires jumping,            t: [ npcB ],                  hint: "While in hospital gown still" }
+      # - { name: Shiny Floors,                      t: [ scrub ],                 hint: "While in hospital gown still. Can't kill this one." }
+        - { name: It's been a privilege,             t: [ npcB ],                  hint: "While in hospital gown still" }
+        - { name: CAR-11E's Spill,                   t: [ npcB ],                  hint: "While in hospital gown still" }
         - { name: Please collect your belongings,    t: [ moment ] }
         # -------------------
-        - { name: Chorus 1 | Is he resisting?,          t: [ chorus ],                hint: "Is he resisting?" }
+        - { name: 1 | Is he resisting?,                 t: [ chorus ],                hint: "Is he resisting?" }
         - { name: His attacks sync up with the music!,  t: [ moment ] } # Unskippable bit of the tutorial
-        - { name: Chorus 2 | That's the Defect!,        t: [ chorus ],                hint: "That's the defect!!" }
-        - { name: Snail | Musical Pigeons,              t: [ snail ],                 hint: "With the pigeons to the left of the entrance area, next to the fountain." }
-        - { name: Smidge | Light and Heavy Attacks,     t: [ smidge ],                hint: "After Chorus 2, tutorial for heavy and light attacks" }
+        - { name: 2 | That's the Defect!,               t: [ chorus ],                hint: "That's the defect!!" }
+        - { name: Musical Pigeons,                      t: [ snail ],                 hint: "With the pigeons to the left of the entrance area, next to the fountain." }
+        - { name: Light and Heavy Attacks,              t: [ smidge ],                hint: "After Chorus 2, tutorial for heavy and light attacks" }
         # -------------------
-        - { name: Chorus 3 | You looking for me?,       t: [ chorus ],                hint: "Hey! You looking for me?" }
+        - { name: 3 | You looking for me?,              t: [ chorus ],                hint: "Hey! You looking for me?" }
         - { name: Yelling like this is awkward!,        t: [ moment ] } # Unskippable bit
-        - { name: PA | Rekka's Looking For Slackers,    t: [ board, post ],           hint: "Flying between the Chorus 3 arena and the ledge Smidge is on." }
-        - { name: NPC | Interrupt SBR-001's Tan,        t: [ tan ],                   hint: "Above the 3rd Chorus arena." }
-        - { name: Smidge | Dodging,                     t: [ smidge ],                hint: "After Chorus 3, dodging tutorial." }
-        - { name: NPC | SEB-AAA and JSF-001,            t: [ noir, pepper, post ],    hint: "The platform directly above the second Smidge" }
-        - { name: Armstrong Circuit | HR Complaint,     t: [ circuit, pepper, post ], hint: "Listen to the Noir Investigator ramble." }
+        - { name: Rekka's Looking For Slackers,         t: [ board, post ],           hint: "Flying between the Chorus 3 arena and the ledge Smidge is on." }
+        - { name: Interrupt SBR-001's Tan,              t: [ tan ],                   hint: "Above the 3rd Chorus arena." }
+        - { name: Dodging,                              t: [ smidge ],                hint: "After Chorus 3, dodging tutorial." }
+        - { name: SEB-AAA and JSF-001,                  t: [ noir, pepper, post ],    hint: "The platform directly above the second Smidge" }
+        - { name: HR Complaint,                         t: [ circuit, pepper, post ], hint: "Listen to the Noir Investigator ramble." }
         # -------------------
         - { name: HOST SYNCHRONIZED,                 t: [ moment ] }
-        - { name: Upgrade | Life Gauge Piece 1,      t: [ life ],               hint: "The room to the right of Smidge after the beat hit tutorial." }
-        - { name: Smidge | Beat Hits,                t: [ smidge ],             hint: "The Beat Hit tutorial" }
-        - { name: Chorus 4 | Whoa...,                t: [ chorus ],             hint: "Top of the building" }
-        - { name: Upgrade | Life Gauge Piece 2,      t: [ life ],               hint: "On top of the water tower after Chorus 4." }
-        - { name: Vlog | TO ALL EMPLOYEES,           t: [ vlog ],               hint: "Near some crates next to 2 robots after Chorus 4." }
-        - { name: NPC | Kale in the flesh!,          t: [ npcB ],               hint: "Near the TO ALL EMPLOYEES vlog." }
-        - { name: Smidge | The Environment,          t: [ smidge ],             hint: "The environment reacts to the beat" }
-        - { name: Smidge | Dodging to the Beat,      t: [ smidge ],             hint: "Same smidge, different location" }
-        - { name: PA | New Day of the Week Added,    t: [ board, post ],        hint: "Flying around the rooftop Smidge is on." } # TODO double check
+        - { name: To the Right,                      t: [ life ],               hint: "The room to the right of Smidge after the beat hit tutorial." }
+        - { name: Beat Hits,                         t: [ smidge ],             hint: "The Beat Hit tutorial" }
+        - { name: 4 | Whoa...,                       t: [ chorus ],             hint: "Top of the building" }
+        - { name: Water Tower,                       t: [ life ],               hint: "On top of the water tower after Chorus 4." }
+        - { name: TO ALL EMPLOYEES,                  t: [ vlog ],               hint: "Near some crates next to 2 robots after Chorus 4." }
+        - { name: Kale in the flesh!,                t: [ npcB ],               hint: "Near the TO ALL EMPLOYEES vlog." }
+        - { name: The Environment,                   t: [ smidge ],             hint: "The environment reacts to the beat" }
+        - { name: Dodging to the Beat,               t: [ smidge ],             hint: "Same smidge, different location" }
+        - { name: New Day of the Week Added,         t: [ board, post ],        hint: "Flying around the rooftop Smidge is on." } # TODO double check
         - { name: Find the SPECTRA Door,             t: [ door ],               hint: "After Chorus 4 and encountering the Smidge that tells you about the world's rhythm, there is a ledge behind him that can be dropped down onto." }
         - { name: Beat the SPECTRA Challenge,        t: [ spectra ],            hint: "Defeat all enemies within 4 seconds, but the timer only ticks down when you're on the ground." } # Gives Armstrong Circuit
-        - { name: Smidge | Rest Combos,              t: [ smidge ],             hint: "The rest combo" }
+      # - { name: SPECTRA Reward,                    t: [ circuit, post ],      hint: "???" }
+        - { name: Rest Combos,                       t: [ smidge ],             hint: "The rest combo" }
         # -------------------
         - { name: Lotta shortcuts around here...,    t: [ moment ]}
-        - { name: Vlog | Battery Pack Production,    t: [ vlog ],               hint: "After the 2D section, near an illuminated hole in the ground, on the computer." }
+        - { name: Battery Pack Production,           t: [ vlog ],               hint: "After the 2D section, near an illuminated hole in the ground, on the computer." }
         # ----- Battery Production -----
         - { name: "Well, you're not dead!",          t: [ moment ]}
-        - { name: Smidge | Special Attacks,          t: [ smidge ],             hint: "After the special attack tutorial" }
-        - { name: Chorus 5 | Rekka wants him wasted, t: [ chorus ],             hint: "Rekka wants him Wasted! So let's waste him!"}
-        - { name: Vlog | Old-gen EOL Reminder,       t: [ vlog ],               hint: "On the floor of the adjacent room directly after the first fight with the GNR-020's." }
-        - { name: Chest | Health Tank Piece 1,       t: [ health, treasure ],   hint: "Inside the treasure chest robot in the area above the third PDA." }
+        - { name: Special Attacks,                   t: [ smidge ],             hint: "After the special attack tutorial" }
+        - { name: 5 | Rekka wants him wasted,        t: [ chorus ],             hint: "Rekka wants him Wasted! So let's waste him!"}
+        - { name: Old-gen EOL Reminder,              t: [ vlog ],               hint: "On the floor of the adjacent room directly after the first fight with the GNR-020's." }
+        - { name: First Chest,                       t: [ health, treasure ],   hint: "Inside the treasure chest robot in the area above the third PDA." }
         # ----- Conveyor Belt Area -----
-        - { name: Upgrade | Reverb Core Piece 1,          t: [ reverb ],             hint: "On the far end of the first conveyor belt in the production building after Chorus 5." }
-        - { name: Uh oh... Power's out...,                t: [ moment ]}
-        - { name: NPC | End their Argument,               t: [ npc ],                hint: "After the generator QTE, stop the arguing robots with a good slap to the face." }
-        - { name: SCR-UB | Catwalk 1,                     t: [ scrub ]}
-        - { name: Armstrong Circuit | Z-Shielded,         t: [ circuit,  macaron, korsica, post ], hint: "Through the Z-shielded door on a catwalk in the area to the right after reactivating the generator." }
-        - { name: Graffiti | QA Building,                 t: [ graffiti, macaron, korsica, post ], hint: "Behind the Z-Shielded door, up the generator-supplied platforms." }
-        - { name: SCR-UB | Catwalk 2,                     t: [ scrub ]}
-        - { name: Chorus 6 | Tough Enemies,               t: [ chorus ],             hint: "Tough enemies tutorial" }
-        - { name: PA | Sick Days Must Be Scheduled,       t: [ board, post ],        hint: "Flying around the Chorus 6 arena." }
-        - { name: Vlog | RE RE RE Get on this!,           t: [ vlog ],               hint: "In a tucked away area behind directly behind the fight with the BA-B00." }
-        - { name: NPC | Ruin the Robot's High Score,      t: [ npc ],                hint: "After Chorus 6" }
-        - { name: Chorus 7 | Jumping Totally Prohibited,  t: [ chorus ],             hint: "Jumping is strictly prohibited!" }
+        - { name: End of the Conveyor,               t: [ reverb ],             hint: "On the far end of the first conveyor belt in the production building after Chorus 5." }
+        - { name: Uh oh... Power's out...,           t: [ moment ]}
+        - { name: End their Argument,                t: [ npcA ],               hint: "After the generator QTE, stop the arguing robots with a good slap to the face." }
+        - { name: Catwalk 1,                         t: [ scrub ]}
+        - { name: Z-Shielded,                        t: [ circuit,  macaron, korsica, post ], hint: "Through the Z-shielded door on a catwalk in the area to the right after reactivating the generator." }
+        - { name: QA Building,                       t: [ graffiti, macaron, korsica, post ], hint: "Behind the Z-Shielded door, up the generator-supplied platforms." }
+        - { name: Catwalk 2,                         t: [ scrub ]}
+        - { name: 6 | Tough Enemies,                 t: [ chorus ],             hint: "Tough enemies tutorial" }
+        - { name: Sick Days Must Be Scheduled,       t: [ board, post ],        hint: "Flying around the Chorus 6 arena." }
+        - { name: RE RE RE Get on this!,             t: [ vlog ],               hint: "In a tucked away area behind directly behind the fight with the BA-B00." }
+        - { name: Ruin the Robot's High Score,       t: [ npcA ],               hint: "After Chorus 6" }
+        - { name: 7 | Jumping Totally Prohibited,    t: [ chorus ],             hint: "Jumping is strictly prohibited!" }
         # -------------------
-        - { name: NPC | Destroy O5-KAR's stack,           t: [ npc ],                     hint: "In the entrance to the QA center." }
-        - { name: Vlog | O5-KAR Unit Musings,             t: [ vlog ],                    hint: "On a computer in front of the entrance to the QA center." }
-        - { name: Upgrade | Life Gauge Piece 3,           t: [ life ],                    hint: "In the same room as PDA #5, on the upper level." }
-        - { name: Armstrong Circuit | QA Lobby,           t: [ circuit,  korsica, post ], hint: "On the opposite side of the QA lobby, on the upper level" }
-        - { name: Graffiti | Crane Holding Up Containers, t: [ graffiti, korsica, post ], hint: "Just before the QA-1MIL fight, in the room behind the flaming doorway." }
+        - { name: Destroy O5-KAR's stack,            t: [ npcA ],                    hint: "In the entrance to the QA center." }
+        - { name: O5-KAR Unit Musings,               t: [ vlog ],                    hint: "On a computer in front of the entrance to the QA center." }
+        - { name: Before the Boss,                   t: [ life ],                    hint: "In the same room as PDA #5, on the upper level." }
+        - { name: QA Lobby,                          t: [ circuit,  korsica, post ], hint: "On the opposite side of the QA lobby, on the upper level" }
+        - { name: Crane Holding Up Containers,       t: [ graffiti, korsica, post ], hint: "Just before the QA-1MIL fight, in the room behind the flaming doorway." }
         # -------------------
-        - { name: Explode QA-1MIL,    t: [ boss ],    hint: "You've got a killer track, but every song's gotta end!" }
-        
-        # TODO Collectables
-        - { name: Armstrong Circuit | ???,           t: [ circuit, post ], hint: "???" }
+        - { name: Explode QA-1MIL,                   t: [ boss ],    hint: "You've got a killer track, but every song's gotta end!" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -168,79 +168,83 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
     - $common:
         region: { name: Track_2, requires: "|Track 2 Access|", connects_to: [ Track_2_2 ] }
       $for:
-        - { name: NPC | Hit the Vending Machine,         t: [ npc ],     hint: "Before entering the building to the right." }
-        - { name: Vending Machine | Outside,             t: [ vend ],    hint: "Before entering the building to the right." }
-        - { name: Vlog | Unsent Complaint,               t: [ vlog ],    hint: "Before entering the building, inside the area to the left." }
+        - { name: Hit the Vending Machine,               t: [ npcA ],    hint: "Before entering the building to the right." }
+        - { name: Outside,                               t: [ vend ],    hint: "Before entering the building to the right." }
+        - { name: Unsent Complaint,                      t: [ vlog ],    hint: "Before entering the building, inside the area to the left." }
         # Vandelay statues in the lobby
         - { name: Kale and the old Vandelay Boss,        t: [ moment ]}
-        - { name: Chorus 1 | There goes our low profile, t: [ chorus ],  hint: "Uh oh..." }
-        - { name: NPC | CAR-11E's Unrealistic Goals,     t: [ npcB ],    hint: "At the bottom of the box stack" }
-        - { name: Upgrade | Reverb Core Piece 1,         t: [ reverb ],  hint: "At the top of the box stack, on the overhead catwalk." }
-        - { name: Vlog | HR Auto-Surveillance Recording, t: [ vlog ],    hint: "Inside the control room of the huge room." }
-        - { name: Vending Machine | Control Room,        t: [ vend ],    hint: "Inside the control room of the huge room." }
+        - { name: 1 | There goes our low profile,        t: [ chorus ],  hint: "Uh oh..." }
+        - { name: CAR-11E's Unrealistic Goals,           t: [ npcB ],    hint: "At the bottom of the box stack" }
+        - { name: Over the Boxes,                        t: [ reverb ],  hint: "At the top of the box stack, on the overhead catwalk." }
+        - { name: HR Auto-Surveillance Recording,        t: [ vlog ],    hint: "Inside the control room of the huge room." }
+        - { name: Control Room,                          t: [ vend ],    hint: "Inside the control room of the huge room." }
         - { name: You won't be able to make that jump.,  t: [ moment ]} # Unskippable magnet tutorial
         # -------------------
-        - { name: PA | A Music Fighting Intruder?,        t: [ board ],           hint: "Flying overhead before Chorus 2." }
-        - { name: Armstrong Circuit | Chorus 2,          t: [ circuit, macaron, post ], hint: "Around behind and under the platform approaching Chorus 2" }
-        - { name: Chorus 2 | A Music Fighting Intruder?, t: [ chorus ],          hint: "We're supposed to watch out for a... music fighting intruder?" }
-        - { name: SCR-UB | Fire Door 1,                  t: [ scrub ]}
-        - { name: SCR-UB | Fire Door 2,                  t: [ scrub ]}
-        - { name: Armstrong Circuit | High Tram Line,    t: [ circuit, post ],   hint: "Though the flaming door above the catwalks over Chorus 2, going to the left on the pipes, jumping across tram lines." }
-        - { name: Graffiti | Robot Portrait,             t: [ graffiti, korsica, post ], hint: "Though the flaming door above the catwalks over Chorus 2, going to the right along the pipes to the area in the back." }
-        - { name: "Vlog | HR Claim #324839028555180850195", t: [ vlog ],         hint: "Ride the tram cars going under the platform and arena." }
-        - { name: Snail | Fighting the Music,            t: [ snail ],           hint: "Near the HR Claim vlog, find the logo-snail fighting off music notes like flies." }
-        - { name: Smidge | Magnet Pull,                  t: [ smidge ],          hint: "After Chorus 2, magnet tutorial" }
-        - { name: Graffiti | Production Machine,         t: [ graffiti ],        hint: "Found in a room to the left of Smidge, up some boxes." }
-        - { name: Golden Kale Statue | Near Vent,        t: [ statue ],          hint: "Just after pulling yourself up by 3 magnet points." }
-        - { name: SCR-UB | In Vent,                      t: [ scrub ]}
+        - { name: A Music Fighting Intruder?,            t: [ board ],           hint: "Flying overhead before Chorus 2." }
+        - { name: Before Chorus 2,                       t: [ circuit, macaron, post ], hint: "Around behind and under the platform approaching Chorus 2" }
+        - { name: 2 | A Music Fighting Intruder?,        t: [ chorus ],          hint: "We're supposed to watch out for a... music fighting intruder?" }
+        - { name: Guitar Ride,                           t: [ comic ],           hint: "Picked up right after the second Chorus."}
+        - { name: Fire Door 1,                           t: [ scrub ]}
+        - { name: Fire Door 2,                           t: [ scrub ]}
+        - { name: High Tram Line,                        t: [ circuit, korsica post ],   hint: "Though the flaming door above the catwalks over Chorus 2, going to the left on the pipes, jumping across tram lines." }
+        - { name: Robot Portrait,                        t: [ graffiti, korsica, post ], hint: "Though the flaming door above the catwalks over Chorus 2, going to the right along the pipes to the area in the back." }
+        - { name: "HR Claim #324839028555180850195",     t: [ vlog ],            hint: "Ride the tram cars going under the platform and arena." }
+        - { name: Fighting the Music,                    t: [ snail ],           hint: "Near the HR Claim vlog, find the logo-snail fighting off music notes like flies." }
+        - { name: Magnet Pull,                           t: [ smidge ],          hint: "After Chorus 2, magnet tutorial" }
+        - { name: Production Machine,                    t: [ graffiti ],        hint: "Found in a room to the left of Smidge, up some boxes." }
+        - { name: Near Vent,                             t: [ statue ],          hint: "Just after pulling yourself up by 3 magnet points." }
+        - { name: In Vent,                               t: [ scrub ]}
         # -------------------
-        - { name: Chorus 3 | Production SEC-B,           t: [ chorus ],          hint: "After the vent" }
-        - { name: Upgrade | Reverb Core Piece 2,         t: [ reverb ],          hint: "Hidden in the back after the Chorus." }
+        - { name: 3 | Production SEC-B,                  t: [ chorus ],          hint: "After the vent" }
+        - { name: The Back Corner,                       t: [ reverb ],          hint: "Hidden in the back after the Chorus." }
         # Area 04: Shop terminals introduced
-        - { name: Upgrade | Life Gauge Piece 1,          t: [ life ],            hint: "In the rafters of the large room after the shop terminal." }
-        - { name: NPC | VA-SER Taught Rekka Everything,  t: [ npcB ],            hint: "In one of the side rooms of Area 04" }
-        - { name: Chorus 4 | Crush Control,              t: [ chorus ],          hint: "After the first Rhythm Jump." }
-        - { name: PA | Machine Press,                    t: [ board ],           hint: "Hovering just out of sight behind the first machine press." }
-        - { name: Chorus 5 | Machine Press,              t: [ chorus ],          hint: "Past the press machines." }
-        - { name: Chest | Armstrong Circuit 1,           t: [ circuit, treasure, korsica, post ], hint: "Inside the treasure chest robot past the fire door after Chorus 5." }
-        - { name: NPC | A Corporate Slap in the Face,    t: [ npcB ],            hint: "Control room between machine press and Chorus 6" }
-        - { name: Armstrong Circuit | Z-Walled,          t: [ circuit, macaron, post ], hint: "Past the Z-Wall after Chorus 5." }
-        - { name: Chorus 6 | LOCKDOWN SMACKDOWN,         t: [ chorus ],          hint: "You're on LOCKDOWN and getting the SMACKDOWN!" }
-        - { name: Vlog | Tram Line Issues,               t: [ vlog ],            hint: "Just outside the Chorus 6 arena." }
+        - { name: First Terminal Hacked,                 t: [ shop ],            hint: "Introduction of Shop Terminals" }
+        - { name: In the Rafters,                        t: [ life ],            hint: "In the rafters of the large room after the shop terminal." }
+        - { name: VA-SER Taught Rekka Everything,        t: [ npcB ],            hint: "In one of the side rooms of Area 04" }
+        - { name: 4 | Crush Control,                     t: [ chorus ],          hint: "After the first Rhythm Jump." }
+        - { name: Machine Press,                         t: [ board ],           hint: "Hovering just out of sight behind the first machine press." }
+        - { name: 5 | Machine Press,                     t: [ chorus ],          hint: "Past the press machines." }
+        - { name: A Fire-Guarded Chest,                  t: [ circuit, treasure, korsica, post ], hint: "Inside the treasure chest robot past the fire door after Chorus 5." }
+        - { name: A Corporate Slap in the Face,          t: [ npcB ],            hint: "Control room between machine press and Chorus 6" }
+        - { name: Z-Walled,                              t: [ circuit, macaron, post ], hint: "Past the Z-Wall after Chorus 5." }
+        - { name: 6 | LOCKDOWN SMACKDOWN,                t: [ chorus ],          hint: "You're on LOCKDOWN and getting the SMACKDOWN!" }
+        - { name: Tram Line Issues,                      t: [ vlog ],            hint: "Just outside the Chorus 6 arena." }
         # Grapple tram line ride!
         - { name: You don't even know where this rail goes!, t: [ moment ]}
-        - { name: NPC | OS-KAR's Impressed,              t: [ npcB ],            hint: "After the hook rail line" }
+        - { name: OS-KAR's Impressed,                    t: [ npcB ],            hint: "After the hook rail line" }
         # Peppermint Summon given here
     - $common:
         region: { name: Track_2_2, requires: "|Peppermint Summon|", connects_to: [ Track_3 ] }
       $for:
-        - { name: 'Vlog | Introducing "The Arrow!"',    t: [ vlog ],              hint: "After Peppermint allows you across the gap." }
-        - { name: Chorus 7 | Shield Upgrade,            t: [ chorus ],            hint: "Looks like somebody got an upgrade." }
+        - { name: 'Introducing "The Arrow!"',           t: [ vlog ],              hint: "After Peppermint allows you across the gap." }
+        - { name: 7 | Shield Upgrade,                   t: [ chorus ],            hint: "Looks like somebody got an upgrade." }
         - { name: Find the SPECTRA Door,                t: [ door ],              hint: "Located above the battle area of Chorus 7, on a platform accessed by jumping off the shipping containers that help the player move on; perform an Air Dodge to cover more distance" }
         - { name: Beat the SPECTRA Challenge,           t: [ spectra ],           hint: "Defeat enemies within the time limit, but they can only be damaged for 12 beats after a parry." } # Gives Health Tank
-        - { name: Smidge | Peppermint,                  t: [ smidge ],            hint: "After Chorus 2, Peppermint tutorial" }
-        - { name: Chorus 8 | Flying Enemies,            t: [ chorus ],            hint: "Flying enemies!" }
-        - { name: NPC | Shoot the Lounging Robot,       t: [ npc, pepper ],       hint: "After Chorus 8" } # 
-        - { name: Chest | Armstrong Circuit 2,          t: [ circuit, treasure, korsica, post ], hint: "Inside the treasure chest robot past the fire door after the platforming section." }
-        - { name: Vending Machine | Shop Terminal,      t: [ vend ],              hint: "In the room with the shop terminal." }
+      # - { name: SPECTRA Reward,                       t: [ health ] }
+        - { name: Peppermint,                           t: [ smidge ],            hint: "After Chorus 2, Peppermint tutorial" }
+        - { name: 8 | Flying Enemies,                   t: [ chorus ],            hint: "Flying enemies!" }
+        - { name: Shoot the Lounging Robot,             t: [ tan, pepper ],       hint: "After Chorus 8" } # 
+        - { name: Another Fire-Guarded Chest,           t: [ circuit, treasure, korsica, post ], hint: "Inside the treasure chest robot past the fire door after the platforming section." }
+        - { name: Mid-hall Storage,                     t: [ vend ],              hint: "In the room with the shop terminal." }
+        - { name: Mid-hall Storage,                     t: [ shop ],              hint: "In the room with the vending machine." }
         # "Teamwork! Hooray...!"
         - { name: Chest | Life Gauge Piece 2,           t: [ life, treasure ],    hint: "Inside the treasure chest robot after the three-part steam ride." }
-        - { name: NPC | SCR-UB's Discontent,            t: [ npc, pepper, quest ], hint: "After Mimosa hypes her upcoming show." } # Gives Life Gauge
-        - { name: PA | Lottery for the Armstrong Festival, t: [ board ],          hint: "Flying around the Chorus 6 arena." }
-        - { name: Chorus 9 | Area 13,                   t: [ chorus ] }
+        - { name: SCR-UB's Discontent,                  t: [ npc, pepper, quest ], hint: "After Mimosa hypes her upcoming show." } # Gives Life Gauge
+        - { name: SCR-UB's Discontent,                  t: [ life, pepper, ],      hint: "After Mimosa hypes her upcoming show." }
+        - { name: Lottery for the Armstrong Festival,   t: [ board ],          hint: "Flying around the Chorus 6 arena." }
+        - { name: 9 | Area 13,                          t: [ chorus ] }
         # The anteroom before Rekka
-        - { name: Vending Machine | Waiting Room,       t: [ vend ],      hint: "In the anteroom before Rekka." }
-        - { name: Vlog | Behind The Showmanship,        t: [ vlog ],      hint: "In the anteroom before Rekka." }
-        - { name: SCR-UB | Waiting Room 1,              t: [ scrub ],     hint: "In the anteroom before Rekka." }
-        - { name: SCR-UB | Waiting Room 2,              t: [ scrub ],     hint: "In the anteroom before Rekka." }
-        - { name: NPC | SEB-AAA and JSF-001,            t: [ noir ],      hint: "In the anteroom before Rekka." }
-        - { name: Graffiti | Rekka,                     t: [ graffiti ],  hint: "In the anteroom before Rekka." }
+        - { name: Waiting Room,                         t: [ vend ],      hint: "In the anteroom before Rekka." }
+        - { name: Behind The Showmanship,               t: [ vlog ],      hint: "In the anteroom before Rekka." }
+        - { name: Rekka's Receptionist,                 t: [ npcB ],      hint: "In the anteroom before Rekka." }
+        - { name: Unrequited Love,                      t: [ npcB ],      hint: "In the anteroom before Rekka." }
+        - { name: Waiting Room 1,                       t: [ scrub ],     hint: "In the anteroom before Rekka." }
+        - { name: Waiting Room 2,                       t: [ scrub ],     hint: "In the anteroom before Rekka." }
+        - { name: SEB-AAA and JSF-001,                  t: [ noir ],      hint: "In the anteroom before Rekka." }
+        - { name: Rekka,                                t: [ graffiti ],  hint: "In the anteroom before Rekka." }
         # -------------------
         - { name: Defeat Rekka,                         t: [ boss ] }
-        
-        # TODO Collectables
-        - { name: Upgrade | Health Tank Piece 1,      t: [ health ],   hint: "???" }
-        - { name: Upgrade | Life Gauge Piece 3,       t: [ life ],     hint: "???" }
+        - { name: Obtain the REKKA_KEY,                 t: [ key ], place_item: [ REKKA_KEY ] }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -251,85 +255,84 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
     - $common:
         region: { name: Track_3, requires: "|Track 3 Access|", connects_to: [ Track_3_2 ] }
       $for:
-        - { name: PA | Starting Off,      t: [ board ],  hint: "As soon as you enter the level." }
-        - { name: Chorus 1 | You're not part of my crew!, t: [ chorus ], hint: "You're not part of my crew!" }
-        - { name: Vlog | R&D Service Log 1,               t: [ vlog ],   hint: "Just after Chorus 1" }
+        - { name: Be on the Lookout for a Human,          t: [ board ],  hint: "As soon as you enter the level." }
+        - { name: 1 | You're not part of my crew!,        t: [ chorus ], hint: "You're not part of my crew!" }
+        - { name: R&D Service Log 1,                      t: [ vlog ],   hint: "Just after Chorus 1" }
         # Shoot down a rock to continue
     - $common:
         region: { name: Track_3_2, requires: "|Peppermint Summon|", connects_to: [ Track_4 ] }
       $for:
-        - { name: Armstrong Circuit | Under Platform,   t: [ circuit ],            hint: "After shooting down the rock, the underside of the next platform." }
-        - { name: NPC | VA-SER Can't Feel Heat,         t: [ npcB ],               hint: "Before the generator"}
-        - { name: Snail | Practically Melting,          t: [ snail ],              hint: "Below the generator platform, the logo-snail is having a rough time."}
+        - { name: Under Platform,              t: [ circuit ],            hint: "After shooting down the rock, the underside of the next platform." }
+        - { name: VA-SER Can't Feel Heat,      t: [ npcB ],               hint: "Before the generator"}
+        - { name: Practically Melting,         t: [ snail ],              hint: "Below the generator platform, the logo-snail is having a rough time."}
         # Start a generator -------
-        - { name: NPC | VA-SER Goes Fishing,            t: [ npcB ],               hint: "After the generator" }
-        - { name: Chorus 2 | Missing A Great View,      t: [ chorus ],             hint: "You are missing this great view, Peppermint!" }
-        - { name: Armstrong Circuit | Great View,       t: [ circuit ],            hint: "To the left of the 'great view' that Chai points out." }
-        - { name: PA | Perfectly Safe,                  t: [ board ],              hint: "In the area where LU-C1LLE tells you that the volcano is safe, a board is flying around above." }
-        - { name: Upgrade | Health Tank Piece 1,        t: [ health ],             hint: "In the corner of the volcano area." }
+        - { name: VA-SER Goes Fishing,         t: [ npcB ],               hint: "After the generator" }
+        - { name: Great View,                  t: [ circuit ],            hint: "To the left of the 'great view' that Chai points out." }
+        - { name: 2 | Missing A Great View,    t: [ chorus ],             hint: "You are missing this great view, Peppermint!" }
+        - { name: Perfectly Safe,              t: [ board ],              hint: "In the area where LU-C1LLE tells you that the volcano is safe, a board is flying around above." }
+        - { name: OSHA-Approved,               t: [ health ],             hint: "In the corner of the volcano area." }
         # -------------------
-        - { name: Chorus 3 | Got a Weird One!,          t: [ chorus ],             hint: "We got a weird one!" }
-        - { name: Armstrong Circuit | Chorus 3,         t: [ circuit ],            hint: "To the left behind a box as you leave Chorus 3's arena." }
-        - { name: NPC | There's Arrows Everywhere!,     t: [ npcB ],               hint: "Between Chorus 3 and 4" }
-        - { name: Vending Machine | Work Site,          t: [ vend ],               hint: "Between Chorus 3 and 4" }
-        - { name: Vlog | R&D Service Log 2,             t: [ vlog ],               hint: "Between Chorus 3 and 4, opposite the vending machine" }
-        - { name: Upgrade | Reverb Core Piece 1,        t: [ reverb, macaron, post ],   hint: "Behind the Z-Wall between Chorus 3 and 4." }
-        - { name: Graffiti | Flowers,                   t: [ graffiti, macaron, post ], hint: "Near a small camp where a PGR-0101 and a VA-SER are talking, behind the two bots is a Z-Shielded wall." }
+        - { name: 3 | We got a Weird One!,     t: [ chorus ],             hint: "We got a weird one!" }
+        - { name: Chorus 3,                    t: [ circuit ],            hint: "To the left behind a box as you leave Chorus 3's arena." }
+        - { name: R&D Service Log 2,           t: [ vlog ],               hint: "Between Chorus 3 and 4, opposite the vending machine" }
+        - { name: Work Site,                   t: [ vend ],               hint: "Between Chorus 3 and 4" }
+        - { name: There's Arrows Everywhere!,  t: [ npcB ],               hint: "Between Chorus 3 and 4" }
+        - { name: Z-Walled Lava-Fall,          t: [ reverb, macaron, post ],   hint: "Behind the Z-Wall between Chorus 3 and 4." }
+        - { name: Flowers,                     t: [ graffiti, macaron, post ], hint: "Near a small camp where a PGR-0101 and a VA-SER are talking, behind the two bots is a Z-Shielded wall." }
         # -------------------
-        - { name: Chorus 4 | Lava Stairs,               t: [ chorus ] }
-        - { name: Vlog | R&D Service Log 3,             t: [ vlog ],               hint: "After Chorus 4" }
-        - { name: Chest | Life Gauge Piece 1,           t: [ life, treasure ],     hint: "Inside the treasure chest robot after Chorus 4." }
-        - { name: Vlog | R&D Service Log 4,             t: [ vlog ],               hint: "Before the rail" }
+        - { name: 4 | Lava Stairs,             t: [ chorus ] }
+        - { name: R&D Service Log 3,           t: [ vlog ],               hint: "After Chorus 4" }
+        - { name: Alcove Chest,                t: [ life, treasure ],     hint: "Inside the treasure chest robot after Chorus 4." }
+        - { name: R&D Service Log 4,           t: [ vlog ],               hint: "Before the rail" }
         # -------------------
-        - { name: Here we ARE & D!,                     t: [ moment ]}
-        - { name: Vlog | Zanzo's Order Request,         t: [ vlog ],         hint: "Outside R&D and down to the left." }
-        - { name: Vending Machine | Bench Seat,         t: [ vend ],         hint: "Outside R&D and down to the left." }
-        - { name: Armstrong Circuit | Cardboard,        t: [ circuit ],      hint: "Behind the Cardboard Cutout outside R&D." }
-        - { name: Knock Cardboard Zanzo into the Lava,  t: [ npc ],          hint: "Achievement 'He's So Hot Right Now'. The best cutout to use is outside R&D down to the left." }
-        - { name: Armstrong Circuit | Outside R&D,      t: [ circuit ],      hint: "Outside R&D and up to the left." }
-        - { name: Vending Machine | Outside R&D,        t: [ vend ],         hint: "Outside R&D and up to the right." }
-        - { name: Golden Kale Statue | Outside R&D,     t: [ statue ],       hint: "Outside R&D and up to the right." }
-        - { name: Graffiti | Volcano,                   t: [ graffiti ],     hint: "Outside R&D and up to the right." }
+        - { name: Here we ARE & D!,            t: [ moment ]}
+        - { name: Zanzo's Order Request,       t: [ vlog ],         hint: "Outside R&D and down to the left." }
+        - { name: Bench Seat,                  t: [ vend ],         hint: "Outside R&D and down to the left." }
+        - { name: Cardboard Cutout,            t: [ circuit ],      hint: "Behind the Cardboard Cutout outside R&D." }
+        - { name: Outside R&D,                 t: [ circuit ],      hint: "Outside R&D and up to the left." }
+        - { name: Outside R&D,                 t: [ vend ],         hint: "Outside R&D and up to the right." }
+        - { name: Outside R&D,                 t: [ statue ],       hint: "Outside R&D and up to the right." }
+        - { name: Volcano,                     t: [ graffiti ],     hint: "Outside R&D and up to the right." }
         # ----- Inside R & D -----
-        - { name: Vlog | LU-C1LLE Self-Therapy Journal,   t: [ vlog ],    hint: "Behind LU-C1LLE inside R&D" }
-        - { name: NPC | Receptionist LU-C1LLE,            t: [ npcB ],    hint: "Inside Lab 44." }
-        - { name: Vlog | Punch-to-face Test Results,      t: [ vlog ],    hint: "Inside Lab 44." }
-        - { name: NPC | Punch-to-face PGR-0101,           t: [ npcB ],    hint: "Inside Lab 44." }
-        - { name: Vlog | Barrier Technology Test Results, t: [ vlog ],    hint: "Inside Lab 44." }
-        - { name: NPC | Barrier Technology PGR-0101,      t: [ npcB ],    hint: "Inside Lab 44." }
-        - { name: Upgrade | Reverb Core Piece 2,          t: [ reverb ],  hint: "Inside Lab 44." }
-        - { name: NPC | Test Chamber 01 Receptionist,     t: [ npcB ],    hint: "Inside Lab 44." }
+        - { name: LU-C1LLE Self-Therapy Journal,   t: [ vlog ],    hint: "Behind LU-C1LLE inside R&D" }
+        - { name: Receptionist LU-C1LLE,           t: [ npcB ],    hint: "Inside R&D." }
+        - { name: Outside Lab 44,                  t: [ shop ],    hint: "Inside R&D." }
+        - { name: Punch-to-face Test Results,      t: [ vlog ],    hint: "Inside Lab 44." }
+        - { name: Punch-to-face PGR-0101,          t: [ npcB ],    hint: "Inside Lab 44." }
+        - { name: Barrier Technology Test Results, t: [ vlog ],    hint: "Inside Lab 44." }
+        - { name: Barrier Technology PGR-0101,     t: [ npcB ],    hint: "Inside Lab 44." }
+        - { name: Lab 44 Entrance,                 t: [ reverb ],  hint: "Inside Lab 44." }
+        - { name: Test Chamber 01 Receptionist,    t: [ npcB ],    hint: "Inside Lab 44." }
         # -------------------
-        - { name: Survive Test Chamber 01,                t: [ moment ],  hint: "Something's overriding our cameras to 480p!"}
-        - { name: NPC | SEB-AAA and JSF-001,              t: [ noir ],    hint: "After learning the parry." }
-        - { name: Armstrong Circuit | Balcony Floor 2,    t: [ circuit ], hint: "After learning the parry and through the next door." }
-        - { name: Vending Machine | Balcony Floor 2,      t: [ vend ],    hint: "After learning the parry and through the next door." }
-        - { name: NPC | On His One Break Per Month,       t: [ npcB ],    hint: "Outside Test Chamber 02." }
-        - { name: NPC | Test Chamber 02 Receptionist,     t: [ npcB ],    hint: "Outside Test Chamber 02." }
-        - { name: NPC | Test Out the Test Robot,          t: [ npc ],     hint: "Outside Test Chamber 02. Hit the yellow DUM-1E robot." }
-        - { name: Vlog | Offensive Capabilities Test,     t: [ vlog ],    hint: "In the waiting room for the second test chamber, above the receptionist." }
-        - { name: Smidge | Parrying,                      t: [ smidge ],  hint: "Outside Test Chamber 02, Parry tutorial" }
+        - { name: Survive Test Chamber 01,         t: [ moment ],  hint: "Something's overriding our cameras to 480p!"}
+        - { name: SEB-AAA and JSF-001,             t: [ noir ],    hint: "After learning the parry." }
+        - { name: Balcony Floor 2,                 t: [ circuit ], hint: "After learning the parry and through the next door." }
+        - { name: Balcony Floor 2,                 t: [ vend ],    hint: "After learning the parry and through the next door." }
+        - { name: On His One Break Per Month,      t: [ npcB ],    hint: "Outside Test Chamber 02." }
+        - { name: Test Chamber 02 Receptionist,    t: [ npcB ],    hint: "Outside Test Chamber 02." }
+        - { name: Test Out the Test Robot,         t: [ npcA ],    hint: "Outside Test Chamber 02. Hit the yellow DUM-1E robot." }
+        - { name: Offensive Capabilities Test,     t: [ vlog ],    hint: "In the waiting room for the second test chamber, above the receptionist." }
+        - { name: Parrying,                        t: [ smidge ],  hint: "Outside Test Chamber 02, Parry tutorial" }
         # -------------------
-        - { name: Survive Test Chamber 02,                t: [ moment ],   hint: "Step into the middle of the room! It's safe here!"}
-        - { name: Vlog | Barrier Umbrella Test,           t: [ vlog ],     hint: "After going the side route." }
-        - { name: Graffiti | Zanzo,                       t: [ graffiti ], hint: "After the side door, jump on top of the vent cover that opens to the outside, before the rail." }
-        - { name: NPC | Test Chamber 03 Receptionist,     t: [ npcB ],     hint: "Outside Test Chamber 03." }
-        - { name: NPC | Umbrella Test PGR-0101,           t: [ npcB ],     hint: "Outside Test Chamber 03." }
-        - { name: Upgrade | Life Gauge Piece 2,           t: [ life ],     hint: "On top of the Umbrella Test" }
+        - { name: Survive Test Chamber 02,         t: [ moment ],   hint: "Step into the middle of the room! It's safe here!"}
+        - { name: Barrier Umbrella Test,           t: [ vlog ],     hint: "After going the side route." }
+        - { name: Zanzo,                           t: [ graffiti ], hint: "After the side door, jump on top of the vent cover that opens to the outside, before the rail." }
+        - { name: Test Chamber 03 Receptionist,    t: [ npcB ],     hint: "Outside Test Chamber 03." }
+        - { name: Umbrella Test PGR-0101,          t: [ npcB ],     hint: "Outside Test Chamber 03." }
+        - { name: Umbrella Test,                   t: [ life ],     hint: "On top of the Umbrella Test" }
         # -------------------
-        - { name: Chorus 5 | Test Chamber 03,             t: [ chorus ],   hint: "Test Chamber 03" }
-        - { name: NPC | Congrat! Yay! You survived!,      t: [ npcB ],     hint: "Outside Test Chamber 03." }
-        - { name: Vlog | Test Lab Assistance Mail,        t: [ vlog ],     hint: "After Test Chamber 03" }
-        - { name: Find the SPECTRA Door,                  t: [ door ],     hint: "Turn right after exiting Chamber 3; the door will be behind a rock wall." }
-        - { name: Beat the SPECTRA Challenge,             t: [ spectra ],  hint: "Defeat all enemies with only parry counter attacks."} # Gives Life Gauge Piece
-        - { name: Upgrade | Life Gauge Piece 3,           t: [ life ],     hint: "After the rail after Test Chamber 03" }
-        - { name: Chorus 6 | Mister Chai,                 t: [ chorus ],   hint: "That's MISTER Chai to you!" }
+        - { name: 5 | Test Chamber 03,             t: [ chorus ],   hint: "Test Chamber 03" }
+        - { name: Congrat! Yay! You survived!,     t: [ npcB ],     hint: "Outside Test Chamber 03." }
+        - { name: Air Guitar,                      t: [ comic ],    hint: "Picked up right after Test Chamber 03."}
+        - { name: Test Lab Assistance Mail,        t: [ vlog ],     hint: "After Test Chamber 03" }
+        - { name: Find the SPECTRA Door,           t: [ door ],     hint: "Turn right after exiting Chamber 3; the door will be behind a rock wall." }
+        - { name: Beat the SPECTRA Challenge,      t: [ spectra ],  hint: "Defeat all enemies with only parry counter attacks."} # Gives Life Gauge Piece
+      # - { name: SPECTRA Reward,                  t: [ life ]}
+        - { name: Lava Drill,                      t: [ life ],     hint: "After the rail after Test Chamber 03" }
+        - { name: 6 | Mister Chai,                 t: [ chorus ],   hint: "That's MISTER Chai to you!" }
         # Supposed to lose fight
-        - { name: "Easter Egg | Well, this messes everything up...",   t: [ easter-post ], hint: "Defeat the undefeatable."}
-        - { name: BLORF,                                  t: [ level ] }
-        
-        # TODO Collectables
-        - { name: Upgrade | Life Gauge Piece 4, t: [ life ],    hint: "???" }
+        - { name: "Well, this messes everything up...", t: [ easter-post ], hint: "Defeat the undefeatable."}
+        - { name: BLORF,                           t: [ level ] }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -340,68 +343,68 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
     - $common:
         region: { name: Track_4, requires: "|Track 4 Access|", connects_to: [ Track_4_2 ] }
       $for:
-        - { name: Vending Machine 1,                    t: [ vend ],    hint: "Immediately to the right past the robot.." }
-        - { name: NPC | CAR-11E is worried,             t: [ npcB ],    }
+        - { name: Outside Macaron's Lab,                t: [ vend ],    hint: "Immediately to the right past the robot.." }
+        - { name: CAR-11E is worried,                   t: [ npcB ],    }
         # "Just through that wall..."
     - $common:
         region: { name: Track_4_2, requires: "|Macaron Summon|", connects_to: [ Track_4_3 ] }
       $for:
-        - { name: Armstrong Circuit | Messy Lab,        t: [ circuit ], hint: "After breaking through the Z-Wall." }
-        - { name: Vlog | Staffing Allocation Complaint, t: [ vlog ],    hint: "After before the boulder." }
+        - { name: Messy Lab,                         t: [ circuit ], hint: "After breaking through the Z-Wall." }
+        - { name: Staffing Allocation Complaint,     t: [ vlog ],    hint: "After before the boulder." }
         # Shoot down the rock
     - $common:
         region: { name: Track_4_3, requires: "|Peppermint Summon|", connects_to: [ Track_5 ] }
       $for:
-        - { name: Vlog | Auto-Saved Private Message,        t: [ vlog ],               hint: "After shooting down the rock, before the green rock, on the ledge to the right." }
+        - { name: Auto-Saved Private Message,        t: [ vlog ],               hint: "After shooting down the rock, before the green rock, on the ledge to the right." }
         # Lava-fall
-        - { name: Vlog | Disgruntled Decaf Revenge,         t: [ vlog ],               hint: "Behind the lava waterfall." }
-        - { name: Chest | Health Tank Piece 1,              t: [ health, treasure ],   hint: "Behind the lava waterfall." }
-        - { name: NPC | SEB-AAA and JSF-001,                t: [ noir ],               hint: "Behind the lava waterfall." }
-        - { name: Armstrong Circuit | Lava Fall,            t: [ circuit ],            hint: "Past two lava rocks at the bottom of the tower climb." }
-        - { name: Upgrade | Life Gauge Piece 1,             t: [ life ],               hint: "At the top of the tower climb, on the crates" }
-        - { name: PA | All Hands on Deck!,                  t: [ board ],              hint: "Flying in circles around the top of the tower climb." }
-        - { name: Armstrong Circuit | Top of the Tower,     t: [ circuit ],            hint: "At the top of the tower, around the side of the containers." }
+        - { name: Disgruntled Decaf Revenge,         t: [ vlog ],               hint: "Behind the lava waterfall." }
+        - { name: Chest | Health Tank Piece 1,       t: [ health, treasure ],   hint: "Behind the lava waterfall." }
+        - { name: SEB-AAA and JSF-001,               t: [ noir ],               hint: "Behind the lava waterfall." }
+        - { name: Lava Fall,                         t: [ circuit ],            hint: "Past two lava rocks at the bottom of the tower climb." }
+        - { name: On the Drill,                      t: [ life ],               hint: "At the top of the tower climb, on the crates" }
+        - { name: All Hands on Deck!,                t: [ board ],              hint: "Flying in circles around the top of the tower climb." }
+        - { name: Top of the Drill,                  t: [ circuit ],            hint: "At the top of the tower, around the side of the containers." }
         # -------------------
-        - { name: Chorus 1 | Up for another round?,         t: [ chorus ],             hint: "Up for another round?" }
-        - { name: Smidge | Macaron,                         t: [ smidge ],             hint: "Macaron tutorial" }
-        - { name: Armstrong Circuit | AR Lab Lobby,         t: [ circuit ],            hint: "Under the stairs in the lobby of the AR lab." }
-        - { name: NPC | Eight Days a Week,                  t: [ npcB ],               hint: "Under the stairs in the lobby of the AR lab." }
-        - { name: Graffiti | HG-0G,                         t: [ graffiti ],           hint: "Under the stairs that leads up to the first AR room." }
-        - { name: Find the SPECTRA Door,                    t: [ door, korsica, post ],hint: "Located directly above the first AR room after Chorus 1 (Korsica is required to access this)." }
-        - { name: Beat the SPECTRA Challenge,               t: [ spectra ],            hint: "Defeat all enemies with only dodge counters."  } # Gives Reverb Core Piece
+        - { name: 1 | Up for another round?,         t: [ chorus ],             hint: "Up for another round?" }
+        - { name: Macaron,                           t: [ smidge ],             hint: "Macaron tutorial" }
+        - { name: AR Lab Lobby,                      t: [ circuit ],            hint: "Under the stairs in the lobby of the AR lab." }
+        - { name: Eight Days a Week,                 t: [ npcB ],               hint: "Under the stairs in the lobby of the AR lab." }
+        - { name: HG-0G,                             t: [ graffiti ],           hint: "Under the stairs that leads up to the first AR room." }
+        - { name: Outside AR Room 01,                t: [ shop ],               hint: "Under the stairs that leads up to the first AR room." }
+        - { name: Find the SPECTRA Door,             t: [ door, korsica, post ],hint: "Located directly above the first AR room after Chorus 1 (Korsica is required to access this)." }
+        - { name: Beat the SPECTRA Challenge,        t: [ spectra ],            hint: "Defeat all enemies with only dodge counters."  } # Gives Reverb Core Piece
+      # - { name: SPECTRA Reward,                    t: [ reverb ]}
         # -------------------
-        - { name: Chorus 2 | AR Room 1,                     t: [ chorus ],             hint: "AI was locked, so I went in the AR room." }
-        - { name: snail | The Hologram Mirror,              t: [ snail ],              hint: "After AR Room 01 explodes, find the logo-snail examining its hologram counterpart."}
-        - { name: Graffiti | VÄART,                         t: [ graffiti ],           hint: "After AR Room 01 explodes, when you reach the crossroads on the catwalk, go left instead of right." }
-        - { name: Upgrade | Life Gauge Piece 2,             t: [ life ],               hint: "After AR Room 01 explodes, on the way down from the catwalk, jump down from the steps. It's on a rock jutting." }
-        - { name: Armstrong Circuit | Lava Route 1,         t: [ circuit ],            hint: "After AR Room 01 explodes, find it high up to the left along the lava route." }
-        - { name: NPC | Increase PGR-0101 Efficiency,       t: [ npc ],                hint: "Give the Programmer lying on the floor percussive therapy." }
-        - { name: NPC | PGR-0101 Floor Keyboard,            t: [ npcB ],               }
-        - { name: NPC | PGR-0101 Three Screens,             t: [ npcB ],               }
-        - { name: NPC | PGR-0101 5x Speed,                  t: [ npcB ],               }
-        - { name: SCR-UB | Programmers' Room,               t: [ scrub ],              }
+        - { name: 2 | AR Room 01,                    t: [ chorus ],             hint: "AI was locked, so I went in the AR room." }
+        - { name: The Hologram Mirror,               t: [ snail ],              hint: "After AR Room 01 explodes, find the logo-snail examining its hologram counterpart."}
+        - { name: VÄART,                             t: [ graffiti ],           hint: "After AR Room 01 explodes, when you reach the crossroads on the catwalk, go left instead of right." }
+        - { name: After AR Room 01,                  t: [ life ],               hint: "After AR Room 01 explodes, on the way down from the catwalk, jump down from the steps. It's on a rock jutting." }
+        - { name: After AR Room 01,                  t: [ circuit ],            hint: "After AR Room 01 explodes, find it high up to the left along the lava route." }
+        - { name: Increase PGR-0101 Efficiency,      t: [ npcA ],               hint: "Give the Programmer lying on the floor percussive therapy." }
+        - { name: PGR-0101 Floor Keyboard,           t: [ npcB ],               }
+        - { name: PGR-0101 Three Screens,            t: [ npcB ],               }
+        - { name: PGR-0101 5x Speed,                 t: [ npcB ],               }
+        - { name: Programmers' Room,                 t: [ scrub ],              }
         # -------------------
-        - { name: Chorus 3 | AR Room 2,                     t: [ chorus ],             hint: "Ready for round two?" }
-        - { name: Golden Kale Statue | Lava Route 1,        t: [ statue ],             hint: "After AR Room 2" }
-        - { name: Armstrong Circuit | Lava Route 2,         t: [ circuit ],            hint: "High over the path after AR Room 2. Double back before the Z-door." }
-        - { name: Vlog | Development Mindfulness Checklist, t: [ vlog ],               hint: "On the table in the lounge area before AR Room 3." }
-        - { name: NPC | Macaron meets with OS-KAR,          t: [ npc ],                hint: "In the lounge area before AR Room 3. Speak with OS-KAR twice to have a scene with him and Macaron." }
-        - { name: Upgrade | Health Tank Piece 2,            t: [ health ],             hint: "lounge area before AR Room 3, sitting on top of one of the seating areas." }
+        - { name: 3 | AR Room 02,                    t: [ chorus ],             hint: "Ready for round two?" }
+        - { name: After AR Room 02,                  t: [ statue ],             hint: "After AR Room 2" }
+        - { name: After AR Room 02,                  t: [ circuit ],            hint: "High over the path after AR Room 2. Double back before the Z-door." }
+        - { name: Development Mindfulness Checklist, t: [ vlog ],               hint: "On the table in the lounge area before AR Room 3." }
+        - { name: Macaron meets with OS-KAR,         t: [ npcA ],               hint: "In the lounge area before AR Room 3. Speak with OS-KAR twice to have a scene with him and Macaron." }
+        - { name: Lounge Area,                       t: [ health ],             hint: "Lounge area before AR Room 3, sitting on top of one of the seating areas." }
+        - { name: Lounge Area,                       t: [ shop ],               hint: "Lounge area before AR Room 3." }
         # -------------------
         # AR Room 3 - Chai, this is amazing! Look at that budget drain!
-        - { name: Look at that budget drain!,               t: [ moment ]}
-        - { name: Upgrade | Life Gauge Piece 3,             t: [ life ],               hint: "Inside the Volcano AR section" }
-        - { name: Chorus 4 | Where are my enemies?!,        t: [ chorus ],             hint: "Chai, this is amazing! Look at that budget drain!" }
-        - { name: Chorus 5 | No!! The Gift Basket!,         t: [ chorus ],             hint: "NOO!! GIFT BASKET!!" }
-        - { name: Defund Zanzo,                             t: [ moment ],             hint: "UNRESTRICTED CREATIVE FREEDOM!!!!" }
+        - { name: Look at that budget drain!,        t: [ moment ]}
+        - { name: AR Volcano Rocks,                  t: [ life ],               hint: "Inside the Volcano AR section" }
+        - { name: 4 | Where are my enemies?!,        t: [ chorus ],             hint: "Chai, this is amazing! Look at that budget drain!" }
+        - { name: 5 | No!! The Gift Basket!,         t: [ chorus ],             hint: "NOO!! GIFT BASKET!!" }
+        - { name: Defund Zanzo,                      t: [ moment ],             hint: "UNRESTRICTED CREATIVE FREEDOM!!!!" }
+        - { name: Obtain the ZANZO_KEY,              t: [ key ], place_item: [ ZANZO_KEY ] }
         # Cornered by Kale, Escape Sequence GO!!
-        - { name: Get Back in At Least Two Pieces!,   t: [ moment ] }
-        - { name: "Chorus 6 | All Security, Report!", t: [ chorus ],    hint: "All security, report!" }
-        - { name: Concussion by Korsica,              t: [ level ] }
-        
-        # TODO Collectables
-        - { name: Armstrong Circuit | ???,           t: [ circuit ],  hint: "???" }
-        - { name: Upgrade | Reverb Core Piece 1,     t: [ reverb ],   hint: "???" }
+        - { name: Get Back in At Least Two Pieces!,  t: [ moment ] }
+        - { name: "6 | All Security, Report!",       t: [ chorus ],    hint: "All security, report!" }
+        - { name: Concussion by Korsica,             t: [ level ] }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -412,35 +415,38 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
     - $common:
         region: { name: Track_5, requires: "|Track 5 Access|", connects_to: [ Track_5_2A, Track_5_2B ] }
       $for:
-        - { name: Vlog | Defect Captured Email,          t: [ vlog ],               hint: "Return to the cell room right at the start of the Track." }
-        - { name: Snail | Playing Ball Against the Wall, t: [ snail ],              hint: "Return to the cell room right at the start of the Track. In Chai's cell." }
-        - { name: Upgrade | Life Gauge Piece 1,          t: [ life ],               hint: "To the right and above the second spinning platform cylinder" }
+        - { name: Defect Captured Email,         t: [ vlog ],               hint: "Return to the cell room right at the start of the Track." }
+        - { name: Playing Ball Against the Wall, t: [ snail ],              hint: "Return to the cell room right at the start of the Track. In Chai's cell." }
+        - { name: Above the Spinning Platforms,  t: [ life ],               hint: "To the right and above the second spinning platform cylinder" }
         # ----- Main room -----
-        - { name: Mission | Return the TEC-78's Comics,  t: [ npc, quest ],         hint: "Find ten drones with the tech's 'schematics'." } # Grants Life Gauge Piece
-        - { name: Vlog | Annoyed By Korsica FWD,         t: [ vlog ],               hint: "First area of the security nodes atrium." }
-        - { name: Graffiti | Nodes,                      t: [ graffiti ],           hint: "After you reach the main security area, go right and drop down onto the platform below that leads to the moving platforms that circle around the center column." }
-        - { name: Find the SPECTRA Door,                 t: [ door ],               hint: "Located below the main chamber, near the elevator connected to Node 3; ride the floating platforms to reach it." }
-        - { name: Beat the SPECTRA Challenge,            t: [ spectra ],            hint: "Perform 2 overkill defeats of an enemy. Make sure you have a way to build reverb gauge quickly." } # Gives ???
-        - { name: Armstrong Circuit | SPECTRA Door,      t: [ circuit ],            hint: "In front of the SPECTRA door." }
-        - { name: Drone | SPECTRA Door,                  t: [ drone ],              hint: "Just above the SPECTRA door." }
+        - { name: Central Room,                  t: [ shop ],               hint: "The only shop in the level." }
+        - { name: Return the TEC-78's Comics,    t: [ npc, quest ],         hint: "Find ten drones with the tech's 'schematics'." } # Grants Life Gauge Piece
+        - { name: Return the TEC-78's Comics,    t: [ life ] }
+        - { name: Annoyed By Korsica FWD,        t: [ vlog ],               hint: "First area of the security nodes atrium." }
+        - { name: Nodes,                         t: [ graffiti ],           hint: "After you reach the main security area, go right and drop down onto the platform below that leads to the moving platforms that circle around the center column." }
+        - { name: Find the SPECTRA Door,         t: [ door ],               hint: "Located below the main chamber, near the elevator connected to Node 3; ride the floating platforms to reach it." }
+        - { name: Beat the SPECTRA Challenge,    t: [ spectra ],            hint: "Perform 2 overkill defeats of an enemy. Make sure you have a way to build reverb gauge quickly." } # Gives ???
+        - { name: In Front of the SPECTRA Door,  t: [ circuit ],            hint: "In front of the SPECTRA door." }
+        - { name: In Front of the SPECTRA Door,  t: [ drone ],              hint: "Just above the SPECTRA door." }
+      # - { name: SPECTRA Reward,                t: [ health ]}
         # ----- Central Elevator -----
-        - { name: Vlog | Musings About Data Node,        t: [ vlog ],               hint: "In the area around the elevator, on one of the catwalks above." }
-        - { name: Drone | Central Elevator,              t: [ drone ],              hint: "In the area around the elevator, on one of the catwalks above." }
-        - { name: Armstrong Circuit | Central Elevator,  t: [ circuit ],            hint: "In the area around the elevator, on one of the catwalks above." }
+        - { name: Musings About Data Node,       t: [ vlog ],               hint: "In the area around the elevator, on one of the catwalks above." }
+        - { name: Central Elevator,              t: [ drone ],              hint: "In the area around the elevator, on one of the catwalks above." }
+        - { name: Central Elevator,              t: [ circuit ],            hint: "In the area around the elevator, on one of the catwalks above." }
         
         # ----- Security Node 02: Entrance -----
-        - { name: SCR-UB | Node 02 Entrance,             t: [ scrub ],              }
-        - { name: NPC | OS-KAR's Laser Setup,            t: [ npcB ],               }
-        - { name: Golden Kale Statue | Node 02 Room,     t: [ statue ],             hint: "Entering Security Node 02, open door on balcony to right." }
-        - { name: Vlog | Poem by SCR-UB,                 t: [ vlog ],               hint: "Entering Security Node 02, open door on balcony to right." }
-        - { name: Upgrade | Reverb Core Piece 1,         t: [ reverb ],             hint: "Entering Security Node 02, up the stack of boxes to the left." }
-        - { name: Drone | Node 02 Upper Room,            t: [ drone ],              hint: "Entering Security Node 02, open door on balcony to right. Hidden in the top corner to the left of the door." }
+        - { name: Node 02 Entrance,              t: [ scrub ],              }
+        - { name: OS-KAR's Laser Setup,          t: [ npcB ],               }
+        - { name: Node 02 Entrance,              t: [ statue ],             hint: "Entering Security Node 02, open door on balcony to right." }
+        - { name: Poem by SCR-UB,                t: [ vlog ],               hint: "Entering Security Node 02, open door on balcony to right." }
+        - { name: Node 02 Entrance,              t: [ reverb ],             hint: "Entering Security Node 02, up the stack of boxes to the left." }
+        - { name: Node 02 Upper Room,            t: [ drone ],              hint: "Entering Security Node 02, open door on balcony to right. Hidden in the top corner to the left of the door." }
         # ----- Security Node 02: Main Room -----
-        - { name: Chorus 1 | Security Node 02,           t: [ chorus ],             hint: "Figures there'd be security in... security." }
+        - { name: 1 | Security Node 02,          t: [ chorus ],             hint: "Figures there'd be security in... security." }
         # Need Peppermint to fix the nodes here, but below can be reached otherwise
         # ----- Security Node 02: Exit -----
-        - { name: Armstrong Circuit | Node 02,           t: [ circuit ],            hint: "On top of the glass surrounding Security node 02's elevator. Reach from the exit or from floating platforms." }
-        - { name: Drone 4,                               t: [ drone ],              hint: "On top of the glass surrounding Security node 02's elevator. Reach from the exit or from floating platforms." }
+        - { name: Above Node 02 Entrance,        t: [ circuit ],            hint: "On top of the glass surrounding Security node 02's elevator. Reach from the exit or from floating platforms." }
+        - { name: Above Node 02 Entrance,        t: [ drone ],              hint: "On top of the glass surrounding Security node 02's elevator. Reach from the exit or from floating platforms." }
     
     - $common:
         region: { name: Track_5_2A, requires: "|Peppermint Summon|", connects_to: [ Track_5_3 ] }
@@ -448,67 +454,61 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
         # ----- Security Node 02: Main Room -----
         
         # ----- Central Elevator -----
-        - { name: NPC | Whoever Design This Place...,     t: [ npcB ], }
+        - { name: Whoever Design This Place...,     t: [ npcB ], }
         # ----- Security Node 01 Route (before Z-Door) -----
-        - { name: NPC | CAR-11E can't go through Z-Doors, t: [ npcB ], }
+        - { name: CAR-11E can't go through Z-Doors, t: [ npcB ], }
         
         # ----- Security Node 03 Route -----
-        - { name: Vlog | FWD Data Node Advice,       t: [ vlog ],        hint: "Start of route to Security Node 03." }
-        - { name: NPC | Node 03 Lazy Tech,           t: [ npcB ],        hint: "I'm sure this is one of those 'it'll work itself out' problems..." }
-        - { name: Chorus 2 | Node 03 Route Lower,    t: [ chorus ],      hint: "I'm sure this is one of those 'it'll work itself out' problems..." }
-        - { name: SCR-UB | Node 03 Hallway 1,        t: [ scrub ],       }
-        - { name: SCR-UB | Node 03 Hallway 2,        t: [ scrub ],       }
-        - { name: SCR-UB | Node 03 Hallway 3,        t: [ scrub ],       }
+        - { name: FWD Data Node Advice,             t: [ vlog ],        hint: "Start of route to Security Node 03." }
+        - { name: Node 03 Lazy Tech,                t: [ npcB ],        hint: "I'm sure this is one of those 'it'll work itself out' problems..." }
+        - { name: 2 | Node 03 Route Lower,          t: [ chorus ],      hint: "I'm sure this is one of those 'it'll work itself out' problems..." }
+        - { name: Node 03 Hallway 1,                t: [ scrub ],       }
+        - { name: Node 03 Hallway 2,                t: [ scrub ],       }
+        - { name: Node 03 Hallway 3,                t: [ scrub ],       }
         # ----- Security Node 03: Main Room -----
-        - { name: SCR-UB | Node 03 Main Room 1,      t: [ scrub ],       }
-        - { name: SCR-UB | Node 03 Main Room 2,      t: [ scrub ],       }
-        - { name: Armstrong Circuit | Node 03,       t: [ circuit ],     hint: "Behind the final data node." }
-        - { name: Drone | Node 03 Main Room,         t: [ drone ],       hint: "In Node 03's room, floating behind the last node in the shadows." }
-        - { name: Chorus 3 | Node 03 Route Back,     t: [ chorus ],      hint: "On the way back" }
+        - { name: Node 03 Main Room 1,              t: [ scrub ],       }
+        - { name: Node 03 Main Room 2,              t: [ scrub ],       }
+        - { name: Node 03,                          t: [ circuit ],     hint: "Behind the final data node." }
+        - { name: Node 03 Main Room,                t: [ drone ],       hint: "In Node 03's room, floating behind the last node in the shadows." }
+        - { name: 3 | Node 03 Route Back,           t: [ chorus ],      hint: "On the way back" }
         # ----- Security Node 03: Balcony -----
-        - { name: Drone | Node 03 Balcony,               t: [ drone ],   hint: "After Chorus 3, avoid the center of the platform and head left to the balcony. The drone is on the right side." }
-        - { name: Golden Kale Statue | Node 03 Balcony,  t: [ statue ],  hint: "After Chorus 3, avoid the center of the platform and head left to the balcony." }
-        - { name: Vlog | Korsica Complaints,             t: [ vlog ],    hint: "After Chorus 3, avoid the center of the platform and head left to the balcony." }
+        - { name: Node 03 Balcony,                  t: [ drone ],       hint: "After Chorus 3, avoid the center of the platform and head left to the balcony. The drone is on the right side." }
+        - { name: Node 03 Balcony,                  t: [ statue ],      hint: "After Chorus 3, avoid the center of the platform and head left to the balcony." }
+        - { name: Korsica Complaints,               t: [ vlog ],        hint: "After Chorus 3, avoid the center of the platform and head left to the balcony." }
     
     - $common:
         region: { name: Track_5_2B, requires: "|Macaron Summon|", connects_to: [ Track_5_3 ] }
       $for: # Security Node 01
         # ----- Security Node 01 Route -----
-        - { name: Vlog | Vandelay Game Studios?,      t: [ vlog, korsica, post ],    hint: "On the route to Node 01, Korsica door here after Z-Wall to left, up the ramp." }
-        - { name: Upgrade | Life Gauge Piece 2,       t: [ life, korsica, post ],    hint: "On the route to Node 01, Korsica door here after Z-Wall to left, up the spiral slide." }
-        - { name: Golden Kale Statue | Node 01 Route, t: [ statue ],                 hint: "On the route to Node 01, after going up the ramp after the Z-Wall, double back." }
-        - { name: Drone | Node 01 Route,              t: [ drone ],                  hint: "On the route to Node 01, after going up the ramp after the Z-Wall, double back" }
-        - { name: Armstrong Circuit | Node 01 Route,  t: [ circuit ],                hint: "On the route to Node 01, after going up the ramp after the Z-Wall, on balcony to the left as you exit." }
-        - { name: Chorus 4 | Node 01 Route,           t: [ chorus ],                 hint: "High up on Security Node 01's route." }
-        - { name: SCR-UB | Node 01 Lower Side Path,   t: [ scrub ],                  }
-        - { name: Drone | Node 01 Lower Side Room,    t: [ drone, macaron ],         hint: "After Chorus 4, behind the z-wall, the drone is flying above the room." }
-        - { name: Upgrade | Reverb Core Piece 2,      t: [ reverb, macaron ],        hint: "After Chorus 4, behind the z-wall, on top of the server racks." }
+        - { name: Vandelay Game Studios?,              t: [ vlog, korsica, post ],    hint: "On the route to Node 01, Korsica door here after Z-Wall to left, up the ramp." }
+        - { name: Up the Circular Slide,               t: [ life, korsica, post ],    hint: "On the route to Node 01, Korsica door here after Z-Wall to left, up the spiral slide." }
+        - { name: Node 01 Route,                       t: [ statue ],                 hint: "On the route to Node 01, after going up the ramp after the Z-Wall, double back." }
+        - { name: Node 01 Route,                       t: [ drone ],                  hint: "On the route to Node 01, after going up the ramp after the Z-Wall, double back" }
+        - { name: Node 01 Route,                       t: [ circuit ],                hint: "On the route to Node 01, after going up the ramp after the Z-Wall, on balcony to the left as you exit." }
+        - { name: 4 | Node 01 Route,                   t: [ chorus ],                 hint: "High up on Security Node 01's route." }
+        - { name: Node 01 Lower Side Path,             t: [ scrub ],                  }
+        - { name: Node 01 Lower Side Room,             t: [ drone, macaron ],         hint: "After Chorus 4, behind the z-wall, the drone is flying above the room." }
+        - { name: Server Racks,                        t: [ reverb, macaron ],        hint: "After Chorus 4, behind the z-wall, on top of the server racks." }
         # Rhythm Jump
-        - { name: Chorus 5 | Node 01 Route,           t: [ chorus ],                 hint: "Higher up still on Security Node 01's route." }
-        - { name: SCR-UB | Node 01 Upper Side Room,   t: [ scrub ],                  }
-        - { name: Drone | Node 01 Upper Side Room,    t: [ drone ],                  hint: "After Chorus 5, go right up the ramps. The drone is hiding in the shadows to the left of the generator." }
-      # - { name: Armstrong Circuit | Node 01 Upper Side Path,        t: [ circuit ],                hint: "After Chorus 5, go right up the ramps, on balcony to left." } # TODO: Double Check
-        - { name: Armstrong Circuit | Node 01 Upper Side Room,        t: [ circuit, korsica, post ], hint: "After Chorus 5, go right up the ramps, up the Korsica generator path." }
+        - { name: 5 | Node 01 Route,                   t: [ chorus ],                 hint: "Higher up still on Security Node 01's route." }
+        - { name: Node 01 Upper Side Room,             t: [ scrub ],                  }
+        - { name: Node 01 Upper Side Room,             t: [ drone ],                  hint: "After Chorus 5, go right up the ramps. The drone is hiding in the shadows to the left of the generator." }
+        - { name: Node 01 Upper Side Room,             t: [ circuit, korsica, post ], hint: "After Chorus 5, go right up the ramps, up the Korsica generator path." }
         # ----- Security Node 01: Main Room -----
-        - { name: SCR-UB | Node 01 Main Room Lower,          t: [ scrub ],          hint: "Cleaning lower floor behind tech"  }
-        - { name: SCR-UB | Node 01 Main Room Upper,          t: [ scrub ],          hint: "Cleaning upper floor"}
-        - { name: SCR-UB | Node 01 Main Room Crushed,        t: [ scrub ],          hint: "Crushed under the second node that Macaron puts back in"}
-        - { name: NPC | Node 01 Main Room Tech,              t: [ npcB ],           hint: "Drawing on the lower floor" }
-        - { name: Vlog | Regarding Wing 1 Layout Complaints, t: [ vlog ],           hint: "In Node 01's room, on the computer consoles to the right." }
-        # - { name: Armstrong Circuit | Behind Node 01 A,      t: [ circuit ],        hint: "Behind the final data node." } # TODO: Double Check
-        - { name: Armstrong Circuit | Behind Node 01 B,      t: [ circuit ],        hint: "On the balcony behind the final data Node 01." }
+        - { name: Node 01 Main Room Lower,             t: [ scrub ],          hint: "Cleaning lower floor behind tech"  }
+        - { name: Node 01 Main Room Upper,             t: [ scrub ],          hint: "Cleaning upper floor"}
+        - { name: Node 01 Main Room Crushed,           t: [ scrub ],          hint: "Crushed under the second node that Macaron puts back in"}
+        - { name: Node 01 Main Room Tech,              t: [ npcB ],           hint: "Drawing on the lower floor" }
+        - { name: Regarding Wing 1 Layout Complaints,  t: [ vlog ],           hint: "In Node 01's room, on the computer consoles to the right." }
+        - { name: Behind Node 01,                      t: [ circuit ],        hint: "On the balcony behind the final data Node 01." }
         # ----- Security Node 01: Escape Route -----
-        - { name: Armstrong Circuit | Vent Secret, t: [ circuit ], hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
-        - { name: Drone | Vent Secret,             t: [ drone ],   hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
-        - { name: NPC | SEB-AAA and JSF-001,       t: [ noir ],    hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
+        - { name: Vent Secret,                         t: [ circuit ], hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
+        - { name: Vent Secret,                         t: [ drone ],   hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
+        - { name: SEB-AAA and JSF-001,                 t: [ noir ],    hint: "In the 2D section on the way back from Node 01, after the first set of lasers, jump into the secret path up and to the left." }
     - $common:
         region: { name: Track_5_3, requires: "|Macaron Summon| and |Peppermint Summon|", connects_to: [ Track_6 ] }
       $for:
-        - { name: Chorus 6 | Elevator Ride,  t: [ boss ],   hint: "Requisite elevator ride fight." }
-        
-        # TODO Collectables
-        - { name: Upgrade | Health Tank Piece 1,  t: [ health ],   hint: "???" }
-        - { name: Upgrade | Life Gauge Piece 3,   t: [ life ],     hint: "???" }
+        - { name: 6 | Elevator Ride,  t: [ boss ],   hint: "Requisite elevator ride fight." }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -519,20 +519,20 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
     - $common: 
         region: { name: Track_6, requires: "|Track 6 Access|", connects_to: [ Track_6_2 ] }
       $for:
-        - { name: Easter Egg | It'll break my immersion!, t: [ easter-first ], hint: "Take a break from the action, then ask Peppermint why you're at the hideout..." }
+        - { name: It'll break my immersion!, t: [ easter-first ], hint: "Take a break from the action, then ask Peppermint why you're at the hideout..." }
         
-        - { name: Armstrong Circuit | Elevator,      t: [ circuit ],  hint: "Turn around at the beginning of the level, and jump over the elevator controls. It's by the back wall." }
-        - { name: Graffiti | L.I.F.T,                t: [ graffiti ], hint: "Once you reach the shop, go left." }
-        - { name: Vlog | LIFT Construction Heads-Up, t: [ vlog ],     hint: "On the route to the L.I.F.T." }
-        - { name: Chorus 1 | Wuh-Oh!,                t: [ chorus ],   hint: "Maybe you're wrong for once, Peppermint. Might be smooth riding." }
-        - { name: Chorus 2 | Reinforcements,         t: [ chorus ],   hint: "Long range?!" }
+        - { name: Elevator,                          t: [ circuit ],  hint: "Turn around at the beginning of the level, and jump over the elevator controls. It's by the back wall." }
+        - { name: Elevator Shop,                     t: [ shop ],     hint: "The only shop in the level." }
+        - { name: L.I.F.T,                           t: [ graffiti ], hint: "Once you reach the shop, go left." }
+        - { name: LIFT Construction Heads-Up,        t: [ vlog ],     hint: "On the route to the L.I.F.T." }
+        - { name: 1 | Wuh-Oh!,                       t: [ chorus ],   hint: "Maybe you're wrong for once, Peppermint. Might be smooth riding." }
+        - { name: 2 | Reinforcements,                t: [ chorus ],   hint: "Long range?!" }
     
     - $common: 
         region: { name: Track_6_2, requires: "|Macaron Summon|", connects_to: [ Track_7 ] }
       $for:
-        - { name: Chorus 3 | Put the Breaks On!,     t: [ chorus ],   hint: "Ugh, come on guys! Get it together! Put the breaks on that thing!" }
-        - { name: Stop the L.I.F.T., t: [ level ],  hint: "...that was a smooth ride..." }
-      # - { name: Snail | ???,                       t: [ snail ], hint: "???" }
+        - { name: 3 | Put the Breaks On!,            t: [ chorus ],   hint: "Ugh, come on guys! Get it together! Put the breaks on that thing!" }
+        - { name: Stop the L.I.F.T.,                 t: [ level ],  hint: "...that was a smooth ride..." }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -543,92 +543,96 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
     - $common: 
         region: { name: Track_7, requires: "|Track 7 Access|", connects_to: [ Track_7_2 ] }
       $for:
-        - { name: Easter Egg | Midway through a prison escape!, t: [ easter-first ], hint: "Take a break from the action, then have Chai muse on things on the couch." }
+        - { name: Midway through a prison escape!, t: [ easter-first ], hint: "Take a break from the action, then have Chai muse on things on the couch." }
         
-        - { name: Chorus 1 | Going In Loud!,              t: [ chorus ] }
-        - { name: Vlog | Platform Construction Note,      t: [ vlog ],        hint: "After Chorus 1" }
-        - { name: Armstrong Circuit | L.I.F.T. Platform,  t: [ circuit ],     hint: "Behind the Vlog on the station platform." }
+        - { name: 1 | Going In Loud!,               t: [ chorus ] }
+        - { name: Platform Construction Note,       t: [ vlog ],              hint: "After Chorus 1" }
+        - { name: L.I.F.T. Platform,                t: [ circuit ],           hint: "Behind the Vlog on the station platform." }
     
     - $common:
         region: { name: Track_7_2, requires: "|Peppermint Summon|", connects_to: [ Track_7_3 ] }
       $for:
-        - { name: Armstrong Circuit | Pipe,  t: [ circuit ],           hint: "On the top of pipe a the top of the scaffolding." }
+        - { name: Green Pipe,                       t: [ circuit ],           hint: "On the top of pipe a the top of the scaffolding." }
     
     - $common:
         region: { name: Track_7_3, requires: "|Macaron Summon|", connects_to: [ Track_8 ] }
       $for:
-        - { name: SCR-UB | Hallway 1,               t: [ scrub ] }
-        - { name: NPC | The Fallen Janitor,         t: [ npcB ] }
-        - { name: Chorus 2 | Hallway Fight,         t: [ chorus ],            hint: "Hallway fight." }
+        - { name: Hallway 1,                        t: [ scrub ] }
+        - { name: Hallway Shop,                     t: [ shop ],                hint: "After the Mission Report." }
+        - { name: The Fallen Janitor,               t: [ npcB ] }
+        - { name: 2 | Hallway Fight,                t: [ chorus ],              hint: "Hallway fight." }
         # ----- Cylinder 1: Floor 0 -----
-        - { name: Chorus 3 | Lost the Quick Way,    t: [ chorus ],            hint: "Main room, after the bridge." }
+        - { name: 3 | Floor 0,                      t: [ chorus ],              hint: "Main room, after the bridge." }
         # ----- Cylinder 1: First 2D Section -----
-        - { name: Upgrade | Life Gauge Piece 1,     t: [ life ],              hint: "First 2d section on the tower, hit the button to open the way to the item." }
-        - { name: PA | Elevator Access Removed,     t: [ board ],             hint: "Flying around the end of the first 2D section." }
+        - { name: 2D Section Hideaway,              t: [ life ],                hint: "First 2d section on the tower, hit the button to open the way to the item." }
+        - { name: Elevator Access Removed,          t: [ board ],               hint: "Flying around the end of the first 2D section." }
         # ----- Cylinder 1: Floor 10 -----
-        - { name: Upgrade | Health Tank Piece 1,    t: [ health, macaron ],   hint: "Through the Z-Shield door after the first 2D section." }
-        - { name: Chorus 4 | Floor 11,              t: [ chorus ],            hint: "The samurai was waiting for you..." }
-        - { name: SCR-UB | Floor 11,                t: [ scrub ] }
-        - { name: Golden Kale Statue | Floor 11,    t: [ statue ],            hint: "In the room to the right after going through the Z-Wall after Chorus 4." }
-        - { name: Chest | Life Gauge Piece 2,       t: [ life, treasure ],    hint: "Inside the treasure chest to the right after going through the Z-Wall after Chorus 4." }
+        - { name: Floor 10,                         t: [ health, macaron ],     hint: "Through the Z-Shield door after the first 2D section." }
+        - { name: 4 | Floor 11,                     t: [ chorus ],              hint: "The samurai was waiting for you..." }
+        - { name: Floor 11,                         t: [ scrub ] }
+        - { name: Floor 11,                         t: [ statue ],              hint: "In the room to the right after going through the Z-Wall after Chorus 4." }
+        - { name: Floor 12 Chest,                   t: [ life, treasure ],      hint: "Inside the treasure chest to the right after going through the Z-Wall after Chorus 4." }
         # Rhythm Jump
-        - { name: NPC | The Tech behind Glass,      t: [ npcB ],              hint: "Floor 15, up the rhythm jump"}
-        - { name: NPC | SEB-AAA and JSF-001,        t: [ noir ],              hint: "After going through the Z-Wall and up the rhythm jump, keep going up via platforms" }
-        - { name: Upgrade | Reverb Core Piece,      t: [ reverb ],            hint: "After going through the Z-Wall and up the rhythm jump, keep going up via platforms" }
-        - { name: Vending Machine | Floor 16,       t: [ vend ],              hint: "After going through the Z-Wall and up the rhythm jump, keep going up via platforms" }
+        - { name: The Tech behind Glass,            t: [ npcB ],                hint: "Floor 15, up the rhythm jump"}
+        - { name: SEB-AAA and JSF-001,              t: [ noir ],                hint: "After going through the Z-Wall and up the rhythm jump, keep going up via platforms" }
+        - { name: Floor 16,                         t: [ reverb ],              hint: "After going through the Z-Wall and up the rhythm jump, keep going up via platforms" }
+        - { name: Floor 16,                         t: [ vend ],                hint: "After going through the Z-Wall and up the rhythm jump, keep going up via platforms" }
         # ----- Cylinder 1: Second 2D Section -----
-        - { name: Armstrong Circuit | Floor 19,     t: [ circuit ],           hint: "In section 2D section, at top of elevator." }
-        - { name: NPC | The Exhausted Tech,         t: [ npcB ],              hint: "Floor 27, Central pillar"}
-        - { name: Armstrong Circuit | Floor 27,     t: [ circuit ],           hint: "Floor 27, Central pillar"}
-        - { name: Snail | The Jamming Snail,        t: [ snail ],             hint: "Floor 27, Central pillar, behind the wall"}
-        - { name: Vlog | Too Many Rooms,            t: [ vlog ],              hint: "After the second 2D section, around the column." }
-        - { name: Chorus 5 | Floor 28,              t: [ chorus ],            hint: "Top of the first climb." }
+        - { name: Floor 19,                         t: [ circuit ],             hint: "In section 2D section, at top of elevator." }
+        - { name: The Exhausted Tech,               t: [ npcB ],                hint: "Floor 27, Central pillar"}
+        - { name: Floor 27,                         t: [ circuit ],             hint: "Floor 27, Central pillar"}
+        - { name: The Jamming Snail,                t: [ snail ],               hint: "Floor 27, Central pillar, behind the wall"}
+        - { name: Too Many Rooms,                   t: [ vlog ],                hint: "After the second 2D section, around the column." }
+        - { name: 5 | Floor 28,                     t: [ chorus ],              hint: "Top of the first climb." }
         # ----- Server Room -----
-        - { name: SCR-UB | Server Room,             t: [ scrub ],               hint: "Floor 30" }
-        - { name: Golden Kale Statue | Floor 30,    t: [ statue ],              hint: "In the server cylinder after Chorus 5." }
-        - { name: Upgrade | Life Gauge Piece 3,     t: [ life, korsica, post ], hint: "After Chorus 5, hit the generator with Korsica and climb the platforms in the server cylinder." }
-        - { name: NPC | OS-KAR doing all the work,  t: [ npcB ],                hint: "Floor 32"}
-        - { name: NPC | TEC-78 passing all the work,t: [ npcB ],                hint: "Floor 32"}
-        - { name: Vlog | Suspicious Doors?,         t: [ vlog ],                hint: "Floor 32, Next to the suspicious door in question." }
+        - { name: Server Room,                      t: [ scrub ],               hint: "Floor 30" }
+        - { name: Floor 30,                         t: [ statue ],              hint: "In the server cylinder after Chorus 5." }
+        - { name: Floor 32,                         t: [ life, korsica, post ], hint: "After Chorus 5, hit the generator with Korsica and climb the platforms in the server cylinder." }
+        - { name: Floor 32,                         t: [ circuit ],             hint: "Use the ledges around the pillars to get behind the glass." }
+        - { name: Floor 31,                         t: [ shop ],                hint: "Server room shop." }
+        - { name: OS-KAR doing all the work,        t: [ npcB ],                hint: "Floor 32"}
+        - { name: TEC-78 passing all the work,      t: [ npcB ],                hint: "Floor 32"}
+        - { name: Suspicious Doors?,                t: [ vlog ],                hint: "Floor 32, Next to the suspicious door in question." }
         - { name: Find the SPECTRA Door,            t: [ door ],                hint: "After Chorus 5, go up the steps in the back, then up another set of steps to the right." }
         - { name: Beat the SPECTRA Challenge,       t: [ spectra ],             hint: "Defeat all enemies without moving left stick." } # Gives ???
+      # - { name: SPECTRA Reward,                   t: [ life ]}
         # ----- Middle Room -----
-        - { name: Chorus 6 | Floor 31,              t: [ chorus ],              hint: "You broke my concentration, so how about I break you?" }
+        - { name: 6 | Floor 31,                     t: [ chorus ],              hint: "You broke my concentration, so how about I break you?" }
+        - { name: Rip and Tear,                     t: [ comic ],               hint: "Picked up right after Chorus 6."}
         # ----- Cylinder 2: Floor 33 -----
         # Hookshot to Floor 34, dodge lasers
-        - { name: Chorus 7 | Floor 39,                    t: [ chorus ],              hint: "" }
-        - { name: Armstrong Circuit | Floor 40,           t: [ circuit ],             hint: "After Chorus 7, on the balcony to the right." }
-        - { name: Golden Kale Statue | Floor 40,          t: [ statue ],              hint: "After Chorus 7, on the balcony to the left." }
-        - { name: Vlog | Data Node Dissatisfaction Mail,  t: [ vlog, macaron ],       hint: "After Chorus 7, beyond the Z-Door, in the back." }
-        - { name: NPC | Help the TEC Get Some Sleep,      t: [ npc, macaron ],        hint: "After Chorus 7, beyond the Z-Door, clear out the vacuum bots in the break room to the right, so the TEC-78 can take a nap." }
-        - { name: SCR-UB | Break Room 1,                  t: [ scrub ] } # TODO: Check if the NPC check satisfies by just driving all the SCRUBs out of the room
-        - { name: SCR-UB | Break Room 2,                  t: [ scrub ] }
-        - { name: SCR-UB | Break Room 3,                  t: [ scrub ] }
-        - { name: SCR-UB | Break Room 4,                  t: [ scrub ] }
+        - { name: 7 | Floor 39,                     t: [ chorus ],              hint: "" }
+        - { name: Floor 40,                         t: [ circuit ],             hint: "After Chorus 7, on the balcony to the right." }
+        - { name: Floor 40,                         t: [ statue ],              hint: "After Chorus 7, on the balcony to the left." }
+        - { name: Data Node Dissatisfaction Mail,   t: [ vlog, macaron ],       hint: "After Chorus 7, beyond the Z-Door, in the back." }
+        - { name: Help the TEC Get Some Sleep,      t: [ npc, macaron ],        hint: "After Chorus 7, beyond the Z-Door, clear out the vacuum bots in the break room to the right, so the TEC-78 can take a nap." }
+        - { name: Break Room 1,                     t: [ scrub ] } # TODO: Check if the NPC check satisfies by just driving all the SCRUBs out of the room
+        - { name: Break Room 2,                     t: [ scrub ] }
+        - { name: Break Room 3,                     t: [ scrub ] }
+        - { name: Break Room 4,                     t: [ scrub ] }
         # ----- Cylinder 2: Floor 40 -----
-        - { name: Vlog | Pmidge Press Announcement,       t: [ vlog,     macaron, korsica, post ], hint: "After Chorus 7, beyond the Z-Door and the fire door." }
-        - { name: Graffiti | Korsica,                     t: [ graffiti, macaron, korsica, post ], hint: "After Chorus 7, beyond the Z-Door and the fire door." }
+        - { name: Pmidge Press Announcement,        t: [ vlog,     macaron, korsica, post ], hint: "After Chorus 7, beyond the Z-Door and the fire door." }
+        - { name: Korsica,                          t: [ graffiti, macaron, korsica, post ], hint: "After Chorus 7, beyond the Z-Door and the fire door." }
         # Rhythm Jump to Floor 44
-        - { name: PA | Floor 44,          t: [ board ],               hint: "Flying around top of the rhythm jump after Chorus 7." }
-        - { name: Graffiti | KEM-0N0,                     t: [ graffiti ],            hint: "After Chorus 7, to the left after you grapple to the center column." }
-        - { name: Armstrong Circuit | Floor 45,           t: [ circuit ],             hint: "After Chorus 7, to the far right after you grapple to the center column." }
-        - { name: Chorus 8 | Floor 46,                    t: [ chorus ],              hint: "" }
+        - { name: Floor 44,                         t: [ board ],               hint: "Flying around top of the rhythm jump after Chorus 7." }
+        - { name: KEM-0N0,                          t: [ graffiti ],            hint: "After Chorus 7, to the left after you grapple to the center column." }
+        - { name: Floor 45,                         t: [ circuit ],             hint: "After Chorus 7, to the far right after you grapple to the center column." }
+        - { name: 8 | Floor 46,                     t: [ chorus ],              hint: "" }
         # Hookshot to Floor 47, Jump to Floor 48
         # ----- Cylinder 2: Floor 48 -----
-        - { name: NPC | Free the Stuck SCR-UB,            t: [ npc ],                 hint: "Free the SCR-UB from the downed data router after Chorus 8." }
-        - { name: SCR-UB | Betrayal,                      t: [ scrub ],               hint: "And you just helped free him too!" }
-        - { name: NPC | Tech with Never Ending Work,      t: [ npc, macaron ],        hint: "After Chorus 8, beyond the button." }
-        - { name: Vlog | Depressed Buttons,               t: [ vlog, macaron ],       hint: "After Chorus 8, near a button." }
-        - { name: Graffiti | Lasers,                      t: [ graffiti ],            hint: "Behind the rhythm jump tube after Chorus 8." }
-        - { name: Armstrong Circuit | Floor 56,           t: [ circuit ],             hint: "After Chorus 8, to the right of the top of the rhythm jump tube." }
-        - { name: Chorus 9 | Floor 62,                    t: [ chorus ],              hint: "Korsica's office is in sight..." }
-        - { name: Vlog | Food Delivery Warning,           t: [ vlog ],                hint: "In front of the door into Korsica's office." }
+        - { name: Free the Stuck SCR-UB,            t: [ npcA ],                hint: "Free the SCR-UB from the downed data router after Chorus 8." }
+        - { name: Betrayal,                         t: [ scrub ],               hint: "And you just helped free him too!" }
+        - { name: Tech with Never Ending Work,      t: [ npc, macaron ],        hint: "After Chorus 8, beyond the button." }
+        - { name: Depressed Buttons,                t: [ vlog, macaron ],       hint: "After Chorus 8, near a button." }
+        - { name: Lasers,                           t: [ graffiti ],            hint: "Behind the rhythm jump tube after Chorus 8." }
+        - { name: Floor 56,                         t: [ circuit ],             hint: "After Chorus 8, to the right of the top of the rhythm jump tube." }
+        - { name: Floor 62,                         t: [ shop ],                hint: "Shop before Korsica's office." }
+        - { name: 9 | Floor 62,                     t: [ chorus ],              hint: "Korsica's office is in sight..." }
+        - { name: Food Delivery Warning,            t: [ vlog ],                hint: "In front of the door into Korsica's office." }
         # ----- Korsica's Office -----
-        - { name: Defeat Korsica,                         t: [ boss ] }
+        - { name: Defeat Korsica,                   t: [ boss ] }
+        - { name: Obtain Korsica's Password,        t: [ key ], place_item: [ KORSICA_KEY ] }
         
-        # TODO Collectables
-        - { name: Upgrade | Life Gauge Piece 4,      t: [ life ],      hint: "???" }
-        - { name: Armstrong Circuit | Floor ???,     t: [ circuit ],   hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -640,108 +644,107 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
         region: { name: Track_8, requires: "|Track 8 Access|", connects_to: [ Track_8_2 ] }
       $for:
         # ----- Entrance ------
-        - { name: Vlog | Armstrong Festival Marketing?,    t: [ vlog ],      hint: "In the ticket line." }
-        - { name: NPC | Trash Pickup,                      t: [ npcB8 ],     hint: "In front of the globe."}
-        - { name: NPC | Doing the Robot,                   t: [ npcB8 ],     hint: "On the right side of the opening"}
-        - { name: NPC | Watching the Robot,                t: [ npcB8 ],     hint: "On the right side of the opening"}
-        - { name: NPC | Bummed It Can't Watch the Show,    t: [ npcB8 ],     hint: "On the right side of the opening"}
-        - { name: NPC | Love on the Lawn,                  t: [ npc_8 ],     hint: "In the opening area, interrupt the private moment of the couple from Rekka's anteroom." }
-        - { name: NPC | Find the Golden Can,               t: [ npc_8 ],     hint: "Help the SCR-UB find a golden can in the trash. The can down near the globe is where it usually is." } # Gives Life Gauge Piece
-        - { name: NPC | Composting 2000 Burgers,           t: [ npcB8 ],     hint: "In the upper area of the opening"}
-        - { name: NPC | Bathroom Emergency,                t: [ npcB8 ],     hint: "In the upper area of the opening"}
-        - { name: NPC | Help Polish the Door,              t: [ npc_8 ],     hint: "Help OS-KAR polish the door."}
-      # - { name: Click Here If You Got A Hint Popup,      hint: "If you've been running around this area too long, the game gets concerned."} # TODO: find some way to force this check to be a junk remote item
-        - { name: Armstrong Circuit | Bathroom,            t: [ circuit ],   hint: "In the opening area, on top of the bathroom." }
-        - { name: Vlog | Project Armstrong Raffle Results, t: [ vlog ],      hint: "In the opening area, on a trash can near the back." }
-        - { name: Graffiti | Fireworks,                    t: [ graffiti ],  hint: "In the upper part of the tracks opening area, before the fire gate, go toward the gate that the O5-KAR is polishing." }
+        - { name: Armstrong Festival Marketing?,           t: [ vlog ],      hint: "In the ticket line." }
+        - { name: Trash Pickup,                            t: [ npcB8 ],     hint: "In front of the globe."}
+        - { name: Doing the Robot,                         t: [ npcB8 ],     hint: "On the right side of the opening"}
+        - { name: Watching the Robot,                      t: [ npcB8 ],     hint: "On the right side of the opening"}
+        - { name: Bummed It Can't Watch the Show,          t: [ npcB8 ],     hint: "On the right side of the opening"}
+        - { name: Love on the Lawn,                        t: [ npcA8 ],     hint: "In the opening area, interrupt the private moment of the couple from Rekka's anteroom." }
+        - { name: Find the Golden Can,                     t: [ npcA8 ],     hint: "Help the SCR-UB find a golden can in the trash. The can down near the globe is where it usually is." } # Gives Life Gauge Piece
+        - { name: Life Gauge Piece 4,                      t: [ life, quest ], hint: Help the SCR-UB find a golden can in the trash }
+        - { name: Composting 2000 Burgers,                 t: [ npcB8 ],     hint: "In the upper area of the opening"}
+        - { name: Bathroom Emergency,                      t: [ npcB8 ],     hint: "In the upper area of the opening"}
+        - { name: Help Polish the Door,                    t: [ npcA8 ],     hint: "Help OS-KAR polish the door."}
+        - { name: Bathroom,                                t: [ circuit ],   hint: "In the opening area, on top of the bathroom." }
+        - { name: Project Armstrong Raffle Results,        t: [ vlog ],      hint: "In the opening area, on a trash can near the back." }
+        - { name: Fireworks,                               t: [ graffiti ],  hint: "In the upper part of the tracks opening area, before the fire gate, go toward the gate that the O5-KAR is polishing." }
         # Korsica Summon given
     - $common:
         region: { name: Track_8_2, requires: "|Korsica Summon|", connects_to: [ Track_8_3 ] }
       $for:
-        - { name: Vlog | Charging,                  t: [ vlog, ],     hint: "After the initial flaming door, next to the dead robot." }
-        - { name: Armstrong Circuit | Sewers Pass,  t: [ circuit ],   hint: "After the initial flaming door, you drop down and the circuit is behind you." }
-        - { name: PA | Sewers Pass, t: [ board ],     hint: "After the initial flaming door, floating in plain sight as you travel onward." }
+        - { name: Charging,                      t: [ vlog, ],     hint: "After the initial flaming door, next to the dead robot." }
+        - { name: Sewers Pass,                   t: [ circuit ],   hint: "After the initial flaming door, you drop down and the circuit is behind you." }
+        - { name: Underground Sauna,             t: [ board ],     hint: "After the initial flaming door, floating in plain sight as you travel onward." }
         # Z-Wall
     - $common:
         region: { name: Track_8_3, requires: "|Macaron Summon|", connects_to: [ Track_9 ] }
       $for:
-        - { name: Upgrade | Health Tank Piece 1,           t: [ health ],    hint: "Behind the robots in the sewer pass." }
-        - { name: NPC | CAR-11E Watching the Show,         t: [ npcB ],      hint: "In the sewer pass." }
-        - { name: Vlog | Taking a Break in the Park,       t: [ vlog, ],     hint: "After the sewer pass, in the fenced in section." }
+        - { name: Health Tank Piece 1,           t: [ health ],    hint: "Behind the robots in the sewer pass." }
+        - { name: CAR-11E Watching the Show,     t: [ npcB ],      hint: "In the sewer pass." }
+        - { name: Taking a Break in the Park,    t: [ vlog, ],     hint: "After the sewer pass, in the fenced in section." }
         # -------------------
-        - { name: Chorus 1 | Outside the Museum,           t: [ chorus ],    hint: "Outside the museum." }
-        - { name: Armstrong Circuit | Behind Hedges,       t: [ circuit ],   hint: "After Chorus 1, go through the gate/over the fence to the right." }
-        - { name: Upgrade | Reverb Core Piece 1,           t: [ reverb ],    hint: "After Chorus 1, go through the gate/over the fence to the left." }
-        - { name: Graffiti | BL-1Z5,                       t: [ graffiti ],  hint: "After Chorus 1, go through the gate/over the fence to the right." }
+        - { name: 1 | Outside the Museum,        t: [ chorus ],    hint: "Outside the museum." }
+        - { name: Behind the Hedges,             t: [ circuit ],   hint: "After Chorus 1, go through the gate/over the fence to the right." }
+        - { name: Behind the Hedges,             t: [ reverb ],    hint: "After Chorus 1, go through the gate/over the fence to the left." }
+        - { name: BL-1Z5,                        t: [ graffiti ],  hint: "After Chorus 1, go through the gate/over the fence to the right." }
         # ----- Museum Lobby ------
-        - { name: Vlog | GNR-202 Display,                  t: [ vlog ],      hint: "In the lobby of the museum." }
-        - { name: Vlog | SBR-001 Display,                  t: [ vlog ],      hint: "In the lobby of the museum." }
-        - { name: Vlog | ES-101 Display,                   t: [ vlog ],      hint: "In the lobby of the museum." }
-        - { name: Vlog | BES-102 Display,                  t: [ vlog ],      hint: "In the lobby of the museum." }
-        - { name: Vlog | BL-1Z5 Display,                   t: [ vlog ],      hint: "In the lobby of the museum." }
-        - { name: Vlog | BA-B00 Display,                   t: [ vlog ],      hint: "In the lobby of the museum." }
-        - { name: Vlog | Reminder to Reception,            t: [ vlog ],      hint: "In the lobby of the museum." }
-        - { name: Snail | Into the Mirror Within,          t: [ snail ],     hint: "In the dark hallway where you can find Korsica's painting, witness the logo-snail vanish into the mirror. (An animation plays when you look at it.)" }
+        - { name: GNR-202 Display,               t: [ vlog ],      hint: "In the lobby of the museum." }
+        - { name: SBR-001 Display,               t: [ vlog ],      hint: "In the lobby of the museum." }
+        - { name: ES-101 Display,                t: [ vlog ],      hint: "In the lobby of the museum." }
+        - { name: BES-102 Display,               t: [ vlog ],      hint: "In the lobby of the museum." }
+        - { name: BL-1Z5 Display,                t: [ vlog ],      hint: "In the lobby of the museum." }
+        - { name: BA-B00 Display,                t: [ vlog ],      hint: "In the lobby of the museum." }
+        - { name: Reminder to Reception,         t: [ vlog ],      hint: "In the lobby of the museum." }
+        - { name: Into the Mirror Within,        t: [ snail ],     hint: "In the dark hallway where you can find Korsica's painting, witness the logo-snail vanish into the mirror. (An animation plays when you look at it.)" }
         # ----- Up the Stairs ------
-        - { name: Smidge | Korsica,                        t: [ smidge ],    hint: "Korsica tutorial" }
-        - { name: Vlog | BRUT-1L Display,                  t: [ vlog ],      hint: "Up the steps from the lobby of the museum." }
-        - { name: Vlog | Our Community Helper BA-B00,      t: [ vlog ],      hint: "Up the steps from the lobby of the museum." }
-        - { name: Chorus 2 | Rotunda Fight,                t: [ chorus ],    hint: "In the first circular room." }
-        - { name: NPC | VA-SER Display?,                   t: [ npc ],       hint: "After Chorus 2, in plain sight." }
+        - { name: Korsica,                       t: [ smidge ],    hint: "Korsica tutorial" }
+        - { name: BRUT-1L Display,               t: [ vlog ],      hint: "Up the steps from the lobby of the museum." }
+        - { name: Our Community Helper BA-B00,   t: [ vlog ],      hint: "Up the steps from the lobby of the museum." }
+        - { name: 2 | Rotunda Fight,             t: [ chorus ],    hint: "In the first circular room." }
+        - { name: VA-SER Display?,               t: [ npcA ],      hint: "After Chorus 2, in plain sight." }
         # -------------------
         - { name: History Display 1 - Vandelay's Humble Beginnings, t: [ moment ]}
-        - { name: Vending Machine | Display 1,             t: [ vend ],      hint: "After the first History Display." }
-        - { name: Vlog | SEN-C0 Display,                   t: [ vlog ],      hint: "After the first History Display." }
-        - { name: Chorus 3 | The Fire Squad,               t: [ chorus ],    hint: "Fire squad reporting in!" }
+        - { name: Display 1,                     t: [ vend ],      hint: "After the first History Display." }
+        - { name: SEN-C0 Display,                t: [ vlog ],      hint: "After the first History Display." }
+        - { name: 3 | The Fire Squad,            t: [ chorus ],    hint: "Fire squad reporting in!" }
         # -------------------
         - { name: History Display 2 - Growth into Vandelay Technologies, t: [ moment ]}
-        - { name: Chorus 4 | Enough Theatrics!,      t: [ chorus ],    hint: "Enough theatrics! / Oh, there's never enough!" }
-        - { name: Armstrong Circuit | Chorus 4,      t: [ circuit ],   hint: "In the storage room behind Chorus 4." }
-        - { name: Golden Kale Statue | Display,      t: [ statue ],    hint: "On display above Chorus 4." }
-        - { name: Graffiti | Stage,                  t: [ graffiti, macaron ], hint: "After the fight against the WA-ES-2 and SEN-C0 and breaking through the Z-Shielded wall, look to the left." }
-        - { name: Armstrong Circuit | Off Display,   t: [ circuit ],   hint: "In the back areas behind Chorus 4." }
-        - { name: Upgrade | Life Gauge Piece 1,      t: [ life ],      hint: "In the back areas behind Chorus 4." }
-        - { name: Vlog | Disappointed O5-KAR4,       t: [ vlog ],      hint: "In the back areas behind Chorus 4." }
-        - { name: NPC | Inspire O5-KAR Again,        t: [ npc ],       hint: "In the back areas behind Chorus 4, destroy OS-KAR's artwork of Saturn devouring his son." }
-        - { name: Upgrade | Health Tank Piece 2,     t: [ health ],    hint: "After the generator climb, in the opposite direction." }
-        - { name: Chorus 5 | Generator Climb,        t: [ chorus ],    hint: "After the generator climb." }
+        - { name: 4 | Enough Theatrics!,         t: [ chorus ],    hint: "Enough theatrics! / Oh, there's never enough!" }
+        - { name: Chorus 4,                      t: [ circuit ],   hint: "In the storage room behind Chorus 4." }
+        - { name: Display,                       t: [ statue ],    hint: "On display above Chorus 4." }
+        - { name: Stage,                         t: [ graffiti, macaron ], hint: "After the fight against the WA-ES-2 and SEN-C0 and breaking through the Z-Shielded wall, look to the left." }
+        - { name: Off Display,                   t: [ circuit ],   hint: "In the back areas behind Chorus 4." }
+        - { name: Storage Racks,                 t: [ life ],      hint: "In the back areas behind Chorus 4." }
+        - { name: Disappointed O5-KAR4,          t: [ vlog ],      hint: "In the back areas behind Chorus 4." }
+        - { name: Inspire O5-KAR Again,          t: [ npcA ],      hint: "In the back areas behind Chorus 4, destroy OS-KAR's artwork of Saturn devouring his son." }
+        - { name: Storage Racks,                 t: [ shop ],      hint: "Near OS-KAR's artwork" }
+        - { name: Above the Generator,           t: [ health ],    hint: "After the generator climb, in the opposite direction." }
+        - { name: 5 | Generator Climb,           t: [ chorus ],    hint: "After the generator climb." }
         # ----- Museum Power Supply -----
-        - { name: Vlog | Water Generator Complaint,  t: [ vlog ],      hint: "Next to the second generator in the power supply area." }
-        - { name: NPC | Doing His Job,               t: [ npcB ],      hint: "Next to the power core he should be putting in."}
-        - { name: Chorus 6 | That's SHOCKING!,       t: [ chorus ],    hint: "That's SHOCKING!" }
-        - { name: Upgrade | Reverb Core Piece 2,     t: [ reverb ],    hint: "After Chorus 6, to the right and over several electric panels." }
-        - { name: Armstrong Circuit | Chorus 6,      t: [ circuit ],   hint: "After Chorus 6 and the shop in a storage room to the right." }
+        - { name: Water Generator Complaint,     t: [ vlog ],      hint: "Next to the second generator in the power supply area." }
+        - { name: Doing His Job,                 t: [ npcB ],      hint: "Next to the power core he should be putting in."}
+        - { name: 6 | That's SHOCKING!,          t: [ chorus ],    hint: "That's SHOCKING!" }
+        - { name: Shocking Alley,                t: [ reverb ],    hint: "After Chorus 6, to the right and over several electric panels." }
+        - { name: Display Storage Room,          t: [ shop ],      hint: "Shop right before the large display room." }
+        - { name: Display Storage Room,          t: [ circuit ],   hint: "After Chorus 6 and the shop in a storage room to the right." }
         # ----- Huge Display Room -----
-        - { name: Vlog | Display Complaints,         t: [ vlog ],      hint: "In the big display room, to the right." }
-        - { name: Chorus 7 | In the Rafters,         t: [ chorus ],    hint: "A notice to all employees: The rumors about the demise of department heads has been greatly exaggerated." }
-        - { name: PA | Greatly Exaggerated,          t: [ board ],     hint: "Flying around Chorus 7." }
-        - { name: Armstrong Circuit | Chorus 7,      t: [ circuit ],   hint: "After Chorus 7, on the scaffolding to the right." }
-        - { name: Upgrade | Life Gauge Piece 2,      t: [ life ],      hint: "After punching out the Z-Shield, jump down onto the shield." }
-        - { name: NPC | Afraid of Heights,           t: [ npcB ],      hint: "After punching out the Z-Shield, to the right of the path forward." }
+        - { name: Display Complaints,            t: [ vlog ],      hint: "In the big display room, to the right." }
+        - { name: 7 | In the Rafters,            t: [ chorus ],    hint: "A notice to all employees: The rumors about the demise of department heads has been greatly exaggerated." }
+        - { name: Greatly Exaggerated,           t: [ board ],     hint: "Flying around Chorus 7." }
+        - { name: Chorus 7,                      t: [ circuit ],   hint: "After Chorus 7, on the scaffolding to the right." }
+        - { name: Down Below the Shield,         t: [ life ],      hint: "After punching out the Z-Shield, jump down onto the shield." }
+        - { name: Afraid of Heights,             t: [ npcB ],      hint: "After punching out the Z-Shield, to the right of the path forward." }
         # -------------------
-        - { name: Chorus 8 | Falling Platform,       t: [ chorus ],    hint: "Chai, I don't think that platform's going to hold!" }
-        - { name: Graffiti | Museum,                 t: [ graffiti ],  hint: "After Chorus 8, to the right of the stairs." }
-        - { name: NPC | SEB-AAA and JSF-001,         t: [ noir ],      hint: "After Chorus 8, to the left." }
-        - { name: Vending Machine | Chorus 8,        t: [ vend ],      hint: "After Chorus 8, in the hallway to the right." }
+        - { name: 8 | Falling Platform,          t: [ chorus ],    hint: "Chai, I don't think that platform's going to hold!" }
+        - { name: Museum,                        t: [ graffiti ],  hint: "After Chorus 8, to the right of the stairs." }
+        - { name: SEB-AAA and JSF-001,           t: [ noir ],      hint: "After Chorus 8, to the left." }
+        - { name: Chorus 8,                      t: [ vend ],      hint: "After Chorus 8, in the hallway to the right." }
         # -------------------
         - { name: History Display 3 - The New Visionary!, t: [ moment ] }
-        - { name: Vlog | KEM-0N0 Display,            t: [ vlog ],      hint: "After the 3rd history display." }
-        - { name: Vlog | SBR Development Display,    t: [ vlog ],      hint: "After the 3rd history display." }
-        - { name: Chest | Life Gauge Piece 3,        t: [ life, treasure ],  hint: "Inside the treasure chest robot to the right after the third history display." }
+        - { name: KEM-0N0 Display,               t: [ vlog ],      hint: "After the 3rd history display." }
+        - { name: SBR Development Display,       t: [ vlog ],      hint: "After the 3rd history display." }
+        - { name: Storage Room Chest,            t: [ life, treasure ],  hint: "Inside the treasure chest robot to the right after the third history display." }
         # -------------------
-        - { name: Armstrong Circuit | Pipes,         t: [ circuit ],   hint: "After a series of hookshots, before the Z-Wall, double back up onto the pipes." }
-        - { name: Find the SPECTRA Door,             t: [ door ],      hint: "After a series of hookshots, before the Z-Wall, double back up onto the pipes." }
-        - { name: Beat the SPECTRA Challenge,        t: [ spectra ],   hint: "Defeat all enemies without taking damage." } # Gives Armstrong Circuit
-        - { name: Vlog | Door Musings From SCR-UB,   t: [ vlog ],      hint: "Next to the SPECTRA Door." } # TODO: Find
+        - { name: Turnback Pipes,                t: [ circuit ],   hint: "After a series of hookshots, before the Z-Wall, double back up onto the pipes." }
+        - { name: Find the SPECTRA Door,         t: [ door ],      hint: "After a series of hookshots, before the Z-Wall, double back up onto the pipes." }
+        - { name: Beat the SPECTRA Challenge,    t: [ spectra ],   hint: "Defeat all enemies without taking damage." } # Gives Armstrong Circuit
+      # - { name: SPECTRA Reward,                t: [ circuit ]}
+        - { name: Door Musings From SCR-UB,      t: [ vlog ],      hint: "Next to the SPECTRA Door." }
         # -------------------
-        - { name: Chorus 9 | Show's Over!,           t: [ chorus ],    hint: "Some pests just don't want to go away!" }
-        - { name: Golden Kale Statue | Final Hallway,t: [ statue ],    hint: "In the hallway behind you after dropping down from Chorus 9." }
+        - { name: 9 | Show's Over!,              t: [ chorus ],    hint: "Some pests just don't want to go away!" }
+        - { name: Final Hallway,                 t: [ statue ],    hint: "In the hallway behind you after dropping down from Chorus 9." }
         # -------------------
-        - { name: Tear Down a Cardboard Kale,        t: [ level ],     hint: "Peppermint does this for you." }
-        
-        # TODO Collectables
-        - { name: Upgrade | Life Gauge Piece 4,      t: [ life ],      hint: "???" }
-        - { name: Armstrong Circuit | ???,      t: [ circuit ],   hint: "???" }
+        - { name: Tear Down a Cardboard Kale,    t: [ level ],     hint: "Peppermint does this for you." }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -752,19 +755,21 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
     - $common: 
         region: { name: Track_9, requires: "|Track 9 Access|", connects_to: [ Track_10 ] }
       $for:
-        - { name: Easter Egg | What if we retcon this?, t: [ easter-first ], hint: "Take a break from the action, then ask Peppermint why you're at the hideout..." }
+        - { name: What if we retcon this?,            t: [ easter-first ], hint: "Take a break from the action, then ask Peppermint why you're at the hideout..." }
         
-        - { name: Graffiti | Mimosa,                        t: [ graffiti ], hint: "At the very beginning of the track, turn around. It's on the wall." }
-        - { name: Vending Machine | Backstage,              t: [ vend ],     hint: "In the hall leading to Mimosa's dressing room." }
-        - { name: Armstrong Circuit | Backstage,            t: [ circuit ],  hint: "In the hall leading to Mimosa's dressing room, under the raised floor." }
-        - { name: Upgrade | Life Gauge Piece 1,             t: [ life ],     hint: "In the hall leading to Mimosa's dressing room, under the raised floor." }
-        - { name: Vlog | Armstrong Festival Briefing Notes, t: [ vlog ],     hint: "In the hall leading to Mimosa's dressing room, after the raised floor." }
-        - { name: Vlog | Mimosa's Rider,                    t: [ vlog ],     hint: "At the end of the corridor on a bench near the shop." }
+        - { name: Mimosa,                             t: [ graffiti ], hint: "At the very beginning of the track, turn around. It's on the wall." }
+        - { name: Backstage,                          t: [ vend ],     hint: "In the hall leading to Mimosa's dressing room." }
+        - { name: Backstage,                          t: [ circuit ],  hint: "In the hall leading to Mimosa's dressing room, under the raised floor." }
+        - { name: Backstage,                          t: [ life ],     hint: "In the hall leading to Mimosa's dressing room, under the raised floor." }
+        - { name: Armstrong Festival Briefing Notes,  t: [ vlog ],     hint: "In the hall leading to Mimosa's dressing room, after the raised floor." }
+        - { name: Mimosa's Rider,                     t: [ vlog ],     hint: "At the end of the corridor on a bench near the shop." }
+        - { name: Backstage,                          t: [ shop ],     hint: "Right before Mimosa's dressing room" }
         # Initiate still perfectly relevant cultural reference!
-        - { name: Armstrong Circuit | Left Shark,           t: [ circuit ],  hint: "As Left Shark, on the way to the stage." }
+        - { name: Left Shark,                         t: [ circuit ],  hint: "As Left Shark, on the way to the stage." }
         # On stage!
-        - { name: Defeat Mimosa, t: [ boss ] }
-      # - { name: Snail | ???,                       t: [ snail ], hint: "???" }
+        - { name: Defeat Mimosa,                      t: [ boss ] }
+        - { name: Obtain the MIMOSA_KEY,              t: [ key ], place_item: [ MIMOSA_KEY ] }
+      # - { name: ???,                                t: [ snail ], hint: "???" }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -776,72 +781,74 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
         region: { name: Track_10, requires: "|Track 10 Access|", connects_to: [ Track_10_2 ] }
       $for:
         # Let's never mention that again!
-        - { name: Chorus 1 | Hacking In Progress, t: [ chorus ],     hint: "I need a moment!" }
-        - { name: Chorus 2 | Adjusting Aim,       t: [ chorus ],     hint: "Don't let them break the cannon. That would be worse than BREAKING my concentration!" }
-        - { name: Chorus 3 | Stuck,               t: [ chorus ],     hint: "I think I found the 'interference'!" }
+        - { name: 1 | Hacking In Progress,        t: [ chorus ],     hint: "I need a moment!" }
+        - { name: 2 | Adjusting Aim,              t: [ chorus ],     hint: "Don't let them break the cannon. That would be worse than BREAKING my concentration!" }
+        - { name: 3 | Stuck,                      t: [ chorus ],     hint: "I think I found the 'interference'!" }
         # "Just call me Payload."
-        - { name: Chorus 4 | Hope No One Noticed,              t: [ chorus ],     hint: "Well, I'm in. I hope no one noticed--" }
+        - { name: 4 | Hope No One Noticed,        t: [ chorus ],     hint: "Well, I'm in. I hope no one noticed--" }
         - hint: "No one messes with Vandelay Cuisine!"
           t: [ chorus ]
-          name: Chorus 5 | 麻婆豆腐 炒飯定食
-          # name: Chorus 5 | Mapo Tofu / Fried Rice Set Meal   # Translation, use in case the program hates unicode.
-        - { name: Vlog | Cafeteria Menu,         t: [ vlog ],       hint: "After the big fight in the cafeteria, before you go through the hole in the wall." }
-        - { name: NPC | Tanning SBR-001,         t: [ npc ],        hint: "After the big right in the cafeteria, at one of the tables"}
-        - { name: Vlog | Vandelay Grammar Check, t: [ vlog ],       hint: "In the hub after Chorus 5." }
-        - { name: Vending Machine | All Costs,   t: [ vend ],       hint: "In the hub after Chorus 5." }
-        - { name: Smidge | SMIDGED???,           t: [ smidge ],     hint: "Holding up the door after Chorus 5." }
-        - { name: Graffiti | WA-ES-2,            t: [ graffiti ],   hint: "After Smidge gets stuck in the door." }
-        - { name: Armstrong Circuit | Hallway,   t: [ circuit ],    hint: "In the corner after Chorus 5." }
+          name: 5 | 麻婆豆腐 炒飯定食
+          # name: 5 | Mapo Tofu / Fried Rice Set Meal   # Translation, use in case the program hates unicode.
+        
+        - { name: Cafeteria Menu,                t: [ vlog ],       hint: "After the big fight in the cafeteria, before you go through the hole in the wall." }
+        - { name: Tanning SBR-001,               t: [ tan ],        hint: "After the big right in the cafeteria, at one of the tables"}
+        - { name: Vandelay Grammar Check,        t: [ vlog ],       hint: "In the hub after Chorus 5." }
+        - { name: All Costs,                     t: [ vend ],       hint: "In the hub after Chorus 5." }
+        - { name: SMIDGED???,                    t: [ smidge ],     hint: "Holding up the door after Chorus 5." }
+        - { name: WA-ES-2,                       t: [ graffiti ],   hint: "After Smidge gets stuck in the door." }
+        - { name: Hallway,                       t: [ circuit ],    hint: "In the corner after Chorus 5." }
         # Z-Door, followed by Generator, followed by Peppermint shoot, all in the same hallway
     - $common:
         region: { name: Track_10_2, requires: "|Macaron Summon|", connects_to: [ Track_10_3 ] }
       $for: 
-        - { name: Upgrade | Life Gauge Piece 1,  t: [ life ],     hint: "After the Z-door and the floor opens up, instead of going ahead, double back into the maze of pipes." }
-        - { name: Snail | Back from the Mirror,  t: [ snail ],    hint: "After the Z-door and the floor opens up, instead of going ahead, double back into the maze of pipes." }
+        - { name: Maze of Pipes,                 t: [ life ],     hint: "After the Z-door and the floor opens up, instead of going ahead, double back into the maze of pipes." }
+        - { name: Back from the Mirror,          t: [ snail ],    hint: "After the Z-door and the floor opens up, instead of going ahead, double back into the maze of pipes." }
     - $common:
         region: { name: Track_10_3, requires: "|Korsica Summon| and |Peppermint Summon|", connects_to: [ Track_11 ] }
       $for: 
-        - { name: Chorus 6 | Armadillomon,      t: [ chorus ],     hint: "Armadillomon fight" }
-        - { name: Armstrong Circuit | Corridor, t: [ circuit ],    hint: "In the corner after Chorus 6." }
-        - { name: Vending Machine | Corridor,   t: [ vend ],       hint: "In the hall after Chorus 6." }
+        - { name: 6 | Armadillomon,             t: [ chorus ],     hint: "Armadillomon fight" }
+        - { name: Corridor,                     t: [ circuit ],    hint: "In the corner after Chorus 6." }
+        - { name: Corridor,                     t: [ vend ],       hint: "In the hall after Chorus 6." }
+        - { name: Corridor,                     t: [ shop ],       hint: "In the hall after Chorus 6." }
         # ----- The Atrium -----
         - { name: I think I found the Atrium,   t: [ moment ]}
-        - { name: Vlog | Atrium State Mail,     t: [ vlog ],       hint: "On the atrium entrance balcony." }
-        - { name: PA | Please Use the Doors,    t: [ board ],      hint: "Visible from the atrium entrance balcony." }
-        - { name: Armstrong Circuit | Balcony,  t: [ circuit ],    hint: "Above the atrium entrance balcony, taking a path on the right." }
-        - { name: Graffiti | Wrench,            t: [ graffiti ],   hint: "Above the atrium entrance balcony, taking a path on the right." }
-        - { name: Chest | Life Gauge Piece 2,   t: [ health, treasure ],  hint: "Inside the treasure chest robot, above the atrium entrance balcony, taking a path on the right." }
+        - { name: Atrium State Mail,            t: [ vlog ],       hint: "On the atrium entrance balcony." }
+        - { name: Please Use the Doors,         t: [ board ],      hint: "Visible from the atrium entrance balcony." }
+        - { name: Balcony,                      t: [ circuit ],    hint: "Above the atrium entrance balcony, taking a path on the right." }
+        - { name: Wrench,                       t: [ graffiti ],   hint: "Above the atrium entrance balcony, taking a path on the right." }
+        - { name: Balcony Chest,                t: [ health, treasure ],  hint: "Inside the treasure chest robot, above the atrium entrance balcony, taking a path on the right." }
         - { name: Find the SPECTRA Door,        t: [ door ],       hint: "Above the atrium entrance balcony, well hidden way in the back." }
         - { name: Beat the SPECTRA Challenge,   t: [ spectra ],    hint: "Defeat all enemies with a Just Timing score of at least 85%"} # Gives ???
+      # - { name: SPECTRA Reward,               t: [ circuit ]}
         # Get knocked down by a bird robot.
-        - { name: "Chorus 7 | Quote, Got This",   t: [ chorus ],     hint: "Mister Chai has assured us he has, quote, got this, end quote." }
-        - { name: Chorus 8 | Quiet Please,        t: [ chorus ],     hint: "Somehow not disturbing the workers on the sides." }
+        - { name: "7 | Quote, Got This",        t: [ chorus ],     hint: "Mister Chai has assured us he has, quote, got this, end quote." }
+        - { name: 8 | Quiet Please,             t: [ chorus ],     hint: "Somehow not disturbing the workers on the sides." }
         # "Do what you need to do to get him! ....I'll expense it!"
-        - { name: Armstrong Circuit | Expense It,         t: [ circuit ],    hint: "Behind you after the rail." }
-        - { name: NPC | SEB-AAA and JSF-001,              t: [ noir ],       hint: "After the rail, jump off the side of the cube you land on and onto a balcony." }
-        - { name: Golden Kale Statue | Office Block,      t: [ statue ],     hint: "In the next office cube after the rail." }
-        - { name: Vlog | Budget Challenge Email,          t: [ vlog ],       hint: "In the next office cube after the rail." }
-        - { name: Upgrade | Life Gauge Piece 3,           t: [ life ],       hint: "Outside the next office cube after the rail." }
-        - { name: PA | We apologize for the explosions,   t: [ board ],      hint: "Flying around above the office cube after the rail." }
-        - { name: SCR-UB | Office Block,                  t: [ scrub ],      hint: "Hit by the Z-Wall explosion"}
-        - { name: Upgrade | Health Tank Piece 1,          t: [ health ],     hint: "In the second office cube after the rail, in the back room high up on the shelf." }
-        - { name: Armstrong Circuit | Office Block,       t: [ circuit ],    hint: "In the second office cube after the rail, in the corner." }
-        - { name: Vending Machine | Water Cooler,         t: [ vend ],       hint: "In the second office cube after the rail." }
-        - { name: Vlog | Hoodie Preorder Email,           t: [ vlog ],       hint: "In the second office cube after the rail." }
-        - { name: Vlog | Vandelay Handbook Note,          t: [ vlog ],       hint: "Above the second office cube after the rail." }
-        - { name: Graffiti | Roquefort,                   t: [ graffiti ],   hint: "Behind the Handbook Note, jump off the cube onto the isolated balcony." }
+        - { name: Expense It,                      t: [ circuit ],    hint: "Behind you after the rail." }
+        - { name: SEB-AAA and JSF-001,             t: [ noir ],       hint: "After the rail, jump off the side of the cube you land on and onto a balcony." }
+        - { name: Office Block,                    t: [ statue ],     hint: "In the next office cube after the rail." }
+        - { name: Budget Challenge Email,          t: [ vlog ],       hint: "In the next office cube after the rail." }
+        - { name: Office Cube,                     t: [ life ],       hint: "Outside the next office cube after the rail." }
+        - { name: We apologize for the explosions, t: [ board ],      hint: "Flying around above the office cube after the rail." }
+        - { name: Office Block,                    t: [ scrub ],      hint: "Hit by the Z-Wall explosion"}
+        - { name: Back Room,                       t: [ health ],     hint: "In the second office cube after the rail, in the back room high up on the shelf." }
+        - { name: Office Block,                    t: [ circuit ],    hint: "In the second office cube after the rail, in the corner." }
+        - { name: Water Cooler,                    t: [ vend ],       hint: "In the second office cube after the rail." }
+        - { name: Hoodie Preorder Email,           t: [ vlog ],       hint: "In the second office cube after the rail." }
+        - { name: Vandelay Handbook Note,          t: [ vlog ],       hint: "Above the second office cube after the rail." }
+        - { name: Roquefort,                       t: [ graffiti ],   hint: "Behind the Handbook Note, jump off the cube onto the isolated balcony." }
         # -------------------
-        - { name: Chorus 9 | OH COME ON!!,       t: [ chorus ] }
+        - { name: 9 | OH COME ON!!,              t: [ chorus ] }
         - { name: "Take This, Statue Kale!",     t: [ moment ] }
-        - { name: Upgrade | Reverb Core Piece 1, t: [ reverb ],     hint: "After smashing the head off the Kale statue, near the base of the statue's dismembered arm." }
-        - { name: Armstrong Circuit | Finance,   t: [ circuit ],    hint: "On the finance department balcony, to the left." }
-        - { name: Graffiti | Kale,               t: [ graffiti ],   hint: "On the finance department balcony, to the right." }
-        - { name: Vlog | Roquefort Meeting Prep, t: [ vlog ],       hint: "On the finance department balcony, to the left." }
+        - { name: Decapitated Statue,            t: [ reverb ],     hint: "After smashing the head off the Kale statue, near the base of the statue's dismembered arm." }
+        - { name: Finance,                       t: [ circuit ],    hint: "On the finance department balcony, to the left." }
+        - { name: Kale,                          t: [ graffiti ],   hint: "On the finance department balcony, to the right." }
+        - { name: Roquefort Meeting Prep,        t: [ vlog ],       hint: "On the finance department balcony, to the left." }
+        - { name: Finance,                       t: [ shop ],       hint: "On the finance department balcony." }
         # The phone call
         - { name: Defeat Roquefort,              t: [ boss ] }
-        
-        # TODO Collectables
-        - { name: Armstrong Circuit | ???,       t: [ circuit ],  hint: "???" }
+        - { name: Obtain the ROQUEFORT_KEY,      t: [ key ], place_item: [ ROQUEFORT_KEY ] }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -853,16 +860,16 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
         region: { name: Track_11, requires: "|Track 11 Access|", connects_to: [ Track_12 ] }
       $for:
         # Easter Egg: During first play-through, close the game right after starting Track 11 (elevator ride up)
-        - { name:  Easter Egg | Picked a bad time to take a break,    t: [ easter-first ], hint: "Make the game angry at you for quitting, then talk to Macaron after reloading." }
-        - { name:  Easter Egg | Peppermint should be pissed,          t: [ easter-first ], hint: "Make the game angry at you for quitting, then talk to Peppermint after reloading." }
-        - { name: "Easter Egg | Oh, there you are!",                  t: [ easter-first ], hint: "Make the game angry at you for quitting, then talk to CNMN after reloading." }
-        - { name:  Easter Egg | Chai addresses the Player,            t: [ easter-first ], hint: "Make the game angry at you for quitting, then talk to Korsica after reloading." }
+        - { name:  Picked a bad time to take a break,    t: [ easter-first ], hint: "Make the game angry at you for quitting, then talk to Macaron after reloading." }
+        - { name:  Peppermint should be pissed,          t: [ easter-first ], hint: "Make the game angry at you for quitting, then talk to Peppermint after reloading." }
+        - { name: "Oh, there you are!",                  t: [ easter-first ], hint: "Make the game angry at you for quitting, then talk to CNMN after reloading." }
+        - { name:  Chai addresses the Player,            t: [ easter-first ], hint: "Make the game angry at you for quitting, then talk to Korsica after reloading." }
         
-        - { name: Synchronize a Harmonic Force Field, t: [ chorus ] }
-        - { name: Chorus 1 | Broken Elevator,         t: [ chorus ] }
-        - { name: Chorus 2 | Below Deck,              t: [ chorus ] }
-        - { name: Chorus 3 | I think it lost me,      t: [ chorus ] }
-        - { name: Defeat the ZP-1500,                 t: [ boss ] }
+        - { name: 0 | Synchronize a Harmonic Force Field, t: [ chorus ] }
+        - { name: 1 | Broken Elevator,                    t: [ chorus ] }
+        - { name: 2 | Below Deck,                         t: [ chorus ] }
+        - { name: 3 | I think it lost me,                 t: [ chorus ] }
+        - { name: Defeat the ZP-1500,                     t: [ boss ] }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -873,9 +880,10 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
     - $common: 
         region: { name: Track_12, requires: "|Track 12 Access|", connects_to: [ Hideout_PostGame ] }
       $for:
-        - { name: Easter Egg | I'm a dog person, t: [ easter ], hint: "Attempt the special attack Steal The Show against Kale." }
+        - { name: I'm a dog person,    t: [ easter ], hint: "Attempt the special attack Steal The Show against Kale." }
         
-        - { name: Defeat Kale, t: [ boss ], victory: true }
+        - { name: Defeat Kale,         t: [ boss ], victory: true }
+        - { name: Obtain the KALE_KEY, t: [ key ], place_item: [ KALE_KEY ] }
 
 #endregion
 #---------------------------------------------------------------------------------------------------------------------#
@@ -1006,6 +1014,17 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
 #=====================================================================================================================#
 #region - Wall of Fame
 
+- $common: { name: Bucket List, category: [ 30. Bucket List ] }
+  $for:
+    - { name: Face Off,                                t: [ bucket-1 ],    hint: "Totally destroy QA-1MIL's face in Track 1!"}
+    - { name: He's So Hot Right Now,                   t: [ bucket-1 ],    hint: "Hit Zanzo's promotional cutout into the lava in Track 3! (The best cutout to use is on the rock to the left outside R&D.)"}
+    - { name: Pick Up After Yourself,                  t: [ bucket-1 ],    hint: "Kick at least one empty can into the trash!"}
+    - { name: "Get Outta My Way, Magma!",              t: [ bucket-1 ],    hint: "Parry a falling lava ball in Track 4!"}
+    - { name: Ad Blocker,                              t: [ bucket-1 ],    hint: "In Track 6, parry an incoming sign on the L.I.F.T.!"}
+    - { name: Nice Catch!,                             t: [ bucket-1 ],    hint: "Successfully catch Korsica in Track 7!"}
+    - { name: That's Cheating!,                        t: [ bucket-1 ],    hint: "Defeat the Z-Shielded Robot in Track 3!"}
+    - { name: I Don't Need A Hint!,                    t: [ bucket-1 ],    hint: "Spend a little longer than the game likes just looking around. (Easy to get at the start of Track 8.)"}
+
 - $common: { name: Achievement, category: [ 30. Wall of Fame ] }
   $for:
     # Battle
@@ -1075,10 +1094,10 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
     - { name: Stock up! Lvl.2,                         t: [ achieve-2 ],    hint: "Collect (500,000) gears."}
     - { name: Stock up! Lvl.3,                         t: [ achieve-3 ],    hint: "Collect (1,000,000) gears."}
     - { name: Stock up! Lvl.4,                         t: [ achieve-4 ],    hint: "Collect (2,000,000) gears."}
-    - { name: All My Circuits,                         t: [ achieve-2 ],    hint: "Collect all (56) Armstrong Circuits found in the stages!"}
-    - { name: All the Right Moves,                     t: [ achieve-2 ],    hint: "Buy all of the normal Attacks from the store!"}
-    - { name: Specialist,                              t: [ achieve-2 ],    hint: "Buy all of the Special Attacks from the store!"}
-    - { name: The Very Best,                           t: [ achieve-2 ],    hint: "Buy every powerup!"}
+    - { name: All My Circuits,                         t: [ achieve-3 ],    hint: "Collect all (56) Armstrong Circuits found in the stages!"}
+    - { name: All the Right Moves,                     t: [ achieve-3 ],    hint: "Buy all of the normal Attacks from the store!"}
+    - { name: Specialist,                              t: [ achieve-3 ],    hint: "Buy all of the Special Attacks from the store!"}
+    - { name: The Very Best,                           t: [ achieve-3 ],    hint: "Buy every powerup!"}
     - { name: A Lot of Heart,                          t: [ achieve-3 ],    hint: "Max out your Life Gauge!"}
     - { name: Let it Sing!,                            t: [ achieve-3 ],    hint: "Max out your Reverb Gauge!"}
     - { name: Ready to Customize!,                     t: [ achieve-3 ],    hint: "Buy every chip!"}
@@ -1111,9 +1130,9 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
     - { name: Perfect Harmony,                         t: [ achieve-2 ],    hint: "Complete (30) Partner Action minigames for Macaron and Korsica on the first try with Perfect timing."}
     - { name: Awkward Encounters,                      t: [ achieve-2 ],    hint: "Have every conversation with Smidge!"}
     - { name: I'm Not Paying for This!,                t: [ achieve-2 ],    hint: "Bust up (15) vending machines!"}
-    - { name: Pick Up After Yourself.,                 t: [ achieve-1 ],    hint: "Kick (5) empty cans into the trash!"}
+    - { name: Pick Up After Yourself,                  t: [ achieve-1 ],    hint: "Kick (5) empty cans into the trash!"}
     - { name: I'll be taking that!,                    t: [ achieve-3 ],    hint: "Pilfer the contents of every treasure chest! (10 total)"}
-    - { name: Flawless Run!,                           t: [ achieve-2 ],    hint: "In any difficulty, beat any stage without taking damage!"}
+    - { name: Flawless Run!,                           t: [ achieve-3 ],    hint: "In any difficulty, beat any stage without taking damage!"}
     - { name: Soft Rock Master,                        t: [ achieve-4 ],    hint: "Get an S Rank or above in all stages on Easy difficulty!"}
     - { name: Rock Master,                             t: [ achieve-4 ],    hint: "Get an S Rank or above in all stages on Normal difficulty!"}
     - { name: Hard Rock Master,                        t: [ achieve-4 ],    hint: "Get an S Rank or above in all stages on Hard difficulty!"}
@@ -1127,34 +1146,34 @@ achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabl
     - { name: Track 2 Personnel Management,            t: [ achieve-2 ],    hint: "Beat the Track 2 boss fight without taking any damage!"}
     - { name: Track 9 Personnel Management,            t: [ achieve-2 ],    hint: "Beat the Track 9 boss fight without taking any damage!"}
     - { name: Stand Down in Awe,                       t: [ achieve-3 ],    hint: "Defeat Kale in the final showdown without taking any damage."}
-    - { name: Face Off,                                t: [ achieve-1 ],    hint: "Totally destroy QA-1MIL's face in Track 1!"}
+    - { name: Face Off,                                t: [ achieve-2 ],    hint: "Totally destroy QA-1MIL's face in Track 1!"}
     - { name: Wrecker,                                 t: [ achieve-2 ],    hint: "In Track 2, land a 50-hit combo on Rekka!"}
     - { name: The Sky Is Lava,                         t: [ achieve-2 ],    hint: "Avoid all of the falling lava balls in Track 3!"}
-    - { name: He's So Hot Right Now,                   t: [ achieve-1 ],    hint: "Hit Zanzo's promotional cutout into the lava in Track 3!"}
+    - { name: He's So Hot Right Now,                   t: [ achieve-1 ],    hint: "Hit Zanzo's promotional cutout into the lava in Track 3! (The best cutout to use is on the rock to the left outside R&D.)"}
     - { name: "Get Outta My Way, Magma!",              t: [ achieve-2 ],    hint: "Parry (5) falling lava balls in Track 4!"}
     - { name: The Great Escape,                        t: [ achieve-2 ],    hint: "Clear the Track 4 escape scene without taking any damage!"}
     - { name: Data Harmony,                            t: [ achieve-2 ],    hint: "Fix all of the data spheres in Track 5 without making any mistakes!"}
     - { name: Ad Blocker,                              t: [ achieve-2 ],    hint: "In Track 6, parry (3) incoming signs on the L.I.F.T.!"}
-    - { name: Nice Catch!,                             t: [ achieve-1 ],    hint: "Successfully catch Korsica in Track 7!"}
+    - { name: Nice Catch!,                             t: [ achieve-2 ],    hint: "Successfully catch Korsica in Track 7!"}
     - { name: Deflected!,                              t: [ achieve-2 ],    hint: "Defeat Korsica in her faceoff in Track 7 with a Just Timing of over 80%!"}
     - { name: Nothing Shocks Me,                       t: [ achieve-2 ],    hint: "In Track 8, don't take any electric damage in battle!"}
     - { name: Party Crasher,                           t: [ achieve-2 ],    hint: "Parry Mimosa's vocal attacks in Track 9!"}
-    - { name: Be Gentle! I Need That Thing!,           t: [ achieve-1 ],    hint: "Beat Track 10 without letting the cannon's HP fall below 50%!"}
+    - { name: Be Gentle! I Need That Thing!,           t: [ achieve-2 ],    hint: "Beat Track 10 without letting the cannon's HP fall below 50%!"}
     - { name: Who's Afraid of the Big Bad Accountant?, t: [ achieve-2 ],    hint: "Beat Roquefort's rhythm sequence in Track 10 with no mistakes!"}
     - { name: Heart and Soul,                          t: [ achieve-2 ],    hint: "Clear the first rhythm sequence in Track 11 with no mistakes!"}
     - { name: Encore,                                  t: [ achieve-2 ],    hint: "Clear the last rhythm sequence in Track 11 with no mistakes!"}
-    - { name: Corporate Restructuring,                 t: [ achieve-3 ],    hint: "Beat Kale in Track 12!"}
+    - { name: Corporate Restructuring,                 t: [ achieve-1 ],    hint: "Beat Kale in Track 12!"}
     - { name: Helping Hand,                            t: [ achieve-2 ],    hint: "Finish all side missions!"}
     - { name: Can't Touch This,                        t: [ achieve-2 ],    hint: "Chain together (600) dashes with the beat!"}
     - { name: Rhythm Jumper,                           t: [ achieve-2 ],    hint: "Jump along with the beat! (3,000 times)"}
     - { name: Human Metronome,                         t: [ achieve-2 ],    hint: "Land (10,000) attacks with Just Timing!"}
     - { name: Ultimate Rockstar,                       t: [ achieve-4 ],    hint: "Complete all challenges to become the world's greatest rockstar!"}
 
-
-
-
-
-
-
 #endregion
 #=====================================================================================================================#
+
+- name: Shutdown SPECTRA
+  region: Hideout_PostGame
+  category: [ 00. Hideout ]
+  victory: true
+  requires: "|REKKA_KEY| and |ZANZO_KEY| and |KORSICA_KEY| and |MIMOSA_KEY| and |ROQUEFORT_KEY| and |KALE_KEY|"

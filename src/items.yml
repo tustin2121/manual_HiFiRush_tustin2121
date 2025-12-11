@@ -2,6 +2,16 @@
 %OUTPUT flatten
 %SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.items.schema.json
 ---
+# Boss Tokens
+- common: { category: [ Boss Keys ], progression: true }
+  data:
+    - name: REKKA_KEY
+    - name: ZANZO_KEY
+    - name: KORSICA_KEY
+    - name: MIMOSA_KEY
+    - name: ROQUEFORT_KEY
+    - name: KALE_KEY
+    
 # Track Access
 - common: { category: [ Tracks ], progression: true }
   data:

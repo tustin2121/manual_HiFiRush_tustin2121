@@ -8,11 +8,14 @@ core:
     display_name: The End Objective
     description: |
       How to end your randomized play-through:
-      defeat kale - Win the game by defeating Kale in Track 12.
+      defeat kale - Win the game by defeating Kale in Track 12. Basically lets the 
+        randomizer logic determine when the game ends.
+      shutdown SPECTRA - Win the game by collecting the six keys and shutting down 
+        SPECTRA. Requires you to beat all bosses in any order.
     # hidden: false
     aliases: 
       defeat_kale: 0
-      # defeat_track11: 1
+      shutdown_spectra: 1
   death_link:
     default: false
   filler_traps: # We don't have any traps
@@ -44,6 +47,7 @@ user:
     aliases:
       post: true
       first: false
+      new: false
     hidden: false
     group: Main Location Options 
   scoring_method:
@@ -143,21 +147,21 @@ user:
   achievement_sanity:
     type: Range
     description: |
-      Grant checks for completing achievements on the Wall-of-Fame. The following options are available:
+      Grant checks for completing achievements on the Wall-of-Fame. 
+      Unavailable when doing a post-game rando (see bucketlist_sanity for the post-game version).
+      
+      The following options are available:
       0 - No achievements are required.
-      1 - (${achieve-1} checks) Level 1 or otherwise easy achievements
+      1 - (${achieve-1} checks) Level 1 achievements, easy achievements that usually will be completed by just playing the game
       2 - (${achieve-2} checks) Level 2 achievements, those able to be completed by the end of a single play-through
       3 - (${achieve-3} checks) Level 3 achievements, completable with several play-throughs
       4 - (${achieve-4} checks) All achievements
       
       Do not set this higher than 2 unless you're doing an async. 
       (Also, with the "Defeat Kale" goal, anything higher than 2 is moot anyway.)
-      
-      Note: As these are permanent collectables, they can only be picked up when doing
-      a first play-through and not a post-game run.
     range_start: 0
     range_end: 4
-    default: 0
+    default: 1
     group: Permanent Collectables 
   
   #----------------------------------------------
@@ -193,6 +197,19 @@ user:
     description: |
       Grant checks for breaking vending machines (${vend} locations)
     default: false
+    group: Static Collectables 
+  terminal_sanity:
+    type: Toggle
+    description: |
+      Grant checks for accessing shop terminals (${shop} locations)
+    default: true
+    group: Static Collectables 
+  bucketlist_sanity:
+    type: Toggle
+    description: |
+      Grant checks for doing certain things, like achievements on the Wall-of-Fame but for a post-game rando. 
+      Unavailable when doing a first-game rando (see achievement_sanity for the new game version).
+    default: true
     group: Static Collectables 
   
   #----------------------------------------------

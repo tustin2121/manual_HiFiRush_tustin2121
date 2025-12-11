@@ -50,12 +50,12 @@ function parseLocations(tagDefs, locationArray) {
 				_extractRegion(item.common);
 				const tags = _getTags(common);
 				for (const i2 of _flatten(item.data, item.common)) {
-					outList.push(mergeWith(i2, common, ...tags, _mergeCustom));
+					outList.push(_apply(mergeWith(i2, common, ...tags, _mergeCustom)));
 				}
 			} else {
 				_extractRegion(item);
 				const tags = _getTags(item);
-				outList.push(mergeWith({}, item, common, ...tags, _mergeCustom));
+				outList.push(_apply(mergeWith({}, item, common, ...tags, _mergeCustom)));
 			}
 		}
 		for (const o of outList) {
@@ -84,6 +84,16 @@ function parseLocations(tagDefs, locationArray) {
 			if (def.t) arr.push(..._getTags(def));
 		}
 		return arr;
+	}
+	
+	function _apply(obj) {
+		if (typeof obj.prefix === 'string') {
+			const join = obj.prefix_separator ?? ` | `;
+			obj.name = obj.prefix + join + obj.name;
+			delete obj.prefix;
+			delete obj.prefix_separator;
+		}
+		return obj;
 	}
 	
 	function _extractRegion(item) {
