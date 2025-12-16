@@ -34,6 +34,10 @@ const REGIONS = {};
  * @property {TrackCheck[]} checks
  */
 
+
+const COMMON_KEY = `$common`;
+const CHILDREN_KEY = `$for`;
+
 /**
  * 
  * @param {Record<string, { requires?: string, category?: Array<string>}>} tagDefs 
@@ -46,10 +50,10 @@ function parseLocations(tagDefs, locationArray) {
 	function _flatten(array, common={}) {
 		const outList = [];
 		for (const item of array) {
-			if (typeof item.common === 'object' && Array.isArray(item.data)) {
-				_extractRegion(item.common);
+			if (typeof item[COMMON_KEY] === 'object' && Array.isArray(item[CHILDREN_KEY])) {
+				_extractRegion(item[COMMON_KEY]);
 				const tags = _getTags(common);
-				for (const i2 of _flatten(item.data, item.common)) {
+				for (const i2 of _flatten(item[CHILDREN_KEY], item[COMMON_KEY])) {
 					outList.push(_apply(mergeWith(i2, common, ...tags, _mergeCustom)));
 				}
 			} else {
@@ -187,8 +191,6 @@ function parseLocations(tagDefs, locationArray) {
 // 	}
 // }
 
-const COMMON_KEY = `$common`;
-const CHILDREN_KEY = `$for`;
 function flattenArray(array, common={}) {
 	const outList = [];
 	for (const item of array) {
@@ -211,7 +213,7 @@ function flattenArray(array, common={}) {
 
 function parseOptions(opts) {
 	for (const opt in opts.user) {
-		opts.user[opt].description = opts.user[opt].description.replaceAll(/\$\{(\w+)\}/ig, (str, val)=>{
+		opts.user[opt].description = opts.user[opt].description.replaceAll(/\$\{([\w#-]+)\}/ig, (str, val)=>{
 			let v = locCounts[val];
 			if (typeof v === 'undefined') return str;
 			return v;

@@ -3,8 +3,8 @@
 %SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.items.schema.json
 ---
 # Boss Tokens
-- common: { category: [ Boss Keys ], progression: true }
-  data:
+- $common: { category: [ Boss Keys ], progression: true }
+  $for:
     - name: REKKA_KEY
     - name: ZANZO_KEY
     - name: KORSICA_KEY
@@ -13,8 +13,8 @@
     - name: KALE_KEY
     
 # Track Access
-- common: { category: [ Tracks ], progression: true }
-  data:
+- $common: { category: [ Tracks ], progression: true }
+  $for:
     - name: Track 1 Access
     - name: Track 2 Access
     - name: Track 3 Access
@@ -28,16 +28,16 @@
     - name: Track 11 Access
     - name: Track 12 Access
 
-- common: { category: [ Summons ], progression: true }
-  data:
+- $common: { category: [ Summons ], progression: true }
+  $for:
     - name: Peppermint Summon
     - name: Macaron Summon
     - name: Korsica Summon
 
-- common: { name: "Chip | ", category: [ Chips ] }
-  data:
-    - common: { useful: true, count: 3 }
-      data:
+- $common: { name: "Chip | ", category: [ Chips ] }
+  $for:
+    - $common: { useful: true, count: 3 }
+      $for:
         - name: Health Kick
         - name: Battery Magnet
         - name: Rhythm Meter Rush
@@ -67,8 +67,8 @@
     - { name: Enemy Analyze,            useful: true, category: [ Post-Game Only ] }
     - { name: Gear Increase,            useful: true, count: 3, category: [ Post-Game Only ] }
 
-- common: { name: "Combo | ", category: [ Combos ], useful: true }
-  data:
+- $common: { name: "Combo | ", category: [ Combos ], useful: true }
+  $for:
     - name: Echo Splash
     - name: Tune Up
     - name: Stomp Box
@@ -97,8 +97,8 @@
     - name: Korsica Typhoon
     - name: High Alert
 
-- common: { name: "Special Attack | ", category: [ Special Attacks ], useful: true }
-  data:
+- $common: { name: "Special Attack | ", category: [ Special Attacks ], useful: true }
+  $for:
     - name: Guitar Ride
     - name: Pick Me Up!
     - name: Pick Slide

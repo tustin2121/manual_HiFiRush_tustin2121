@@ -4,13 +4,13 @@
 %SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.locations.schema.json
 ---
 # NPCs
-smidge:       { prefix: Smidge, requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ], c: [ smidge, robo1, robo2 ] } # Recurring character Smidge
-noir:         { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ noir,   robo1, robo2 ] } # Recurring characters SEB-AAA and JSF-001
-tan:          { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ tan,    robo1, robo2 ] } # Recurring character Tanning SBR-001
-npcA:         { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ npcA,   robo1, robo2 ] } # Interesting NPC interactions (usually hitting)
-npcB:         { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 3)}", category: [ NPC ], c: [ npcB,          robo2 ] } # Boring NPCs, simply talkable
-npcA8:        { prefix: NPC,    requires: "({YamlCompare(robo_sanity >= 2)} or {YamlEnabled(party_sanity)})", category: [ NPC, Party - Track 8 ], c: [ npcA8, npc,  robo1, robo2 ] } # NPCs at the start of Track 8, for added checks
-npcB8:        { prefix: NPC,    requires: "({YamlCompare(robo_sanity >= 3)} or {YamlEnabled(party_sanity)})", category: [ NPC, Party - Track 8 ], c: [ npcB8, npcB, robo2 ] } # NPCs at the start of Track 8, for added checks
+smidge:       { prefix: Smidge, requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ], c: [ smidge, npc#2, npc#3, npc#4 ] } # Recurring character Smidge
+noir:         { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ noir,   npc#2, npc#3, npc#4 ] } # Recurring characters SEB-AAA and JSF-001
+tan:          { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ tan,    npc#2, npc#3, npc#4 ] } # Recurring character Tanning SBR-001
+npcA:         { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 3)}", category: [ NPC ], c: [ npcA,          npc#3, npc#4 ] } # Interesting NPC interactions (usually hitting)
+npcB:         { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 4)}", category: [ NPC ], c: [ npcB,                 npc#4 ] } # Boring NPCs, simply talkable
+npcA8:        { prefix: NPC,    requires: "({YamlCompare(robo_sanity >= 3)} or {YamlEnabled(party_sanity)})", category: [ NPC, Party - Track 8 ], c: [ npcA8, npc8, npc#3, npc#4 ] } # NPCs at the start of Track 8, for added checks
+npcB8:        { prefix: NPC,    requires: "({YamlCompare(robo_sanity >= 4)} or {YamlEnabled(party_sanity)})", category: [ NPC, Party - Track 8 ], c: [ npcB8, npc8,        npc#4 ] } # NPCs at the start of Track 8, for added checks
 scrub:        { prefix: SCR-UB, requires: "{YamlEnabled(scrub_sanity)}", category: [ SCR-UB ] }
 # Permanent Collectables
 life:         { prefix: Life Gauge,        requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, life ] }
@@ -26,18 +26,18 @@ board:        { prefix: PA,                 requires: "{YamlEnabled(announcement
 vend:         { prefix: Vending Machine,    requires: "{YamlEnabled(vending_sanity)}", category: [ Vending Machine ] }
 shop:         { prefix: Shop,               requires: "{YamlEnabled(terminal_sanity)}", category: [ Shop Terminals ] }
 drone:        { prefix: Drone,              requires: "{YamlEnabled(drone_sanity)}", category: [ Drones - Track 5 ] }
-moment:       {                                   requires: "{YamlEnabled(moment_sanity)}", category: [ Moment ] } # Like cut scenes and milestones in the level that don't fall under the below
-door:         { name: Find the SPECTRA Door,      requires: "{YamlCompare(door_sanity >= 1)}", category: [ Doors ] }
-spectra:      { name: Beat the SPECTRA Challenge, requires: "{YamlCompare(door_sanity >= 2)}", category: [ Doors ], t: [ post ] }
+moment:       {                             requires: "{YamlEnabled(moment_sanity)}", category: [ Moment ] } # Like cut scenes and milestones in the level that don't fall under the below
+door:         {                             requires: "{YamlCompare(door_sanity >= 1)}", category: [ Doors ] }
+spectra:      {                             requires: "{YamlCompare(door_sanity >= 2)}", category: [ Doors ], t: [ post ] }
 key:          { }
 # Esoterica 
 easter:       { prefix: Easter Egg, requires: "{YamlEnabled(easter_sanity)}", category: [ Easter Eggs ], c: [ easter-first, easter-post ] }
-easter-first: { prefix: Easter Egg, requires: "{YamlEnabled(easter_sanity)} and YamlDisabled(post_game)}", category: [ Easter Eggs ], c: [ first ] }
-easter-post:  { prefix: Easter Egg, requires: "{YamlEnabled(easter_sanity)} and YamlEnabled(post_game)}",  category: [ Easter Eggs ], c: [ post ] }
+easter-first: { prefix: Easter Egg, requires: "{YamlEnabled(easter_sanity)} and {YamlDisabled(post_game)}", category: [ Easter Eggs ], c: [ easter-first, first ] }
+easter-post:  { prefix: Easter Egg, requires: "{YamlEnabled(easter_sanity)} and {YamlEnabled(post_game)}",  category: [ Easter Eggs ], c: [ easter-post, post ] }
 snail:        { prefix: Snail,      requires: "{YamlEnabled(snail_sanity)}", category: [ Snail ] }
 # Level Logic
-post:         { requires: "{YamlEnabled(post_game)}" }
-first:        { requires: "{YamlDisabled(post_game)}" }
+post:         { requires: "{YamlEnabled(post_game)}", category: [ Post-Game Only ] }
+first:        { requires: "{YamlDisabled(post_game)}", category: [ First-Game Only ] }
 pepper:       { requires: "|Peppermint Summon|" }
 macaron:      { requires: "|Macaron Summon|" }
 korsica:      { requires: "|Korsica Summon|" }
@@ -45,11 +45,11 @@ chorus:       { prefix: Chorus, prefix_separator: " ", requires: "{YamlCompare(s
 level:        { requires: "{YamlCompare(scoring_method != 1)}", category: [ Level ], c: [ level#, chkpt# ] }
 boss:         { category: [ Chorus, Level ], c: [ chorus#, level#, chkpt# ] }
 # Achievements
-achieve-1:    { requires: "{YamlCompare(achievement_sanity >= 1)} and YamlDisabled(post_game)}", category: [ Achievement ], c: [ achieve-1, achieve-2, achieve-3, achieve-4 ] }
-achieve-2:    { requires: "{YamlCompare(achievement_sanity >= 2)} and YamlDisabled(post_game)}", category: [ Achievement ], c: [ achieve-2, achieve-3, achieve-4 ] }
-achieve-3:    { requires: "{YamlCompare(achievement_sanity >= 3)} and YamlDisabled(post_game)}", category: [ Achievement ], c: [ achieve-3, achieve-4 ] }
-achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and YamlDisabled(post_game)}", category: [ Achievement ], c: [ achieve-4 ] }
-bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and YamlEnabled(post_game)}", category: [ Achievement ], c: [ bucket-1 ] }
+achieve-1:    { requires: "{YamlCompare(achievement_sanity >= 1)} and {YamlDisabled(post_game)}", category: [ Achievement ], region: Track_10, c: [ achieve-1, achieve-2, achieve-3, achieve-4 ] }
+achieve-2:    { requires: "{YamlCompare(achievement_sanity >= 2)} and {YamlDisabled(post_game)}", category: [ Achievement ], region: Track_10, c: [ achieve-2, achieve-3, achieve-4 ] }
+achieve-3:    { requires: "{YamlCompare(achievement_sanity >= 3)} and {YamlDisabled(post_game)}", category: [ Achievement ], c: [ achieve-3, achieve-4 ] }
+achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and {YamlDisabled(post_game)}", category: [ Achievement ], c: [ achieve-4 ] }
+bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and {YamlEnabled(post_game)}", category: [ Achievement ], c: [ bucket-1 ] }
 
 ---
 #=====================================================================================================================#
@@ -229,8 +229,8 @@ bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and YamlEnabled(post
         - { name: Mid-hall Storage,                     t: [ shop ],              hint: "In the room with the vending machine." }
         # "Teamwork! Hooray...!"
         - { name: Chest | Life Gauge Piece 2,           t: [ life, treasure ],    hint: "Inside the treasure chest robot after the three-part steam ride." }
-        - { name: SCR-UB's Discontent,                  t: [ npc, pepper, quest ], hint: "After Mimosa hypes her upcoming show." } # Gives Life Gauge
-        - { name: SCR-UB's Discontent,                  t: [ life, pepper, ],      hint: "After Mimosa hypes her upcoming show." }
+        - { name: SCR-UB's Discontent,                  t: [ npcA, pepper, quest ], hint: "After Mimosa hypes her upcoming show." } # Gives Life Gauge
+        - { name: SCR-UB's Discontent,                  t: [ life, pepper, ],       hint: "After Mimosa hypes her upcoming show." }
         - { name: Lottery for the Armstrong Festival,   t: [ board ],          hint: "Flying around the Chorus 6 arena." }
         - { name: 9 | Area 13,                          t: [ chorus ] }
         # The anteroom before Rekka
@@ -420,7 +420,7 @@ bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and YamlEnabled(post
         - { name: Above the Spinning Platforms,  t: [ life ],               hint: "To the right and above the second spinning platform cylinder" }
         # ----- Main room -----
         - { name: Central Room,                  t: [ shop ],               hint: "The only shop in the level." }
-        - { name: Return the TEC-78's Comics,    t: [ npc, quest ],         hint: "Find ten drones with the tech's 'schematics'." } # Grants Life Gauge Piece
+        - { name: Return the TEC-78's Comics,    t: [ npcA, quest ],        hint: "Find ten drones with the tech's 'schematics'." } # Grants Life Gauge Piece
         - { name: Return the TEC-78's Comics,    t: [ life ] }
         - { name: Annoyed By Korsica FWD,        t: [ vlog ],               hint: "First area of the security nodes atrium." }
         - { name: Nodes,                         t: [ graffiti ],           hint: "After you reach the main security area, go right and drop down onto the platform below that leads to the moving platforms that circle around the center column." }
@@ -452,6 +452,7 @@ bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and YamlEnabled(post
         region: { name: Track_5_2A, requires: "|Peppermint Summon|", connects_to: [ Track_5_3 ] }
       $for: # Security Node 03
         # ----- Security Node 02: Main Room -----
+        - { name: Staccato Launch,               t: [ comic ],              hint: "On the way up to the big node 01"}
         
         # ----- Central Elevator -----
         - { name: Whoever Design This Place...,     t: [ npcB ], }
@@ -605,7 +606,7 @@ bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and YamlEnabled(post
         - { name: Floor 40,                         t: [ circuit ],             hint: "After Chorus 7, on the balcony to the right." }
         - { name: Floor 40,                         t: [ statue ],              hint: "After Chorus 7, on the balcony to the left." }
         - { name: Data Node Dissatisfaction Mail,   t: [ vlog, macaron ],       hint: "After Chorus 7, beyond the Z-Door, in the back." }
-        - { name: Help the TEC Get Some Sleep,      t: [ npc, macaron ],        hint: "After Chorus 7, beyond the Z-Door, clear out the vacuum bots in the break room to the right, so the TEC-78 can take a nap." }
+        - { name: Help the TEC Get Some Sleep,      t: [ npcA, macaron ],       hint: "After Chorus 7, beyond the Z-Door, clear out the vacuum bots in the break room to the right, so the TEC-78 can take a nap." }
         - { name: Break Room 1,                     t: [ scrub ] } # TODO: Check if the NPC check satisfies by just driving all the SCRUBs out of the room
         - { name: Break Room 2,                     t: [ scrub ] }
         - { name: Break Room 3,                     t: [ scrub ] }
@@ -622,7 +623,7 @@ bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and YamlEnabled(post
         # ----- Cylinder 2: Floor 48 -----
         - { name: Free the Stuck SCR-UB,            t: [ npcA ],                hint: "Free the SCR-UB from the downed data router after Chorus 8." }
         - { name: Betrayal,                         t: [ scrub ],               hint: "And you just helped free him too!" }
-        - { name: Tech with Never Ending Work,      t: [ npc, macaron ],        hint: "After Chorus 8, beyond the button." }
+        - { name: Tech with Never Ending Work,      t: [ npcA, macaron ],       hint: "After Chorus 8, beyond the button." }
         - { name: Depressed Buttons,                t: [ vlog, macaron ],       hint: "After Chorus 8, near a button." }
         - { name: Lasers,                           t: [ graffiti ],            hint: "Behind the rhythm jump tube after Chorus 8." }
         - { name: Floor 56,                         t: [ circuit ],             hint: "After Chorus 8, to the right of the top of the rhythm jump tube." }
@@ -1016,13 +1017,13 @@ bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and YamlEnabled(post
 
 - $common: { name: Bucket List, category: [ 30. Bucket List ] }
   $for:
-    - { name: Face Off,                                t: [ bucket-1 ],    hint: "Totally destroy QA-1MIL's face in Track 1!"}
-    - { name: He's So Hot Right Now,                   t: [ bucket-1 ],    hint: "Hit Zanzo's promotional cutout into the lava in Track 3! (The best cutout to use is on the rock to the left outside R&D.)"}
-    - { name: Pick Up After Yourself,                  t: [ bucket-1 ],    hint: "Kick at least one empty can into the trash!"}
-    - { name: "Get Outta My Way, Magma!",              t: [ bucket-1 ],    hint: "Parry a falling lava ball in Track 4!"}
-    - { name: Ad Blocker,                              t: [ bucket-1 ],    hint: "In Track 6, parry an incoming sign on the L.I.F.T.!"}
-    - { name: Nice Catch!,                             t: [ bucket-1 ],    hint: "Successfully catch Korsica in Track 7!"}
-    - { name: That's Cheating!,                        t: [ bucket-1 ],    hint: "Defeat the Z-Shielded Robot in Track 3!"}
+    - { name: Face Off,                                t: [ bucket-1 ], region: Track_1,   hint: "Totally destroy QA-1MIL's face in Track 1!"}
+    - { name: He's So Hot Right Now,                   t: [ bucket-1 ], region: Track_3,   hint: "Hit Zanzo's promotional cutout into the lava in Track 3! (The best cutout to use is on the rock to the left outside R&D.)"}
+    - { name: Pick Up After Yourself,                  t: [ bucket-1 ],                    hint: "Kick at least one empty can into the trash!"}
+    - { name: "Get Outta My Way, Magma!",              t: [ bucket-1 ], region: Track_4_3, hint: "Parry a falling lava ball in Track 4!"}
+    - { name: Ad Blocker,                              t: [ bucket-1 ], region: Track_6,   hint: "In Track 6, parry an incoming sign on the L.I.F.T.!"}
+    - { name: Nice Catch!,                             t: [ bucket-1 ], region: Track_7_3, hint: "Successfully catch Korsica in Track 7!"}
+    - { name: That's Cheating!,                        t: [ bucket-1 ], region: Track_3_2, hint: "Defeat the Z-Shielded Robot in Track 3!"}
     - { name: I Don't Need A Hint!,                    t: [ bucket-1 ],    hint: "Spend a little longer than the game likes just looking around. (Easy to get at the start of Track 8.)"}
 
 - $common: { name: Achievement, category: [ 30. Wall of Fame ] }

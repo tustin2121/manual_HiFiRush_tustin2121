@@ -207,7 +207,8 @@ user:
   bucketlist_sanity:
     type: Toggle
     description: |
-      Grant checks for doing certain things, like achievements on the Wall-of-Fame but for a post-game rando. 
+      Grant checks for doing certain things (${bucket-1} locations)
+      Like achievements on the Wall-of-Fame but for a post-game rando. 
       Unavailable when doing a first-game rando (see achievement_sanity for the new game version).
     default: true
     group: Static Collectables 
@@ -218,14 +219,16 @@ user:
     type: Choice
     description: |
       'smidge' adds checks for talking to Smidge (${smidge} locations)
-      'others' additionally adds checks for interacting with various incidental / recurring NPCs (${robo1} locations total)
-      'all' adds checks for interacting with all NPCs, not just interesting ones (${robo2} locations total)
+      'recurring' additionally adds checks for talking to HR and the Tanning robot (${npc#2} locations)
+      'interesting' additionally adds checks for additional interesting NPC interactions (${npc#3} locations total)
+      'all' adds checks for interacting with all NPCs (${npc#4} locations total)
       'none' does not add these checks
     values:
       none: 0
       smidge: 1
-      others: 2
-      all: 3
+      recurring: 2
+      interesting: 3
+      all: 4
     default: 1
     allow_custom_value: false
     group: Static Collectables 
@@ -233,7 +236,8 @@ user:
     type: Toggle
     description: |
       Why would you want to hurt those poor SCR-UB bots? They're only doing their jobs!
-      But if you feel like murdering workers, this option adds ${scrub} locations.
+      But if you feel like murdering the defenseless working class of Vandelay Island,
+      this option adds ${scrub} locations.
     default: false
     group: Static Collectables 
   door_sanity:
@@ -255,15 +259,18 @@ user:
   drone_sanity:
     type: Toggle
     description: |
-      Grant checks for finding the comic drones on Track 5 (${drone} locations)
+      Grant checks for finding the technician's drones on Track 5 (${drone} locations)
     default: false
     group: Level-Specific Sanity 
   party_sanity:
     type: Toggle
     description: |
-      Grant extra free checks at the start of Track 8 (${npc8} locations)
+      Grant extra checks at the start of Track 8 (${npc8} locations). These all overlap with robo_sanity.
+      If robo_sanity is set to 'all', no locations are added.
+      If robo_sanity is set to 'interesting', ${npcB8} locations are added.
+      
       This is mainly because that opening area is big and interesting and it's a cool place to 
-      add checks prior to needing Korsica to continue. Overlaps with robo_sanity checks a lot.
+      add checks prior to needing Korsica to continue.
     default: true
     group: Level-Specific Sanity 
   
