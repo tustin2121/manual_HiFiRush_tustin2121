@@ -25,6 +25,7 @@ Doors:
   yaml_option: [ door_sanity ]
 Moment:
   yaml_option: [ moment_sanity ]
+  hidden: true
 NPC:
   yaml_option: [ robo_sanity ]
 
@@ -47,6 +48,18 @@ Special Attacks:
 Achievement:
   yaml_option: [ achievement_sanity, bucketlist_sanity ]
 
+20. Rhythm Tower:
+  yaml_option: [ tower_sanity ]
+21. Power Tower:
+  yaml_option: [ power_sanity ]
+22. BPM Rush:
+  yaml_option: [ rush_sanity ]
+30. Bucket List:
+  yaml_option: [ bucketlist_sanity ]
+30. Wall of Fame:
+  yaml_option: [ achievement_sanity ]
+
+
 First-Game Only:
   yaml_option: [ "!post_game" ]
   hidden: true
@@ -55,4 +68,6 @@ Post-Game Only:
   hidden: true
 Easter Eggs:
   yaml_option: [ easter_sanity ]
+  hidden: true
+Level:
   hidden: true

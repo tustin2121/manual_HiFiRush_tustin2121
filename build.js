@@ -54,7 +54,7 @@ function parseLocations(tagDefs, locationArray) {
 				_extractRegion(item[COMMON_KEY]);
 				const tags = _getTags(common);
 				for (const i2 of _flatten(item[CHILDREN_KEY], item[COMMON_KEY])) {
-					outList.push(_apply(mergeWith(i2, common, ...tags, _mergeCustom)));
+					outList.push(_apply(mergeWith({}, i2, common, ...tags, _mergeCustom)));
 				}
 			} else {
 				_extractRegion(item);
@@ -64,6 +64,7 @@ function parseLocations(tagDefs, locationArray) {
 		}
 		for (const o of outList) {
 			delete o.t;
+			delete o.c;
 		}
 		return outList;
 	}
@@ -110,6 +111,9 @@ function parseLocations(tagDefs, locationArray) {
 		}
 	}
 	
+	/**
+	 * @type {_.MergeWithCustomizer}
+	 */
 	function _mergeCustom(ov, sv, key) {
 		if (key === "name" && typeof ov === 'string' && typeof sv === 'string') {
 			return `${sv} - ${ov}`;
@@ -117,79 +121,11 @@ function parseLocations(tagDefs, locationArray) {
 		if (key === "requires" && typeof ov === 'string' && typeof sv === 'string') {
 			return `${sv} and ${ov}`;
 		}
+		if (key === "region") { // retain original region
+			return ov;
+		}
 	}
 }
-
-// function parseLocations(tagDefs, locationArray) {
-// 	const outList = [];
-// 	for (const loc of locationArray) {
-// 		if (typeof loc.track === 'object') {
-// 			outList.push(..._applyTrack(loc));
-// 		} else {
-// 			outList.push(_applyTags(loc));
-// 		}
-// 	}
-// 	return outList;
-// 	/**
-// 	 * @param {TrackContainer} loc 
-// 	 */
-// 	function _applyTrack(loc) {
-// 		const out = [];
-// 		const { track, region, checks } = loc;
-// 		if (typeof region === 'object') {
-// 			const name = region.name;
-// 			delete region.name;
-// 			if (typeof track.region === 'undefined') {
-// 				track.region = name;
-// 			}
-// 			REGIONS[name] = region;
-// 			console.log("REGION: ", region);
-// 		}
-// 		for (const ch of checks) {
-// 			if (typeof track.name === "string" && typeof ch.name === 'string') {
-// 				ch.name = `${track.name} - ${ch.name}`;
-// 			}
-// 			if (Array.isArray(track.category)) {
-// 				ch.category ??= [];
-// 				ch.category.unshift(...track.category);
-// 			}
-// 			ch.region ??= track.region;
-// 			out.push(_applyTags(ch));
-// 		}
-// 		return out;
-// 	}
-// 	/**
-// 	 * @param {TrackCheck} loc 
-// 	 */
-// 	function _applyTags(loc) {
-// 		if (!Array.isArray(loc.t)) return loc;
-// 		let out = Object.assign({}, loc);
-// 		if (!Array.isArray(loc.requires)) {
-// 			let r = loc.requires;
-// 			out.requires = [ r ].filter(x=>x);
-// 		}
-// 		// Ensure out.category is always an array before pushing to it
-// 		if (!Array.isArray(out.category)) {
-// 			out.category = [];
-// 		}
-// 		for (const tag of loc.t) {
-// 			locCounts[tag] ??= 0
-// 			locCounts[tag]++;
-// 			if (tagDefs[tag]?.requires) out.requires.push(tagDefs[tag].requires);
-// 			if (tagDefs[tag]?.category) out.category.push(...tagDefs[tag].category);
-// 			if (Array.isArray(tagDefs[tag]?.t)) {
-// 				for (const tt of tagDefs[tag].t) {
-// 					locCounts[tt] ??= 0
-// 					locCounts[tt]++;
-// 				}
-// 			}
-// 		}
-// 		delete out.t;
-// 		out.requires = out.requires.join(" and ");
-// 		if (!out.requires) delete out.requires;
-// 		return out;
-// 	}
-// }
 
 function flattenArray(array, common={}) {
 	const outList = [];

@@ -45,10 +45,10 @@ chorus:       { prefix: Chorus, prefix_separator: " ", requires: "{YamlCompare(s
 level:        { requires: "{YamlCompare(scoring_method != 1)}", category: [ Level ], c: [ level#, chkpt# ] }
 boss:         { category: [ Chorus, Level ], c: [ chorus#, level#, chkpt# ] }
 # Achievements
-achieve-1:    { requires: "{YamlCompare(achievement_sanity >= 1)} and {YamlDisabled(post_game)}", category: [ Achievement ], region: Track_10, c: [ achieve-1, achieve-2, achieve-3, achieve-4 ] }
-achieve-2:    { requires: "{YamlCompare(achievement_sanity >= 2)} and {YamlDisabled(post_game)}", category: [ Achievement ], region: Track_10, c: [ achieve-2, achieve-3, achieve-4 ] }
-achieve-3:    { requires: "{YamlCompare(achievement_sanity >= 3)} and {YamlDisabled(post_game)}", category: [ Achievement ], c: [ achieve-3, achieve-4 ] }
-achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and {YamlDisabled(post_game)}", category: [ Achievement ], c: [ achieve-4 ] }
+achieve-1:    { requires: "{YamlCompare(achievement_sanity >= 1)} and {YamlDisabled(post_game)}", category: [ Achievement ], region: Track_8,  c: [ achieve-1, achieve-2, achieve-3, achieve-4 ] }
+achieve-2:    { requires: "{YamlCompare(achievement_sanity >= 2)} and {YamlDisabled(post_game)}", category: [ Achievement ], region: Track_12, c: [ achieve-2, achieve-3, achieve-4 ] }
+achieve-3:    { requires: "{YamlCompare(achievement_sanity >= 3)} and {YamlDisabled(post_game)}", category: [ Achievement ], region: Hideout_PostGame, c: [ achieve-3, achieve-4 ] }
+achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and {YamlDisabled(post_game)}", category: [ Achievement ], region: Hideout_PostGame, c: [ achieve-4 ] }
 bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and {YamlEnabled(post_game)}", category: [ Achievement ], c: [ bucket-1 ] }
 
 ---
@@ -57,7 +57,7 @@ bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and {YamlEnabled(pos
 - $common: 
     region:
       name: Hideout_PostGame
-      requires: "{YamlEnabled(post_game)}"
+      requires: "{YamlEnabled(post_game)} or |KALE_KEY|"
       connects_to: [ Track_1, Track_2, Track_3, Track_4, Track_5, Track_6, Track_7, Track_8, Track_9, Track_10, Track_11, Track_12, Rhythm_Tower, Power_Tower, Rush_Tower ]
       starting: true
     category: [ 00. Hideout ]
@@ -1024,7 +1024,7 @@ bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and {YamlEnabled(pos
     - { name: Ad Blocker,                              t: [ bucket-1 ], region: Track_6,   hint: "In Track 6, parry an incoming sign on the L.I.F.T.!"}
     - { name: Nice Catch!,                             t: [ bucket-1 ], region: Track_7_3, hint: "Successfully catch Korsica in Track 7!"}
     - { name: That's Cheating!,                        t: [ bucket-1 ], region: Track_3_2, hint: "Defeat the Z-Shielded Robot in Track 3!"}
-    - { name: I Don't Need A Hint!,                    t: [ bucket-1 ],    hint: "Spend a little longer than the game likes just looking around. (Easy to get at the start of Track 8.)"}
+    - { name: I Don't Need A Hint!,                    t: [ bucket-1 ],                    hint: "Spend a little longer than the game likes just looking around. (Easy to get at the start of Track 8.)"}
 
 - $common: { name: Achievement, category: [ 30. Wall of Fame ] }
   $for:
@@ -1036,10 +1036,10 @@ bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and {YamlEnabled(pos
     - { name: Barrier Breaker! Lvl.2,                  t: [ achieve-2 ],    hint: "Destroy (100) enemy barriers."}
     - { name: De-Shielding! Lvl. 1,                    t: [ achieve-1 ],    hint: "Destroy (25) enemies' Z-Shielding with Macaron."}
     - { name: De-Shielding! Lvl. 2,                    t: [ achieve-2 ],    hint: "Destroy (60) enemies' Z-Shielding with Macaron."}
-    - { name: Deflector Lvl.1,                         t: [ achieve-1 ],    hint: "Successfully parry an attack (75 times)."}
+    - { name: Deflector Lvl.1,                         t: [ achieve-1 ], region: Track_3_2, hint: "Successfully parry an attack (75 times)."}
     - { name: Deflector Lvl.2,                         t: [ achieve-2 ],    hint: "Successfully parry an attack (750 times)."}
     - { name: Deflector Lvl.3,                         t: [ achieve-3 ],    hint: "Successfully parry an attack (1,500 times)."}
-    - { name: In the Right Direction Lvl.1,            t: [ achieve-1 ],    hint: "Pull off a Directional Parry."}
+    - { name: In the Right Direction Lvl.1,            t: [ achieve-1 ], region: Track_4_3, hint: "Pull off a Directional Parry."}
     - { name: In the Right Direction Lvl.2,            t: [ achieve-2 ],    hint: "Pull off a Directional Parry (50 times)."}
     - { name: In the Right Direction Lvl.3,            t: [ achieve-3 ],    hint: "Pull off a Directional Parry (120 times)."}
     - { name: Release that energy! Lvl.1,              t: [ achieve-1 ],    hint: "Land a Special Attack during battle. (15 times)"}
@@ -1058,7 +1058,7 @@ bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and {YamlEnabled(pos
     - { name: Double Team Jam Combo Link,              t: [ achieve-2 ],    hint: ""}
     - { name: And the Winner is...,                    t: [ achieve-3 ],    hint: "Clear (200) battles."}
     
-    - { name: Nailed it! Lvl.1,                        t: [ achieve-1 ],    hint: "Land a Beat Hit."}
+    - { name: Nailed it! Lvl.1,                        t: [ achieve-1 ], region: Track_1,   hint: "Land a Beat Hit."}
     - { name: Nailed it! Lvl.2,                        t: [ achieve-2 ],    hint: "Land a Beat Hit (500 times)."}
     - { name: Nailed it! Lvl.3,                        t: [ achieve-3 ],    hint: "Land a Beat Hit (1,500 times)."}
     - { name: Always in Rhythm Lvl.1,                  t: [ achieve-1 ],    hint: "Achieve a final battle rank of S (15 times)."}
@@ -1067,10 +1067,10 @@ bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and {YamlEnabled(pos
     - { name: Stunning! Lvl.1,                         t: [ achieve-1 ],    hint: "Break (50) enemies' Stun Gauges"}
     - { name: Stunning! Lvl.2,                         t: [ achieve-2 ],    hint: "Break (500) enemies' Stun Gauges"}
     - { name: Stunning! Lvl.3,                         t: [ achieve-3 ],    hint: "Break (1,000) enemies' Stun Gauges"}
-    - { name: A Mighty Wind Lvl.1,                     t: [ achieve-1 ],    hint: "Put out (15) fires with Korsica"}
+    - { name: A Mighty Wind Lvl.1,                     t: [ achieve-1 ], region: Track_8_2, hint: "Put out (15) fires with Korsica"}
     - { name: A Mighty Wind Lvl.2,                     t: [ achieve-2 ],    hint: "Put out (30) fires with Korsica"}
     - { name: A Mighty Wind Lvl.3,                     t: [ achieve-3 ],    hint: "Put out (75) fires with Korsica"}
-    - { name: Where Am I? Lvl.1,                       t: [ achieve-1 ],    hint: "Disorient (15) enemies with Korsica's Partner Attack"}
+    - { name: Where Am I? Lvl.1,                       t: [ achieve-1 ], region: Track_8_2, hint: "Disorient (15) enemies with Korsica's Partner Attack"}
     - { name: Where Am I? Lvl.2,                       t: [ achieve-2 ],    hint: "Disorient (30) enemies with Korsica's Partner Attack"}
     - { name: Where Am I? Lvl.3,                       t: [ achieve-3 ],    hint: "Disorient (80) enemies with Korsica's Partner Attack"}
     - { name: Aerial Raving! Lvl.1,                    t: [ achieve-1 ],    hint: "Achieve an Aerial Rave bonus in Combat (25 times)."}
@@ -1105,11 +1105,11 @@ bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and {YamlEnabled(pos
     - { name: Dream Machine,                           t: [ achieve-4 ],    hint: "Upgrade all chips to max level!"}
     - { name: Full Wardrobe!,                          t: [ achieve-4 ],    hint: "Buy every costume from CNMN!"}
     - { name: Consumer,                                t: [ achieve-4 ],    hint: "Buy everything available in the shop."}
-    - { name: Vandelay Intern,                         t: [ achieve-1 ],    hint: "Beat stages on Easy difficulty!"}
-    - { name: Vandelay Employee,                       t: [ achieve-2 ],    hint: "Beat stages on Normal difficulty!"}
-    - { name: Vandelay Manager,                        t: [ achieve-3 ],    hint: "Beat stages on Hard difficulty!"}
-    - { name: Vandelay Boss,                           t: [ achieve-4 ],    hint: "Beat stages on Very Hard difficulty!"}
-    - { name: Vandelay CEO,                            t: [ achieve-4 ],    hint: "Beat stages on Rhythm Master difficulty!"}
+    - { name: Vandelay Intern,                         t: [ achieve-1 ], region: Hideout_PostGame, hint: "Beat stages on Easy difficulty!"}
+    - { name: Vandelay Employee,                       t: [ achieve-2 ], region: Hideout_PostGame, hint: "Beat stages on Normal difficulty!"}
+    - { name: Vandelay Manager,                        t: [ achieve-3 ], region: Hideout_PostGame, hint: "Beat stages on Hard difficulty!"}
+    - { name: Vandelay Boss,                           t: [ achieve-4 ], region: Hideout_PostGame, hint: "Beat stages on Very Hard difficulty!"}
+    - { name: Vandelay CEO,                            t: [ achieve-4 ], region: Hideout_PostGame, hint: "Beat stages on Rhythm Master difficulty!"}
     - { name: The Next Level Lvl.1,                    t: [ achieve-4 ],    hint: "Clear 10th floor in the Rhythm Tower."}
     - { name: The Next Level Lvl.2,                    t: [ achieve-4 ],    hint: "Clear 20th floor in the Rhythm Tower."}
     - { name: The Next Level Lvl.3,                    t: [ achieve-4 ],    hint: "Clear 30th floor in the Rhythm Tower."}
@@ -1129,9 +1129,9 @@ bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and {YamlEnabled(pos
     - { name: Challenge S-Ranker! Lvl. 2,              t: [ achieve-4 ],    hint: "Clear (5) SPECTRA challenge rooms with an S rank."}
     - { name: Challenge S-Ranker! Lvl. 3,              t: [ achieve-4 ],    hint: "Clear (10) SPECTRA challenge rooms with an S rank."}
     - { name: Perfect Harmony,                         t: [ achieve-2 ],    hint: "Complete (30) Partner Action minigames for Macaron and Korsica on the first try with Perfect timing."}
-    - { name: Awkward Encounters,                      t: [ achieve-2 ],    hint: "Have every conversation with Smidge!"}
-    - { name: I'm Not Paying for This!,                t: [ achieve-2 ],    hint: "Bust up (15) vending machines!"}
-    - { name: Pick Up After Yourself,                  t: [ achieve-1 ],    hint: "Kick (5) empty cans into the trash!"}
+    - { name: Awkward Encounters,                      t: [ achieve-2 ], region: Track_8_3, hint: "Have every conversation with Smidge!"}
+    - { name: I'm Not Paying for This!,                t: [ achieve-2 ], region: Track_10,  hint: "Bust up (15) vending machines!"}
+    - { name: Pick Up After Yourself,                  t: [ achieve-1 ], region: Track_2,   hint: "Kick (5) empty cans into the trash!"}
     - { name: I'll be taking that!,                    t: [ achieve-3 ],    hint: "Pilfer the contents of every treasure chest! (10 total)"}
     - { name: Flawless Run!,                           t: [ achieve-3 ],    hint: "In any difficulty, beat any stage without taking damage!"}
     - { name: Soft Rock Master,                        t: [ achieve-4 ],    hint: "Get an S Rank or above in all stages on Easy difficulty!"}
@@ -1143,28 +1143,28 @@ bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and {YamlEnabled(pos
     - { name: Words Are Hard Lvl.1,                    t: [ achieve-1 ],    hint: "Read half of all the Vlogs!"}
     - { name: Words Are Hard Lvl.2,                    t: [ achieve-3 ],    hint: "Find every Vlog left around the campus!!"}
     - { name: Street Art Collector,                    t: [ achieve-3 ],    hint: "Find all of the graffiti!"}
-    - { name: Track 1 Personnel Management,            t: [ achieve-2 ],    hint: "Beat the Track 1 boss fight without taking any damage!"}
-    - { name: Track 2 Personnel Management,            t: [ achieve-2 ],    hint: "Beat the Track 2 boss fight without taking any damage!"}
-    - { name: Track 9 Personnel Management,            t: [ achieve-2 ],    hint: "Beat the Track 9 boss fight without taking any damage!"}
-    - { name: Stand Down in Awe,                       t: [ achieve-3 ],    hint: "Defeat Kale in the final showdown without taking any damage."}
-    - { name: Face Off,                                t: [ achieve-2 ],    hint: "Totally destroy QA-1MIL's face in Track 1!"}
-    - { name: Wrecker,                                 t: [ achieve-2 ],    hint: "In Track 2, land a 50-hit combo on Rekka!"}
-    - { name: The Sky Is Lava,                         t: [ achieve-2 ],    hint: "Avoid all of the falling lava balls in Track 3!"}
-    - { name: He's So Hot Right Now,                   t: [ achieve-1 ],    hint: "Hit Zanzo's promotional cutout into the lava in Track 3! (The best cutout to use is on the rock to the left outside R&D.)"}
-    - { name: "Get Outta My Way, Magma!",              t: [ achieve-2 ],    hint: "Parry (5) falling lava balls in Track 4!"}
-    - { name: The Great Escape,                        t: [ achieve-2 ],    hint: "Clear the Track 4 escape scene without taking any damage!"}
-    - { name: Data Harmony,                            t: [ achieve-2 ],    hint: "Fix all of the data spheres in Track 5 without making any mistakes!"}
-    - { name: Ad Blocker,                              t: [ achieve-2 ],    hint: "In Track 6, parry (3) incoming signs on the L.I.F.T.!"}
-    - { name: Nice Catch!,                             t: [ achieve-2 ],    hint: "Successfully catch Korsica in Track 7!"}
-    - { name: Deflected!,                              t: [ achieve-2 ],    hint: "Defeat Korsica in her faceoff in Track 7 with a Just Timing of over 80%!"}
-    - { name: Nothing Shocks Me,                       t: [ achieve-2 ],    hint: "In Track 8, don't take any electric damage in battle!"}
-    - { name: Party Crasher,                           t: [ achieve-2 ],    hint: "Parry Mimosa's vocal attacks in Track 9!"}
-    - { name: Be Gentle! I Need That Thing!,           t: [ achieve-2 ],    hint: "Beat Track 10 without letting the cannon's HP fall below 50%!"}
-    - { name: Who's Afraid of the Big Bad Accountant?, t: [ achieve-2 ],    hint: "Beat Roquefort's rhythm sequence in Track 10 with no mistakes!"}
-    - { name: Heart and Soul,                          t: [ achieve-2 ],    hint: "Clear the first rhythm sequence in Track 11 with no mistakes!"}
-    - { name: Encore,                                  t: [ achieve-2 ],    hint: "Clear the last rhythm sequence in Track 11 with no mistakes!"}
-    - { name: Corporate Restructuring,                 t: [ achieve-1 ],    hint: "Beat Kale in Track 12!"}
-    - { name: Helping Hand,                            t: [ achieve-2 ],    hint: "Finish all side missions!"}
+    - { name: Track 1 Personnel Management,            t: [ achieve-2 ], region: Track_1,   hint: "Beat the Track 1 boss fight without taking any damage!"}
+    - { name: Track 2 Personnel Management,            t: [ achieve-2 ], region: Track_2_2, hint: "Beat the Track 2 boss fight without taking any damage!"}
+    - { name: Track 9 Personnel Management,            t: [ achieve-2 ], region: Track_9,   hint: "Beat the Track 9 boss fight without taking any damage!"}
+    - { name: Stand Down in Awe,                       t: [ achieve-3 ], region: Track_12,  hint: "Defeat Kale in the final showdown without taking any damage."}
+    - { name: Face Off,                                t: [ achieve-2 ], region: Track_1,   hint: "Totally destroy QA-1MIL's face in Track 1!"}
+    - { name: Wrecker,                                 t: [ achieve-2 ], region: Track_2_2, hint: "In Track 2, land a 50-hit combo on Rekka!"}
+    - { name: The Sky Is Lava,                         t: [ achieve-2 ], region: Track_3_2, hint: "Avoid all of the falling lava balls in Track 3!"}
+    - { name: He's So Hot Right Now,                   t: [ achieve-1 ], region: Track_3_2, hint: "Hit Zanzo's promotional cutout into the lava in Track 3! (The best cutout to use is on the rock to the left outside R&D.)"}
+    - { name: "Get Outta My Way, Magma!",              t: [ achieve-2 ], region: Track_4_3, hint: "Parry (5) falling lava balls in Track 4!"}
+    - { name: The Great Escape,                        t: [ achieve-2 ], region: Track_4_3, hint: "Clear the Track 4 escape scene without taking any damage!"}
+    - { name: Data Harmony,                            t: [ achieve-2 ], region: Track_5_3, hint: "Fix all of the data spheres in Track 5 without making any mistakes!"}
+    - { name: Ad Blocker,                              t: [ achieve-2 ], region: Track_6,   hint: "In Track 6, parry (3) incoming signs on the L.I.F.T.!"}
+    - { name: Nice Catch!,                             t: [ achieve-2 ], region: Track_7_3, hint: "Successfully catch Korsica in Track 7!"}
+    - { name: Deflected!,                              t: [ achieve-2 ], region: Track_7_3, hint: "Defeat Korsica in her faceoff in Track 7 with a Just Timing of over 80%!"}
+    - { name: Nothing Shocks Me,                       t: [ achieve-2 ], region: Track_8_3, hint: "In Track 8, don't take any electric damage in battle!"}
+    - { name: Party Crasher,                           t: [ achieve-2 ], region: Track_9,   hint: "Parry Mimosa's vocal attacks in Track 9!"}
+    - { name: Be Gentle! I Need That Thing!,           t: [ achieve-2 ], region: Track_10,  hint: "Beat Track 10 without letting the cannon's HP fall below 50%!"}
+    - { name: Who's Afraid of the Big Bad Accountant?, t: [ achieve-2 ], region: Track_10_3, hint: "Beat Roquefort's rhythm sequence in Track 10 with no mistakes!"}
+    - { name: Heart and Soul,                          t: [ achieve-2 ], region: Track_11,   hint: "Clear the first rhythm sequence in Track 11 with no mistakes!"}
+    - { name: Encore,                                  t: [ achieve-2 ], region: Track_11,   hint: "Clear the last rhythm sequence in Track 11 with no mistakes!"}
+    - { name: Corporate Restructuring,                 t: [ achieve-1 ], region: Track_12,   hint: "Beat Kale in Track 12!"}
+    - { name: Helping Hand,                            t: [ achieve-2 ], region: Track_8,    hint: "Finish all side missions!"}
     - { name: Can't Touch This,                        t: [ achieve-2 ],    hint: "Chain together (600) dashes with the beat!"}
     - { name: Rhythm Jumper,                           t: [ achieve-2 ],    hint: "Jump along with the beat! (3,000 times)"}
     - { name: Human Metronome,                         t: [ achieve-2 ],    hint: "Land (10,000) attacks with Just Timing!"}
