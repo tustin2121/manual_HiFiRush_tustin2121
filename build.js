@@ -124,6 +124,9 @@ function parseLocations(tagDefs, locationArray) {
 		if (key === "region") { // retain original region
 			return ov;
 		}
+		if (key === 'category' && Array.isArray(ov) && Array.isArray(sv)) {
+			return [...ov, ...sv];
+		}
 	}
 }
 

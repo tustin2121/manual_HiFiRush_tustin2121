@@ -25,6 +25,13 @@ core:
       recommended: 20
 
 user:
+  safe_i18n:
+    type: Toggle
+    description: |
+      One of the locations has non-Latin characters in it. Enable this to replace it with
+      its translation, in the event that these utf8 characters cause problems in other clients.
+    hidden: true
+    default: false
   post_game:
     type: Toggle
     description: |

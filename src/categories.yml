@@ -21,13 +21,42 @@ Vending Machine:
   yaml_option: [ vending_sanity ]
 Shop Terminals:
   yaml_option: [ terminal_sanity ]
+SCR-UB:
+  yaml_option: [ scrub_sanity ]
+
 Doors:
   yaml_option: [ door_sanity ]
+Doors1:
+  requires: { door_sanity: 1 }
+  hidden: true
+Doors2:
+  requires: { door_sanity: 2 }
+  hidden: true
+
 Moment:
   yaml_option: [ moment_sanity ]
   hidden: true
+
 NPC:
   yaml_option: [ robo_sanity ]
+NPC1:
+  requires: { robo_sanity: 1 }
+  hidden: true
+NPC2:
+  requires: { robo_sanity: 2 }
+  hidden: true
+NPC3:
+  requires: { robo_sanity: 3 }
+  hidden: true
+NPC4:
+  requires: { robo_sanity: 4 }
+  hidden: true
+NPC3_Track8:
+  requires: { robo_sanity: 3, party_sanity: 1 }
+  hidden: true
+NPC4_Track8:
+  requires: { robo_sanity: 4, party_sanity: 1 }
+  hidden: true
 
 Drones - Track 5:
   yaml_option: [ drone_sanity ]
@@ -47,6 +76,18 @@ Special Attacks:
 
 Achievement:
   yaml_option: [ achievement_sanity, bucketlist_sanity ]
+Achievement1:
+  requires: { achievement_sanity: 1 }
+  hidden: true
+Achievement2:
+  requires: { achievement_sanity: 2 }
+  hidden: true
+Achievement3:
+  requires: { achievement_sanity: 3 }
+  hidden: true
+Achievement4:
+  requires: { achievement_sanity: 4 }
+  hidden: true
 
 20. Rhythm Tower:
   yaml_option: [ tower_sanity ]
@@ -55,9 +96,9 @@ Achievement:
 22. BPM Rush:
   yaml_option: [ rush_sanity ]
 30. Bucket List:
-  yaml_option: [ bucketlist_sanity ]
+  yaml_option: [ bucketlist_sanity, post_game ]
 30. Wall of Fame:
-  yaml_option: [ achievement_sanity ]
+  yaml_option: [ achievement_sanity, "!post_game" ]
 
 
 First-Game Only:

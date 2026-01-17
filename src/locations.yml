@@ -4,13 +4,13 @@
 %SCHEMA https://raw.githubusercontent.com/ManualForArchipelago/Manual/main/schemas/Manual.locations.schema.json
 ---
 # NPCs
-smidge:       { prefix: Smidge, requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC ], c: [ smidge, npc#2, npc#3, npc#4 ] } # Recurring character Smidge
-noir:         { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ noir,   npc#2, npc#3, npc#4 ] } # Recurring characters SEB-AAA and JSF-001
-tan:          { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC ], c: [ tan,    npc#2, npc#3, npc#4 ] } # Recurring character Tanning SBR-001
-npcA:         { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 3)}", category: [ NPC ], c: [ npcA,          npc#3, npc#4 ] } # Interesting NPC interactions (usually hitting)
-npcB:         { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 4)}", category: [ NPC ], c: [ npcB,                 npc#4 ] } # Boring NPCs, simply talkable
-npcA8:        { prefix: NPC,    requires: "({YamlCompare(robo_sanity >= 3)} or {YamlEnabled(party_sanity)})", category: [ NPC, Party - Track 8 ], c: [ npcA8, npc8, npc#3, npc#4 ] } # NPCs at the start of Track 8, for added checks
-npcB8:        { prefix: NPC,    requires: "({YamlCompare(robo_sanity >= 4)} or {YamlEnabled(party_sanity)})", category: [ NPC, Party - Track 8 ], c: [ npcB8, npc8,        npc#4 ] } # NPCs at the start of Track 8, for added checks
+smidge:       { prefix: Smidge, requires: "{YamlCompare(robo_sanity >= 1)}", category: [ NPC, NPC1 ], c: [ smidge, npc#2, npc#3, npc#4 ] } # Recurring character Smidge
+noir:         { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC, NPC2 ], c: [ noir,   npc#2, npc#3, npc#4 ] } # Recurring characters SEB-AAA and JSF-001
+tan:          { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 2)}", category: [ NPC, NPC2 ], c: [ tan,    npc#2, npc#3, npc#4 ] } # Recurring character Tanning SBR-001
+npcA:         { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 3)}", category: [ NPC, NPC3 ], c: [ npcA,          npc#3, npc#4 ] } # Interesting NPC interactions (usually hitting)
+npcB:         { prefix: NPC,    requires: "{YamlCompare(robo_sanity >= 4)}", category: [ NPC, NPC4 ], c: [ npcB,                 npc#4 ] } # Boring NPCs, simply talkable
+npcA8:        { prefix: NPC,    requires: "({YamlCompare(robo_sanity >= 3)} or {YamlEnabled(party_sanity)})", category: [ NPC, NPC3_Track8, Party - Track 8 ], c: [ npcA8, npc8, npc#3, npc#4 ] } # NPCs at the start of Track 8, for added checks
+npcB8:        { prefix: NPC,    requires: "({YamlCompare(robo_sanity >= 4)} or {YamlEnabled(party_sanity)})", category: [ NPC, NPC4_Track8, Party - Track 8 ], c: [ npcB8, npc8,        npc#4 ] } # NPCs at the start of Track 8, for added checks
 scrub:        { prefix: SCR-UB, requires: "{YamlEnabled(scrub_sanity)}", category: [ SCR-UB ] }
 # Permanent Collectables
 life:         { prefix: Life Gauge,        requires: "{YamlEnabled(upgrade_sanity)}", category: [ Upgrades ], c: [ upgrade, life ] }
@@ -27,8 +27,8 @@ vend:         { prefix: Vending Machine,    requires: "{YamlEnabled(vending_sani
 shop:         { prefix: Shop,               requires: "{YamlEnabled(terminal_sanity)}", category: [ Shop Terminals ] }
 drone:        { prefix: Drone,              requires: "{YamlEnabled(drone_sanity)}", category: [ Drones - Track 5 ] }
 moment:       {                             requires: "{YamlEnabled(moment_sanity)}", category: [ Moment ] } # Like cut scenes and milestones in the level that don't fall under the below
-door:         {                             requires: "{YamlCompare(door_sanity >= 1)}", category: [ Doors ] }
-spectra:      {                             requires: "{YamlCompare(door_sanity >= 2)}", category: [ Doors ], t: [ post ] }
+door:         {                             requires: "{YamlCompare(door_sanity >= 1)}", category: [ Doors, Doors1 ] }
+spectra:      {                             requires: "{YamlCompare(door_sanity >= 2)}", category: [ Doors, Doors2 ], t: [ post ] }
 key:          { }
 # Esoterica 
 easter:       { prefix: Easter Egg, requires: "{YamlEnabled(easter_sanity)}", category: [ Easter Eggs ], c: [ easter-first, easter-post ] }
@@ -45,11 +45,11 @@ chorus:       { prefix: Chorus, prefix_separator: " ", requires: "{YamlCompare(s
 level:        { requires: "{YamlCompare(scoring_method != 1)}", category: [ Level ], c: [ level#, chkpt# ] }
 boss:         { category: [ Chorus, Level ], c: [ chorus#, level#, chkpt# ] }
 # Achievements
-achieve-1:    { requires: "{YamlCompare(achievement_sanity >= 1)} and {YamlDisabled(post_game)}", category: [ Achievement ], region: Track_8,  c: [ achieve-1, achieve-2, achieve-3, achieve-4 ] }
-achieve-2:    { requires: "{YamlCompare(achievement_sanity >= 2)} and {YamlDisabled(post_game)}", category: [ Achievement ], region: Track_12, c: [ achieve-2, achieve-3, achieve-4 ] }
-achieve-3:    { requires: "{YamlCompare(achievement_sanity >= 3)} and {YamlDisabled(post_game)}", category: [ Achievement ], region: Hideout_PostGame, c: [ achieve-3, achieve-4 ] }
-achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and {YamlDisabled(post_game)}", category: [ Achievement ], region: Hideout_PostGame, c: [ achieve-4 ] }
-bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and {YamlEnabled(post_game)}", category: [ Achievement ], c: [ bucket-1 ] }
+achieve-1:    { requires: "{YamlCompare(achievement_sanity >= 1)} and {YamlDisabled(post_game)}", category: [ Achievement, Achievement1, First-Game Only ], region: Track_8,  c: [ achieve-1, achieve-2, achieve-3, achieve-4 ] }
+achieve-2:    { requires: "{YamlCompare(achievement_sanity >= 2)} and {YamlDisabled(post_game)}", category: [ Achievement, Achievement2, First-Game Only ], region: Track_12, c: [ achieve-2, achieve-3, achieve-4 ] }
+achieve-3:    { requires: "{YamlCompare(achievement_sanity >= 3)} and {YamlDisabled(post_game)}", category: [ Achievement, Achievement3, First-Game Only ], region: Hideout_PostGame, c: [ achieve-3, achieve-4 ] }
+achieve-4:    { requires: "{YamlCompare(achievement_sanity >= 4)} and {YamlDisabled(post_game)}", category: [ Achievement, Achievement4, First-Game Only ], region: Hideout_PostGame, c: [ achieve-4 ] }
+bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and {YamlEnabled(post_game)}", category: [ Achievement, Post-Game Only ], c: [ bucket-1 ] }
 
 ---
 #=====================================================================================================================#
@@ -789,8 +789,8 @@ bucket-1:     { requires: "{YamlEnabled(bucketlist_sanity)} and {YamlEnabled(pos
         - { name: 4 | Hope No One Noticed,        t: [ chorus ],     hint: "Well, I'm in. I hope no one noticed--" }
         - hint: "No one messes with Vandelay Cuisine!"
           t: [ chorus ]
-          name: 5 | 麻婆豆腐 炒飯定食
-          # name: 5 | Mapo Tofu / Fried Rice Set Meal   # Translation, use in case the program hates unicode.
+          # name: 5 | 麻婆豆腐 炒飯定食
+          name: 5 | Mapo Tofu / Fried Rice Set Meal   # Translation, use in case the program hates unicode.
         
         - { name: Cafeteria Menu,                t: [ vlog ],       hint: "After the big fight in the cafeteria, before you go through the hole in the wall." }
         - { name: Tanning SBR-001,               t: [ tan ],        hint: "After the big right in the cafeteria, at one of the tables"}
